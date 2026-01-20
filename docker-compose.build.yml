@@ -15,7 +15,7 @@ services:
       clickhouse:
         condition: service_healthy
     ports:
-      - "3002:3002"
+      - "3002:3000"
     environment: &langfuse-web-env
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5433/postgres}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-mysecret}
