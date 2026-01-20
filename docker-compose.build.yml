@@ -68,6 +68,7 @@ services:
     depends_on: *langfuse-depends-on
     ports:
       - "3030:3030"
+    command: ["postgres", "-p", "5433"]
     environment:
       <<: *langfuse-web-env
     restart: always
