@@ -9348,7 +9348,7 @@ components:
         key:
           type: string
           nullable: true
-          description: Attribute key (e.g., "service.name", "langfuse.observation.type")
+          description: Attribute key (e.g., "service.name", "elasticdash.observation.type")
         value:
           $ref: "#/components/schemas/OtelAttributeValue"
           nullable: true

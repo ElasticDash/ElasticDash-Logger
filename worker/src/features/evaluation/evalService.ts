@@ -250,7 +250,10 @@ export const createEvalJobs = async ({
 
   // Optimization: Fetch trace data once if we have multiple configs
   let cachedTrace: TraceDomain | undefined | null = null;
-  recordIncrement("langfuse.evaluation-execution.config_count", configs.length);
+  recordIncrement(
+    "elasticdash.evaluation-execution.config_count",
+    configs.length,
+  );
   if (configs.length > 1) {
     try {
       // Fetch trace data and store it. If observation data is required, we'll make a separate lookup.
@@ -268,7 +271,7 @@ export const createEvalJobs = async ({
         excludeInputOutput: true,
       });
 
-      recordIncrement("langfuse.evaluation-execution.trace_cache_fetch", 1, {
+      recordIncrement("elasticdash.evaluation-execution.trace_cache_fetch", 1, {
         found: Boolean(cachedTrace).toString(),
       });
       logger.debug("Fetched trace for evaluation optimization", {
@@ -300,7 +303,7 @@ export const createEvalJobs = async ({
         filter: [],
       });
       recordIncrement(
-        "langfuse.evaluation-execution.dataset_item_cache_fetch",
+        "elasticdash.evaluation-execution.dataset_item_cache_fetch",
         1,
         {
           found: Boolean(cachedDatasetItemIds.length > 0).toString(),
@@ -359,7 +362,7 @@ export const createEvalJobs = async ({
 
       traceExistsDecisionSource = "cache";
 
-      recordIncrement("langfuse.evaluation-execution.trace_cache_check", 1, {
+      recordIncrement("elasticdash.evaluation-execution.trace_cache_check", 1, {
         matches: traceExists ? "true" : "false",
       });
       logger.debug("Evaluated trace filter in memory", {
@@ -402,7 +405,7 @@ export const createEvalJobs = async ({
 
       traceExists = exists;
       traceTimestamp = timestamp;
-      recordIncrement("langfuse.evaluation-execution.trace_db_lookup", 1, {
+      recordIncrement("elasticdash.evaluation-execution.trace_db_lookup", 1, {
         hasCached: Boolean(cachedTrace).toString(),
         requiredDatabaseLookup: requiresDatabaseLookup(traceFilter)
           ? "true"
@@ -410,7 +413,7 @@ export const createEvalJobs = async ({
       });
     }
 
-    recordIncrement("langfuse.evaluation-execution.trace_exists_check", 1, {
+    recordIncrement("elasticdash.evaluation-execution.trace_exists_check", 1, {
       decisionSource: traceExistsDecisionSource,
       exists: String(traceExists),
     });

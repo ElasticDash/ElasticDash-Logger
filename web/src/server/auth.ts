@@ -647,8 +647,8 @@ export async function getAuthOptions(): Promise<NextAuthOptions> {
             },
           });
 
-          span.setAttribute("langfuse.user.email", dbUser?.email ?? "");
-          span.setAttribute("langfuse.user.id", dbUser?.id ?? "");
+          span.setAttribute("elasticdash.user.email", dbUser?.email ?? "");
+          span.setAttribute("elasticdash.user.id", dbUser?.id ?? "");
 
           return {
             ...session,

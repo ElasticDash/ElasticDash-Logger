@@ -142,7 +142,7 @@ export const otelIngestionQueueProcessor: Processor = async (
     ).download(fileKey);
 
     recordHistogram(
-      "langfuse.ingestion.s3_file_size_bytes",
+      "elasticdash.ingestion.s3_file_size_bytes",
       resourceSpans.length, // At this point it's still a string.
       {
         skippedS3List: "true",
@@ -180,18 +180,18 @@ export const otelIngestionQueueProcessor: Processor = async (
       });
 
     // In the next row, we only consider observations. The traces will be recorded in processEventBatch.
-    recordIncrement("langfuse.ingestion.event", observations.length, {
+    recordIncrement("elasticdash.ingestion.event", observations.length, {
       source: "otel",
     });
     // Record more stats specific to the Otel processing
-    recordDistribution("langfuse.ingestion.otel.trace_count", traces.length);
+    recordDistribution("elasticdash.ingestion.otel.trace_count", traces.length);
     recordDistribution(
-      "langfuse.ingestion.otel.observation_count",
+      "elasticdash.ingestion.otel.observation_count",
       observations.length,
     );
-    span?.setAttribute("langfuse.ingestion.otel.trace_count", traces.length);
+    span?.setAttribute("elasticdash.ingestion.otel.trace_count", traces.length);
     span?.setAttribute(
-      "langfuse.ingestion.otel.observation_count",
+      "elasticdash.ingestion.otel.observation_count",
       observations.length,
     );
 
