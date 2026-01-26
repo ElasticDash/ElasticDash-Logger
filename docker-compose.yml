@@ -5,7 +5,10 @@
 # External connections from other machines will not be able to reach these services directly.
 services:
   langfuse-worker:
-    image: docker.io/langfuse/langfuse-worker:3
+    build:
+      context: ./worker
+      dockerfile: Dockerfile
+    image: elasticdash-logger-langfuse-worker:local
     restart: always
     depends_on: &langfuse-depends-on
       postgres:
@@ -67,7 +70,10 @@ services:
       SMTP_CONNECTION_URL: ${SMTP_CONNECTION_URL:-}
 
   langfuse-web:
-    image: docker.io/langfuse/langfuse:3
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: elasticdash-logger-langfuse-web:local
     restart: always
     depends_on: *langfuse-depends-on
     ports:
