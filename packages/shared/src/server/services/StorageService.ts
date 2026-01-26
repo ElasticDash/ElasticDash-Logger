@@ -117,21 +117,21 @@ export class StorageServiceFactory {
     if (
       params.useAzureBlob !== undefined
         ? params.useAzureBlob
-        : env.ELASTICDASH_USE_AZURE_BLOB === "true"
+        : env.LANGFUSE_USE_AZURE_BLOB === "true"
     ) {
       return new AzureBlobStorageService(params);
     }
     if (
       params.useGoogleCloudStorage !== undefined
         ? params.useGoogleCloudStorage
-        : env.ELASTICDASH_USE_GOOGLE_CLOUD_STORAGE === "true"
+        : env.LANGFUSE_USE_GOOGLE_CLOUD_STORAGE === "true"
     ) {
       // Use provided credentials or fall back to environment variable
       const googleParams = {
         ...params,
         googleCloudCredentials:
           params.googleCloudCredentials ||
-          env.ELASTICDASH_GOOGLE_CLOUD_STORAGE_CREDENTIALS,
+          env.LANGFUSE_GOOGLE_CLOUD_STORAGE_CREDENTIALS,
       };
       return new GoogleCloudStorageService(googleParams);
     }
@@ -176,7 +176,7 @@ class AzureBlobStorageService implements StorageService {
 
   private async createContainerIfNotExists(): Promise<void> {
     // Skip container existence check if environment variable is set
-    if (env.ELASTICDASH_AZURE_SKIP_CONTAINER_CHECK === "true") {
+    if (env.LANGFUSE_AZURE_SKIP_CONTAINER_CHECK === "true") {
       return;
     }
 
@@ -454,7 +454,7 @@ class S3StorageService implements StorageService {
       forcePathStyle: params.forcePathStyle,
       requestHandler: {
         httpsAgent: {
-          maxSockets: env.ELASTICDASH_S3_CONCURRENT_WRITES,
+          maxSockets: env.LANGFUSE_S3_CONCURRENT_WRITES,
         },
       },
     });
@@ -470,7 +470,7 @@ class S3StorageService implements StorageService {
           forcePathStyle: params.forcePathStyle,
           requestHandler: {
             httpsAgent: {
-              maxSockets: env.ELASTICDASH_S3_CONCURRENT_WRITES,
+              maxSockets: env.LANGFUSE_S3_CONCURRENT_WRITES,
             },
           },
         })
@@ -580,7 +580,7 @@ class S3StorageService implements StorageService {
     const listCommand = new ListObjectsV2Command({
       Bucket: this.bucketName,
       Prefix: prefix,
-      MaxKeys: env.ELASTICDASH_S3_LIST_MAX_KEYS,
+      MaxKeys: env.LANGFUSE_S3_LIST_MAX_KEYS,
     });
 
     try {

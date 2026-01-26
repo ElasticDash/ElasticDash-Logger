@@ -38,11 +38,11 @@ export async function createProjectMembershipsOnSignup(user: {
       });
     }
 
-    // self-hosted: ELASTICDASH_DEFAULT_ORG_ID
-    const defaultOrg = env.ELASTICDASH_DEFAULT_ORG_ID
+    // self-hosted: LANGFUSE_DEFAULT_ORG_ID
+    const defaultOrg = env.LANGFUSE_DEFAULT_ORG_ID
       ? ((await prisma.organization.findUnique({
           where: {
-            id: env.ELASTICDASH_DEFAULT_ORG_ID,
+            id: env.LANGFUSE_DEFAULT_ORG_ID,
           },
         })) ?? undefined)
       : undefined;
@@ -56,22 +56,22 @@ export async function createProjectMembershipsOnSignup(user: {
             create: {
               orgId: defaultOrg.id,
               userId: user.id,
-              role: env.ELASTICDASH_DEFAULT_ORG_ROLE ?? "VIEWER",
+              role: env.LANGFUSE_DEFAULT_ORG_ROLE ?? "VIEWER",
             },
           })
         : undefined;
 
-    // self-hosted: ELASTICDASH_DEFAULT_PROJECT_ID
-    const defaultProject = env.ELASTICDASH_DEFAULT_PROJECT_ID
+    // self-hosted: LANGFUSE_DEFAULT_PROJECT_ID
+    const defaultProject = env.LANGFUSE_DEFAULT_PROJECT_ID
       ? ((await prisma.project.findUnique({
           where: {
-            id: env.ELASTICDASH_DEFAULT_PROJECT_ID,
+            id: env.LANGFUSE_DEFAULT_PROJECT_ID,
           },
         })) ?? undefined)
       : undefined;
     if (defaultProject !== undefined) {
       if (defaultOrgMembership) {
-        // (1) used together with ELASTICDASH_DEFAULT_ORG_ID -> create project role for the project within the org, do nothing if the project is not in the org
+        // (1) used together with LANGFUSE_DEFAULT_ORG_ID -> create project role for the project within the org, do nothing if the project is not in the org
         if (defaultProject.orgId === defaultOrgMembership.orgId) {
           await prisma.projectMembership.upsert({
             where: {
@@ -85,12 +85,12 @@ export async function createProjectMembershipsOnSignup(user: {
               userId: user.id,
               orgMembershipId: defaultOrgMembership.id,
               projectId: defaultProject.id,
-              role: env.ELASTICDASH_DEFAULT_PROJECT_ROLE ?? "VIEWER",
+              role: env.LANGFUSE_DEFAULT_PROJECT_ROLE ?? "VIEWER",
             },
           });
         }
       } else {
-        // (2) used without ELASTICDASH_DEFAULT_ORG_ID (legacy) -> create org membership for the project's org
+        // (2) used without LANGFUSE_DEFAULT_ORG_ID (legacy) -> create org membership for the project's org
         await prisma.organizationMembership.upsert({
           where: {
             orgId_userId: { orgId: defaultProject.orgId, userId: user.id },
@@ -99,7 +99,7 @@ export async function createProjectMembershipsOnSignup(user: {
           create: {
             orgId: defaultProject.orgId,
             userId: user.id,
-            role: env.ELASTICDASH_DEFAULT_PROJECT_ROLE ?? "VIEWER",
+            role: env.LANGFUSE_DEFAULT_PROJECT_ROLE ?? "VIEWER",
           },
         });
       }
@@ -111,8 +111,8 @@ export async function createProjectMembershipsOnSignup(user: {
     // for conversion metric tracking in posthog: did a new user sign up?
     if (
       isNewUser &&
-      env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION &&
-      ["EU", "US"].includes(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION)
+      env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION &&
+      ["EU", "US"].includes(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION)
     ) {
       try {
         const posthog = new ServerPosthog();
@@ -120,7 +120,7 @@ export async function createProjectMembershipsOnSignup(user: {
           distinctId: user.id,
           event: "cloud_signup_complete",
           properties: {
-            cloudRegion: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
+            cloudRegion: env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION,
             hasDemoAccess: demoProject !== undefined,
             hasDefaultOrg: defaultOrg !== undefined,
             hasDefaultProject: defaultProject !== undefined,

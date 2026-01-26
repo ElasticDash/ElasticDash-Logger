@@ -152,7 +152,7 @@ export class BatchProjectCleaner {
       where: {
         deletedAt: { not: null },
       },
-      take: env.ELASTICDASH_BATCH_PROJECT_CLEANER_PROJECT_LIMIT,
+      take: env.LANGFUSE_BATCH_PROJECT_CLEANER_PROJECT_LIMIT,
     });
   }
 
@@ -207,8 +207,7 @@ export class BatchProjectCleaner {
       query,
       params: { projectIds },
       clickhouseConfigs: {
-        request_timeout:
-          env.ELASTICDASH_BATCH_PROJECT_CLEANER_DELETE_TIMEOUT_MS,
+        request_timeout: env.LANGFUSE_BATCH_PROJECT_CLEANER_DELETE_TIMEOUT_MS,
       },
       tags: {
         feature: "batch-project-cleaner",

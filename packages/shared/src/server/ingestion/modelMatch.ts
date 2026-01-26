@@ -52,10 +52,7 @@ export async function findModel(p: ModelMatchProps): Promise<ModelWithPrices> {
       // try to find model in Postgres
       const postgresModel = await findModelInPostgres(p);
 
-      if (
-        postgresModel &&
-        env.ELASTICDASH_CACHE_MODEL_MATCH_ENABLED === "true"
-      ) {
+      if (postgresModel && env.LANGFUSE_CACHE_MODEL_MATCH_ENABLED === "true") {
         const pricingTiers = await findPricingTiersForModel(postgresModel.id);
         await addModelWithPricingTiersToRedis(p, postgresModel, pricingTiers);
 
@@ -80,7 +77,7 @@ export async function findModel(p: ModelMatchProps): Promise<ModelWithPrices> {
       } else {
         span.setAttribute("model_match_source", "none");
 
-        if (env.ELASTICDASH_CACHE_MODEL_MATCH_ENABLED === "true") {
+        if (env.LANGFUSE_CACHE_MODEL_MATCH_ENABLED === "true") {
           await addModelNotFoundTokenToRedis(p);
           span.setAttribute("model_cache_set", "true");
         }
@@ -97,7 +94,7 @@ export async function findModel(p: ModelMatchProps): Promise<ModelWithPrices> {
 const getModelWithPricesFromRedis = async (
   p: ModelMatchProps,
 ): Promise<ModelWithPrices | null> => {
-  if (env.ELASTICDASH_CACHE_MODEL_MATCH_ENABLED === "false") {
+  if (env.LANGFUSE_CACHE_MODEL_MATCH_ENABLED === "false") {
     return null;
   }
 
@@ -234,7 +231,7 @@ export async function findModelInPostgres(
   return foundModels[0] ?? null;
 }
 
-const NOT_FOUND_TOKEN = "ELASTICDASH_MODEL_MATCH_NOT_FOUND" as const;
+const NOT_FOUND_TOKEN = "LANGFUSE_MODEL_MATCH_NOT_FOUND" as const;
 
 const addModelNotFoundTokenToRedis = async (p: ModelMatchProps) => {
   try {
@@ -243,7 +240,7 @@ const addModelNotFoundTokenToRedis = async (p: ModelMatchProps) => {
       key,
       NOT_FOUND_TOKEN,
       "EX",
-      env.ELASTICDASH_CACHE_MODEL_MATCH_TTL_SECONDS,
+      env.LANGFUSE_CACHE_MODEL_MATCH_TTL_SECONDS,
     );
   } catch (error) {
     logger.error(
@@ -274,7 +271,7 @@ const addModelWithPricingTiersToRedis = async (
       key,
       JSON.stringify({ model, pricingTiers: cachedPricingTiers }),
       "EX",
-      env.ELASTICDASH_CACHE_MODEL_MATCH_TTL_SECONDS,
+      env.LANGFUSE_CACHE_MODEL_MATCH_TTL_SECONDS,
     );
   } catch (error) {
     logger.error(
@@ -325,7 +322,7 @@ export const redisModelToPrismaModel = (redisModel: Model): Model => {
 export async function clearModelCacheForProject(
   projectId: string,
 ): Promise<void> {
-  if (env.ELASTICDASH_CACHE_MODEL_MATCH_ENABLED === "false" || !redis) {
+  if (env.LANGFUSE_CACHE_MODEL_MATCH_ENABLED === "false" || !redis) {
     return;
   }
 
@@ -357,7 +354,7 @@ export async function isModelMatchCacheLocked() {
 }
 
 export async function clearFullModelCache() {
-  if (env.ELASTICDASH_CACHE_MODEL_MATCH_ENABLED === "false" || !redis) {
+  if (env.LANGFUSE_CACHE_MODEL_MATCH_ENABLED === "false" || !redis) {
     return;
   }
 

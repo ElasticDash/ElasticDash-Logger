@@ -28,9 +28,9 @@ vi.mock("../../env", async (importOriginal) => {
   return {
     ...original,
     env: {
-      ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE: 100,
-      ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS: 5000,
-      ELASTICDASH_INGESTION_CLICKHOUSE_MAX_ATTEMPTS: 3,
+      LANGFUSE_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE: 100,
+      LANGFUSE_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS: 5000,
+      LANGFUSE_INGESTION_CLICKHOUSE_MAX_ATTEMPTS: 3,
     },
   };
 });
@@ -66,13 +66,13 @@ describe("ClickhouseWriter", () => {
 
   it("should initialize with correct values", () => {
     expect(writer.batchSize).toBe(
-      env.ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE,
+      env.LANGFUSE_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE,
     );
     expect(writer.writeInterval).toBe(
-      env.ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS,
+      env.LANGFUSE_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS,
     );
     expect(writer.maxAttempts).toBe(
-      env.ELASTICDASH_INGESTION_CLICKHOUSE_MAX_ATTEMPTS,
+      env.LANGFUSE_INGESTION_CLICKHOUSE_MAX_ATTEMPTS,
     );
   });
 

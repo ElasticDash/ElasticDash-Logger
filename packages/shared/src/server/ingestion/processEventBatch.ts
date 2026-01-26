@@ -41,14 +41,13 @@ const getS3StorageServiceClient = (bucketName: string): StorageService => {
   if (!s3StorageServiceClient) {
     s3StorageServiceClient = StorageServiceFactory.getInstance({
       bucketName,
-      accessKeyId: env.ELASTICDASH_S3_EVENT_UPLOAD_ACCESS_KEY_ID,
-      secretAccessKey: env.ELASTICDASH_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY,
-      endpoint: env.ELASTICDASH_S3_EVENT_UPLOAD_ENDPOINT,
-      region: env.ELASTICDASH_S3_EVENT_UPLOAD_REGION,
-      forcePathStyle:
-        env.ELASTICDASH_S3_EVENT_UPLOAD_FORCE_PATH_STYLE === "true",
-      awsSse: env.ELASTICDASH_S3_EVENT_UPLOAD_SSE,
-      awsSseKmsKeyId: env.ELASTICDASH_S3_EVENT_UPLOAD_SSE_KMS_KEY_ID,
+      accessKeyId: env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID,
+      secretAccessKey: env.LANGFUSE_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY,
+      endpoint: env.LANGFUSE_S3_EVENT_UPLOAD_ENDPOINT,
+      region: env.LANGFUSE_S3_EVENT_UPLOAD_REGION,
+      forcePathStyle: env.LANGFUSE_S3_EVENT_UPLOAD_FORCE_PATH_STYLE === "true",
+      awsSse: env.LANGFUSE_S3_EVENT_UPLOAD_SSE,
+      awsSseKmsKeyId: env.LANGFUSE_S3_EVENT_UPLOAD_SSE_KMS_KEY_ID,
     });
   }
   return s3StorageServiceClient;
@@ -56,7 +55,7 @@ const getS3StorageServiceClient = (bucketName: string): StorageService => {
 
 /**
  * Get the delay for the event based on the event type. Uses delay if set, 0 if current UTC timestamp is not between
- * 23:45 and 00:15, and env.ELASTICDASH_INGESTION_QUEUE_DELAY_MS otherwise.
+ * 23:45 and 00:15, and env.LANGFUSE_INGESTION_QUEUE_DELAY_MS otherwise.
  * We need the delay around date boundaries to avoid duplicates for out-of-order processing of events.
  * @param delay - Delay overwrite. Used if non-null.
  */
@@ -69,7 +68,7 @@ const getDelay = (delay: number | null, source: "api" | "otel") => {
   const minutes = now.getUTCMinutes();
 
   if ((hours === 23 && minutes >= 45) || (hours === 0 && minutes <= 15)) {
-    return env.ELASTICDASH_INGESTION_QUEUE_DELAY_MS;
+    return env.LANGFUSE_INGESTION_QUEUE_DELAY_MS;
   }
 
   if (source === "otel") {
@@ -79,7 +78,7 @@ const getDelay = (delay: number | null, source: "api" | "otel") => {
   // Use 5s here to avoid duplicate processing on the worker. If the ingestion delay is set to a lower value,
   // we use this instead.
   // Values should be revisited based on a cost/performance trade-off.
-  return Math.min(5000, env.ELASTICDASH_INGESTION_QUEUE_DELAY_MS);
+  return Math.min(5000, env.LANGFUSE_INGESTION_QUEUE_DELAY_MS);
 };
 
 /**
@@ -235,9 +234,9 @@ export const processEventBatch = async (
         // That way we batch updates from the same invocation into a single file and reduce
         // write operations on S3.
         const { data, key, type, eventBodyId } = sortedBatchByEventBodyId[id];
-        const bucketPath = `${env.ELASTICDASH_S3_EVENT_UPLOAD_PREFIX}${authCheck.scope.projectId}/${getClickhouseEntityType(type)}/${eventBodyId}/${key}.json`;
+        const bucketPath = `${env.LANGFUSE_S3_EVENT_UPLOAD_PREFIX}${authCheck.scope.projectId}/${getClickhouseEntityType(type)}/${eventBodyId}/${key}.json`;
         return getS3StorageServiceClient(
-          env.ELASTICDASH_S3_EVENT_UPLOAD_BUCKET,
+          env.LANGFUSE_S3_EVENT_UPLOAD_BUCKET,
         ).uploadJson(bucketPath, data);
       }),
     );
@@ -277,7 +276,7 @@ export const processEventBatch = async (
   }
 
   const projectIdsToSkipS3List =
-    env.ELASTICDASH_SKIP_S3_LIST_FOR_OBSERVATIONS_PROJECT_IDS?.split(",") ?? [];
+    env.LANGFUSE_SKIP_S3_LIST_FOR_OBSERVATIONS_PROJECT_IDS?.split(",") ?? [];
 
   await Promise.all(
     Object.keys(sortedBatchByEventBodyId).map(async (id) => {

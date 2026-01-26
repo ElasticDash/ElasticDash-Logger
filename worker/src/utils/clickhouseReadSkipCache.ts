@@ -50,9 +50,7 @@ export class ClickhouseReadSkipCache {
   }
 
   private async performInitialization(): Promise<void> {
-    if (
-      !env.ELASTICDASH_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE
-    ) {
+    if (!env.LANGFUSE_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE) {
       logger.info(
         "No min project create date set, ClickhouseReadSkipCache will not pre-populate",
       );
@@ -60,7 +58,7 @@ export class ClickhouseReadSkipCache {
     }
 
     const cutoffDate = new Date(
-      env.ELASTICDASH_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE,
+      env.LANGFUSE_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE,
     );
 
     logger.info(
@@ -107,8 +105,8 @@ export class ClickhouseReadSkipCache {
   ): Promise<boolean> {
     // Check explicit project ID list first
     if (
-      env.ELASTICDASH_SKIP_INGESTION_CLICKHOUSE_READ_PROJECT_IDS &&
-      env.ELASTICDASH_SKIP_INGESTION_CLICKHOUSE_READ_PROJECT_IDS.split(
+      env.LANGFUSE_SKIP_INGESTION_CLICKHOUSE_READ_PROJECT_IDS &&
+      env.LANGFUSE_SKIP_INGESTION_CLICKHOUSE_READ_PROJECT_IDS.split(
         ",",
       ).includes(projectId)
     ) {
@@ -117,7 +115,7 @@ export class ClickhouseReadSkipCache {
 
     // If no cutoff date configuration, don't skip
     if (
-      !env.ELASTICDASH_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE &&
+      !env.LANGFUSE_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE &&
       !minProjectCreateDate
     ) {
       return false;
@@ -153,7 +151,7 @@ export class ClickhouseReadSkipCache {
       }
 
       const cutoffDate = new Date(
-        env.ELASTICDASH_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE ??
+        env.LANGFUSE_SKIP_INGESTION_CLICKHOUSE_READ_MIN_PROJECT_CREATE_DATE ??
           minProjectCreateDate ??
           new Date(), // Fallback to today. Should never apply.
       );

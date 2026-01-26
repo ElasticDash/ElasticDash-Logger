@@ -49,7 +49,7 @@ import { decryptAndParseExtraHeaders } from "./utils";
 import { logger } from "../logger";
 import { LLMCompletionError } from "./errors";
 
-const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION);
+const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
 
 const PROVIDERS_WITH_REQUIRED_USER_MESSAGE = [
   LLMAdapter.VertexAI,
@@ -225,7 +225,7 @@ export async function fetchLLMCompletion(
   // Common proxy configuration for all adapters
   const proxyUrl = env.HTTPS_PROXY;
   const proxyAgent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined;
-  const timeoutMs = env.ELASTICDASH_FETCH_LLM_COMPLETION_TIMEOUT_MS;
+  const timeoutMs = env.LANGFUSE_FETCH_LLM_COMPLETION_TIMEOUT_MS;
 
   let chatModel:
     | ChatOpenAI
@@ -324,7 +324,7 @@ export async function fetchLLMCompletion(
     });
   } else if (modelParams.adapter === LLMAdapter.Bedrock) {
     const { region } = shouldUseLangfuseAPIKey
-      ? { region: env.ELASTICDASH_AWS_BEDROCK_REGION }
+      ? { region: env.LANGFUSE_AWS_BEDROCK_REGION }
       : BedrockConfigSchema.parse(config);
 
     // Handle both explicit credentials and default provider chain

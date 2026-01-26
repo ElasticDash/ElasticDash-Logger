@@ -3,8 +3,7 @@ import { type Mock } from "vitest";
 
 // Hoist environment variable setting to ensure it happens before module initialization
 vi.hoisted(() => {
-  process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
-    "true";
+  process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED = "true";
 });
 
 // Mock prisma
@@ -320,11 +319,11 @@ describe("processThresholds", () => {
   });
 
   describe("enforcement feature flag", () => {
-    it("tracks usage but does not enforce when ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED is false", async () => {
+    it("tracks usage but does not enforce when LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED is false", async () => {
       // Temporarily set enforcement to disabled
       const originalEnv =
-        process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+        process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         "false";
 
       // Need to reload the module to pick up the new env var
@@ -352,7 +351,7 @@ describe("processThresholds", () => {
       expect(result.emailFailed).toBe(false);
 
       // Restore original env
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         originalEnv;
       vi.resetModules();
     });
@@ -360,8 +359,8 @@ describe("processThresholds", () => {
     it("clears state when enforcement is disabled and org was previously blocked", async () => {
       // Temporarily set enforcement to disabled
       const originalEnv =
-        process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+        process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         "false";
 
       // Need to reload the module to pick up the new env var
@@ -387,16 +386,16 @@ describe("processThresholds", () => {
       });
 
       // Restore original env
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         originalEnv;
       vi.resetModules();
     });
 
-    it("enforces thresholds when ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED is true", async () => {
+    it("enforces thresholds when LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED is true", async () => {
       // This is the default for all other tests, but let's be explicit
       const originalEnv =
-        process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+        process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         "true";
 
       vi.resetModules();
@@ -420,7 +419,7 @@ describe("processThresholds", () => {
       expect(result.actionTaken).toBe("BLOCKED");
 
       // Restore original env
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         originalEnv;
       vi.resetModules();
     });
@@ -428,8 +427,8 @@ describe("processThresholds", () => {
     it("skips enforcement for paid plan orgs regardless of enforcement flag", async () => {
       // Set enforcement to enabled
       const originalEnv =
-        process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+        process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED;
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         "true";
 
       vi.resetModules();
@@ -463,7 +462,7 @@ describe("processThresholds", () => {
       expect(result.emailSent).toBe(false);
 
       // Restore original env
-      process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+      process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
         originalEnv;
       vi.resetModules();
     });
