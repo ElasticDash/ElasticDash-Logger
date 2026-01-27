@@ -86,6 +86,10 @@ export class ApiAuthService {
   async verifyAuthHeaderAndReturnScope(
     authHeader: string | undefined,
   ): Promise<AuthHeaderVerificationResult> {
+    console.log(
+      "verifyAuthHeaderAndReturnScope called with authHeader:",
+      authHeader,
+    );
     const result: AuthHeaderVerificationResult = await instrumentAsync(
       { name: "api-auth-verify" },
       async () => {
@@ -133,7 +137,7 @@ export class ApiAuthService {
                     API_KEY_NON_EXISTENT,
                   );
                 }
-                throw new Error("Invalid credentials");
+                throw new Error("Invalid credentials, addApiKeyToRedis");
               }
 
               const isValid = await verifySecretKey(
@@ -143,7 +147,7 @@ export class ApiAuthService {
 
               if (!isValid) {
                 logger.debug(`Old key is invalid: ${publicKey}`);
-                throw new Error("Invalid credentials");
+                throw new Error("Invalid credentials, verifySecretKey");
               }
 
               const shaKey = createShaHash(secretKey, salt);
@@ -162,14 +166,14 @@ export class ApiAuthService {
 
             if (!finalApiKey) {
               logger.info("No project id found for key", publicKey);
-              throw new Error("Invalid credentials");
+              throw new Error("Invalid credentials, no finalApiKey");
             }
 
             const plan = finalApiKey.plan;
 
             if (!isPlan(plan)) {
               logger.error("Invalid plan type for key", finalApiKey.plan);
-              throw new Error("Invalid credentials");
+              throw new Error("Invalid credentials, invalid plan");
             }
 
             addUserToSpan({
@@ -293,7 +297,7 @@ export class ApiAuthService {
 
     if (redisApiKey === API_KEY_NON_EXISTENT) {
       recordIncrement("elasticdash.api_key.cache_hit", 1);
-      throw new Error("Invalid credentials");
+      throw new Error("Invalid credentials, redisApiKey non existent");
     }
 
     // if we found something, return the object.
@@ -483,7 +487,7 @@ export class ApiAuthService {
 
     if (!orgId) {
       logger.error("No organization found for key");
-      throw new Error("Invalid credentials");
+      throw new Error("Invalid credentials, no orgId");
     }
 
     return newApiKey;

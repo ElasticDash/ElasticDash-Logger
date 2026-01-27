@@ -121,7 +121,7 @@ const staticProviders: Provider[] = [
         },
       });
 
-      if (!dbUser) throw new Error("Invalid credentials");
+      if (!dbUser) throw new Error("Invalid credentials, no dbUser found");
       if (dbUser.password === null)
         throw new Error(
           "Please sign in with the identity provider (e.g. Google, GitHub, Azure AD, etc.) that is linked to your account.",
@@ -131,7 +131,8 @@ const staticProviders: Provider[] = [
         credentials.password,
         dbUser.password,
       );
-      if (!isValidPassword) throw new Error("Invalid credentials");
+      if (!isValidPassword)
+        throw new Error("Invalid credentials, invalid password");
 
       const userObj: User = {
         id: dbUser.id,
