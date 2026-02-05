@@ -53,7 +53,7 @@ export class DashboardService {
     const domainDashboards = dashboards.map((dashboard) =>
       DashboardDomainSchema.parse({
         ...dashboard,
-        owner: dashboard.projectId ? "PROJECT" : "LANGFUSE",
+        owner: dashboard.projectId ? "PROJECT" : "ELASTICDASH",
       }),
     );
 
@@ -88,7 +88,7 @@ export class DashboardService {
 
     return DashboardDomainSchema.parse({
       ...newDashboard,
-      owner: newDashboard.projectId ? "PROJECT" : "LANGFUSE",
+      owner: newDashboard.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -124,7 +124,7 @@ export class DashboardService {
 
     return DashboardDomainSchema.parse({
       ...updatedDashboard,
-      owner: updatedDashboard.projectId ? "PROJECT" : "LANGFUSE",
+      owner: updatedDashboard.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -152,7 +152,7 @@ export class DashboardService {
 
     return DashboardDomainSchema.parse({
       ...updatedDashboard,
-      owner: updatedDashboard.projectId ? "PROJECT" : "LANGFUSE",
+      owner: updatedDashboard.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -178,7 +178,7 @@ export class DashboardService {
 
     return DashboardDomainSchema.parse({
       ...updatedDashboard,
-      owner: updatedDashboard.projectId ? "PROJECT" : "LANGFUSE",
+      owner: updatedDashboard.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -202,7 +202,7 @@ export class DashboardService {
 
     return DashboardDomainSchema.parse({
       ...dashboard,
-      owner: dashboard.projectId ? "PROJECT" : "LANGFUSE",
+      owner: dashboard.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -256,7 +256,7 @@ export class DashboardService {
     const domainWidgets = widgets.map((widget) =>
       WidgetDomainSchema.parse({
         ...widget,
-        owner: widget.projectId ? "PROJECT" : "LANGFUSE",
+        owner: widget.projectId ? "PROJECT" : "ELASTICDASH",
       }),
     );
 
@@ -292,7 +292,7 @@ export class DashboardService {
 
     return WidgetDomainSchema.parse({
       ...newWidget,
-      owner: newWidget.projectId ? "PROJECT" : "LANGFUSE",
+      owner: newWidget.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -316,7 +316,7 @@ export class DashboardService {
 
     return WidgetDomainSchema.parse({
       ...widget,
-      owner: widget.projectId ? "PROJECT" : "LANGFUSE",
+      owner: widget.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 
@@ -349,7 +349,7 @@ export class DashboardService {
 
     return WidgetDomainSchema.parse({
       ...updatedWidget,
-      owner: updatedWidget.projectId ? "PROJECT" : "LANGFUSE",
+      owner: updatedWidget.projectId ? "PROJECT" : "ELASTICDASH",
     });
   }
 

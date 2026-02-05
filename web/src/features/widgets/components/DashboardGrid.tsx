@@ -45,7 +45,7 @@ export function DashboardGrid({
   dateRange: { from: Date; to: Date } | undefined;
   filterState: FilterState;
   onDeleteWidget: (tileId: string) => void;
-  dashboardOwner: "LANGFUSE" | "PROJECT" | undefined;
+  dashboardOwner: "ELASTICDASH" | "PROJECT" | undefined;
 }) {
   const [rowHeight, setRowHeight] = useState(150);
 

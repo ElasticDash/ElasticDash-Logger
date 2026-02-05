@@ -24,7 +24,7 @@ export default withMiddlewares({
       const useEventsTable =
         query.useEventsTable !== undefined && query.useEventsTable !== null
           ? query.useEventsTable === true
-          : env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS;
+          : env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS;
 
       const clickhouseObservation = useEventsTable
         ? await getObservationByIdFromEventsTable({

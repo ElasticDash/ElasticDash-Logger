@@ -15,7 +15,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawk6isp00kbad07t66dohjn",
@@ -32,7 +32,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cma2f2ioc001had07f7810kg1",
@@ -49,7 +49,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawk9xbu00lfad07s9j1bxnx",
@@ -66,7 +66,7 @@
       "filters": [],
       "chartType": "HORIZONTAL_BAR",
       "chartConfig": { "type": "HORIZONTAL_BAR", "row_limit": 20 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawkfg0m00kzad07jyofrnq2",
@@ -83,7 +83,7 @@
       "filters": [],
       "chartType": "VERTICAL_BAR",
       "chartConfig": { "type": "VERTICAL_BAR", "row_limit": 20 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawk6nqs00jwad07hwpsj3z2",
@@ -100,7 +100,7 @@
       "filters": [],
       "chartType": "VERTICAL_BAR",
       "chartConfig": { "type": "VERTICAL_BAR", "row_limit": 20 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawk7btd00khad07g625cqmp",
@@ -117,7 +117,7 @@
       "filters": [],
       "chartType": "PIE",
       "chartConfig": { "type": "PIE", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawk94z800ldad07jjox8ugd",
@@ -134,7 +134,7 @@
       "filters": [],
       "chartType": "HORIZONTAL_BAR",
       "chartConfig": { "type": "HORIZONTAL_BAR", "row_limit": 50 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawka1fk00kdad07vdipgz04",
@@ -151,7 +151,7 @@
       "filters": [],
       "chartType": "VERTICAL_BAR",
       "chartConfig": { "type": "VERTICAL_BAR", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawksk8h00phad07s9c7v6d7",
@@ -168,7 +168,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawktot400pkad07m8gy30vq",
@@ -185,7 +185,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawl83ks001ead076pk2wcex",
@@ -202,7 +202,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawle4zj0096ad0650rzeh0z",
@@ -219,7 +219,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawljmu100v7ad07pd3apnwe",
@@ -236,7 +236,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlkgt300vsad06g69vqqej",
@@ -253,7 +253,7 @@
       "filters": [],
       "chartType": "LINE_TIME_SERIES",
       "chartConfig": { "type": "LINE_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawloc0k010uad06e4git5kz",
@@ -270,7 +270,7 @@
       "filters": [],
       "chartType": "NUMBER",
       "chartConfig": { "type": "NUMBER", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlaqoa004kad07e2q0za6k",
@@ -287,7 +287,7 @@
       "filters": [],
       "chartType": "NUMBER",
       "chartConfig": { "type": "NUMBER", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlbdu2004nad07lks0j8lw",
@@ -304,7 +304,7 @@
       "filters": [],
       "chartType": "NUMBER",
       "chartConfig": { "type": "NUMBER", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawk5sik00igad07kjetg17j",
@@ -321,7 +321,7 @@
       "filters": [],
       "chartType": "VERTICAL_BAR",
       "chartConfig": { "type": "VERTICAL_BAR", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlotp500zcad076b8u704s",
@@ -338,7 +338,7 @@
       "filters": [],
       "chartType": "NUMBER",
       "chartConfig": { "type": "NUMBER", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlpv4600y0ad0770qyrix9",
@@ -355,7 +355,7 @@
       "filters": [],
       "chartType": "NUMBER",
       "chartConfig": { "type": "NUMBER", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlqkxk00xfad07r8zoc4ag",
@@ -372,7 +372,7 @@
       "filters": [],
       "chartType": "NUMBER",
       "chartConfig": { "type": "NUMBER", "row_limit": 100 },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlrhom00xhad07phtqc81k",
@@ -389,7 +389,7 @@
       "filters": [],
       "chartType": "BAR_TIME_SERIES",
       "chartConfig": { "type": "BAR_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlt6wi00zmad07cvxeeepq",
@@ -406,7 +406,7 @@
       "filters": [],
       "chartType": "BAR_TIME_SERIES",
       "chartConfig": { "type": "BAR_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawltpsx00yaad07f51yvkwg",
@@ -423,7 +423,7 @@
       "filters": [],
       "chartType": "BAR_TIME_SERIES",
       "chartConfig": { "type": "BAR_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlu5bs00zsad07maibk7ef",
@@ -440,7 +440,7 @@
       "filters": [],
       "chartType": "BAR_TIME_SERIES",
       "chartConfig": { "type": "BAR_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlw4s700zvad07qq4qi0gp",
@@ -457,7 +457,7 @@
       "filters": [],
       "chartType": "BAR_TIME_SERIES",
       "chartConfig": { "type": "BAR_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     },
     {
       "id": "cmawlxdo00106ad07crpey1if",
@@ -474,7 +474,7 @@
       "filters": [],
       "chartType": "BAR_TIME_SERIES",
       "chartConfig": { "type": "BAR_TIME_SERIES" },
-      "owner": "LANGFUSE"
+      "owner": "ELASTICDASH"
     }
   ],
   "dashboards": [
@@ -487,7 +487,7 @@
       "projectId": null,
       "name": "ElasticDash Latency Dashboard",
       "description": "Monitor latency metrics across traces and generations for performance optimization.",
-      "owner": "LANGFUSE",
+      "owner": "ELASTICDASH",
       "definition": {
         "widgets": [
           {
@@ -565,7 +565,7 @@
       "projectId": null,
       "name": "ElasticDash Usage Management",
       "description": "Track usage metrics across traces, observations, and scores to manage resource allocation.",
-      "owner": "LANGFUSE",
+      "owner": "ELASTICDASH",
       "definition": {
         "widgets": [
           {
@@ -670,7 +670,7 @@
       "projectId": null,
       "name": "ElasticDash Cost Dashboard",
       "description": "Review your LLM costs.",
-      "owner": "LANGFUSE",
+      "owner": "ELASTICDASH",
       "definition": {
         "widgets": [
           {

@@ -130,11 +130,11 @@ export class OtelIngestionProcessor {
    * into the otel-ingestion-queue.
    */
   async publishToOtelIngestionQueue(resourceSpans: ResourceSpan[]) {
-    const fileKey = `${env.LANGFUSE_S3_EVENT_UPLOAD_PREFIX}otel/${this.projectId}/${this.getCurrentTimePath()}/${randomUUID()}.json`;
+    const fileKey = `${env.ELASTICDASH_S3_EVENT_UPLOAD_PREFIX}otel/${this.projectId}/${this.getCurrentTimePath()}/${randomUUID()}.json`;
 
     // Upload to S3
     await getS3EventStorageClient(
-      env.LANGFUSE_S3_EVENT_UPLOAD_BUCKET,
+      env.ELASTICDASH_S3_EVENT_UPLOAD_BUCKET,
     ).uploadJson(fileKey, resourceSpans as Record<string, unknown>[]);
 
     // Add queue job

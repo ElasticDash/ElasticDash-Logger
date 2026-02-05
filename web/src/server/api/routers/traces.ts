@@ -489,7 +489,7 @@ export const traceRouter = createTRPCRouter({
           const promises = [
             upsertTrace(convertTraceDomainToClickhouse(clickhouseTrace)),
           ];
-          if (env.LANGFUSE_ENABLE_EVENTS_TABLE_FLAGS === "true") {
+          if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_FLAGS === "true") {
             promises.push(
               updateEvents(
                 input.projectId,
@@ -554,7 +554,7 @@ export const traceRouter = createTRPCRouter({
         const promises = [
           upsertTrace(convertTraceDomainToClickhouse(clickhouseTrace)),
         ];
-        if (env.LANGFUSE_ENABLE_EVENTS_TABLE_FLAGS === "true") {
+        if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_FLAGS === "true") {
           promises.push(
             updateEvents(
               input.projectId,

@@ -34,7 +34,7 @@ type DashboardTableRow = {
   description: string;
   createdAt: Date;
   updatedAt: Date;
-  owner: "PROJECT" | "LANGFUSE";
+  owner: "PROJECT" | "ELASTICDASH";
 };
 
 function CloneDashboardButton({
@@ -196,7 +196,7 @@ export function DashboardTable() {
       header: "Owner",
       size: 80,
       cell: (row) => {
-        return row.row.original.owner === "LANGFUSE" ? (
+        return row.row.original.owner === "ELASTICDASH" ? (
           <span className="flex gap-1 px-2 py-0.5 text-xs">
             <span role="img" aria-label="ElasticDash">
               🪢

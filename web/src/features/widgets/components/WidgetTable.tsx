@@ -33,7 +33,7 @@ type WidgetTableRow = {
   chartType: string;
   createdAt: Date;
   updatedAt: Date;
-  owner: "PROJECT" | "LANGFUSE";
+  owner: "PROJECT" | "ELASTICDASH";
 };
 
 export function DeleteWidget({
@@ -41,14 +41,14 @@ export function DeleteWidget({
   owner,
 }: {
   widgetId: string;
-  owner: "PROJECT" | "LANGFUSE";
+  owner: "PROJECT" | "ELASTICDASH";
 }) {
   const projectId = useProjectIdFromURL();
   const utils = api.useUtils();
   const [isOpen, setIsOpen] = useState(false);
   const hasAccess =
     useHasProjectAccess({ projectId, scope: "dashboards:CUD" }) &&
-    owner !== "LANGFUSE";
+    owner !== "ELASTICDASH";
   const capture = usePostHogClientCapture();
 
   const mutDeleteWidget = api.dashboardWidgets.delete.useMutation({
