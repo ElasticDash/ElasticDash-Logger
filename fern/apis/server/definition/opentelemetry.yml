@@ -19,8 +19,8 @@ service:
         - Implements `ExportTraceServiceRequest` message format
 
         **Documentation:**
-        - Integration guide: https://langfuse.com/integrations/native/opentelemetry
-        - Data model: https://langfuse.com/docs/observability/data-model
+        - Integration guide: https://elasticdash.com/integrations/native/opentelemetry
+        - Data model: https://elasticdash.com/docs/observability/data-model
       method: POST
       path: /otel/v1/traces
       request:
@@ -47,7 +47,7 @@ service:
                         stringValue: "1.0.0"
                 scopeSpans:
                   - scope:
-                      name: "langfuse-sdk"
+                      name: "elasticdash-sdk"
                       version: "2.60.3"
                     spans:
                       - traceId: "0123456789abcdef0123456789abcdef"
@@ -131,7 +131,7 @@ types:
         docs: End time in nanoseconds since Unix epoch
       attributes:
         type: optional<list<OtelAttribute>>
-        docs: Span attributes including ElasticDash-specific attributes (langfuse.observation.*)
+        docs: Span attributes including ElasticDash-specific attributes (elasticdash.observation.*)
       status:
         type: optional<unknown>
         docs: Span status object

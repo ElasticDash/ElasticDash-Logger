@@ -1,5 +1,5 @@
 /** @jest-environment node */
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   makeAPICall,
   makeZodVerifiedAPICall,
@@ -14,8 +14,8 @@ import {
   DatasetItemValidator,
   getDatasetItems,
   createDatasetItemFilterState,
-} from "@langfuse/shared/src/server";
-import { validateFieldAgainstSchema } from "@langfuse/shared";
+} from "@elasticdash/shared/src/server";
+import { validateFieldAgainstSchema } from "@elasticdash/shared";
 
 process.env.ELASTICDASH_DATASET_SERVICE_READ_FROM_VERSIONED_IMPLEMENTATION =
   "true";

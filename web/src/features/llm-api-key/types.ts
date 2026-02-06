@@ -3,7 +3,7 @@ import {
   LLMAdapter,
   BedrockConfigSchema,
   VertexAIConfigSchema,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const LlmApiKeySchema = z.object({
   projectId: z.string(),

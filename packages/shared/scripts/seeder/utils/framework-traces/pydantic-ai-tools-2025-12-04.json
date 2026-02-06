@@ -5,10 +5,7 @@
     "name": "joke-generator",
     "timestamp": "2025-12-04T14:51:22.053Z",
     "environment": "default",
-    "tags": [
-      "example",
-      "joke-generator"
-    ],
+    "tags": ["example", "joke-generator"],
     "bookmarked": false,
     "release": null,
     "version": null,
@@ -19,7 +16,7 @@
     "output": "\"Why do programmers hate nature?  \\nIt has too many bugs!\"",
     "createdAt": "2025-12-04T14:51:25.697Z",
     "updatedAt": "2025-12-04T14:51:29.610Z",
-    "metadata": "{\"environment\":\"development\",\"topic\":\"programming\",\"iterations\":1,\"evaluation\":{\"quality\":\"good\",\"feedback\":\"The joke is clever and plays on the double meaning of 'bugs' in programming and nature. It's relatable for those in the tech field, making it effective. To enhance it, consider adding a punchline that builds on the setup for an even stronger impact.\"},\"resourceAttributes\":{\"telemetry.sdk.language\":\"python\",\"telemetry.sdk.name\":\"opentelemetry\",\"telemetry.sdk.version\":\"1.38.0\",\"service.name\":\"unknown_service\"},\"scope\":{\"name\":\"langfuse-sdk\",\"version\":\"3.10.5\",\"attributes\":{\"public_key\":\"pk-lf-1234567890\"}}}",
+    "metadata": "{\"environment\":\"development\",\"topic\":\"programming\",\"iterations\":1,\"evaluation\":{\"quality\":\"good\",\"feedback\":\"The joke is clever and plays on the double meaning of 'bugs' in programming and nature. It's relatable for those in the tech field, making it effective. To enhance it, consider adding a punchline that builds on the setup for an even stronger impact.\"},\"resourceAttributes\":{\"telemetry.sdk.language\":\"python\",\"telemetry.sdk.name\":\"opentelemetry\",\"telemetry.sdk.version\":\"1.38.0\",\"service.name\":\"unknown_service\"},\"scope\":{\"name\":\"elasticdash-sdk\",\"version\":\"0.0.10\",\"attributes\":{\"public_key\":\"pk-lf-1234567890\"}}}",
     "scores": [],
     "latency": 7.424
   },
@@ -67,17 +64,15 @@
           "service.name": "unknown_service"
         },
         "scope": {
-          "name": "langfuse-sdk",
-          "version": "3.10.5",
+          "name": "elasticdash-sdk",
+          "version": "0.0.10",
           "attributes": {
             "public_key": "pk-lf-1234567890"
           }
         }
       },
       "input": {
-        "args": [
-          "programming"
-        ],
+        "args": ["programming"],
         "kwargs": {}
       },
       "output": {
@@ -328,9 +323,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a pun-style joke suggestion for the given topic.",
@@ -350,9 +343,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a dad joke style suggestion for the given topic.",
@@ -372,9 +363,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a one-liner joke suggestion for the given topic.",
@@ -394,9 +383,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a car-themed joke suggestion for the given topic.",
@@ -416,9 +403,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a tree-themed joke suggestion for the given topic.",
@@ -457,9 +442,7 @@
           "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
           "operation.cost": "0.00009435",
           "gen_ai.response.id": "chatcmpl-Cj4xwF0fLMbLL7cj2PpKMa69vdqgM",
-          "gen_ai.response.finish_reasons": [
-            "stop"
-          ]
+          "gen_ai.response.finish_reasons": ["stop"]
         },
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
@@ -622,11 +605,7 @@
                   "properties": {
                     "quality": {
                       "description": "Rate the joke quality: 'good' if funny and well-crafted, 'okay' if decent but needs refinement, 'bad' if not funny",
-                      "enum": [
-                        "good",
-                        "okay",
-                        "bad"
-                      ],
+                      "enum": ["good", "okay", "bad"],
                       "type": "string"
                     },
                     "feedback": {
@@ -634,10 +613,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "quality",
-                    "feedback"
-                  ],
+                  "required": ["quality", "feedback"],
                   "type": "object",
                   "additionalProperties": false
                 },
@@ -673,9 +649,7 @@
           "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
           "operation.cost": "0.00006105",
           "gen_ai.response.id": "chatcmpl-Cj4xzvxxhTcFqIdven62KgHXNPUCI",
-          "gen_ai.response.finish_reasons": [
-            "tool_call"
-          ]
+          "gen_ai.response.finish_reasons": ["tool_call"]
         },
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
@@ -944,9 +918,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a pun-style joke suggestion for the given topic.",
@@ -966,9 +938,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a dad joke style suggestion for the given topic.",
@@ -988,9 +958,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a one-liner joke suggestion for the given topic.",
@@ -1010,9 +978,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a car-themed joke suggestion for the given topic.",
@@ -1032,9 +998,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a tree-themed joke suggestion for the given topic.",
@@ -1073,9 +1037,7 @@
           "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
           "operation.cost": "0.0000837",
           "gen_ai.response.id": "chatcmpl-Cj4xysdHxD1EWQ6YHKdnqZ9dcX90X",
-          "gen_ai.response.finish_reasons": [
-            "stop"
-          ]
+          "gen_ai.response.finish_reasons": ["stop"]
         },
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
@@ -1377,9 +1339,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a pun-style joke suggestion for the given topic.",
@@ -1399,9 +1359,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a dad joke style suggestion for the given topic.",
@@ -1421,9 +1379,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a one-liner joke suggestion for the given topic.",
@@ -1443,9 +1399,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a car-themed joke suggestion for the given topic.",
@@ -1465,9 +1419,7 @@
                       "type": "string"
                     }
                   },
-                  "required": [
-                    "topic"
-                  ],
+                  "required": ["topic"],
                   "type": "object"
                 },
                 "description": "Get a tree-themed joke suggestion for the given topic.",
@@ -1506,9 +1458,7 @@
           "gen_ai.response.model": "gpt-4o-mini-2024-07-18",
           "operation.cost": "0.00008355",
           "gen_ai.response.id": "chatcmpl-Cj4xu0Nus6lKWVVmxlb7TZTsMizLD",
-          "gen_ai.response.finish_reasons": [
-            "tool_call"
-          ]
+          "gen_ai.response.finish_reasons": ["tool_call"]
         },
         "resourceAttributes": {
           "telemetry.sdk.language": "python",

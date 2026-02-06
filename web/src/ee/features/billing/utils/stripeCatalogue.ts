@@ -1,5 +1,5 @@
 import { env } from "@/src/env.mjs";
-import { type Plan } from "@langfuse/shared";
+import { type Plan } from "@elasticdash/shared";
 
 const isTestEnvironment =
   env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "DEV" ||

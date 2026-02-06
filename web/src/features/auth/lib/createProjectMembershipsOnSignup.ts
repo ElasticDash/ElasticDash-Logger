@@ -1,6 +1,6 @@
 import { env } from "@/src/env.mjs";
-import { prisma, Role } from "@langfuse/shared/src/db";
-import { logger } from "@langfuse/shared/src/server";
+import { prisma, Role } from "@elasticdash/shared/src/db";
+import { logger } from "@elasticdash/shared/src/server";
 import { ServerPosthog } from "@/src/features/posthog-analytics/ServerPosthog";
 
 export async function createProjectMembershipsOnSignup(user: {

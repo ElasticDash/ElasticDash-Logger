@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { TraceConclusionService } from "../services/TraceConclusionService";
-import * as clickhouse from "@langfuse/shared/src/server";
+import * as clickhouse from "@elasticdash/shared/src/server";
 import axios from "axios";
 
 // Mock ClickHouse
-vi.mock("@langfuse/shared/src/server", async () => {
-  const actual = await vi.importActual("@langfuse/shared/src/server");
+vi.mock("@elasticdash/shared/src/server", async () => {
+  const actual = await vi.importActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     queryClickhouse: vi.fn(),

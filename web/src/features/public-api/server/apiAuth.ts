@@ -12,19 +12,19 @@ import {
   invalidateCachedApiKeys as invalidateCachedApiKeysShared,
   invalidateCachedOrgApiKeys as invalidateCachedOrgApiKeysShared,
   invalidateCachedProjectApiKeys as invalidateCachedProjectApiKeysShared,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   type PrismaClient,
   type ApiKey,
   type Prisma,
   type ApiKeyScope,
-} from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/db";
 import { isPrismaException } from "@/src/utils/exceptions";
 import { type Redis, type Cluster } from "ioredis";
 import { getOrganizationPlanServerSide } from "@/src/features/entitlements/server/getPlan";
-import { API_KEY_NON_EXISTENT } from "@langfuse/shared/src/server";
+import { API_KEY_NON_EXISTENT } from "@elasticdash/shared/src/server";
 import { type z } from "zod/v4";
-import { CloudConfigSchema, isPlan } from "@langfuse/shared";
+import { CloudConfigSchema, isPlan } from "@elasticdash/shared";
 
 export class ApiAuthService {
   prisma: PrismaClient;

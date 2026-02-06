@@ -6,12 +6,12 @@ import {
 import {
   DatasetRunItemUpsertQueue,
   RetryBaggage,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { ObservationNotFoundError } from "../errors/ObservationNotFoundError";
 
 // Mock the queue
-vi.mock("@langfuse/shared/src/server", async () => {
-  const actual = await vi.importActual("@langfuse/shared/src/server");
+vi.mock("@elasticdash/shared/src/server", async () => {
+  const actual = await vi.importActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     DatasetRunItemUpsertQueue: {

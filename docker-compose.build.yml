@@ -1,11 +1,11 @@
 services:
-  langfuse-web:
+  elasticdash-web:
     build:
       dockerfile: ./web/Dockerfile
       context: .
       args:
         - NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION=${NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION}
-    depends_on: &langfuse-depends-on
+    depends_on: &elasticdash-depends-on
       postgres:
         condition: service_healthy
       minio:
@@ -16,7 +16,7 @@ services:
         condition: service_healthy
     ports:
       - "3002:3000"
-    environment: &langfuse-web-env
+    environment: &elasticdash-web-env
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5433/postgres}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
       SALT: ${SALT}
@@ -38,7 +38,7 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse}
       CLICKHOUSE_CLUSTER_ENABLED: ${CLICKHOUSE_CLUSTER_ENABLED:-false}
-      ELASTICDASH_S3_EVENT_UPLOAD_BUCKET: ${ELASTICDASH_S3_EVENT_UPLOAD_BUCKET:-langfuse}
+      ELASTICDASH_S3_EVENT_UPLOAD_BUCKET: ${ELASTICDASH_S3_EVENT_UPLOAD_BUCKET:-elasticdash}
       ELASTICDASH_S3_EVENT_UPLOAD_REGION: ${ELASTICDASH_S3_EVENT_UPLOAD_REGION:-us-east-1}
       ELASTICDASH_S3_EVENT_UPLOAD_ACCESS_KEY_ID: ${ELASTICDASH_S3_EVENT_UPLOAD_ACCESS_KEY_ID:-minio}
       ELASTICDASH_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY: ${ELASTICDASH_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY:-miniosecret}
@@ -59,18 +59,18 @@ services:
       timeout: 10s
       retries: 3
 
-  langfuse-worker:
+  elasticdash-worker:
     build:
       dockerfile: ./worker/Dockerfile
       context: .
       args:
         - NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION=${NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION}
-    depends_on: *langfuse-depends-on
+    depends_on: *elasticdash-depends-on
     ports:
       - "3030:3030"
     command: ["postgres", "-p", "5433"]
     environment:
-      <<: *langfuse-web-env
+      <<: *elasticdash-web-env
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3030/api/health"]
@@ -86,8 +86,8 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse}
     volumes:
-      - langfuse_clickhouse_data:/var/lib/clickhouse
-      - langfuse_clickhouse_logs:/var/log/clickhouse-server
+      - elasticdash_clickhouse_data:/var/lib/clickhouse
+      - elasticdash_clickhouse_logs:/var/log/clickhouse-server
     ports:
       - "8123:8123"
       - "9000:9000"
@@ -101,8 +101,8 @@ services:
   minio:
     image: cgr.dev/chainguard/minio
     entrypoint: sh
-    # create the 'langfuse' bucket before starting the service
-    command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" --console-address ":9001" /data'
+    # create the 'elasticdash' bucket before starting the service
+    command: -c 'mkdir -p /data/elasticdash && minio server --address ":9000" --console-address ":9001" /data'
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minio}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-miniosecret}
@@ -110,7 +110,7 @@ services:
       - "9090:9000"
       - "9091:9001"
     volumes:
-      - langfuse_minio_data:/data
+      - elasticdash_minio_data:/data
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
       interval: 1s
@@ -149,14 +149,14 @@ services:
     ports:
       - 5433:5433
     volumes:
-      - langfuse_postgres_data:/var/lib/postgresql/data
+      - elasticdash_postgres_data:/var/lib/postgresql/data
 
 volumes:
-  langfuse_postgres_data:
+  elasticdash_postgres_data:
     driver: local
-  langfuse_clickhouse_data:
+  elasticdash_clickhouse_data:
     driver: local
-  langfuse_clickhouse_logs:
+  elasticdash_clickhouse_logs:
     driver: local
-  langfuse_minio_data:
+  elasticdash_minio_data:
     driver: local

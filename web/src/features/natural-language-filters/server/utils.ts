@@ -1,7 +1,7 @@
-import { LLMAdapter } from "@langfuse/shared/src/server";
-import { ElasticDash } from "langfuse";
+import { LLMAdapter } from "@elasticdash/shared/src/server";
+import { ElasticDash } from "elasticdash-js";
 import { env } from "@/src/env.mjs";
-import { type FilterCondition, singleFilter } from "@langfuse/shared";
+import { type FilterCondition, singleFilter } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
 let langfuseClient: ElasticDash | null = null;

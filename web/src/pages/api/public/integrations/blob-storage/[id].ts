@@ -1,14 +1,14 @@
 import { ApiAuthService } from "@/src/features/public-api/server/apiAuth";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
-import { prisma } from "@langfuse/shared/src/db";
-import { redis } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { redis } from "@elasticdash/shared/src/server";
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { hasEntitlementBasedOnPlan } from "@/src/features/entitlements/server/hasEntitlement";
 import {
   LangfuseNotFoundError,
   UnauthorizedError,
   ForbiddenError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export default withMiddlewares({
   DELETE: handleDeleteBlobStorageIntegration,

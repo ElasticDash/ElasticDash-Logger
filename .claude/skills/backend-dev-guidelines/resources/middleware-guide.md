@@ -495,8 +495,8 @@ async function verifyBasicAuth(authHeader: string | undefined) {
 async function verifyAdminApiKeyAuth(req: NextApiRequest) {
   // Requires:
   // 1. Authorization: Bearer <ADMIN_API_KEY>
-  // 2. x-langfuse-admin-api-key: <ADMIN_API_KEY>
-  // 3. x-langfuse-project-id: <project-id>
+  // 2. x-elasticdash-admin-api-key: <ADMIN_API_KEY>
+  // 3. x-elasticdash-project-id: <project-id>
 
   if (env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
     throw { status: 403, message: "Admin API key auth not available on ElasticDash Cloud" };
@@ -504,7 +504,7 @@ async function verifyAdminApiKeyAuth(req: NextApiRequest) {
 
   const adminApiKey = env.ADMIN_API_KEY;
   const bearerToken = req.headers.authorization?.replace("Bearer ", "");
-  const adminApiKeyHeader = req.headers["x-langfuse-admin-api-key"];
+  const adminApiKeyHeader = req.headers["x-elasticdash-admin-api-key"];
 
   // Timing-safe comparison
   const isValid =
@@ -513,7 +513,7 @@ async function verifyAdminApiKeyAuth(req: NextApiRequest) {
 
   if (!isValid) throw { status: 401, message: "Invalid admin API key" };
 
-  const projectId = req.headers["x-langfuse-project-id"];
+  const projectId = req.headers["x-elasticdash-project-id"];
   const project = await prisma.project.findUnique({ where: { id: projectId } });
 
   if (!project) throw { status: 404, message: "Project not found" };
@@ -617,7 +617,7 @@ All requests (tRPC and public API) propagate OpenTelemetry context with ElasticD
 ### Context Propagation Pattern
 
 ```typescript
-import { contextWithLangfuseProps } from "@langfuse/shared/src/server";
+import { contextWithLangfuseProps } from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
 
 // Create context with ElasticDash baggage

@@ -3,7 +3,7 @@ import {
   PricingTierConditionSchema,
   PricingTierInputSchema,
   validatePricingTiers,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const UsageTypeSchema = z.string().regex(/^[a-zA-Z0-9_-]+$/);
 export const PriceSchema = z.number().nonnegative();

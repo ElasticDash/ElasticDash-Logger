@@ -1,12 +1,15 @@
 import { expect, describe, it } from "vitest";
-import { prisma } from "@langfuse/shared/src/db";
-import { createOrgProjectAndApiKey, redis } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import {
+  createOrgProjectAndApiKey,
+  redis,
+} from "@elasticdash/shared/src/server";
 import {
   findModel,
   findModelInPostgres,
   getRedisModelKey,
   clearModelCacheForProject,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 as uuidv4 } from "uuid";
 
 describe("modelMatch", () => {

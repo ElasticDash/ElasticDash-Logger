@@ -3,11 +3,11 @@ import {
   createTRPCRouter,
   protectedGetTraceProcedure,
 } from "@/src/server/api/trpc";
-import { LangfuseNotFoundError, parseIO } from "@langfuse/shared";
+import { LangfuseNotFoundError, parseIO } from "@elasticdash/shared";
 import {
   getObservationById,
   getObservationByIdFromEventsTable,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 import { toDomainWithStringifiedMetadata } from "@/src/utils/clientSideDomainTypes";
 

@@ -3,7 +3,7 @@ import {
   createTRPCRouter,
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
-import { Prisma, type Dataset } from "@langfuse/shared/src/db";
+import { Prisma, type Dataset } from "@elasticdash/shared/src/db";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import { DB } from "@/src/server/db";
@@ -20,7 +20,7 @@ import {
   optionalPaginationZod,
   LangfuseConflictError,
   LangfuseNotFoundError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { TRPCError } from "@trpc/server";
 import {
   datasetRunsTableSchema,
@@ -64,13 +64,13 @@ import {
   getDatasetItemVersionHistory,
   getDatasetItemChangesSinceVersion,
   getDatasetItemsCountGrouped,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { aggregateScores } from "@/src/features/scores/lib/aggregateScores";
 import {
   updateDataset,
   upsertDataset,
 } from "@/src/features/datasets/server/actions/createDataset";
-import { type BulkDatasetItemValidationError } from "@langfuse/shared";
+import { type BulkDatasetItemValidationError } from "@elasticdash/shared";
 import { v4 } from "uuid";
 
 // Batch size kept small (100) as items may have large input/output/metadata JSON

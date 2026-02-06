@@ -7,7 +7,7 @@ import {
   type PlaceholderMessage,
   type PromptVariable,
   type UIModelParams,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export type PlaygroundTool = LLMToolDefinition & {
   id: string;

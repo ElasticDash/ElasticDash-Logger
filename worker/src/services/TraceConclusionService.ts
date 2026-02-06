@@ -1,6 +1,6 @@
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { notifyTraceConcluded } from "../../../packages/shared/src/server/repositories/observations";
-import { queryClickhouse } from "@langfuse/shared/src/server";
+import { queryClickhouse } from "@elasticdash/shared/src/server";
 
 /**
  * Service for identifying and notifying concluded traces.

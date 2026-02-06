@@ -1,9 +1,9 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   logger,
   invalidateCachedOrgApiKeys,
   traceException,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import type { OrgUpdateData } from "./thresholdProcessing";
 
 /**

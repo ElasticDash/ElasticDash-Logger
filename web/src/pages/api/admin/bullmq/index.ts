@@ -8,7 +8,7 @@ import {
   TraceUpsertQueue,
   IngestionEvent,
   OtelIngestionQueue,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { AdminApiAuthService } from "@/src/ee/features/admin-api/server/adminApiAuth";
 
 /* 

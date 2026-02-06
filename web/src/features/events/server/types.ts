@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-import { singleFilter, TracingSearchType, orderBy } from "@langfuse/shared";
+import { singleFilter, TracingSearchType, orderBy } from "@elasticdash/shared";
 
 export const EventsTableOptions = z.object({
   projectId: z.string(), // Required for protectedProjectProcedure

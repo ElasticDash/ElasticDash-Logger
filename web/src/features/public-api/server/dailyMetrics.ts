@@ -1,11 +1,11 @@
-import { convertApiProvidedFilterToClickhouseFilter } from "@langfuse/shared/src/server";
+import { convertApiProvidedFilterToClickhouseFilter } from "@elasticdash/shared/src/server";
 import {
   convertDateToClickhouseDateTime,
   queryClickhouse,
   TRACE_TO_OBSERVATIONS_INTERVAL,
   type DateTimeFilter,
   measureAndReturn,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 type QueryType = {
   page: number;

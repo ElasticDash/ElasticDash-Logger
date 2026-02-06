@@ -1,9 +1,9 @@
-import { prisma } from "@langfuse/shared/src/db";
-import { encrypt } from "@langfuse/shared/encryption";
+import { prisma } from "@elasticdash/shared/src/db";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { SsoProviderSchema } from "./types";
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { env } from "@/src/env.mjs";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { multiTenantSsoAvailable } from "@/src/ee/features/multi-tenant-sso/multiTenantSsoAvailable";
 
 export async function createNewSsoConfigHandler(

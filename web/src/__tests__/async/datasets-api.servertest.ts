@@ -5,7 +5,7 @@ process.env.ELASTICDASH_DATASET_SERVICE_READ_FROM_VERSIONED_IMPLEMENTATION =
 process.env.ELASTICDASH_DATASET_SERVICE_WRITE_TO_VERSIONED_IMPLEMENTATION =
   "true";
 
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   makeAPICall,
   makeZodVerifiedAPICall,
@@ -42,7 +42,7 @@ import {
   createDatasetItemFilterState,
   createDatasetItem,
   getDatasetItems,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import waitForExpect from "wait-for-expect";
 
 describe("/api/public/datasets and /api/public/dataset-items API Endpoints", () => {

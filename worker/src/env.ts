@@ -1,4 +1,4 @@
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
 const EnvSchema = z.object({

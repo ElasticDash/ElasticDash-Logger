@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
 import {
@@ -9,8 +9,8 @@ import {
   DeleteAnnotationQueueItemQuery,
   DeleteAnnotationQueueItemResponse,
 } from "@/src/features/public-api/types/annotation-queues";
-import { LangfuseNotFoundError } from "@langfuse/shared";
-import { AnnotationQueueStatus } from "@langfuse/shared";
+import { LangfuseNotFoundError } from "@elasticdash/shared";
+import { AnnotationQueueStatus } from "@elasticdash/shared";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({

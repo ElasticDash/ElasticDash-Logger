@@ -2,7 +2,7 @@ import {
   logger,
   queryClickhouse,
   QueueName,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "../../env";
 import { WorkerManager } from "../../queues/workerManager";
 import { PeriodicRunner } from "../../utils/PeriodicRunner";

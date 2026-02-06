@@ -3,32 +3,32 @@
 <div align="center">
    <div>
       <h3>
-        <a href="https://langfuse.com/blog/2025-06-04-open-sourcing-langfuse-product">
+        <a href="https://elasticdash.com/blog/2025-06-04-open-sourcing-elasticdash-product">
             <strong>ElasticDash Is Doubling Down On Open Source</strong>
          </a> <br> <br>
-         <a href="https://cloud.langfuse.com">
+         <a href="https://cloud.elasticdash.com">
             <strong>ElasticDash Cloud</strong>
          </a> · 
-         <a href="https://langfuse.com/docs/deployment/self-host">
+         <a href="https://elasticdash.com/docs/deployment/self-host">
             <strong>Self Host</strong>
          </a> · 
-         <a href="https://langfuse.com/demo">
+         <a href="https://elasticdash.com/demo">
             <strong>Demo</strong>
          </a>
       </h3>
    </div>
 
    <div>
-      <a href="https://langfuse.com/docs"><strong>Docs</strong></a> ·
-      <a href="https://langfuse.com/issues"><strong>Report Bug</strong></a> ·
-      <a href="https://langfuse.com/ideas"><strong>Feature Request</strong></a> ·
-      <a href="https://langfuse.com/changelog"><strong>Changelog</strong></a> ·
-      <a href="https://langfuse.com/roadmap"><strong>Roadmap</strong></a> ·
+      <a href="https://elasticdash.com/docs"><strong>Docs</strong></a> ·
+      <a href="https://elasticdash.com/issues"><strong>Report Bug</strong></a> ·
+      <a href="https://elasticdash.com/ideas"><strong>Feature Request</strong></a> ·
+      <a href="https://elasticdash.com/changelog"><strong>Changelog</strong></a> ·
+      <a href="https://elasticdash.com/roadmap"><strong>Roadmap</strong></a> ·
    </div>
    <br/>
-   <span>ElasticDash uses <a href="https://github.com/orgs/langfuse/discussions"><strong>GitHub Discussions</strong></a>  for Support and Feature Requests.</span>
+   <span>ElasticDash uses <a href="https://github.com/orgs/elasticdash/discussions"><strong>GitHub Discussions</strong></a>  for Support and Feature Requests.</span>
    <br/>
-   <span><b>We're hiring.</b> <a href="https://langfuse.com/careers"><strong>Join us</strong></a> in product engineering and technical go-to-market roles.</span>
+   <span><b>We're hiring.</b> <a href="https://elasticdash.com/careers"><strong>Join us</strong></a> in product engineering and technical go-to-market roles.</span>
    <br/>
    <br/>
    <div>
@@ -36,31 +36,31 @@
 </div>
 
 <p align="center">
-   <a href="https://github.com/langfuse/langfuse/blob/main/LICENSE">
+   <a href="https://github.com/elasticdash/elasticdash/blob/main/LICENSE">
    <img src="https://img.shields.io/badge/License-MIT-E11311.svg" alt="MIT License">
    </a>
-   <a href="https://www.ycombinator.com/companies/langfuse"><img src="https://img.shields.io/badge/Y%20Combinator-W23-orange" alt="Y Combinator W23"></a>
-   <a href="https://hub.docker.com/u/langfuse" target="_blank">
-   <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/langfuse/langfuse?labelColor=%20%23FDB062&logo=Docker&labelColor=%20%23528bff"></a>
-   <a href="https://pypi.python.org/pypi/langfuse"><img src="https://img.shields.io/pypi/dm/langfuse?logo=python&logoColor=white&label=pypi%20langfuse&color=blue" alt="langfuse Python package on PyPi"></a>
-   <a href="https://www.npmjs.com/package/langfuse"><img src="https://img.shields.io/npm/dm/langfuse?logo=npm&logoColor=white&label=npm%20langfuse&color=blue" alt="langfuse npm package"></a>
+   <a href="https://www.ycombinator.com/companies/elasticdash"><img src="https://img.shields.io/badge/Y%20Combinator-W23-orange" alt="Y Combinator W23"></a>
+   <a href="https://hub.docker.com/u/elasticdash" target="_blank">
+   <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/elasticdash/elasticdash?labelColor=%20%23FDB062&logo=Docker&labelColor=%20%23528bff"></a>
+   <a href="https://pypi.python.org/pypi/elasticdash"><img src="https://img.shields.io/pypi/dm/elasticdash?logo=python&logoColor=white&label=pypi%20elasticdash&color=blue" alt="elasticdash Python package on PyPi"></a>
+   <a href="https://www.npmjs.com/package/elasticdash"><img src="https://img.shields.io/npm/dm/elasticdash?logo=npm&logoColor=white&label=npm%20elasticdash&color=blue" alt="elasticdash npm package"></a>
    <br/>
    <a href="https://discord.com/invite/7NXusRtqYU" target="_blank">
    <img src="https://img.shields.io/discord/1111061815649124414?logo=discord&labelColor=%20%235462eb&logoColor=%20%23f5f5f5&color=%20%235462eb"
       alt="chat on Discord"></a>
-   <a href="https://twitter.com/intent/follow?screen_name=langfuse" target="_blank">
-   <img src="https://img.shields.io/twitter/follow/langfuse?logo=X&color=%20%23f5f5f5"
+   <a href="https://twitter.com/intent/follow?screen_name=elasticdash" target="_blank">
+   <img src="https://img.shields.io/twitter/follow/elasticdash?logo=X&color=%20%23f5f5f5"
       alt="follow on X(Twitter)"></a>
-   <a href="https://www.linkedin.com/company/langfuse/" target="_blank">
+   <a href="https://www.linkedin.com/company/elasticdash/" target="_blank">
    <img src="https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?logo=linkedin-white&logoColor=fff"
       alt="follow on LinkedIn"></a>
-   <a href="https://github.com/langfuse/langfuse/graphs/commit-activity" target="_blank">
-   <img alt="Commits last month" src="https://img.shields.io/github/commit-activity/m/langfuse/langfuse?labelColor=%20%2332b583&color=%20%2312b76a"></a>
-   <a href="https://github.com/langfuse/langfuse/" target="_blank">
-   <img alt="Issues closed" src="https://img.shields.io/github/issues-search?query=repo%3Alangfuse%2Flangfuse%20is%3Aclosed&label=issues%20closed&labelColor=%20%237d89b0&color=%20%235d6b98"></a>
-   <a href="https://github.com/langfuse/langfuse/discussions/" target="_blank">
-   <img alt="Discussion posts" src="https://img.shields.io/github/discussions/langfuse/langfuse?labelColor=%20%239b8afb&color=%20%237a5af8"></a>
-   <a href="https://deepwiki.com/langfuse/langfuse" target="_blank">
+   <a href="https://github.com/elasticdash/elasticdash/graphs/commit-activity" target="_blank">
+   <img alt="Commits last month" src="https://img.shields.io/github/commit-activity/m/elasticdash/elasticdash?labelColor=%20%2332b583&color=%20%2312b76a"></a>
+   <a href="https://github.com/elasticdash/elasticdash/" target="_blank">
+   <img alt="Issues closed" src="https://img.shields.io/github/issues-search?query=repo%3Aelasticdash%2Felasticdash%20is%3Aclosed&label=issues%20closed&labelColor=%20%237d89b0&color=%20%235d6b98"></a>
+   <a href="https://github.com/elasticdash/elasticdash/discussions/" target="_blank">
+   <img alt="Discussion posts" src="https://img.shields.io/github/discussions/elasticdash/elasticdash?labelColor=%20%239b8afb&color=%20%237a5af8"></a>
+   <a href="https://deepwiki.com/elasticdash/elasticdash" target="_blank">
    <img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
 </p>
 
@@ -74,23 +74,23 @@
 ElasticDash is an **open source LLM engineering** platform. It helps teams collaboratively
 **develop, monitor, evaluate,** and **debug** AI applications. ElasticDash can be **self-hosted in minutes** and is **battle-tested**.
 
-[![ElasticDash Overview Video](https://github.com/user-attachments/assets/925d71db-6331-445e-8f3e-727ee95d1c9f)](https://langfuse.com/watch-demo)
+[![ElasticDash Overview Video](https://github.com/user-attachments/assets/925d71db-6331-445e-8f3e-727ee95d1c9f)](https://elasticdash.com/watch-demo)
 
 ## ✨ Core Features
 
 <img width="4856" height="1944" alt="ElasticDash Overview" src="https://github.com/user-attachments/assets/5dac68ef-d546-49fb-b06f-cfafc19282e3" />
 
-- [LLM Application Observability](https://langfuse.com/docs/tracing): Instrument your app and start ingesting traces to ElasticDash, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions. Inspect and debug complex logs and user sessions. Try the interactive [demo](https://langfuse.com/docs/demo) to see this in action.
+- [LLM Application Observability](https://elasticdash.com/docs/tracing): Instrument your app and start ingesting traces to ElasticDash, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions. Inspect and debug complex logs and user sessions. Try the interactive [demo](https://elasticdash.com/docs/demo) to see this in action.
 
-- [Prompt Management](https://langfuse.com/docs/prompt-management/get-started) helps you centrally manage, version control, and collaboratively iterate on your prompts. Thanks to strong caching on server and client side, you can iterate on prompts without adding latency to your application.
+- [Prompt Management](https://elasticdash.com/docs/prompt-management/get-started) helps you centrally manage, version control, and collaboratively iterate on your prompts. Thanks to strong caching on server and client side, you can iterate on prompts without adding latency to your application.
 
-- [Evaluations](https://langfuse.com/docs/evaluation/overview) are key to the LLM application development workflow, and ElasticDash adapts to your needs. It supports LLM-as-a-judge, user feedback collection, manual labeling, and custom evaluation pipelines via APIs/SDKs.
+- [Evaluations](https://elasticdash.com/docs/evaluation/overview) are key to the LLM application development workflow, and ElasticDash adapts to your needs. It supports LLM-as-a-judge, user feedback collection, manual labeling, and custom evaluation pipelines via APIs/SDKs.
 
-- [Datasets](https://langfuse.com/docs/evaluation/dataset-runs/datasets) enable test sets and benchmarks for evaluating your LLM application. They support continuous improvement, pre-deployment testing, structured experiments, flexible evaluation, and seamless integration with frameworks like LangChain and LlamaIndex.
+- [Datasets](https://elasticdash.com/docs/evaluation/dataset-runs/datasets) enable test sets and benchmarks for evaluating your LLM application. They support continuous improvement, pre-deployment testing, structured experiments, flexible evaluation, and seamless integration with frameworks like LangChain and LlamaIndex.
 
-- [LLM Playground](https://langfuse.com/docs/playground) is a tool for testing and iterating on your prompts and model configurations, shortening the feedback loop and accelerating development. When you see a bad result in tracing, you can directly jump to the playground to iterate on it.
+- [LLM Playground](https://elasticdash.com/docs/playground) is a tool for testing and iterating on your prompts and model configurations, shortening the feedback loop and accelerating development. When you see a bad result in tracing, you can directly jump to the playground to iterate on it.
 
-- [Comprehensive API](https://langfuse.com/docs/api): ElasticDash is frequently used to power bespoke LLMOps workflows while using the building blocks provided by ElasticDash via the API. OpenAPI spec, Postman collection, and typed SDKs for Python, JS/TS are available.
+- [Comprehensive API](https://elasticdash.com/docs/api): ElasticDash is frequently used to power bespoke LLMOps workflows while using the building blocks provided by ElasticDash via the API. OpenAPI spec, Postman collection, and typed SDKs for Python, JS/TS are available.
 
 ## 📦 Deploy ElasticDash
 
@@ -101,7 +101,7 @@ ElasticDash is an **open source LLM engineering** platform. It helps teams colla
 Managed deployment by the ElasticDash team, generous free-tier, no credit card required.
 
 <div align="center">
-    <a href="https://cloud.langfuse.com" target="_blank">
+    <a href="https://cloud.elasticdash.com" target="_blank">
         <img alt="Static Badge" src="https://img.shields.io/badge/»%20Sign%20up%20for%20Langfuse%20Cloud-8A2BE2?&color=orange">
     </a>
 </div>
@@ -110,22 +110,22 @@ Managed deployment by the ElasticDash team, generous free-tier, no credit card r
 
 Run ElasticDash on your own infrastructure:
 
-- [Local (docker compose)](https://langfuse.com/self-hosting/local): Run ElasticDash on your own machine in 5 minutes using Docker Compose.
+- [Local (docker compose)](https://elasticdash.com/self-hosting/local): Run ElasticDash on your own machine in 5 minutes using Docker Compose.
 
   ```bash
   # Get a copy of the latest ElasticDash repository
-  git clone https://github.com/langfuse/langfuse.git
-  cd langfuse
+  git clone https://github.com/elasticdash/elasticdash.git
+  cd elasticdash
 
-  # Run the langfuse docker compose
+  # Run the elasticdash docker compose
   docker compose up
   ```
 
-- [VM](https://langfuse.com/self-hosting/docker-compose): Run ElasticDash on a single Virtual Machine using Docker Compose.
-- [Kubernetes (Helm)](https://langfuse.com/self-hosting/kubernetes-helm): Run ElasticDash on a Kubernetes cluster using Helm. This is the preferred production deployment.
-- Terraform Templates: [AWS](https://langfuse.com/self-hosting/aws), [Azure](https://langfuse.com/self-hosting/azure), [GCP](https://langfuse.com/self-hosting/gcp)
+- [VM](https://elasticdash.com/self-hosting/docker-compose): Run ElasticDash on a single Virtual Machine using Docker Compose.
+- [Kubernetes (Helm)](https://elasticdash.com/self-hosting/kubernetes-helm): Run ElasticDash on a Kubernetes cluster using Helm. This is the preferred production deployment.
+- Terraform Templates: [AWS](https://elasticdash.com/self-hosting/aws), [Azure](https://elasticdash.com/self-hosting/azure), [GCP](https://elasticdash.com/self-hosting/gcp)
 
-See [self-hosting documentation](https://langfuse.com/self-hosting) to learn more about architecture and configuration options.
+See [self-hosting documentation](https://elasticdash.com/self-hosting) to learn more about architecture and configuration options.
 
 ## 🔌 Integrations
 
@@ -133,40 +133,40 @@ See [self-hosting documentation](https://langfuse.com/self-hosting) to learn mor
 
 ### Main Integrations:
 
-| Integration                                                                  | Supports                   | Description                                                                                                                                      |
-|------------------------------------------------------------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| [SDK](https://langfuse.com/docs/sdk)                                         | Python, JS/TS              | Manual instrumentation using the SDKs for full flexibility.                                                                                      |
-| [OpenAI](https://langfuse.com/integrations/model-providers/openai-py)        | Python, JS/TS              | Automated instrumentation using drop-in replacement of OpenAI SDK.                                                                               |
-| [Langchain](https://langfuse.com/docs/integrations/langchain)                | Python, JS/TS              | Automated instrumentation by passing callback handler to Langchain application.                                                                  |
-| [LlamaIndex](https://langfuse.com/docs/integrations/llama-index/get-started) | Python                     | Automated instrumentation via LlamaIndex callback system.                                                                                        |
-| [Haystack](https://langfuse.com/docs/integrations/haystack)                  | Python                     | Automated instrumentation via Haystack content tracing system.                                                                                   |
-| [LiteLLM](https://langfuse.com/docs/integrations/litellm)                    | Python, JS/TS (proxy only) | Use any LLM as a drop in replacement for GPT. Use Azure, OpenAI, Cohere, Anthropic, Ollama, VLLM, Sagemaker, HuggingFace, Replicate (100+ LLMs). |
-| [Vercel AI SDK](https://langfuse.com/docs/integrations/vercel-ai-sdk)        | JS/TS                      | TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js.                          |
-| [Mastra](https://langfuse.com/docs/integrations/mastra)                      | JS/TS                      | Open source framework for building AI agents and multi-agent systems.                                                                            |
-| [API](https://langfuse.com/docs/api)                                         |                            | Directly call the public API. OpenAPI spec available.                                                                                            |
+| Integration                                                                     | Supports                   | Description                                                                                                                                      |
+|---------------------------------------------------------------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| [SDK](https://elasticdash.com/docs/sdk)                                         | Python, JS/TS              | Manual instrumentation using the SDKs for full flexibility.                                                                                      |
+| [OpenAI](https://elasticdash.com/integrations/model-providers/openai-py)        | Python, JS/TS              | Automated instrumentation using drop-in replacement of OpenAI SDK.                                                                               |
+| [Langchain](https://elasticdash.com/docs/integrations/langchain)                | Python, JS/TS              | Automated instrumentation by passing callback handler to Langchain application.                                                                  |
+| [LlamaIndex](https://elasticdash.com/docs/integrations/llama-index/get-started) | Python                     | Automated instrumentation via LlamaIndex callback system.                                                                                        |
+| [Haystack](https://elasticdash.com/docs/integrations/haystack)                  | Python                     | Automated instrumentation via Haystack content tracing system.                                                                                   |
+| [LiteLLM](https://elasticdash.com/docs/integrations/litellm)                    | Python, JS/TS (proxy only) | Use any LLM as a drop in replacement for GPT. Use Azure, OpenAI, Cohere, Anthropic, Ollama, VLLM, Sagemaker, HuggingFace, Replicate (100+ LLMs). |
+| [Vercel AI SDK](https://elasticdash.com/docs/integrations/vercel-ai-sdk)        | JS/TS                      | TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js.                          |
+| [Mastra](https://elasticdash.com/docs/integrations/mastra)                      | JS/TS                      | Open source framework for building AI agents and multi-agent systems.                                                                            |
+| [API](https://elasticdash.com/docs/api)                                         |                            | Directly call the public API. OpenAPI spec available.                                                                                            |
 
 ### Packages integrated with ElasticDash:
 
-| Name                                                                    | Type               | Description                                                                                                             |
-|-------------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------|
-| [Instructor](https://langfuse.com/docs/integrations/instructor)         | Library            | Library to get structured LLM outputs (JSON, Pydantic)                                                                  |
-| [DSPy](https://langfuse.com/docs/integrations/dspy)                     | Library            | Framework that systematically optimizes language model prompts and weights                                              |
-| [Mirascope](https://langfuse.com/docs/integrations/mirascope)           | Library            | Python toolkit for building LLM applications.                                                                           |
-| [Ollama](https://langfuse.com/docs/integrations/ollama)                 | Model (local)      | Easily run open source LLMs on your own machine.                                                                        |
-| [Amazon Bedrock](https://langfuse.com/docs/integrations/amazon-bedrock) | Model              | Run foundation and fine-tuned models on AWS.                                                                            |
-| [AutoGen](https://langfuse.com/docs/integrations/autogen)               | Agent Framework    | Open source LLM platform for building distributed agents.                                                               |
-| [Flowise](https://langfuse.com/docs/integrations/flowise)               | Chat/Agent&nbsp;UI | JS/TS no-code builder for customized LLM flows.                                                                         |
-| [Langflow](https://langfuse.com/docs/integrations/langflow)             | Chat/Agent&nbsp;UI | Python-based UI for LangChain, designed with react-flow to provide an effortless way to experiment and prototype flows. |
-| [Dify](https://langfuse.com/docs/integrations/dify)                     | Chat/Agent&nbsp;UI | Open source LLM app development platform with no-code builder.                                                          |
-| [OpenWebUI](https://langfuse.com/docs/integrations/openwebui)           | Chat/Agent&nbsp;UI | Self-hosted LLM Chat web ui supporting various LLM runners including self-hosted and local models.                      |
-| [Promptfoo](https://langfuse.com/docs/integrations/promptfoo)           | Tool               | Open source LLM testing platform.                                                                                       |
-| [LobeChat](https://langfuse.com/docs/integrations/lobechat)             | Chat/Agent&nbsp;UI | Open source chatbot platform.                                                                                           |
-| [Vapi](https://langfuse.com/docs/integrations/vapi)                     | Platform           | Open source voice AI platform.                                                                                          |
-| [Inferable](https://langfuse.com/docs/integrations/other/inferable)     | Agents             | Open source LLM platform for building distributed agents.                                                               |
-| [Gradio](https://langfuse.com/docs/integrations/other/gradio)           | Chat/Agent&nbsp;UI | Open source Python library to build web interfaces like Chat UI.                                                        |
-| [Goose](https://langfuse.com/docs/integrations/goose)                   | Agents             | Open source LLM platform for building distributed agents.                                                               |
-| [smolagents](https://langfuse.com/docs/integrations/smolagents)         | Agents             | Open source AI agents framework.                                                                                        |
-| [CrewAI](https://langfuse.com/docs/integrations/crewai)                 | Agents             | Multi agent framework for agent collaboration and tool use.                                                             |
+| Name                                                                       | Type               | Description                                                                                                             |
+|----------------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------|
+| [Instructor](https://elasticdash.com/docs/integrations/instructor)         | Library            | Library to get structured LLM outputs (JSON, Pydantic)                                                                  |
+| [DSPy](https://elasticdash.com/docs/integrations/dspy)                     | Library            | Framework that systematically optimizes language model prompts and weights                                              |
+| [Mirascope](https://elasticdash.com/docs/integrations/mirascope)           | Library            | Python toolkit for building LLM applications.                                                                           |
+| [Ollama](https://elasticdash.com/docs/integrations/ollama)                 | Model (local)      | Easily run open source LLMs on your own machine.                                                                        |
+| [Amazon Bedrock](https://elasticdash.com/docs/integrations/amazon-bedrock) | Model              | Run foundation and fine-tuned models on AWS.                                                                            |
+| [AutoGen](https://elasticdash.com/docs/integrations/autogen)               | Agent Framework    | Open source LLM platform for building distributed agents.                                                               |
+| [Flowise](https://elasticdash.com/docs/integrations/flowise)               | Chat/Agent&nbsp;UI | JS/TS no-code builder for customized LLM flows.                                                                         |
+| [Langflow](https://elasticdash.com/docs/integrations/langflow)             | Chat/Agent&nbsp;UI | Python-based UI for LangChain, designed with react-flow to provide an effortless way to experiment and prototype flows. |
+| [Dify](https://elasticdash.com/docs/integrations/dify)                     | Chat/Agent&nbsp;UI | Open source LLM app development platform with no-code builder.                                                          |
+| [OpenWebUI](https://elasticdash.com/docs/integrations/openwebui)           | Chat/Agent&nbsp;UI | Self-hosted LLM Chat web ui supporting various LLM runners including self-hosted and local models.                      |
+| [Promptfoo](https://elasticdash.com/docs/integrations/promptfoo)           | Tool               | Open source LLM testing platform.                                                                                       |
+| [LobeChat](https://elasticdash.com/docs/integrations/lobechat)             | Chat/Agent&nbsp;UI | Open source chatbot platform.                                                                                           |
+| [Vapi](https://elasticdash.com/docs/integrations/vapi)                     | Platform           | Open source voice AI platform.                                                                                          |
+| [Inferable](https://elasticdash.com/docs/integrations/other/inferable)     | Agents             | Open source LLM platform for building distributed agents.                                                               |
+| [Gradio](https://elasticdash.com/docs/integrations/other/gradio)           | Chat/Agent&nbsp;UI | Open source Python library to build web interfaces like Chat UI.                                                        |
+| [Goose](https://elasticdash.com/docs/integrations/goose)                   | Agents             | Open source LLM platform for building distributed agents.                                                               |
+| [smolagents](https://elasticdash.com/docs/integrations/smolagents)         | Agents             | Open source AI agents framework.                                                                                        |
+| [CrewAI](https://elasticdash.com/docs/integrations/crewai)                 | Agents             | Multi agent framework for agent collaboration and tool use.                                                             |
 
 ## 🚀 Quickstart
 
@@ -174,31 +174,31 @@ Instrument your app and start ingesting traces to ElasticDash, thereby tracking 
 
 ### 1️⃣ Create new project
 
-1.  [Create ElasticDash account](https://cloud.langfuse.com/auth/sign-up) or [self-host](https://langfuse.com/self-hosting)
+1.  [Create ElasticDash account](https://cloud.elasticdash.com/auth/sign-up) or [self-host](https://elasticdash.com/self-hosting)
 2.  Create a new project
 3.  Create new API credentials in the project settings
 
 ### 2️⃣ Log your first LLM call
 
-The [`@observe()` decorator](https://langfuse.com/docs/sdk/python/decorators) makes it easy to trace any Python LLM application. In this quickstart we also use the ElasticDash [OpenAI integration](https://langfuse.com/integrations/model-providers/openai-py) to automatically capture all model parameters.
+The [`@observe()` decorator](https://elasticdash.com/docs/sdk/python/decorators) makes it easy to trace any Python LLM application. In this quickstart we also use the ElasticDash [OpenAI integration](https://elasticdash.com/integrations/model-providers/openai-py) to automatically capture all model parameters.
 
 > [!TIP]
-> Not using OpenAI? Visit [our documentation](https://langfuse.com/docs/get-started#log-your-first-llm-call-to-langfuse) to learn how to log other models and frameworks.
+> Not using OpenAI? Visit [our documentation](https://elasticdash.com/docs/get-started#log-your-first-llm-call-to-elasticdash) to learn how to log other models and frameworks.
 
 ```bash
-pip install langfuse openai
+pip install elasticdash openai
 ```
 
 ```bash filename=".env"
 ELASTICDASH_SECRET_KEY="sk-lf-..."
 ELASTICDASH_PUBLIC_KEY="pk-lf-..."
-ELASTICDASH_BASE_URL="https://cloud.langfuse.com" # 🇪🇺 EU region
-# ELASTICDASH_BASE_URL="https://us.cloud.langfuse.com" # 🇺🇸 US region
+ELASTICDASH_BASE_URL="https://cloud.elasticdash.com" # 🇪🇺 EU region
+# ELASTICDASH_BASE_URL="https://us.cloud.elasticdash.com" # 🇺🇸 US region
 ```
 
-```python /@observe()/ /from langfuse.openai import openai/ filename="main.py"
-from langfuse import observe
-from langfuse.openai import openai # OpenAI integration
+```python /@observe()/ /from elasticdash.openai import openai/ filename="main.py"
+from elasticdash import observe
+from elasticdash.openai import openai # OpenAI integration
 
 @observe()
 def story():
@@ -220,42 +220,42 @@ See your language model calls and other application logic in ElasticDash.
 
 <img width="1787" height="674" alt="Example trace in ElasticDash" src="https://github.com/user-attachments/assets/f796eb78-dfb5-4570-b236-bdb4b67d4d55" />
 
-_[Public example trace in ElasticDash](https://cloud.langfuse.com/project/cloramnkj0002jz088vzn1ja4/traces/2cec01e3-3dc2-472f-afcf-3b968cf0c1f4?timestamp=2025-02-10T14%3A27%3A30.275Z&observation=cb5ff844-07ef-41e6-b8e2-6c64344bc13b)_
+_[Public example trace in ElasticDash](https://cloud.elasticdash.com/project/cloramnkj0002jz088vzn1ja4/traces/2cec01e3-3dc2-472f-afcf-3b968cf0c1f4?timestamp=2025-02-10T14%3A27%3A30.275Z&observation=cb5ff844-07ef-41e6-b8e2-6c64344bc13b)_
 
 > [!TIP]
 >
-> [Learn more](https://langfuse.com/docs/tracing) about tracing in ElasticDash or play with the [interactive demo](https://langfuse.com/docs/demo).
+> [Learn more](https://elasticdash.com/docs/tracing) about tracing in ElasticDash or play with the [interactive demo](https://elasticdash.com/docs/demo).
 
 ## ⭐️ Star Us
 
-![star-langfuse-on-github](https://github.com/user-attachments/assets/79a1d816-d229-4526-aecc-097d4a19f1ad)
+![star-elasticdash-on-github](https://github.com/user-attachments/assets/79a1d816-d229-4526-aecc-097d4a19f1ad)
 
 ## 💭 Support
 
 Finding an answer to your question:
 
-- Our [documentation](https://langfuse.com/docs) is the best place to start looking for answers. It is comprehensive, and we invest significant time into maintaining it. You can also suggest edits to the docs via GitHub.
-- [ElasticDash FAQs](https://langfuse.com/faq) where the most common questions are answered.
-- Use "[Ask AI](https://langfuse.com/docs/ask-ai)" to get instant answers to your questions.
+- Our [documentation](https://elasticdash.com/docs) is the best place to start looking for answers. It is comprehensive, and we invest significant time into maintaining it. You can also suggest edits to the docs via GitHub.
+- [ElasticDash FAQs](https://elasticdash.com/faq) where the most common questions are answered.
+- Use "[Ask AI](https://elasticdash.com/docs/ask-ai)" to get instant answers to your questions.
 
 Support Channels:
 
-- **Ask any question in our [public Q&A](https://github.com/orgs/langfuse/discussions/categories/support) on GitHub Discussions.** Please include as much detail as possible (e.g. code snippets, screenshots, background information) to help us understand your question.
-- [Request a feature](https://github.com/orgs/langfuse/discussions/categories/ideas) on GitHub Discussions.
-- [Report a Bug](https://github.com/langfuse/langfuse/issues) on GitHub Issues.
+- **Ask any question in our [public Q&A](https://github.com/orgs/elasticdash/discussions/categories/support) on GitHub Discussions.** Please include as much detail as possible (e.g. code snippets, screenshots, background information) to help us understand your question.
+- [Request a feature](https://github.com/orgs/elasticdash/discussions/categories/ideas) on GitHub Discussions.
+- [Report a Bug](https://github.com/elasticdash/elasticdash/issues) on GitHub Issues.
 - For time-sensitive queries, ping us via the in-app chat widget.
 
 ## 🤝 Contributing
 
 Your contributions are welcome!
 
-- Vote on [Ideas](https://github.com/orgs/langfuse/discussions/categories/ideas) in GitHub Discussions.
-- Raise and comment on [Issues](https://github.com/langfuse/langfuse/issues).
+- Vote on [Ideas](https://github.com/orgs/elasticdash/discussions/categories/ideas) in GitHub Discussions.
+- Raise and comment on [Issues](https://github.com/elasticdash/elasticdash/issues).
 - Open a PR - see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to setup a development environment.
 
 ## 🥇 License
 
-This repository is MIT licensed, except for the `ee` folders. See [LICENSE](LICENSE) and [docs](https://langfuse.com/docs/open-source) for more details.
+This repository is MIT licensed, except for the `ee` folders. See [LICENSE](LICENSE) and [docs](https://elasticdash.com/docs/open-source) for more details.
 
 ## Dependencies
 
@@ -263,17 +263,17 @@ We deploy this code base in Docker containers based on the Linux Alpine Image ([
 
 ## ⭐️ Star History
 
-<a href="https://star-history.com/#langfuse/langfuse&Date">
+<a href="https://star-history.com/#elasticdash/elasticdash&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=langfuse/langfuse&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=langfuse/langfuse&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=langfuse/langfuse&type=Date" style="border-radius: 15px;" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=elasticdash/elasticdash&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=elasticdash/elasticdash&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=elasticdash/elasticdash&type=Date" style="border-radius: 15px;" />
  </picture>
 </a>
 
 ## ❤️ Open Source Projects Using ElasticDash
 
-Top open-source Python projects that use ElasticDash, ranked by stars ([Source](https://github.com/langfuse/langfuse-docs/blob/main/components-mdx/dependents)):
+Top open-source Python projects that use ElasticDash, ranked by stars ([Source](https://github.com/elasticdash/elasticdash-docs/blob/main/components-mdx/dependents)):
 
 | Repository                                                                                                                                                                                                                                                                                                     |  Stars |
 |:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------:|
@@ -295,7 +295,7 @@ Top open-source Python projects that use ElasticDash, ranked by stars ([Source](
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/170767358?s=40&v=4" width="20" height="20" alt=""> &nbsp; [kortix-ai](https://github.com/kortix-ai) / [suna](https://github.com/kortix-ai/suna)                                                                                          |  17976 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/76263028?s=40&v=4" width="20" height="20" alt=""> &nbsp; [anthropics](https://github.com/anthropics) / [courses](https://github.com/anthropics/courses)                                                                                  |  17057 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/149120496?s=40&v=4" width="20" height="20" alt=""> &nbsp; [mastra-ai](https://github.com/mastra-ai) / [mastra](https://github.com/mastra-ai/mastra)                                                                                      |  16484 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/134601687?s=40&v=4" width="20" height="20" alt=""> &nbsp; [langfuse](https://github.com/langfuse) / [langfuse](https://github.com/langfuse/langfuse)                                                                                     |  16054 |
+| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/134601687?s=40&v=4" width="20" height="20" alt=""> &nbsp; [elasticdash](https://github.com/elasticdash) / [elasticdash](https://github.com/elasticdash/elasticdash)                                                                      |  16054 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/7250217?s=40&v=4" width="20" height="20" alt=""> &nbsp; [Canner](https://github.com/Canner) / [WrenAI](https://github.com/Canner/WrenAI)                                                                                                 |  11868 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/137907881?s=40&v=4" width="20" height="20" alt=""> &nbsp; [promptfoo](https://github.com/promptfoo) / [promptfoo](https://github.com/promptfoo/promptfoo)                                                                                |   8350 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/193350244?s=40&v=4" width="20" height="20" alt=""> &nbsp; [The-Pocket](https://github.com/The-Pocket) / [PocketFlow](https://github.com/The-Pocket/PocketFlow)                                                                           |   8313 |
@@ -368,7 +368,7 @@ Top open-source Python projects that use ElasticDash, ranked by stars ([Source](
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/1009716?s=40&v=4" width="20" height="20" alt=""> &nbsp; [codecentric](https://github.com/codecentric) / [c4-genai-suite](https://github.com/codecentric/c4-genai-suite)                                                                  |    152 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/196509932?s=40&v=4" width="20" height="20" alt=""> &nbsp; [XSpoonAi](https://github.com/XSpoonAi) / [spoon-core](https://github.com/XSpoonAi/spoon-core)                                                                                 |    150 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/139558948?s=40&v=4" width="20" height="20" alt=""> &nbsp; [chatchat-space](https://github.com/chatchat-space) / [LangGraph-Chatchat](https://github.com/chatchat-space/LangGraph-Chatchat)                                               |    144 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/134601687?s=40&v=4" width="20" height="20" alt=""> &nbsp; [langfuse](https://github.com/langfuse) / [langfuse-docs](https://github.com/langfuse/langfuse-docs)                                                                           |    139 |
+| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/134601687?s=40&v=4" width="20" height="20" alt=""> &nbsp; [elasticdash](https://github.com/elasticdash) / [elasticdash-docs](https://github.com/elasticdash/elasticdash-docs)                                                            |    139 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/44976328?s=40&v=4" width="20" height="20" alt=""> &nbsp; [piyushgarg-dev](https://github.com/piyushgarg-dev) / [genai-cohort](https://github.com/piyushgarg-dev/genai-cohort)                                                            |    135 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/105285801?s=40&v=4" width="20" height="20" alt=""> &nbsp; [i-dot-ai](https://github.com/i-dot-ai) / [redbox](https://github.com/i-dot-ai/redbox)                                                                                         |    132 |
 | <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/90423581?s=40&v=4" width="20" height="20" alt=""> &nbsp; [bmd1905](https://github.com/bmd1905) / [ChatOpsLLM](https://github.com/bmd1905/ChatOpsLLM)                                                                                     |    127 |
@@ -377,7 +377,7 @@ Top open-source Python projects that use ElasticDash, ranked by stars ([Source](
 
 ## 🔒 Security & Privacy
 
-We take data security and privacy seriously. Please refer to our [Security and Privacy](https://langfuse.com/security) page for more information.
+We take data security and privacy seriously. Please refer to our [Security and Privacy](https://elasticdash.com/security) page for more information.
 
 ### Telemetry
 

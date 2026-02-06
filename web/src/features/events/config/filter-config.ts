@@ -1,4 +1,4 @@
-import { eventsTableCols } from "@langfuse/shared";
+import { eventsTableCols } from "@elasticdash/shared";
 import type { FilterConfig } from "@/src/features/filters/lib/filter-config";
 import type { ColumnToBackendKeyMap } from "@/src/features/filters/lib/filter-transform";
 

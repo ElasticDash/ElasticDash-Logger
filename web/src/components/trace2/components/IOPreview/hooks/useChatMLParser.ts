@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import type { z } from "zod/v4";
-import { type Prisma, deepParseJson } from "@langfuse/shared";
+import { type Prisma, deepParseJson } from "@elasticdash/shared";
 import {
   normalizeInput,
   normalizeOutput,

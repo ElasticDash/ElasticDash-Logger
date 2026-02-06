@@ -1,4 +1,4 @@
-import { DatasetItemDomain, Prisma } from "@langfuse/shared";
+import { DatasetItemDomain, Prisma } from "@elasticdash/shared";
 import {
   ChatMessage,
   createDatasetItemFilterState,
@@ -15,7 +15,7 @@ import {
   QueueJobs,
   redis,
   TraceSinkParams,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
 import z from "zod/v4";
 import {
@@ -27,7 +27,7 @@ import {
 import {
   validateDatasetItem,
   normalizeDatasetItemInput,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { randomUUID } from "crypto";
 import { createW3CTraceId } from "../utils";
 

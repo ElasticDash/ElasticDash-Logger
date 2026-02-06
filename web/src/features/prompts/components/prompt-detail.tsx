@@ -25,7 +25,7 @@ import {
   extractVariables,
   PRODUCTION_LABEL,
   PromptType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getPromptTabs,
   PROMPT_TABS,
@@ -86,7 +86,7 @@ const getJsCode = (
   name: string,
   version: number,
   labels: string[],
-) => `import { LangfuseClient } from "@langfuse/client";
+) => `import { LangfuseClient } from "@elasticdash/client";
 
 // Initialize the ElasticDash client
 const langfuse = new LangfuseClient();

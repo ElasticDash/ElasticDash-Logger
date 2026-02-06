@@ -1,4 +1,4 @@
-import { ObservationType } from "@langfuse/shared";
+import { ObservationType } from "@elasticdash/shared";
 import {
   type AgentGraphDataResponse,
   ELASTICDASH_START_NODE_NAME,

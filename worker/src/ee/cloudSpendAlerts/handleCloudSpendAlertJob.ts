@@ -1,12 +1,15 @@
-import { parseDbOrg, Role } from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+import { parseDbOrg, Role } from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import Stripe from "stripe";
 import { env } from "../../env";
-import { logger } from "@langfuse/shared/src/server";
-import { recordIncrement, traceException } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
+import {
+  recordIncrement,
+  traceException,
+} from "@elasticdash/shared/src/server";
 import { Job } from "bullmq";
 import { backOff } from "exponential-backoff";
-import { sendCloudSpendAlertEmail } from "@langfuse/shared/src/server";
+import { sendCloudSpendAlertEmail } from "@elasticdash/shared/src/server";
 
 export const handleCloudSpendAlertJob = async (job: Job<{ orgId: string }>) => {
   const { orgId } = job.data;

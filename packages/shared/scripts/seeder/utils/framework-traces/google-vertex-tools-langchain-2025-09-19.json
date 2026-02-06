@@ -25,9 +25,7 @@
       "endTime": "2025-09-19T22:00:00.908Z",
       "name": "VertexGemini",
       "metadata": {
-        "tags": [
-          "test_tag"
-        ],
+        "tags": ["test_tag"],
         "conversation_id": "test-conversation-001",
         "ls_provider": "google_vertexai",
         "ls_model_name": "gemini-2.5-flash",
@@ -41,8 +39,8 @@
           "service.name": "test_service"
         },
         "scope": {
-          "name": "langfuse-sdk",
-          "version": "3.3.4",
+          "name": "elasticdash-sdk",
+          "version": "0.0.10",
           "attributes": {
             "public_key": "pk-lf-test-key-12345"
           }
@@ -101,9 +99,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "reason"
-                ],
+                "required": ["reason"],
                 "type": "object"
               }
             }
@@ -123,9 +119,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "reason"
-                ],
+                "required": ["reason"],
                 "type": "object"
               }
             }
@@ -145,9 +139,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "reason"
-                ],
+                "required": ["reason"],
                 "type": "object"
               }
             }
@@ -187,9 +179,7 @@
                     "type": "string"
                   }
                 },
-                "required": [
-                  "reason"
-                ],
+                "required": ["reason"],
                 "type": "object"
               }
             }

@@ -1,8 +1,8 @@
 /** @jest-environment node */
 
 // Mock queue operations to avoid Redis dependency in tests
-jest.mock("@langfuse/shared/src/server", () => {
-  const actual = jest.requireActual("@langfuse/shared/src/server");
+jest.mock("@elasticdash/shared/src/server", () => {
+  const actual = jest.requireActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     // Mock queue getInstance to return a no-op queue
@@ -29,7 +29,7 @@ import {
   LangfuseNotFoundError,
   InvalidRequestError,
   BaseError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 describe("MCP Error Formatting", () => {
   describe("formatErrorForUser", () => {

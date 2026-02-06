@@ -13,19 +13,19 @@ import {
   JobConfigState,
   PromptDomainSchema,
   WebhookActionConfigWithSecrets,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   WebhookInput,
   createOrgProjectAndApiKey,
   getActionByIdWithSecrets,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   decrypt,
   encrypt,
   generateWebhookSignature,
-} from "@langfuse/shared/encryption";
-import { generateWebhookSecret } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared/encryption";
+import { generateWebhookSecret } from "@elasticdash/shared/encryption";
 import { setupServer } from "msw/node";
 import { http, HttpResponse } from "msw";
 import { executeWebhook } from "../queues/webhooks";
@@ -1091,7 +1091,7 @@ describe("Webhook Integration Tests", () => {
 
       // Import the function to test it directly
       const { getConsecutiveAutomationFailures } = await import(
-        "@langfuse/shared/src/server"
+        "@elasticdash/shared/src/server"
       );
 
       // Check that consecutive failures is 0 since there are no executions after the lastFailingExecutionId

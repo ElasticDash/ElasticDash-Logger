@@ -7,8 +7,8 @@ import {
   pollQueryStatus,
   getQueryError,
   sleep,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import { env } from "../env";
 import { parseArgs } from "node:util";
 import { randomUUID } from "crypto";

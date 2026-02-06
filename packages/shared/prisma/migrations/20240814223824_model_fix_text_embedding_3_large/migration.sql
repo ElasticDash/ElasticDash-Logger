@@ -1,6 +1,6 @@
 
 -- Fix model name
--- https://github.com/langfuse/langfuse/issues/2688
+-- https://github.com/elasticdash/elasticdash/issues/2688
 
 UPDATE models
 SET model_name = 'text-embedding-3-large'

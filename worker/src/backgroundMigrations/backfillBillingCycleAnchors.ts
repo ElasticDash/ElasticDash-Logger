@@ -1,8 +1,8 @@
 import { IBackgroundMigration } from "./IBackgroundMigration";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { parseArgs } from "node:util";
-import { prisma } from "@langfuse/shared/src/db";
-import { parseDbOrg } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { parseDbOrg } from "@elasticdash/shared";
 import Stripe from "stripe";
 import { env } from "../env";
 

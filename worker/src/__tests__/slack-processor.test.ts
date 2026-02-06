@@ -13,16 +13,16 @@ import {
   JobConfigState,
   PromptDomain,
   SlackActionConfig,
-} from "@langfuse/shared";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
-import { encrypt } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { executeWebhook } from "../queues/webhooks";
-import type { WebhookInput } from "@langfuse/shared/src/server";
+import type { WebhookInput } from "@elasticdash/shared/src/server";
 
 // Mock SlackService
-vi.mock("@langfuse/shared/src/server", async () => {
-  const actual = await vi.importActual("@langfuse/shared/src/server");
+vi.mock("@elasticdash/shared/src/server", async () => {
+  const actual = await vi.importActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     SlackService: {
@@ -42,7 +42,7 @@ describe("Slack Processor", () => {
 
   beforeAll(async () => {
     // Import mocked SlackService
-    const { SlackService } = await import("@langfuse/shared/src/server");
+    const { SlackService } = await import("@elasticdash/shared/src/server");
 
     // Create mock service instance
     mockSlackService = {
@@ -145,7 +145,7 @@ describe("Slack Processor", () => {
 
   describe("executeSlack function", () => {
     it("should execute slack action successfully", async () => {
-      const { SlackService } = await import("@langfuse/shared/src/server");
+      const { SlackService } = await import("@elasticdash/shared/src/server");
 
       // Get the full prompt for the payload
       const fullPrompt = await prisma.prompt.findUnique({
@@ -221,14 +221,14 @@ describe("Slack Processor", () => {
       await expect(executeWebhook(slackInput)).resolves.toBeUndefined();
 
       // Verify that no SlackService calls were made
-      const { SlackService } = await import("@langfuse/shared/src/server");
+      const { SlackService } = await import("@elasticdash/shared/src/server");
       expect(SlackService.getInstance).not.toHaveBeenCalled();
       expect(mockSlackService.getWebClientForProject).not.toHaveBeenCalled();
       expect(mockSlackService.sendMessage).not.toHaveBeenCalled();
     });
 
     it("should use custom template when provided", async () => {
-      const { SlackService } = await import("@langfuse/shared/src/server");
+      const { SlackService } = await import("@elasticdash/shared/src/server");
 
       // Update action to include custom message template
       const customTemplate = [
@@ -293,7 +293,7 @@ describe("Slack Processor", () => {
     });
 
     it("should fallback to default message on template error", async () => {
-      const { SlackService } = await import("@langfuse/shared/src/server");
+      const { SlackService } = await import("@elasticdash/shared/src/server");
 
       // Update action with invalid JSON template
       await prisma.action.update({
@@ -354,7 +354,7 @@ describe("Slack Processor", () => {
     });
 
     it("should disable trigger after 4 consecutive failures", async () => {
-      const { SlackService } = await import("@langfuse/shared/src/server");
+      const { SlackService } = await import("@elasticdash/shared/src/server");
 
       // Mock SlackService to throw errors
       mockSlackService.sendMessage.mockRejectedValue(
@@ -417,7 +417,7 @@ describe("Slack Processor", () => {
     });
 
     it("should handle SlackService errors gracefully", async () => {
-      const { SlackService } = await import("@langfuse/shared/src/server");
+      const { SlackService } = await import("@elasticdash/shared/src/server");
 
       // Mock SlackService to throw an error
       mockSlackService.getWebClientForProject.mockRejectedValue(

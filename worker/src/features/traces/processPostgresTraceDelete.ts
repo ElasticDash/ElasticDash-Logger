@@ -1,5 +1,5 @@
-import { prisma } from "@langfuse/shared/src/db";
-import { logger, traceException } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { logger, traceException } from "@elasticdash/shared/src/server";
 
 export const processPostgresTraceDelete = async (
   projectId: string,

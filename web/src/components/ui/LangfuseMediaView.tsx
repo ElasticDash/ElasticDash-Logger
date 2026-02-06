@@ -4,7 +4,7 @@ import { ImageOff } from "lucide-react";
 import {
   MediaReferenceStringSchema,
   type ParsedMediaReferenceType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { ResizableImage } from "@/src/components/ui/resizable-image";
 import useProjectIdFromURL from "@/src/hooks/useProjectIdFromURL";
 import {

@@ -9,7 +9,7 @@ import {
   type OrderByState,
   paginationZod,
   timeFilter,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { EventsTableOptions } from "./types";
 import {
   getEventList,
@@ -17,7 +17,7 @@ import {
   getEventFilterOptions,
   getEventBatchIO,
 } from "./eventsService";
-import { instrumentAsync } from "@langfuse/shared/src/server";
+import { instrumentAsync } from "@elasticdash/shared/src/server";
 import type * as opentelemetry from "@opentelemetry/api";
 
 const GetAllEventsInput = EventsTableOptions.extend({

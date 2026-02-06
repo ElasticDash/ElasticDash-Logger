@@ -8,12 +8,12 @@ import {
   BatchExportStatus,
   CreateBatchExportSchema,
   paginationZod,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   BatchExportQueue,
   logger,
   QueueJobs,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod/v4";
 

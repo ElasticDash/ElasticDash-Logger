@@ -1,5 +1,5 @@
 import crypto from "node:crypto";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 
 export function compileTemplateString(
   template: string,

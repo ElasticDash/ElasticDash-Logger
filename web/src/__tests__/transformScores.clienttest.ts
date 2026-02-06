@@ -3,7 +3,7 @@ import {
   type ScoreDomain,
   type ScoreAggregate,
   type ScoreConfigDomain,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 const mockConfigs: ScoreConfigDomain[] = [
   {

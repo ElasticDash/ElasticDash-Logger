@@ -18,12 +18,12 @@ import {
   traceException,
   compareVersions,
   ResourceSpan,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "../env";
 import { IngestionService } from "../services/IngestionService";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { ClickhouseWriter } from "../services/ClickhouseWriter";
-import { ForbiddenError } from "@langfuse/shared";
+import { ForbiddenError } from "@elasticdash/shared";
 
 /**
  * SDK information extracted from OTEL resourceSpans.

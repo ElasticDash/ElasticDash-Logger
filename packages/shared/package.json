@@ -1,5 +1,5 @@
 {
-  "name": "@langfuse/shared",
+  "name": "@elasticdash/shared",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
@@ -67,6 +67,7 @@
     "@aws-sdk/s3-request-presigner": "^3.679.0",
     "@azure/storage-blob": "^12.26.0",
     "@clickhouse/client": "^1.13.0",
+    "@elasticdash/langchain": "0.0.10",
     "@google-cloud/storage": "^7.18.0",
     "@langchain/anthropic": "^0.3.32",
     "@langchain/aws": "^0.1.15",
@@ -96,7 +97,7 @@
     "jsonpath-plus": "10.3.0",
     "kysely": "^0.27.4",
     "langchain": "^0.3.37",
-    "langfuse-langchain": "3.38.6",
+    "langfuse-langchain": "^3.38.6",
     "lodash": "^4.17.21",
     "lossless-json": "^4.1.1",
     "next-auth": "^4.24.13",

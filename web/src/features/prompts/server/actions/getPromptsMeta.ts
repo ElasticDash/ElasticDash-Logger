@@ -3,9 +3,9 @@ import {
   type FilterState,
   promptsTableCols,
   type PromptType,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
-import { tableColumnsToSqlFilterAndPrefix } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { tableColumnsToSqlFilterAndPrefix } from "@elasticdash/shared/src/server";
 
 export type GetPromptsMetaParams = GetPromptsMetaType & { projectId: string };
 

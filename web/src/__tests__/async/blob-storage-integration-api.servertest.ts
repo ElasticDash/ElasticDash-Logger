@@ -4,14 +4,14 @@ import {
   makeZodVerifiedAPICall,
   makeAPICall,
 } from "@/src/__tests__/test-utils";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { z } from "zod/v4";
 import { randomUUID } from "crypto";
 import {
   createAndAddApiKeysToDb,
   createBasicAuthHeader,
-} from "@langfuse/shared/src/server";
-import { decrypt } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared/src/server";
+import { decrypt } from "@elasticdash/shared/encryption";
 
 // Schemas based on Fern schema definition
 const BlobStorageIntegrationResponseSchema = z.object({
@@ -52,7 +52,7 @@ const validBlobStorageConfig = {
   region: "us-east-1",
   accessKeyId: "AKIA123456789",
   secretAccessKey: "secret123456789",
-  prefix: "langfuse-exports/",
+  prefix: "elasticdash-exports/",
   exportFrequency: "daily" as const,
   enabled: true,
   forcePathStyle: false,
@@ -153,7 +153,7 @@ describe("Blob Storage Integrations API", () => {
           region: "us-east-1",
           accessKeyId: "test-access-key",
           secretAccessKey: "encrypted-secret",
-          prefix: "langfuse-exports/",
+          prefix: "elasticdash-exports/",
           exportFrequency: "daily",
           enabled: true,
           forcePathStyle: false,

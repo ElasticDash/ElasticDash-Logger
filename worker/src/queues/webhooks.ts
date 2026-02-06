@@ -10,14 +10,14 @@ import {
   isGitHubDispatchAction,
   type AutomationDomain,
   type ActionDomainWithSecrets,
-} from "@langfuse/shared";
-import { decrypt, createSignatureHeader } from "@langfuse/shared/encryption";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { decrypt, createSignatureHeader } from "@elasticdash/shared/encryption";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   validateWebhookURL,
   whitelistFromEnv,
   fetchWithSecureRedirects,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   TQueueJobTypes,
   QueueName,
@@ -28,7 +28,7 @@ import {
   getConsecutiveAutomationFailures,
   SlackService,
   logger,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { Processor, Job } from "bullmq";
 import { backOff } from "exponential-backoff";
 import { env } from "../env";

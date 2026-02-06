@@ -7,7 +7,7 @@ import {
   LLMAdapter,
   supportedModels,
   type UIModelParams,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { type ModelParamsContext } from "@/src/components/ModelParameters";
 import { getModelNameKey, getModelProviderKey } from "../storage/keys";
 

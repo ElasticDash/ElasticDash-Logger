@@ -4,7 +4,7 @@ import {
   getObservationById,
   getObservationByIdFromEventsTable,
   getTraceById,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { randomBytes } from "crypto";
 
 const projectId = "7a88fb47-b4e2-43b8-a06c-a5ce950dc53a";
@@ -23,8 +23,8 @@ describe("/api/public/otel/v1/traces API Endpoint", () => {
           scopeSpans: [
             {
               scope: {
-                name: "langfuse-sdk",
-                version: "2.60.3",
+                name: "elasticdash-sdk",
+                version: "0.0.10",
                 attributes: [
                   {
                     key: "public_key",
@@ -97,8 +97,8 @@ describe("/api/public/otel/v1/traces API Endpoint", () => {
           scopeSpans: [
             {
               scope: {
-                name: "langfuse-sdk",
-                version: "2.60.3",
+                name: "elasticdash-sdk",
+                version: "0.0.10",
                 attributes: [
                   {
                     key: "public_key",
@@ -348,8 +348,8 @@ describe("/api/public/otel/v1/traces API Endpoint", () => {
           scopeSpans: [
             {
               scope: {
-                name: "langfuse-sdk",
-                version: "2.60.3",
+                name: "elasticdash-sdk",
+                version: "0.0.10",
                 attributes: [
                   {
                     key: "public_key",

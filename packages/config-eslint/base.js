@@ -8,7 +8,7 @@ import "eslint-plugin-only-warn";
 export default tseslint.config(
   // Global ignores
   {
-    name: "langfuse/ignores",
+    name: "elasticdash/ignores",
     ignores: [
       "**/node_modules/",
       "**/dist/",
@@ -31,7 +31,7 @@ export default tseslint.config(
 
   // Global settings
   {
-    name: "langfuse/base/globals",
+    name: "elasticdash/base/globals",
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
@@ -52,7 +52,7 @@ export default tseslint.config(
   // Note: Old library.js had no TS rules, only eslint:recommended
   // Adding parser + plugin to support custom rules, but not extending recommended
   {
-    name: "langfuse/base/typescript",
+    name: "elasticdash/base/typescript",
     files: ["**/*.ts", "**/*.tsx", "**/*.mts", "**/*.cts"],
     plugins: {
       "@typescript-eslint": tseslint.plugin,
@@ -68,7 +68,8 @@ export default tseslint.config(
         "error",
         {
           name: "redis",
-          message: "Import redis explicitly from '@langfuse/shared/src/server'",
+          message:
+            "Import redis explicitly from '@elasticdash/shared/src/server'",
         },
       ],
       // Custom rule from eslint v8 shared/.eslintrc.js

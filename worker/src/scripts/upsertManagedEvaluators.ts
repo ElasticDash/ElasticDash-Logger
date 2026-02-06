@@ -1,8 +1,8 @@
 import { z } from "zod/v4";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import managedEvaluators from "../constants/managed-evaluators.json";
-import { logger } from "@langfuse/shared/src/server";
-import { extractVariables } from "@langfuse/shared";
+import { logger } from "@elasticdash/shared/src/server";
+import { extractVariables } from "@elasticdash/shared";
 
 const ManagedEvaluatorSchema = z.object({
   id: z.string(),

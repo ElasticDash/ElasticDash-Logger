@@ -5,14 +5,14 @@ import { SpanKind } from "@opentelemetry/api";
 
 import { env } from "@/src/env.mjs";
 
-import { parseDbOrg } from "@langfuse/shared";
+import { parseDbOrg } from "@elasticdash/shared";
 import {
   logger,
   getBillingCycleStart,
   getBillingCycleEnd,
   instrumentAsync,
   traceException,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 import {
   type Expanded,

@@ -1,6 +1,6 @@
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 
-// Define the type locally to match what's in @langfuse/shared
+// Define the type locally to match what's in @elasticdash/shared
 type VariableMapping = {
   templateVariable: string;
   langfuseObject: "trace" | "generation" | "span" | "score" | "dataset_item";

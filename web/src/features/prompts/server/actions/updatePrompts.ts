@@ -1,8 +1,11 @@
-import { logger, PromptService } from "@langfuse/shared/src/server";
+import { logger, PromptService } from "@elasticdash/shared/src/server";
 import { removeLabelsFromPreviousPromptVersions } from "@/src/features/prompts/server/utils/updatePromptLabels";
-import { InvalidRequestError, LangfuseNotFoundError } from "@langfuse/shared";
-import { prisma, Prisma } from "@langfuse/shared/src/db";
-import { redis } from "@langfuse/shared/src/server";
+import {
+  InvalidRequestError,
+  LangfuseNotFoundError,
+} from "@elasticdash/shared";
+import { prisma, Prisma } from "@elasticdash/shared/src/db";
+import { redis } from "@elasticdash/shared/src/server";
 import { promptChangeEventSourcing } from "@/src/features/prompts/server/promptChangeEventSourcing";
 
 export type UpdatePromptParams = {

@@ -7,8 +7,8 @@ import {
   TracingSearchType,
   isPresent,
   type ScoreDataTypeType,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   FullObservationsWithScores,
   DatabaseReadStream,
@@ -25,7 +25,7 @@ import {
   getTracesByIds,
   getScoresForTraces,
   getDatasetItems,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import Decimal from "decimal.js";
 import { env } from "../../env";
 import { BatchExportTracesRow, BatchExportSessionsRow } from "./types";

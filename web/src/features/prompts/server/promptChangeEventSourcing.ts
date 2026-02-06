@@ -1,11 +1,14 @@
-import { jsonSchemaNullable, type TriggerEventAction } from "@langfuse/shared";
+import {
+  jsonSchemaNullable,
+  type TriggerEventAction,
+} from "@elasticdash/shared";
 import {
   logger,
   type PromptResult,
   EntityChangeQueue,
   QueueJobs,
   QueueName,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
 
 /**

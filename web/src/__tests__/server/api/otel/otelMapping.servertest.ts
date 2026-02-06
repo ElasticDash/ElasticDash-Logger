@@ -1,7 +1,7 @@
 import {
   OtelIngestionProcessor,
   createIngestionEventSchema,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // Test helper function to maintain backward compatibility with existing tests
 // This mimics the old convertOtelSpanToIngestionEvent function signature
@@ -28,7 +28,7 @@ describe("OTel Resource Span Mapping", () => {
     const publicKey = "pk-lf-1234567890";
 
     it("should convert LF-OTEL spans to LF-events", async () => {
-      const langfuseOtelSpans = [
+      const elasticdashOtelSpans = [
         {
           resource: {
             attributes: [
@@ -58,8 +58,8 @@ describe("OTel Resource Span Mapping", () => {
           scopeSpans: [
             {
               scope: {
-                name: "langfuse-sdk",
-                version: "2.60.3",
+                name: "elasticdash-sdk",
+                version: "0.0.10",
                 attributes: [
                   {
                     key: "public_key",
@@ -260,7 +260,7 @@ describe("OTel Resource Span Mapping", () => {
 
       const events = (
         await Promise.all(
-          langfuseOtelSpans.map(
+          elasticdashOtelSpans.map(
             async (span) =>
               await convertOtelSpanToIngestionEvent(span, new Set(), publicKey),
           ),
@@ -290,8 +290,8 @@ describe("OTel Resource Span Mapping", () => {
           "telemetry.sdk.version": "1.32.0",
         },
         scope: {
-          name: "langfuse-sdk",
-          version: "2.60.3",
+          name: "elasticdash-sdk",
+          version: "0.0.10",
         },
       };
 
@@ -370,7 +370,7 @@ describe("OTel Resource Span Mapping", () => {
     });
 
     it("should create a trace when as_root has been specified", async () => {
-      const langfuseOtelSpans = [
+      const elasticdashOtelSpans = [
         {
           resource: {
             attributes: [
@@ -400,8 +400,8 @@ describe("OTel Resource Span Mapping", () => {
           scopeSpans: [
             {
               scope: {
-                name: "langfuse-sdk",
-                version: "2.60.3",
+                name: "elasticdash-sdk",
+                version: "0.0.10",
                 attributes: [
                   {
                     key: "public_key",
@@ -458,7 +458,7 @@ describe("OTel Resource Span Mapping", () => {
 
       const events = (
         await Promise.all(
-          langfuseOtelSpans.map(
+          elasticdashOtelSpans.map(
             async (span) =>
               await convertOtelSpanToIngestionEvent(span, new Set(), publicKey),
           ),
@@ -671,7 +671,7 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
@@ -679,7 +679,9 @@ describe("OTel Resource Span Mapping", () => {
       // Then
       // Will throw an error if the parsing fails
       const schema = createIngestionEventSchema();
-      const parsedEvents = langfuseEvents.map((event) => schema.parse(event));
+      const parsedEvents = elasticdashEvents.map((event) =>
+        schema.parse(event),
+      );
       expect(parsedEvents).toHaveLength(2);
     });
 
@@ -789,7 +791,7 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
@@ -797,7 +799,9 @@ describe("OTel Resource Span Mapping", () => {
       // Then
       // Will throw an error if the parsing fails
       const schema = createIngestionEventSchema();
-      const parsedEvents = langfuseEvents.map((event) => schema.parse(event));
+      const parsedEvents = elasticdashEvents.map((event) =>
+        schema.parse(event),
+      );
       expect(parsedEvents).toHaveLength(2);
     });
 
@@ -909,7 +913,7 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
@@ -917,7 +921,9 @@ describe("OTel Resource Span Mapping", () => {
       // Then
       // Will throw an error if the parsing fails
       const schema = createIngestionEventSchema();
-      const parsedEvents = langfuseEvents.map((event) => schema.parse(event));
+      const parsedEvents = elasticdashEvents.map((event) =>
+        schema.parse(event),
+      );
       expect(parsedEvents).toHaveLength(2);
 
       // Check that input contains both system and user messages
@@ -994,14 +1000,16 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
       const schema = createIngestionEventSchema();
-      const parsedEvents = langfuseEvents.map((event) => schema.parse(event));
+      const parsedEvents = elasticdashEvents.map((event) =>
+        schema.parse(event),
+      );
       expect(parsedEvents).toHaveLength(2); // trace + embedding
 
       // Should create embedding-create event, not span-create
@@ -1060,14 +1068,14 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
       // Expect a span and a trace to be created
-      expect(langfuseEvents).toHaveLength(2);
+      expect(elasticdashEvents).toHaveLength(2);
     });
 
     it.each([
@@ -1103,19 +1111,19 @@ describe("OTel Resource Span Mapping", () => {
         };
 
         // When
-        const langfuseEvents = await convertOtelSpanToIngestionEvent(
+        const elasticdashEvents = await convertOtelSpanToIngestionEvent(
           resourceSpan,
           new Set(),
         );
 
         // Then
-        expect(langfuseEvents).toHaveLength(2); // Should create trace + observation
+        expect(elasticdashEvents).toHaveLength(2); // Should create trace + observation
         expect(
-          langfuseEvents.some((event) => event.type === expectedEventType),
+          elasticdashEvents.some((event) => event.type === expectedEventType),
         ).toBe(true);
 
         // Verify the observation has the correct type
-        const observationEvent = langfuseEvents.find(
+        const observationEvent = elasticdashEvents.find(
           (event) =>
             event.type.endsWith("-create") && event.type !== "trace-create",
         );
@@ -1154,19 +1162,19 @@ describe("OTel Resource Span Mapping", () => {
         };
 
         // When
-        const langfuseEvents = await convertOtelSpanToIngestionEvent(
+        const elasticdashEvents = await convertOtelSpanToIngestionEvent(
           resourceSpan,
           new Set(),
         );
 
         // Then
-        expect(langfuseEvents).toHaveLength(2); // Should create trace + observation
+        expect(elasticdashEvents).toHaveLength(2); // Should create trace + observation
         expect(
-          langfuseEvents.some((event) => event.type === expectedEventType),
+          elasticdashEvents.some((event) => event.type === expectedEventType),
         ).toBe(true);
 
         // Verify the observation has the correct type
-        const observationEvent = langfuseEvents.find(
+        const observationEvent = elasticdashEvents.find(
           (event) =>
             event.type.endsWith("-create") && event.type !== "trace-create",
         );
@@ -1209,17 +1217,17 @@ describe("OTel Resource Span Mapping", () => {
           ],
         };
         // When
-        const langfuseEvents = await convertOtelSpanToIngestionEvent(
+        const elasticdashEvents = await convertOtelSpanToIngestionEvent(
           resourceSpan,
           new Set(),
         );
         // Then
-        expect(langfuseEvents).toHaveLength(2); // Should create trace + observation
+        expect(elasticdashEvents).toHaveLength(2); // Should create trace + observation
         expect(
-          langfuseEvents.some((event) => event.type === expectedEventType),
+          elasticdashEvents.some((event) => event.type === expectedEventType),
         ).toBe(true);
         // Verify the observation has the correct type
-        const observationEvent = langfuseEvents.find(
+        const observationEvent = elasticdashEvents.find(
           (event) =>
             event.type.endsWith("-create") && event.type !== "trace-create",
         );
@@ -1408,19 +1416,19 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
-      expect(langfuseEvents).toHaveLength(2);
+      expect(elasticdashEvents).toHaveLength(2);
       // Should be tool-create, NOT generation-create (OpenInference takes priority)
-      expect(langfuseEvents.some((event) => event.type === "tool-create")).toBe(
-        true,
-      );
       expect(
-        langfuseEvents.some((event) => event.type === "generation-create"),
+        elasticdashEvents.some((event) => event.type === "tool-create"),
+      ).toBe(true);
+      expect(
+        elasticdashEvents.some((event) => event.type === "generation-create"),
       ).toBe(false);
     });
 
@@ -1448,19 +1456,19 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
-      expect(langfuseEvents).toHaveLength(2);
+      expect(elasticdashEvents).toHaveLength(2);
       // Should be embedding-create, NOT generation-create (OTel GenAI takes priority over model detection)
       expect(
-        langfuseEvents.some((event) => event.type === "embedding-create"),
+        elasticdashEvents.some((event) => event.type === "embedding-create"),
       ).toBe(true);
       expect(
-        langfuseEvents.some((event) => event.type === "generation-create"),
+        elasticdashEvents.some((event) => event.type === "generation-create"),
       ).toBe(false);
     });
 
@@ -1495,22 +1503,22 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
-      expect(langfuseEvents).toHaveLength(2);
+      expect(elasticdashEvents).toHaveLength(2);
       // Explicit ElasticDash type should always win over inferred types
-      expect(langfuseEvents.some((event) => event.type === "span-create")).toBe(
-        true,
-      );
       expect(
-        langfuseEvents.some((event) => event.type === "agent-create"),
+        elasticdashEvents.some((event) => event.type === "span-create"),
+      ).toBe(true);
+      expect(
+        elasticdashEvents.some((event) => event.type === "agent-create"),
       ).toBe(false);
       expect(
-        langfuseEvents.some((event) => event.type === "generation-create"),
+        elasticdashEvents.some((event) => event.type === "generation-create"),
       ).toBe(false);
     });
 
@@ -1544,23 +1552,23 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
-      expect(langfuseEvents).toHaveLength(2);
+      expect(elasticdashEvents).toHaveLength(2);
       // OpenInference should win over model detection
       expect(
-        langfuseEvents.some((event) => event.type === "retriever-create"),
+        elasticdashEvents.some((event) => event.type === "retriever-create"),
       ).toBe(true);
       expect(
-        langfuseEvents.some((event) => event.type === "generation-create"),
+        elasticdashEvents.some((event) => event.type === "generation-create"),
       ).toBe(false);
 
       // Should still extract model and usage info
-      const retrieverEvent = langfuseEvents.find(
+      const retrieverEvent = elasticdashEvents.find(
         (event) => event.type === "retriever-create",
       );
       expect(retrieverEvent?.body.model).toBe("text-embedding-ada-002");
@@ -1603,12 +1611,12 @@ describe("OTel Resource Span Mapping", () => {
         ],
       };
 
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
-      const observationEvent = langfuseEvents.find(
+      const observationEvent = elasticdashEvents.find(
         (event) => event.type !== "trace-create",
       );
 
@@ -1637,14 +1645,14 @@ describe("OTel Resource Span Mapping", () => {
       };
 
       // When
-      const langfuseEvents = await convertOtelSpanToIngestionEvent(
+      const elasticdashEvents = await convertOtelSpanToIngestionEvent(
         resourceSpan,
         new Set(),
       );
 
       // Then
-      expect(langfuseEvents[0].body.name).toBe("right name");
-      expect(langfuseEvents[1].body.name).toBe("right name");
+      expect(elasticdashEvents[0].body.name).toBe("right name");
+      expect(elasticdashEvents[1].body.name).toBe("right name");
     });
 
     it.each([
@@ -1695,7 +1703,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract environment on trace for langfuse.environment",
+        "should extract environment on trace for elasticdash.environment",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.environment",
@@ -1725,7 +1733,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract promptName on observation from langfuse.prompt.name",
+        "should extract promptName on observation from elasticdash.prompt.name",
         {
           entity: "observation",
           otelAttributeKey: "elasticdash.prompt.name",
@@ -1735,7 +1743,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract public on trace from langfuse.public",
+        "should extract public on trace from elasticdash.public",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.public",
@@ -1765,7 +1773,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract userId on trace from langfuse.user.id",
+        "should extract userId on trace from elasticdash.user.id",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.user.id",
@@ -1785,7 +1793,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract sessionId on trace from langfuse.session.id",
+        "should extract sessionId on trace from elasticdash.session.id",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.session.id",
@@ -2192,7 +2200,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should map langfuse.metadata string to top-level metadata for trace",
+        "should map elasticdash.metadata string to top-level metadata for trace",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.metadata",
@@ -2204,7 +2212,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should map langfuse.metadata string to top-level metadata for observation",
+        "should map elasticdash.metadata string to top-level metadata for observation",
         {
           entity: "observation",
           otelAttributeKey: "elasticdash.metadata",
@@ -2216,7 +2224,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract metadata from langfuse.metadata.* keys for trace",
+        "should extract metadata from elasticdash.metadata.* keys for trace",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.metadata.user_type",
@@ -2228,7 +2236,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract metadata from langfuse.metadata.* keys for observation",
+        "should extract metadata from elasticdash.metadata.* keys for observation",
         {
           entity: "observation",
           otelAttributeKey: "elasticdash.metadata.user_type",
@@ -2240,7 +2248,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract tags from single string from langfuse.tags to trace",
+        "should extract tags from single string from elasticdash.tags to trace",
         {
           entity: "trace",
           otelAttributeKey: "elasticdash.tags",
@@ -2527,14 +2535,14 @@ describe("OTel Resource Span Mapping", () => {
         };
 
         // When
-        const langfuseEvents = await convertOtelSpanToIngestionEvent(
+        const elasticdashEvents = await convertOtelSpanToIngestionEvent(
           resourceSpan,
           new Set(),
         );
 
         // Then
         const entity: { body: Record<string, any> } =
-          spec.entity === "trace" ? langfuseEvents[0] : langfuseEvents[1];
+          spec.entity === "trace" ? elasticdashEvents[0] : elasticdashEvents[1];
         expect(
           spec.entityAttributeKey // This logic allows to follow a path in the object, e.g. foo.bar.baz.
             .split(".")
@@ -2555,7 +2563,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract environment on trace for langfuse.environment",
+        "should extract environment on trace for elasticdash.environment",
         {
           entity: "trace",
           otelResourceAttributeKey: "elasticdash.environment",
@@ -2597,7 +2605,7 @@ describe("OTel Resource Span Mapping", () => {
         },
       ],
       [
-        "should extract metadata from langfuse.metadata.* resource attributes",
+        "should extract metadata from elasticdash.metadata.* resource attributes",
         {
           entity: "observation",
           otelResourceAttributeKey: "elasticdash.metadata.server_name",
@@ -2638,14 +2646,14 @@ describe("OTel Resource Span Mapping", () => {
         };
 
         // When
-        const langfuseEvents = await convertOtelSpanToIngestionEvent(
+        const elasticdashEvents = await convertOtelSpanToIngestionEvent(
           resourceSpan,
           new Set(),
         );
 
         // Then
         const entity: { body: Record<string, any> } =
-          spec.entity === "trace" ? langfuseEvents[0] : langfuseEvents[1];
+          spec.entity === "trace" ? elasticdashEvents[0] : elasticdashEvents[1];
         expect(
           spec.entityAttributeKey // This logic allows to follow a path in the object, e.g. foo.bar.baz.
             .split(".")
@@ -2941,14 +2949,14 @@ describe("OTel Resource Span Mapping", () => {
         };
 
         // When
-        const langfuseEvents = await convertOtelSpanToIngestionEvent(
+        const elasticdashEvents = await convertOtelSpanToIngestionEvent(
           resourceSpan,
           new Set(),
         );
 
         // Then
         const entity: { body: Record<string, any> } =
-          spec.entity === "trace" ? langfuseEvents[0] : langfuseEvents[1];
+          spec.entity === "trace" ? elasticdashEvents[0] : elasticdashEvents[1];
         expect(entity.body[spec.entityAttributeKey]).toEqual(
           spec.entityAttributeValue,
         );
@@ -3735,15 +3743,15 @@ describe("OTel Resource Span Mapping", () => {
                   },
                   attributes: [
                     {
-                      key: "elasticdash.trace.metadata.langfuse_user_id",
+                      key: "elasticdash.trace.metadata.elasticdash_user_id",
                       value: { stringValue: "user-123" },
                     },
                     {
-                      key: "elasticdash.trace.metadata.langfuse_session_id",
+                      key: "elasticdash.trace.metadata.elasticdash_session_id",
                       value: { stringValue: "session-456" },
                     },
                     {
-                      key: "elasticdash.trace.metadata.langfuse_tags",
+                      key: "elasticdash.trace.metadata.elasticdash_tags",
                       value: { stringValue: "tag1,tag2" },
                     },
                   ],
@@ -3826,15 +3834,15 @@ describe("OTel Resource Span Mapping", () => {
                   },
                   attributes: [
                     {
-                      key: "elasticdash.observation.metadata.langfuse_user_id",
+                      key: "elasticdash.observation.metadata.elasticdash_user_id",
                       value: { stringValue: "user-789" },
                     },
                     {
-                      key: "elasticdash.observation.metadata.langfuse_session_id",
+                      key: "elasticdash.observation.metadata.elasticdash_session_id",
                       value: { stringValue: "session-abc" },
                     },
                     {
-                      key: "elasticdash.observation.metadata.langfuse_tags",
+                      key: "elasticdash.observation.metadata.elasticdash_tags",
                       value: { stringValue: "tag3,tag4" },
                     },
                   ],
@@ -4249,7 +4257,7 @@ describe("OTel Resource Span Mapping", () => {
       expect(spanEvents[1].body.name).toBe("root-span");
     });
 
-    it("should prioritize langfuse.session.id over gen_ai.conversation.id when both are present", async () => {
+    it("should prioritize elasticdash.session.id over gen_ai.conversation.id when both are present", async () => {
       const otelSpans = [
         {
           resource: {
@@ -4294,7 +4302,7 @@ describe("OTel Resource Span Mapping", () => {
                   attributes: [
                     {
                       key: "elasticdash.session.id",
-                      value: { stringValue: "langfuse-session-123" },
+                      value: { stringValue: "elasticdash-session-123" },
                     },
                     {
                       key: "gen_ai.conversation.id",
@@ -4320,7 +4328,7 @@ describe("OTel Resource Span Mapping", () => {
 
       const traceEvent = events.find((e) => e.type === "trace-create");
       expect(traceEvent).toBeDefined();
-      expect(traceEvent.body.sessionId).toBe("langfuse-session-123");
+      expect(traceEvent.body.sessionId).toBe("elasticdash-session-123");
     });
 
     it("should prioritize session.id over gen_ai.conversation.id when both are present", async () => {
@@ -4829,7 +4837,7 @@ describe("OTel Resource Span Mapping", () => {
     });
 
     it("should override the observation type if it is declared as 'span' but holds generation-like attributes for python-sdk <= 3.3.0", async () => {
-      // Issue: https://github.com/langfuse/langfuse/issues/8682
+      // Issue: https://github.com/elasticdash/elasticdash/issues/8682
       const otelSpans = [
         {
           resource: {
@@ -4843,7 +4851,7 @@ describe("OTel Resource Span Mapping", () => {
           scopeSpans: [
             {
               scope: {
-                name: "langfuse-sdk",
+                name: "elasticdash-sdk",
                 version: "3.3.0",
                 attributes: [
                   {

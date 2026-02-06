@@ -1,11 +1,11 @@
 import { z } from "zod/v4";
-import { prisma, PrismaClient } from "@langfuse/shared/src/db";
+import { prisma, PrismaClient } from "@elasticdash/shared/src/db";
 import defaultModelPrices from "../constants/default-model-prices.json";
-import { clearFullModelCache, logger } from "@langfuse/shared/src/server";
+import { clearFullModelCache, logger } from "@elasticdash/shared/src/server";
 import {
   PricingTierConditionSchema,
   validatePricingTiers,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const PricingTierSchema = z.object({
   id: z.string(),

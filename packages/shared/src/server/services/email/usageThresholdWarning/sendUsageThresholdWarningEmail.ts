@@ -60,7 +60,7 @@ export const sendUsageThresholdWarningEmail = async ({
         address: env.EMAIL_FROM_ADDRESS,
         name: "ElasticDash",
       },
-      replyTo: "support@langfuse.com",
+      replyTo: "support@elasticdash.com",
       subject: emailSubject,
       html: emailHtml,
     };

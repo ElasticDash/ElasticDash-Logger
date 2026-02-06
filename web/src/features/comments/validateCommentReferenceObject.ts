@@ -1,6 +1,9 @@
-import { CommentObjectType, type CreateCommentData } from "@langfuse/shared";
+import { CommentObjectType, type CreateCommentData } from "@elasticdash/shared";
 import { type z } from "zod/v4";
-import { getObservationById, getTraceById } from "@langfuse/shared/src/server";
+import {
+  getObservationById,
+  getTraceById,
+} from "@elasticdash/shared/src/server";
 
 const isObservationOrTrace = (objectType: CommentObjectType) => {
   return (

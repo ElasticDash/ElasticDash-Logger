@@ -10,7 +10,8 @@
     "target": "es2024",
     "types": ["node"],
     "downlevelIteration": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx" // Add this line
   },
   "include": ["."],
   "exclude": ["node_modules", "dist", "src/**/*.test.ts"]

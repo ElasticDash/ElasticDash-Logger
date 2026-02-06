@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 
-vi.mock("@langfuse/shared", () => {
+vi.mock("@elasticdash/shared", () => {
   const { z } = require("zod/v4");
 
   return {
@@ -40,7 +40,7 @@ import {
   combineInputOutputMessages,
   cleanLegacyOutput,
   extractAdditionalInput,
-} from "@langfuse/shared/src/utils/chatml";
+} from "@elasticdash/shared/src/utils/chatml";
 
 describe("ChatML Integration", () => {
   it("should handle OpenAI multimodal format", () => {

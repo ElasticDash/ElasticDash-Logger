@@ -14,7 +14,7 @@
     "public": true,
     "input": "\"What is ElasticDash?\"",
     "output": "\"ElasticDash is a tool designed to help developers monitor and debug applications that utilize large language models (LLMs). It provides features for tracking and analyzing the performance of LLMs, enabling developers to gain insights into how these models are functioning within their applications. ElasticDash can be particularly useful for identifying issues, optimizing performance, and ensuring that the integration of language models into applications is smooth and effective.\"",
-    "metadata": "{\"email\":\"user@langfuse.com\",\"resourceAttributes\":{\"telemetry.sdk.language\":\"python\",\"telemetry.sdk.name\":\"opentelemetry\",\"telemetry.sdk.version\":\"1.33.1\",\"service.name\":\"unknown_service\"},\"scope\":{\"name\":\"langfuse-sdk\",\"version\":\"3.0.0\",\"attributes\":{\"public_key\":\"pk-lf-5855d85e-3943-497e-bd10-f50ad414bcba\"}}}",
+    "metadata": "{\"email\":\"user@elasticdash.com\",\"resourceAttributes\":{\"telemetry.sdk.language\":\"python\",\"telemetry.sdk.name\":\"opentelemetry\",\"telemetry.sdk.version\":\"1.33.1\",\"service.name\":\"unknown_service\"},\"scope\":{\"name\":\"elasticdash-sdk\",\"version\":\"0.0.10\",\"attributes\":{\"public_key\":\"pk-lf-5855d85e-3943-497e-bd10-f50ad414bcba\"}}}",
     "createdAt": "2025-06-05T15:45:56.000Z",
     "updatedAt": "2025-06-05T15:45:56.029Z",
     "scores": [],
@@ -39,8 +39,8 @@
           "service.name": "unknown_service"
         },
         "scope": {
-          "name": "langfuse-sdk",
-          "version": "3.0.0",
+          "name": "elasticdash-sdk",
+          "version": "0.0.10",
           "attributes": {
             "public_key": "pk-lf-5855d85e-3943-497e-bd10-f50ad414bcba"
           }

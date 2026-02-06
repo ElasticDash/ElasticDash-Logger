@@ -5,7 +5,7 @@ import {
   type OrderByState,
   type TableViewPresetDomain,
   type ColumnDefinition,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { useRouter } from "next/router";
 import { useEffect, useCallback, useState, useRef } from "react";
 import { type VisibilityState } from "@tanstack/react-table";
