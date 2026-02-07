@@ -25,6 +25,9 @@ export const getS3MediaStorageClient = (bucketName: string): StorageService => {
 
 export const getS3EventStorageClient = (bucketName: string): StorageService => {
   if (!s3EventStorageClient) {
+    console.log(
+      `env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: ${env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID}`,
+    );
     s3EventStorageClient = StorageServiceFactory.getInstance({
       bucketName,
       accessKeyId: env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID,

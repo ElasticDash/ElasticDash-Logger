@@ -84,6 +84,9 @@ let s3StorageServiceClient: StorageService;
 
 const getS3StorageServiceClient = (bucketName: string): StorageService => {
   if (!s3StorageServiceClient) {
+    console.log(
+      `env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: ${env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID}`,
+    );
     s3StorageServiceClient = StorageServiceFactory.getInstance({
       bucketName,
       accessKeyId: env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID,
