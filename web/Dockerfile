@@ -29,6 +29,7 @@ COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 COPY --from=pruner /app/out/json/ .
 
 RUN pnpm install --frozen-lockfile
+RUN pnpm list --depth 1
 
 ENV DOCKER_BUILD 1
 ENV NEXT_MANUAL_SIG_HANDLE true

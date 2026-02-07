@@ -1,10 +1,10 @@
 import { LLMAdapter } from "@elasticdash/shared/src/server";
-import { ElasticDash } from "elasticdash-js";
+import { ElasticDashClient } from "@elasticdash/client";
 import { env } from "@/src/env.mjs";
 import { type FilterCondition, singleFilter } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
-let langfuseClient: ElasticDash | null = null;
+let langfuseClient: ElasticDashClient | null = null;
 
 export function getDefaultModelParams() {
   return {
@@ -50,9 +50,9 @@ export function getLangfuseClient(
   publicKey: string,
   secretKey: string,
   baseUrl?: string,
-): ElasticDash {
+): ElasticDashClient {
   if (!langfuseClient) {
-    langfuseClient = new ElasticDash({
+    langfuseClient = new ElasticDashClient({
       publicKey,
       secretKey,
       baseUrl,
