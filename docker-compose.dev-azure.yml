@@ -25,7 +25,7 @@ services:
 
   minio:
     image: cgr.dev/chainguard/minio
-    container_name: ${MINIO_CONTAINER_NAME:-langfuse-minio}
+    container_name: ${MINIO_CONTAINER_NAME:-elasticdash-minio}
     entrypoint: sh
     # create the 'langfuse' bucket before starting the service
     command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" --console-address ":9001" /data'
@@ -85,5 +85,5 @@ volumes:
   langfuse_azurite_data:
     driver: local
   langfuse_minio_data:
-    name: ${MINIO_VOLUME_NAME:-langfuse_minio_data}
+    name: ${MINIO_VOLUME_NAME:-elasticdash_minio_data}
     driver: local
