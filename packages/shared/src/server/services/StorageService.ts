@@ -551,6 +551,8 @@ class S3StorageService implements StorageService {
       }),
     );
 
+    console.log("Uploading JSON to S3 at path:", path);
+
     try {
       logger.info(`Uploading JSON to S3 at path: ${path}`);
       await this.client.send(putCommand);
