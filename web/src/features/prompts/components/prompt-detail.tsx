@@ -86,10 +86,10 @@ const getJsCode = (
   name: string,
   version: number,
   labels: string[],
-) => `import { LangfuseClient } from "@langfuse/client";
+) => `import { ElasticDashClient } from "@elasticdash/client";
 
 // Initialize the ElasticDash client
-const langfuse = new LangfuseClient();
+const langfuse = new ElasticDashClient();
 
 // Get production prompt
 const prompt = await langfuse.prompt.get("${name}");

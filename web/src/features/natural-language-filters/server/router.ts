@@ -15,7 +15,7 @@ import { CreateNaturalLanguageFilterCompletion } from "./validation";
 import {
   getDefaultModelParams,
   parseFiltersFromCompletion,
-  getLangfuseClient,
+  getElasticDashClient,
 } from "./utils";
 import { randomBytes } from "crypto";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
@@ -73,7 +73,7 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           }
         };
 
-        const client = getLangfuseClient(
+        const client = getElasticDashClient(
           env.LANGFUSE_AI_FEATURES_PUBLIC_KEY as string,
           env.LANGFUSE_AI_FEATURES_SECRET_KEY as string,
           env.LANGFUSE_AI_FEATURES_HOST,

@@ -261,7 +261,7 @@ export const env = EnvSchema.parse(removeEmptyEnvVariables(process.env));
 **Usage:**
 
 ```typescript
-import { env } from "@langfuse/ee/src/env";
+import { env } from "@elasticdash/ee/src/env";
 
 const licenseKey = env.LANGFUSE_EE_LICENSE_KEY;
 ```
