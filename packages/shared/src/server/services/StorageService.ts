@@ -441,9 +441,9 @@ class S3StorageService implements StorageService {
     const credentials =
       accessKeyId !== undefined && secretAccessKey !== undefined
         ? {
-            accessKeyId,
-            secretAccessKey,
-          }
+          accessKeyId,
+          secretAccessKey,
+        }
         : undefined;
 
     // Create the main client for S3 operations using the internal endpoint
@@ -464,21 +464,31 @@ class S3StorageService implements StorageService {
     // Otherwise, use the same client for both operations
     this.signedUrlClient = params.externalEndpoint
       ? new S3Client({
-          credentials,
-          endpoint: params.externalEndpoint,
-          region: params.region,
-          forcePathStyle: params.forcePathStyle,
-          requestHandler: {
-            httpsAgent: {
-              maxSockets: env.LANGFUSE_S3_CONCURRENT_WRITES,
-            },
+        credentials,
+        endpoint: params.externalEndpoint,
+        region: params.region,
+        forcePathStyle: params.forcePathStyle,
+        requestHandler: {
+          httpsAgent: {
+            maxSockets: env.LANGFUSE_S3_CONCURRENT_WRITES,
           },
-        })
+        },
+      })
       : this.client;
 
     this.bucketName = params.bucketName;
     this.awsSse = params.awsSse;
     this.awsSseKmsKeyId = params.awsSseKmsKeyId;
+  }
+
+  private pathChecker(path: string) {
+    if (path.startsWith("/")) {
+      path = path.slice(1);
+    }
+    if (path.startsWith(env.LANGFUSE_S3_EVENT_UPLOAD_BUCKET + "/")) {
+      path = path.slice(env.LANGFUSE_S3_EVENT_UPLOAD_BUCKET.length + 1);
+    }
+    return path;
   }
 
   private addSSEToParams<T>(params: Record<string, unknown>): T {
@@ -499,6 +509,7 @@ class S3StorageService implements StorageService {
     queueSize,
   }: UploadFile): Promise<void> {
     try {
+      fileName = this.pathChecker(fileName);
       await new Upload({
         client: this.client,
         params: this.addSSEToParams<PutObjectCommandInput>({
@@ -530,6 +541,7 @@ class S3StorageService implements StorageService {
     queueSize,
   }: UploadWithSignedUrl): Promise<{ signedUrl: string }> {
     try {
+      fileName = this.pathChecker(fileName);
       await this.uploadFile({ fileName, data, fileType, partSize, queueSize });
 
       const signedUrl = await this.getSignedUrl(fileName, expiresInSeconds);
@@ -542,6 +554,7 @@ class S3StorageService implements StorageService {
   }
 
   public async uploadJson(path: string, body: Record<string, unknown>[]) {
+    path = this.pathChecker(path);
     const putCommand = new PutObjectCommand(
       this.addSSEToParams({
         Bucket: this.bucketName,
@@ -550,8 +563,6 @@ class S3StorageService implements StorageService {
         ContentType: "application/json",
       }),
     );
-
-    console.log("Uploading JSON to S3 at path:", path);
 
     try {
       logger.info(`Uploading JSON to S3 at path: ${path}`);
