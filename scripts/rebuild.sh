@@ -8,10 +8,9 @@ cd "$(dirname "$0")/.."
 
 echo "[ElasticDash] Building and restarting all Docker containers..."
 
-docker-compose down
 
-docker-compose build --no-cache
-
-docker-compose up -d
+docker compose -f docker-compose.build.yml down
+docker compose -f docker-compose.build.yml build --no-cache
+docker compose -f docker-compose.build.yml up -d
 
 echo "[ElasticDash] All containers rebuilt and restarted."
