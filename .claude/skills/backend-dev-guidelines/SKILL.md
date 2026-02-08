@@ -187,7 +187,7 @@ shared/src/
 The shared package exposes specific import paths for different use cases:
 
 | Import Path                                | Maps To                           | Use For                                                         |
-|--------------------------------------------|-----------------------------------|-----------------------------------------------------------------|
+| ------------------------------------------ | --------------------------------- | --------------------------------------------------------------- |
 | `@langfuse/shared`                         | `dist/src/index.js`               | General types, schemas, utilities, constants                    |
 | `@langfuse/shared/src/db`                  | `dist/src/db.js`                  | Prisma client and database types                                |
 | `@langfuse/shared/src/server`              | `dist/src/server/index.js`        | Server-side utilities (queues, auth, services, instrumentation) |
@@ -205,11 +205,11 @@ import {
   type APIScoreV2,
   type ColumnDefinition,
   Role,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 // Database - Prisma client and types
-import { prisma, Prisma, JobExecutionStatus } from "@langfuse/shared/src/db";
-import { type DB as Database } from "@langfuse/shared";
+import { prisma, Prisma, JobExecutionStatus } from "@elasticdash/shared/src/db";
+import { type DB as Database } from "@elasticdash/shared";
 
 // Server utilities - queues, services, auth, instrumentation
 import {
@@ -223,26 +223,26 @@ import {
   invalidateApiKeysForProject,
   recordIncrement,
   recordHistogram,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // API key management (specific path)
-import { createAndAddApiKeysToDb } from "@langfuse/shared/src/server/auth/apiKeys";
+import { createAndAddApiKeysToDb } from "@elasticdash/shared/src/server/auth/apiKeys";
 
 // Encryption utilities
-import { encrypt, decrypt, sign, verify } from "@langfuse/shared/encryption";
+import { encrypt, decrypt, sign, verify } from "@elasticdash/shared/encryption";
 ```
 
 **What Goes Where:**
 
 The shared package provides types, utilities, and server code used by both web and worker packages. It has **5 export paths** that control frontend vs backend access:
 
-| Import Path                                | Usage                | What's Included                                                                    |
-|--------------------------------------------|----------------------|------------------------------------------------------------------------------------|
+| Import Path                                | Usage                 | What's Included                                                                    |
+| ------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
 | `@langfuse/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
-| `@langfuse/shared/src/db`                  | 🔒 Backend only      | Prisma client instance                                                             |
-| `@langfuse/shared/src/server`              | 🔒 Backend only      | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
-| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only      | API key management (separated to avoid circular deps)                              |
-| `@langfuse/shared/encryption`              | 🔒 Backend only      | Database field encryption/decryption                                               |
+| `@langfuse/shared/src/db`                  | 🔒 Backend only       | Prisma client instance                                                             |
+| `@langfuse/shared/src/server`              | 🔒 Backend only       | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
+| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only       | API key management (separated to avoid circular deps)                              |
+| `@langfuse/shared/encryption`              | 🔒 Backend only       | Database field encryption/decryption                                               |
 
 **Naming Conventions:**
 
@@ -304,14 +304,14 @@ const validated = schema.parse(input);
 
 ```typescript
 // Services use Prisma directly for simple CRUD
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 const dataset = await prisma.dataset.findUnique({
   where: { id: datasetId, projectId }, // Always filter by projectId for tenant isolation
 });
 
 // Or use repositories for complex queries (traces, observations, scores)
-import { getTracesTable } from "@langfuse/shared/src/server";
+import { getTracesTable } from "@elasticdash/shared/src/server";
 
 const traces = await getTracesTable({
   projectId,
@@ -327,10 +327,10 @@ const traces = await getTracesTable({
 ```typescript
 // Import observability utilities
 import {
-  logger,          // Winston logger with OpenTelemetry/DataDog context
-  traceException,  // Record exceptions to OpenTelemetry spans
+  logger, // Winston logger with OpenTelemetry/DataDog context
+  traceException, // Record exceptions to OpenTelemetry spans
   instrumentAsync, // Create instrumented spans
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // Structured logging (includes trace_id, span_id, dd.trace_id)
 logger.info("Processing dataset", { datasetId, projectId });
@@ -364,7 +364,7 @@ Write tests for all new features and bug fixes. See [testing-guide.md](resources
 **Test Types:**
 
 | Type        | Framework | Location                                | Purpose                      |
-|-------------|-----------|-----------------------------------------|------------------------------|
+| ----------- | --------- | --------------------------------------- | ---------------------------- |
 | Integration | Jest      | `web/src/__tests__/async/`              | Full API endpoint testing    |
 | tRPC        | Jest      | `web/src/__tests__/async/`              | tRPC procedures with auth    |
 | Service     | Jest      | `web/src/__tests__/async/repositories/` | Repository/service functions |
@@ -431,7 +431,7 @@ When modifying public API types in `web/src/features/public-api/types/`, the cor
 **Zod to Fern Type Mapping:**
 
 | Zod Type       | Fern Type               | Example                                               |
-|----------------|-------------------------|-------------------------------------------------------|
+| -------------- | ----------------------- | ----------------------------------------------------- |
 | `.nullish()`   | `optional<nullable<T>>` | `z.string().nullish()` → `optional<nullable<string>>` |
 | `.nullable()`  | `nullable<T>`           | `z.string().nullable()` → `nullable<string>`          |
 | `.optional()`  | `optional<T>`           | `z.string().optional()` → `optional<string>`          |
@@ -464,7 +464,7 @@ import {
 import { TRPCError } from "@trpc/server";
 
 // Database
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import type { Prisma } from "@prisma/client";
 
 // ClickHouse
@@ -472,14 +472,14 @@ import {
   queryClickhouse,
   queryClickhouseStream,
   upsertClickhouse,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // Observability - OpenTelemetry + DataDog (NOT Sentry for backend)
 import {
-  logger,          // Winston logger with OTEL/DataDog trace context
-  traceException,  // Record exceptions to OpenTelemetry spans
+  logger, // Winston logger with OTEL/DataDog trace context
+  traceException, // Record exceptions to OpenTelemetry spans
   instrumentAsync, // Create instrumented spans for operations
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // Config
 import { env } from "@/src/env.mjs"; // web
@@ -492,7 +492,7 @@ import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/cr
 
 // Queue Processing (Worker)
 import { Job } from "bullmq";
-import { QueueName, TQueueJobTypes } from "@langfuse/shared/src/server";
+import { QueueName, TQueueJobTypes } from "@elasticdash/shared/src/server";
 ```
 
 ---
@@ -502,7 +502,7 @@ import { QueueName, TQueueJobTypes } from "@langfuse/shared/src/server";
 ### HTTP Status Codes
 
 | Code | Use Case     |
-|------|--------------|
+| ---- | ------------ |
 | 200  | Success      |
 | 201  | Created      |
 | 400  | Bad Request  |
@@ -514,6 +514,7 @@ import { QueueName, TQueueJobTypes } from "@langfuse/shared/src/server";
 ### Example Features to Reference
 
 Reference existing ElasticDash features for implementation patterns:
+
 - **Datasets** (`web/src/features/datasets/`) - Complete feature with tRPC router, public API, and service
 - **Prompts** (`web/src/features/prompts/`) - Feature with versioning and templates
 - **Evaluations** (`web/src/features/evals/`) - Complex feature with worker integration
@@ -535,7 +536,7 @@ Reference existing ElasticDash features for implementation patterns:
 ## Navigation Guide
 
 | Need to...                | Read this                                                              |
-|---------------------------|------------------------------------------------------------------------|
+| ------------------------- | ---------------------------------------------------------------------- |
 | Understand architecture   | [architecture-overview.md](resources/architecture-overview.md)         |
 | Create routes/controllers | [routing-and-controllers.md](resources/routing-and-controllers.md)     |
 | Organize business logic   | [services-and-repositories.md](resources/services-and-repositories.md) |

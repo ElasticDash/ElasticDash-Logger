@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
 import {
@@ -8,9 +8,9 @@ import {
   GetModelV1Response,
   prismaToApiModelDefinition,
 } from "@/src/features/public-api/types/models";
-import { LangfuseNotFoundError } from "@langfuse/shared";
+import { LangfuseNotFoundError } from "@elasticdash/shared";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
-import { clearModelCacheForProject } from "@langfuse/shared/src/server";
+import { clearModelCacheForProject } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({

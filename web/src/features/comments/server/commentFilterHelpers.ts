@@ -1,12 +1,12 @@
-import type { PrismaClient } from "@langfuse/shared/src/db";
-import { type singleFilter } from "@langfuse/shared";
+import type { PrismaClient } from "@elasticdash/shared/src/db";
+import { type singleFilter } from "@elasticdash/shared";
 import {
   type CommentObjectType,
   type CommentCountOperator,
   type CommentContentOperator,
   getObjectIdsByCommentCount,
   getObjectIdsByCommentContent,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import type { z } from "zod/v4";
 

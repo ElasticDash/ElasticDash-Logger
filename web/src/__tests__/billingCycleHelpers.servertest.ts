@@ -6,8 +6,8 @@ import {
   getDaysToLookBack,
   startOfDayUTC,
   endOfDayUTC,
-} from "@langfuse/shared/src/server";
-import { type Organization } from "@langfuse/shared";
+} from "@elasticdash/shared/src/server";
+import { type Organization } from "@elasticdash/shared";
 
 describe("getBillingCycleAnchor", () => {
   it("returns cloudBillingCycleAnchor when set", () => {

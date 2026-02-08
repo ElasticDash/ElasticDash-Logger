@@ -3,8 +3,8 @@ import {
   type DatasetRunItemByRunRowData,
   type DatasetRunItemByItemRowData,
 } from "./types";
-import { type EnrichedDatasetRunItem } from "@langfuse/shared/src/server";
-import { isPresent } from "@langfuse/shared";
+import { type EnrichedDatasetRunItem } from "@elasticdash/shared/src/server";
+import { isPresent } from "@elasticdash/shared";
 
 export const convertRunItemToItemsByItemUiTableRow = (
   item: EnrichedDatasetRunItem,

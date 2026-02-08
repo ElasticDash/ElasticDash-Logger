@@ -7,14 +7,14 @@ import {
   type RateLimitResource,
   type RateLimitConfig,
   type Plan,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   recordIncrement,
   type ApiAccessScope,
   logger,
   createNewRedisInstance,
   redisQueueRetryOptions,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { type NextApiResponse } from "next";
 
 // Business Logic

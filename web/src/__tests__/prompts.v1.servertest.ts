@@ -1,14 +1,14 @@
 /** @jest-environment node */
 
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { makeAPICall, pruneDatabase } from "@/src/__tests__/test-utils";
 import { v4 as uuidv4, v4 } from "uuid";
-import { type Prompt, PromptType } from "@langfuse/shared";
+import { type Prompt, PromptType } from "@elasticdash/shared";
 import {
   LegacyPromptSchema,
   type LegacyValidatedPrompt,
-} from "@langfuse/shared";
-import { getObservationById } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { getObservationById } from "@elasticdash/shared/src/server";
 
 describe("/api/public/prompts API Endpoint", () => {
   beforeEach(async () => await pruneDatabase());

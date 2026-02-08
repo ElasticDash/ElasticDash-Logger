@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { TraceConclusionService } from "../services/TraceConclusionService";
-import * as clickhouse from "@langfuse/shared/src/server";
+import * as clickhouse from "@elasticdash/shared/src/server";
 import axios from "axios";
 
 // Mock ClickHouse

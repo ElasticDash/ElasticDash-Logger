@@ -3,7 +3,7 @@ import {
   openAIAdapter,
   normalizeInput,
   normalizeOutput,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 describe("OpenAI Adapter", () => {
   describe("detection", () => {

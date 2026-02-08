@@ -1,6 +1,6 @@
 import { PeriodicRunner } from "../utils/PeriodicRunner";
 import { TraceConclusionService } from "./TraceConclusionService";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 
 /**
  * Periodic runner that checks for concluded traces every minute.

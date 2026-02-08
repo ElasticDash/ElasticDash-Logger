@@ -89,12 +89,12 @@ tRPC routers define type-safe procedures for the internal UI. Each router groups
 ```typescript
 import { z } from "zod/v4";
 import { createTRPCRouter, protectedProjectProcedure } from "@/src/server/api/trpc";
-import { paginationZod, singleFilter, orderBy } from "@langfuse/shared";
+import { paginationZod, singleFilter, orderBy } from "@elasticdash/shared";
 import {
   getScoresUiTable,
   getScoresUiCount,
   upsertScore,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 const ScoreAllOptions = z.object({
   projectId: z.string(),
@@ -271,8 +271,8 @@ import {
   GetScoresResponseV1,
   PostScoresBodyV1,
   PostScoresResponseV1,
-} from "@langfuse/shared";
-import { eventTypes, processEventBatch } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { eventTypes, processEventBatch } from "@elasticdash/shared/src/server";
 import { ScoresApiService } from "@/src/features/public-api/server/scores-api-service";
 
 export default withMiddlewares({
@@ -384,7 +384,7 @@ import {
   _handleGetScoresCountForPublicApi,
   type ScoreQueryType,
 } from "@/src/features/public-api/server/scores";
-import { _handleGetScoreById } from "@langfuse/shared/src/server";
+import { _handleGetScoreById } from "@elasticdash/shared/src/server";
 
 export class ScoresApiService {
   constructor(private readonly apiVersion: "v1" | "v2") {}

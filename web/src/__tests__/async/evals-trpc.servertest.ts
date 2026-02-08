@@ -2,8 +2,8 @@
 
 import { appRouter } from "@/src/server/api/root";
 import { createInnerTRPCContext } from "@/src/server/api/trpc";
-import { prisma } from "@langfuse/shared/src/db";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
 import type { Session } from "next-auth";
 
 const __orgIds: string[] = [];

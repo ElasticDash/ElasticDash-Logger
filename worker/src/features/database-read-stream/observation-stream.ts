@@ -4,7 +4,7 @@ import {
   type ScoreDataTypeType,
   TimeFilter,
   TracingSearchType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getDistinctScoreNames,
   queryClickhouseStream,
@@ -18,8 +18,8 @@ import {
   clickhouseSearchCondition,
   convertObservation,
   shouldSkipObservationsFinal,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import { Readable } from "stream";
 import { env } from "../../env";
 import {

@@ -13,9 +13,12 @@ import {
   ForbiddenError,
   InternalServerError,
   LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { Prisma, prisma } from "@langfuse/shared/src/db";
-import { recordIncrement, recordHistogram } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { Prisma, prisma } from "@elasticdash/shared/src/db";
+import {
+  recordIncrement,
+  recordHistogram,
+} from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({

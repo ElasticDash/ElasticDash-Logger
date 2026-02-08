@@ -30,7 +30,7 @@ import { LLMToolNameSchema } from "@/src/features/llm-tools/validation";
 import { api } from "@/src/utils/api";
 
 import { CodeMirrorEditor } from "@/src/components/editor";
-import { JSONSchemaFormSchema, type LlmTool } from "@langfuse/shared";
+import { JSONSchemaFormSchema, type LlmTool } from "@elasticdash/shared";
 import { showErrorToast } from "@/src/features/notifications/showErrorToast";
 
 const formSchema = z.object({

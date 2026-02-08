@@ -8,8 +8,8 @@ import {
   createDatasetRunItemsCh,
   createDatasetRunItem,
   queryClickhouse,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 
 async function getClickhouseCount(
   table: string,

@@ -12,9 +12,9 @@ import {
   InvalidRequestError,
   LangfuseNotFoundError,
   validateDbScoreConfigSafe,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
-import { traceException } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { traceException } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({

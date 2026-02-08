@@ -1,6 +1,6 @@
 import { Worker } from "worker_threads";
-import { Model } from "@langfuse/shared";
-import { logger } from "@langfuse/shared/src/server";
+import { Model } from "@elasticdash/shared";
+import { logger } from "@elasticdash/shared/src/server";
 import path from "path";
 import { env } from "../../env";
 

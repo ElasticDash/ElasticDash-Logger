@@ -1,9 +1,9 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import type { Session } from "next-auth";
-import { encrypt } from "@langfuse/shared/encryption";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { createInnerTRPCContext } from "@/src/server/api/trpc";
 import { appRouter } from "@/src/server/api/root";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 
 // Mock SlackService

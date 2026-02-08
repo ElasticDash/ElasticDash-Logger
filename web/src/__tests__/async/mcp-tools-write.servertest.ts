@@ -21,7 +21,7 @@ jest.mock("@langfuse/shared/src/server", () => {
   };
 });
 
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { nanoid } from "nanoid";
 import {
   createMcpTestSetup,

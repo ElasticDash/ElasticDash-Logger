@@ -30,7 +30,7 @@ import {
   PromptType,
   extractVariables,
   getIsCharOrUnderscore,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { PromptChatMessages } from "./PromptChatMessages";
 import { ReviewPromptDialog } from "./ReviewPromptDialog";
 import {

@@ -14,15 +14,15 @@ import {
 } from "@/src/components/ui/form";
 import { api } from "@/src/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { extractVariables, getIsCharOrUnderscore } from "@langfuse/shared";
+import { extractVariables, getIsCharOrUnderscore } from "@elasticdash/shared";
 import router from "next/router";
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 import { ModelParameters } from "@/src/components/ModelParameters";
 import {
   OutputSchema,
   type ModelParams,
   ZodModelConfig,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { PromptVariableListPreview } from "@/src/features/prompts/components/PromptVariableListPreview";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { getFinalModelParams } from "@/src/utils/getFinalModelParams";

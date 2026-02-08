@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   getTraceCountsByProjectAndDay,
   getObservationCountsByProjectAndDay,
@@ -8,10 +8,10 @@ import {
   endOfDayUTC,
   getDaysToLookBack,
   recordIncrement,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
-import { parseDbOrg, type ParsedOrganization } from "@langfuse/shared";
-import { logger } from "@langfuse/shared/src/server";
+import { parseDbOrg, type ParsedOrganization } from "@elasticdash/shared";
+import { logger } from "@elasticdash/shared/src/server";
 
 import {
   processThresholds,

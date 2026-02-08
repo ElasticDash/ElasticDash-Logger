@@ -8,9 +8,9 @@ import {
   StorageService,
   StorageServiceFactory,
   traceException,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "../../env";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { chunk } from "lodash";
 
 let s3MediaStorageClient: StorageService;

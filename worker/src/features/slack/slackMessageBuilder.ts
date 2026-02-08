@@ -1,5 +1,5 @@
-import { logger } from "@langfuse/shared/src/server";
-import type { WebhookInput } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
+import type { WebhookInput } from "@elasticdash/shared/src/server";
 import { env } from "../../env";
 
 /**

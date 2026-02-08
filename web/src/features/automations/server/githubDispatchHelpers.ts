@@ -1,15 +1,15 @@
-import { encrypt } from "@langfuse/shared/encryption";
+import { encrypt } from "@elasticdash/shared/encryption";
 import {
   type ActionCreate,
   type ActionConfig,
   type GitHubDispatchActionConfigWithSecrets,
   type GitHubDispatchActionCreate,
   isGitHubDispatchActionConfig,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getActionByIdWithSecrets,
   validateWebhookURL,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 
 interface GitHubDispatchConfigOptions {

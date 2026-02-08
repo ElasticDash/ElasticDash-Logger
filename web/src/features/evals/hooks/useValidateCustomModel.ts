@@ -1,4 +1,4 @@
-import { type ModelParams } from "@langfuse/shared";
+import { type ModelParams } from "@elasticdash/shared";
 
 export function useValidateCustomModel(
   availableProviders: string[],

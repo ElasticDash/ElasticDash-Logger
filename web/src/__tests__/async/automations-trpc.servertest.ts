@@ -2,8 +2,8 @@
 
 import { appRouter } from "@/src/server/api/root";
 import { createInnerTRPCContext } from "@/src/server/api/trpc";
-import { prisma } from "@langfuse/shared/src/db";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
 import type { Session } from "next-auth";
 import { v4 } from "uuid";
 import {
@@ -12,9 +12,9 @@ import {
   type SafeWebhookActionConfig,
   type WebhookActionConfigWithSecrets,
   isWebhookAction,
-} from "@langfuse/shared";
-import { encrypt, decrypt } from "@langfuse/shared/encryption";
-import { generateWebhookSecret } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared";
+import { encrypt, decrypt } from "@elasticdash/shared/encryption";
+import { generateWebhookSecret } from "@elasticdash/shared/encryption";
 import { TRPCError } from "@trpc/server";
 
 const __orgIds: string[] = [];

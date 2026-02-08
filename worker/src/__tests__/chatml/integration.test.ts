@@ -40,7 +40,7 @@ import {
   combineInputOutputMessages,
   cleanLegacyOutput,
   extractAdditionalInput,
-} from "@langfuse/shared/src/utils/chatml";
+} from "@elasticdash/shared/src/utils/chatml";
 
 describe("ChatML Integration", () => {
   it("should handle OpenAI multimodal format", () => {

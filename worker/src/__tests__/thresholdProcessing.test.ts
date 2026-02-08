@@ -22,8 +22,8 @@ vi.mock("@langfuse/shared/src/db", () => ({
 }));
 
 import { processThresholds } from "../ee/usageThresholds/thresholdProcessing";
-import { prisma } from "@langfuse/shared/src/db";
-import { type ParsedOrganization } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { type ParsedOrganization } from "@elasticdash/shared";
 
 const mockOrgUpdate = prisma.organization.update as Mock;
 const mockOrgMembershipFindMany = prisma.organizationMembership

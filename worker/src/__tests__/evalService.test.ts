@@ -3,9 +3,9 @@ import {
   LLMAdapter,
   ObservationType,
   variableMappingList,
-} from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
-import { kyselyPrisma, prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
+import { kyselyPrisma, prisma } from "@elasticdash/shared/src/db";
 import {
   convertDateToClickhouseDateTime,
   createObservation,
@@ -19,7 +19,7 @@ import {
   createOrgProjectAndApiKey,
   LLMCompletionError,
   LangfuseInternalTraceEnvironment,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { randomUUID } from "crypto";
 import Decimal from "decimal.js";
 import { sql } from "kysely";
@@ -46,7 +46,7 @@ vi.mock("@langfuse/shared/src/server", async () => {
 });
 
 // Import the mocked function
-import { fetchLLMCompletion } from "@langfuse/shared/src/server";
+import { fetchLLMCompletion } from "@elasticdash/shared/src/server";
 import { UnrecoverableError } from "../errors/UnrecoverableError";
 
 let OPENAI_API_KEY = process.env.OPENAI_API_KEY;

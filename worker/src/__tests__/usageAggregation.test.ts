@@ -30,8 +30,8 @@ import {
   buildProjectToOrgMap,
   aggregateByOrg,
 } from "../ee/usageThresholds/usageAggregation";
-import { prisma } from "@langfuse/shared/src/db";
-import { type ParsedOrganization } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { type ParsedOrganization } from "@elasticdash/shared";
 
 const mockProjectFindMany = prisma.project.findMany as Mock;
 

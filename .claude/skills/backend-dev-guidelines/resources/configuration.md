@@ -119,7 +119,7 @@ Uses **plain Zod schema** for Express.js worker service.
 
 ```typescript
 import { z } from "zod/v4";
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 
 const EnvSchema = z.object({
   BUILD_ID: z.string().optional(),
@@ -234,7 +234,7 @@ export const env: z.infer<typeof EnvSchema> =
 **Usage:**
 
 ```typescript
-import { env } from "@langfuse/shared/src/env";
+import { env } from "@elasticdash/shared/src/env";
 
 const redisHost = env.REDIS_HOST;
 const clickhouseUrl = env.CLICKHOUSE_URL;
@@ -248,7 +248,7 @@ Minimal Zod schema for EE-specific variables.
 
 ```typescript
 import { z } from "zod/v4";
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 
 const EnvSchema = z.object({
   NEXT_PUBLIC_LANGFUSE_CLOUD_REGION: z.string().optional(),
@@ -448,7 +448,7 @@ import { env } from "@/src/env.mjs";
 import { env } from "./env";
 
 // In shared package
-import { env } from "@langfuse/shared/src/env";
+import { env } from "@elasticdash/shared/src/env";
 ```
 
 ### 3. Client Variables Must Start with NEXT*PUBLIC*
@@ -522,7 +522,7 @@ export const env =
 Treats empty strings as undefined:
 
 ```typescript
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 
 EnvSchema.parse(removeEmptyEnvVariables(process.env));
 ```

@@ -1,8 +1,8 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   PostHogIntegrationProcessingQueue,
   QueueJobs,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { randomUUID } from "crypto";
 
 export const handlePostHogIntegrationSchedule = async () => {

@@ -13,12 +13,12 @@ import {
   JobConfigState,
   PromptDomain,
   SlackActionConfig,
-} from "@langfuse/shared";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
-import { encrypt } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { executeWebhook } from "../queues/webhooks";
-import type { WebhookInput } from "@langfuse/shared/src/server";
+import type { WebhookInput } from "@elasticdash/shared/src/server";
 
 // Mock SlackService
 vi.mock("@langfuse/shared/src/server", async () => {

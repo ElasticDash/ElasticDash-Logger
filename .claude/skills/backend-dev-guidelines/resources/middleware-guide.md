@@ -617,7 +617,7 @@ All requests (tRPC and public API) propagate OpenTelemetry context with ElasticD
 ### Context Propagation Pattern
 
 ```typescript
-import { contextWithLangfuseProps } from "@langfuse/shared/src/server";
+import { contextWithLangfuseProps } from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
 
 // Create context with ElasticDash baggage

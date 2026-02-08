@@ -1,7 +1,7 @@
 import { randomUUID } from "crypto";
 import { IBackgroundMigration } from "./IBackgroundMigration";
-import { prisma, Prisma } from "@langfuse/shared/src/db";
-import { instrumentAsync, logger } from "@langfuse/shared/src/server";
+import { prisma, Prisma } from "@elasticdash/shared/src/db";
+import { instrumentAsync, logger } from "@elasticdash/shared/src/server";
 
 export class BackgroundMigrationManager {
   private static workerId = randomUUID();

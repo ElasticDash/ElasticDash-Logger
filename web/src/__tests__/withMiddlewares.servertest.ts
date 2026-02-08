@@ -6,12 +6,12 @@ import {
   LangfuseNotFoundError,
   UnauthorizedError,
   ServiceUnavailableError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   ClickHouseResourceError,
   logger,
   traceException,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { createMocks } from "node-mocks-http";
 import { z } from "zod/v4";
 import { Prisma } from "@prisma/client";

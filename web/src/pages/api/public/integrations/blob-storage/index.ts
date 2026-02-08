@@ -1,7 +1,7 @@
 import { ApiAuthService } from "@/src/features/public-api/server/apiAuth";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
-import { prisma } from "@langfuse/shared/src/db";
-import { redis } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { redis } from "@elasticdash/shared/src/server";
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { hasEntitlementBasedOnPlan } from "@/src/features/entitlements/server/hasEntitlement";
 import {
@@ -12,8 +12,8 @@ import {
   LangfuseNotFoundError,
   UnauthorizedError,
   ForbiddenError,
-} from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
 
 export default withMiddlewares({
   GET: handleGetBlobStorageIntegrations,

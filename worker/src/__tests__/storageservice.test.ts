@@ -11,7 +11,7 @@ import { randomUUID } from "crypto";
 import {
   StorageService,
   StorageServiceFactory,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 const { Readable } = require("stream");
 

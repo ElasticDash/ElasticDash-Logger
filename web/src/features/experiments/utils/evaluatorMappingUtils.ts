@@ -1,4 +1,4 @@
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 
 // Define the type locally to match what's in @langfuse/shared
 type VariableMapping = {

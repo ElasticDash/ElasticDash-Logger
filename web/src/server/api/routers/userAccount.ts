@@ -4,9 +4,9 @@ import {
   authenticatedProcedure,
 } from "@/src/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { StringNoHTML } from "@langfuse/shared";
-import { Role, Prisma } from "@langfuse/shared/src/db";
-import type { PrismaClient } from "@langfuse/shared/src/db";
+import { StringNoHTML } from "@elasticdash/shared";
+import { Role, Prisma } from "@elasticdash/shared/src/db";
+import type { PrismaClient } from "@elasticdash/shared/src/db";
 
 const updateDisplayNameSchema = z.object({
   name: StringNoHTML.min(1, "Name cannot be empty").max(

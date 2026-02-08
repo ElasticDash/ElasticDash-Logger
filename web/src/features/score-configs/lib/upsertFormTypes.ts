@@ -1,4 +1,4 @@
-import { ScoreConfigCategory } from "@langfuse/shared";
+import { ScoreConfigCategory } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
 export const createConfigSchema = z.object({

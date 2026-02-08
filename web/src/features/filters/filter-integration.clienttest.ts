@@ -8,7 +8,7 @@ import {
   type FilterState,
   tracesTableCols,
   observationsTableCols,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   encodeFiltersGeneric,
   decodeFiltersGeneric,

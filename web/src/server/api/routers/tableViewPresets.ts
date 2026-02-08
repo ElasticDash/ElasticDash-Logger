@@ -9,12 +9,12 @@ import {
   CreateTableViewPresetsInput,
   UpdateTableViewPresetsInput,
   UpdateTableViewPresetsNameInput,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   LangfuseConflictError,
   Prisma,
   TableViewPresetTableName,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const TableViewPresetsRouter = createTRPCRouter({
   create: protectedProjectProcedure

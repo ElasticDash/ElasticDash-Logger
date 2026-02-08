@@ -29,7 +29,7 @@ import {
   LangfuseNotFoundError,
   InvalidRequestError,
   BaseError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 describe("MCP Error Formatting", () => {
   describe("formatErrorForUser", () => {

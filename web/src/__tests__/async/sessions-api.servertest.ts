@@ -1,11 +1,11 @@
 import { makeZodVerifiedAPICall } from "@/src/__tests__/test-utils";
 import { v4 } from "uuid";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   createTracesCh,
   createOrgProjectAndApiKey,
-} from "@langfuse/shared/src/server";
-import { createTrace } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
+import { createTrace } from "@elasticdash/shared/src/server";
 import {
   GetSessionsV1Response,
   GetSessionV1Response,

@@ -4,7 +4,7 @@ import {
 } from "@/src/ee/features/billing/utils/stripeClientReference";
 import { env } from "@/src/env.mjs";
 import { type NextRequest, NextResponse } from "next/server";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { stripeClient } from "@/src/ee/features/billing/utils/stripe";
 import type Stripe from "stripe";
 import {
@@ -12,13 +12,13 @@ import {
   InternalServerError,
   type Organization,
   parseDbOrg,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   traceException,
   logger,
   invalidateCachedOrgApiKeys,
   startOfDayUTC,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import { type StripeSubscriptionMetadata } from "@/src/ee/features/billing/utils/stripeSubscriptionMetadata";
 

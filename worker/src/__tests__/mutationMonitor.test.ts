@@ -1,7 +1,7 @@
 import { expect, describe, it, beforeEach, vi, afterEach } from "vitest";
 import { MutationMonitor } from "../features/mutation-monitoring/mutationMonitor";
 import { WorkerManager } from "../queues/workerManager";
-import * as shared from "@langfuse/shared/src/server";
+import * as shared from "@elasticdash/shared/src/server";
 import { Worker } from "bullmq";
 
 // Mock the dependencies

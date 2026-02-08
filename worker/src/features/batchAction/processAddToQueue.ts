@@ -1,5 +1,5 @@
-import { logger, traceException } from "@langfuse/shared/src/server";
-import { AnnotationQueueObjectType, prisma } from "@langfuse/shared/src/db";
+import { logger, traceException } from "@elasticdash/shared/src/server";
+import { AnnotationQueueObjectType, prisma } from "@elasticdash/shared/src/db";
 
 const addToQueue = async ({
   projectId,

@@ -6,7 +6,7 @@ import {
 import {
   DatasetRunItemUpsertQueue,
   RetryBaggage,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { ObservationNotFoundError } from "../errors/ObservationNotFoundError";
 
 // Mock the queue

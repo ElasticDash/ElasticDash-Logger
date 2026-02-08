@@ -1,4 +1,7 @@
-import { type ColumnDefinition, type TableDefinitions } from "@langfuse/shared";
+import {
+  type ColumnDefinition,
+  type TableDefinitions,
+} from "@elasticdash/shared";
 
 export const completionTokens = {
   name: "completionTokens",
