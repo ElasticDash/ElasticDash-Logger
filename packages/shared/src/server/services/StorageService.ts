@@ -441,9 +441,9 @@ class S3StorageService implements StorageService {
     const credentials =
       accessKeyId !== undefined && secretAccessKey !== undefined
         ? {
-            accessKeyId,
-            secretAccessKey,
-          }
+          accessKeyId,
+          secretAccessKey,
+        }
         : undefined;
 
     // Create the main client for S3 operations using the internal endpoint
@@ -464,16 +464,16 @@ class S3StorageService implements StorageService {
     // Otherwise, use the same client for both operations
     this.signedUrlClient = params.externalEndpoint
       ? new S3Client({
-          credentials,
-          endpoint: params.externalEndpoint,
-          region: params.region,
-          forcePathStyle: params.forcePathStyle,
-          requestHandler: {
-            httpsAgent: {
-              maxSockets: env.LANGFUSE_S3_CONCURRENT_WRITES,
-            },
+        credentials,
+        endpoint: params.externalEndpoint,
+        region: params.region,
+        forcePathStyle: params.forcePathStyle,
+        requestHandler: {
+          httpsAgent: {
+            maxSockets: env.LANGFUSE_S3_CONCURRENT_WRITES,
           },
-        })
+        },
+      })
       : this.client;
 
     this.bucketName = params.bucketName;
@@ -552,16 +552,10 @@ class S3StorageService implements StorageService {
     );
 
     try {
+      logger.info(`Uploading JSON to S3 at path: ${path}`);
       await this.client.send(putCommand);
     } catch (err) {
       logger.error(`Failed to upload JSON to S3 ${path}`, err);
-      logger.error(`this.bucketName: ${this.bucketName}`);
-      logger.error(`path: ${path}`);
-      logger.error(
-        `process.env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID: ${
-          env.LANGFUSE_S3_EVENT_UPLOAD_ACCESS_KEY_ID
-        }`,
-      );
       handleStorageError(err, "upload JSON to S3");
     }
   }
