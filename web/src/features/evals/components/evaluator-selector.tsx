@@ -50,7 +50,7 @@ export function EvaluatorSelector({
   // Group templates by name and whether they are managed by ElasticDash
   const groupedTemplates = evalTemplates.reduce(
     (acc, template) => {
-      const group = template.projectId ? "custom" : "langfuse";
+      const group = template.projectId ? "custom" : "elasticdash";
       if (!acc[group][template.name]) {
         acc[group][template.name] = [];
       }

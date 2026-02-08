@@ -77,7 +77,7 @@
       "endTime": "2025-08-22T09:38:58.835Z",
       "name": "agent",
       "metadata": {
-        "tags": ["graph:step:3", "langgraph", "demo", "langfuse"],
+        "tags": ["graph:step:3", "langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 3,
         "langgraph_node": "agent",
@@ -284,7 +284,7 @@
       "endTime": "2025-08-22T09:38:57.080Z",
       "name": "ChatOpenAI",
       "metadata": {
-        "tags": ["seq:step:1", "demo", "langfuse", "langgraph"],
+        "tags": ["seq:step:1", "demo", "elasticdash", "langgraph"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 1,
         "langgraph_node": "agent",
@@ -407,7 +407,7 @@
       "endTime": "2025-08-22T09:38:58.832Z",
       "name": "ChatOpenAI",
       "metadata": {
-        "tags": ["seq:step:1", "demo", "langfuse", "langgraph"],
+        "tags": ["seq:step:1", "demo", "elasticdash", "langgraph"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 3,
         "langgraph_node": "agent",
@@ -548,7 +548,7 @@
       "endTime": "2025-08-22T09:38:57.086Z",
       "name": "Web-Search",
       "metadata": {
-        "tags": ["seq:step:1", "langgraph", "demo", "langfuse"],
+        "tags": ["seq:step:1", "langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 2,
         "langgraph_node": "tools",
@@ -627,7 +627,7 @@
       "endTime": "2025-08-22T09:38:57.086Z",
       "name": "tools",
       "metadata": {
-        "tags": ["graph:step:2", "langgraph", "demo", "langfuse"],
+        "tags": ["graph:step:2", "langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 2,
         "langgraph_node": "tools",
@@ -786,7 +786,7 @@
       "endTime": "2025-08-22T09:38:58.834Z",
       "name": "should_continue",
       "metadata": {
-        "tags": ["seq:step:3", "langgraph", "demo", "langfuse"],
+        "tags": ["seq:step:3", "langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 3,
         "langgraph_node": "agent",
@@ -990,7 +990,7 @@
       "endTime": "2025-08-22T09:38:57.082Z",
       "name": "agent",
       "metadata": {
-        "tags": ["graph:step:1", "langgraph", "demo", "langfuse"],
+        "tags": ["graph:step:1", "langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 1,
         "langgraph_node": "agent",
@@ -1132,7 +1132,7 @@
       "endTime": "2025-08-22T09:38:58.838Z",
       "name": "LangGraph",
       "metadata": {
-        "tags": ["langgraph", "demo", "langfuse"],
+        "tags": ["langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "resourceAttributes": {
           "telemetry.sdk.language": "python",
@@ -1343,7 +1343,7 @@
       "endTime": "2025-08-22T09:38:57.081Z",
       "name": "should_continue",
       "metadata": {
-        "tags": ["seq:step:3", "langgraph", "demo", "langfuse"],
+        "tags": ["seq:step:3", "langgraph", "demo", "elasticdash"],
         "thread_id": "demo-thread-1",
         "langgraph_step": 1,
         "langgraph_node": "agent",

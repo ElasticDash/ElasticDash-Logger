@@ -3299,11 +3299,11 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       const { projectId } = await createOrgProjectAndApiKey();
       const traceId = randomUUID();
 
-      // Create trace with "langfuse" environment (no hyphen)
+      // Create trace with "elasticdash" environment (no hyphen)
       await upsertTrace({
         id: traceId,
         project_id: projectId,
-        environment: "langfuse",
+        environment: "elasticdash",
         timestamp: convertDateToClickhouseDateTime(new Date()),
         created_at: convertDateToClickhouseDateTime(new Date()),
         updated_at: convertDateToClickhouseDateTime(new Date()),
@@ -3327,7 +3327,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       const payload = {
         projectId,
         traceId,
-        traceEnvironment: "langfuse",
+        traceEnvironment: "elasticdash",
       };
 
       // Attempt to create eval jobs

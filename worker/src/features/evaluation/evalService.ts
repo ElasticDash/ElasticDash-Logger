@@ -156,19 +156,19 @@ type CreateEvalJobsParams = {
   jobTimestamp: Date;
   enforcedJobTimeScope?: JobTimeScope;
 } & (
-  | {
+    | {
       sourceEventType: "trace-upsert";
       event: TraceQueueEventType;
     }
-  | {
+    | {
       sourceEventType: "dataset-run-item-upsert";
       event: TraceQueueEventType;
     }
-  | {
+    | {
       sourceEventType: "ui-create-eval";
       event: CreateEvalQueueEventType;
     }
-);
+  );
 
 export const createEvalJobs = async ({
   event,
@@ -241,7 +241,7 @@ export const createEvalJobs = async ({
   // See: packages/shared/src/server/llm/types.ts (LangfuseInternalTraceEnvironment enum)
   if (
     sourceEventType === "trace-upsert" &&
-    event.traceEnvironment?.startsWith("langfuse")
+    event.traceEnvironment?.startsWith("elasticdash")
   ) {
     logger.debug("Skipping eval job creation for internal ElasticDash trace", {
       traceId: event.traceId,
@@ -342,7 +342,7 @@ export const createEvalJobs = async ({
 
     const maxTimeStamp =
       "timestamp" in event &&
-      new Date(event.timestamp).getTime() === new Date("2020-01-01").getTime() // min time for historic evals
+        new Date(event.timestamp).getTime() === new Date("2020-01-01").getTime() // min time for historic evals
         ? new Date()
         : undefined;
 
@@ -581,9 +581,9 @@ export const createEvalJobs = async ({
           startTime: new Date(),
           ...(datasetItem
             ? {
-                jobInputDatasetItemId: datasetItem.id,
-                jobInputObservationId: observationId || null,
-              }
+              jobInputDatasetItemId: datasetItem.id,
+              jobInputObservationId: observationId || null,
+            }
             : {}),
         },
       });

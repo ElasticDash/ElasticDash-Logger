@@ -218,7 +218,7 @@ Add to your Cursor MCP settings:
 {
   "mcp": {
     "servers": {
-      "langfuse": {
+      "elasticdash": {
         "url": "https://cloud.langfuse.com/api/public/mcp",
         "headers": {
           "Authorization": "Basic {your-base64-token}"
