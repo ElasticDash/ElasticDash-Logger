@@ -1207,10 +1207,11 @@ export class OtelIngestionProcessor {
     // const toolDefs = attributes["gen_ai.tool.definitions"] || attributes["model_request_parameters"]?.function_tools;
     // if (toolDefs && input && typeof input === "object") { input = { ...input, tools: toolDefs }; }
 
-    console.log(
-      "Extracting input/output with attributes:",
-      Object.keys(attributes),
-    );
+    logger.info("Extracting input/output", {
+      attributeKeys: Object.keys(attributes),
+      domain,
+      instrumentationScopeName,
+    });
 
     // Langfuse
     input =
@@ -1224,12 +1225,12 @@ export class OtelIngestionProcessor {
         ? attributes[ElasticDashOtelSpanAttributes.TRACE_OUTPUT]
         : attributes[ElasticDashOtelSpanAttributes.OBSERVATION_OUTPUT];
 
-    console.log(
-      "Input detected: ",
-      input ? "Yes" : "No",
-      "Output detected: ",
-      output ? "Yes" : "No",
-    );
+    logger.info("Input/Output detection result", {
+      hasInput: !!input,
+      hasOutput: !!output,
+      inputType: input ? typeof input : null,
+      outputType: output ? typeof output : null,
+    });
 
     if (input != null || output != null) {
       return { input, output, filteredAttributes };
