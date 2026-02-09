@@ -1207,6 +1207,11 @@ export class OtelIngestionProcessor {
     // const toolDefs = attributes["gen_ai.tool.definitions"] || attributes["model_request_parameters"]?.function_tools;
     // if (toolDefs && input && typeof input === "object") { input = { ...input, tools: toolDefs }; }
 
+    console.log(
+      "Extracting input/output with attributes:",
+      Object.keys(attributes),
+    );
+
     // Langfuse
     input =
       domain === "trace" &&
@@ -1218,6 +1223,13 @@ export class OtelIngestionProcessor {
       attributes[ElasticDashOtelSpanAttributes.TRACE_OUTPUT]
         ? attributes[ElasticDashOtelSpanAttributes.TRACE_OUTPUT]
         : attributes[ElasticDashOtelSpanAttributes.OBSERVATION_OUTPUT];
+
+    console.log(
+      "Input detected: ",
+      input ? "Yes" : "No",
+      "Output detected: ",
+      output ? "Yes" : "No",
+    );
 
     if (input != null || output != null) {
       return { input, output, filteredAttributes };
