@@ -88,9 +88,14 @@ services:
     volumes:
       - langfuse_clickhouse_data:/var/lib/clickhouse
       - langfuse_clickhouse_logs:/var/log/clickhouse-server
+      - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/custom-limits.xml
     ports:
       - "8123:8123"
       - "9000:9000"
+    # Limit CPU usage to prevent merge storms
+    cpus: '4'
+    # Reserved memory limit
+    mem_limit: 8g
     healthcheck:
       test: wget --no-verbose --tries=1 --spider http://localhost:8123/ping || exit 1
       interval: 5s

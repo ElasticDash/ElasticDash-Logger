@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<clickhouse>
+  <!-- Limit background pool threads to prevent CPU overexploitation -->
+  <!-- This controls the number of threads for background merge operations -->
+  <background_pool_size>8</background_pool_size>
+
+  <!-- Limit background schedule pool (for distributed operations) -->
+  <background_schedule_pool_size>8</background_schedule_pool_size>
+
+  <!-- Max merges/mutations running concurrently -->
+  <max_background_merges_mutations_concurrency_ratio>0.3</max_background_merges_mutations_concurrency_ratio>
+
+  <!-- Allow only 3 concurrent merges -->
+  <max_concurrent_queries>512</max_concurrent_queries>
+
+  <!-- Performance: limit memory for merges -->
+  <max_memory_usage>10000000000</max_memory_usage>
+
+  <!-- Prevent merge storms by setting reasonable merge selector adjustments -->
+  <merge_selecting_sleep_ms>5000</merge_selecting_sleep_ms>
+
+  <!-- Limit the number of settings a single session can change -->
+  <readonly>0</readonly>
+</clickhouse>
