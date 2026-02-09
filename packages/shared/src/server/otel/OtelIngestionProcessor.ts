@@ -412,6 +412,10 @@ export class OtelIngestionProcessor {
   async processToIngestionEvents(
     resourceSpans: ResourceSpan[],
   ): Promise<IngestionEventType[]> {
+    logger.warn("[OTEL] processToIngestionEvents called", {
+      projectId: this.projectId,
+      resourceSpanCount: resourceSpans?.length,
+    });
     return await instrumentAsync(
       { name: "otel-ingestion-processor" },
       async (span) => {
@@ -861,6 +865,18 @@ export class OtelIngestionProcessor {
 
     const instrumentationScopeName = scopeSpan?.scope?.name;
 
+    logger.warn("[OTEL] Creating observation event", {
+      traceId,
+      scopeName: instrumentationScopeName,
+      hasObsInput:
+        ElasticDashOtelSpanAttributes.OBSERVATION_INPUT in attributes,
+      hasObsOutput:
+        ElasticDashOtelSpanAttributes.OBSERVATION_OUTPUT in attributes,
+      attributeKeys: Object.keys(attributes).filter(
+        (k) => k.includes("input") || k.includes("output"),
+      ),
+    });
+
     // Extract input/output and get filtered attributes
     const { input, output, filteredAttributes } = this.extractInputAndOutput({
       events: span?.events ?? [],
@@ -1207,10 +1223,15 @@ export class OtelIngestionProcessor {
     // const toolDefs = attributes["gen_ai.tool.definitions"] || attributes["model_request_parameters"]?.function_tools;
     // if (toolDefs && input && typeof input === "object") { input = { ...input, tools: toolDefs }; }
 
-    logger.info("Extracting input/output", {
-      attributeKeys: Object.keys(attributes),
+    logger.warn("[OTEL] Extracting input/output", {
       domain,
       instrumentationScopeName,
+      obsInputKey: ElasticDashOtelSpanAttributes.OBSERVATION_INPUT,
+      hasObsInputAttr:
+        ElasticDashOtelSpanAttributes.OBSERVATION_INPUT in attributes,
+      obsInputValue: attributes[ElasticDashOtelSpanAttributes.OBSERVATION_INPUT]
+        ? "present"
+        : "missing",
     });
 
     // Langfuse
@@ -1225,11 +1246,10 @@ export class OtelIngestionProcessor {
         ? attributes[ElasticDashOtelSpanAttributes.TRACE_OUTPUT]
         : attributes[ElasticDashOtelSpanAttributes.OBSERVATION_OUTPUT];
 
-    logger.info("Input/Output detection result", {
+    logger.warn("[OTEL] Input/Output detection result", {
       hasInput: !!input,
       hasOutput: !!output,
-      inputType: input ? typeof input : null,
-      outputType: output ? typeof output : null,
+      domain,
     });
 
     if (input != null || output != null) {

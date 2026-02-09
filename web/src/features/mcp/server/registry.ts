@@ -101,7 +101,7 @@ class ToolRegistry {
       this.tools.set(tool.definition.name, tool);
     }
 
-    logger.info(`MCP feature registered: ${feature.name}`, {
+    logger.info(`MCP feature registered 1: ${feature.name}`, {
       featureName: feature.name,
       toolCount: feature.tools.length,
       toolNames: feature.tools.map((t) => t.definition.name),
