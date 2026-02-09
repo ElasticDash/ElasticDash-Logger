@@ -157,13 +157,13 @@ docker stop $(docker ps -q)
 
 For stable builds, your EC2 instance should have:
 
-| Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| Instance Type | t3.large | t3.xlarge |
-| vCPU | 2 | 4+ |
-| Memory | 8 GB | 16 GB |
-| Disk | 30 GB | 50+ GB |
-| Disk Type | gp3 | gp3 (not gp2) |
+| Requirement   | Minimum  | Recommended   |
+|---------------|----------|---------------|
+| Instance Type | t3.large | t3.xlarge     |
+| vCPU          | 2        | 4+            |
+| Memory        | 8 GB     | 16 GB         |
+| Disk          | 30 GB    | 50+ GB        |
+| Disk Type     | gp3      | gp3 (not gp2) |
 
 **Check your instance:**
 ```bash

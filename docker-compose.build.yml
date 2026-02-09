@@ -93,7 +93,7 @@ services:
       - "8123:8123"
       - "9000:9000"
     # Limit CPU usage to prevent merge storms
-    cpus: '4'
+    cpus: "2"
     # Reserved memory limit
     mem_limit: 8g
     healthcheck:
