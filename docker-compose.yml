@@ -5,7 +5,7 @@
 # External connections from other machines will not be able to reach these services directly.
 services:
   elasticdash-worker:
-    image: docker.io/elasticdash/elasticdash-worker:3
+    image: docker.io/elasticdash/elasticdash-worker:0.0.1
     restart: always
     depends_on: &elasticdash-depends-on
       postgres:
@@ -67,7 +67,7 @@ services:
       SMTP_CONNECTION_URL: ${SMTP_CONNECTION_URL:-}
 
   elasticdash-web:
-    image: docker.io/elasticdash/elasticdash:3
+    image: docker.io/elasticdash/elasticdash-web:0.0.1
     restart: always
     depends_on: *elasticdash-depends-on
     ports:
