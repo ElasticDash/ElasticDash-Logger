@@ -15,7 +15,7 @@ import { CreateNaturalLanguageFilterCompletion } from "./validation";
 import {
   getDefaultModelParams,
   parseFiltersFromCompletion,
-  getLangfuseClient,
+  getElasticDashClient,
 } from "./utils";
 import { randomBytes } from "crypto";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
@@ -73,7 +73,7 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           }
         };
 
-        const client = getLangfuseClient(
+        const client = getElasticDashClient(
           env.ELASTICDASH_AI_FEATURES_PUBLIC_KEY as string,
           env.ELASTICDASH_AI_FEATURES_SECRET_KEY as string,
           env.ELASTICDASH_AI_FEATURES_HOST,
@@ -81,7 +81,6 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
 
         const promptResponse = await client.getPrompt(
           "get-filter-conditions-from-query",
-          undefined,
           { type: "chat" },
         );
 

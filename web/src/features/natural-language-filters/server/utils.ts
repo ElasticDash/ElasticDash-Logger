@@ -46,7 +46,7 @@ export function parseFiltersFromCompletion(
   return [];
 }
 
-export function getLangfuseClient(
+export function getElasticDashClient(
   publicKey: string,
   secretKey: string,
   baseUrl?: string,

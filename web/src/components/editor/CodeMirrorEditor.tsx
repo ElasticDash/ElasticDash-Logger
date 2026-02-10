@@ -31,7 +31,7 @@ const promptLanguage = StreamLanguage.define({
   startState: () => ({}),
   token: (stream: StringStream) => {
     // Highlight prompt tags
-    if (stream.match("@@@langfusePrompt:")) {
+    if (stream.match("@@@elasticDashPrompt:")) {
       stream.skipTo("@@@") || stream.skipToEnd();
       stream.match("@@@");
 

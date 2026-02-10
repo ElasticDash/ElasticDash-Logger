@@ -59,11 +59,11 @@ export function PromptSelectionDialog({
     if (selectedPromptName && selectedVersionOrLabel) {
       if (selectionType === "version") {
         setSelectedTag(
-          `@@@langfusePrompt:name=${selectedPromptName}|version=${selectedVersionOrLabel}@@@`,
+          `@@@elasticDashPrompt:name=${selectedPromptName}|version=${selectedVersionOrLabel}@@@`,
         );
       } else {
         setSelectedTag(
-          `@@@langfusePrompt:name=${selectedPromptName}|label=${selectedVersionOrLabel}@@@`,
+          `@@@elasticDashPrompt:name=${selectedPromptName}|label=${selectedVersionOrLabel}@@@`,
         );
       }
     } else {

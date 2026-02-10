@@ -24,7 +24,7 @@ export const ToolCallSchema = z.object({
 
 /**
  * Parsed ElasticDash media reference.
- * Extracted from magic string format: @@@langfuseMedia:type=X|id=Y|source=Z@@@
+ * Extracted from magic string format: @@@elasticDashMedia:type=X|id=Y|source=Z@@@
  */
 export const ParsedMediaReferenceSchema = z.object({
   type: z.string(),
@@ -38,7 +38,7 @@ export type ParsedMediaReferenceType = z.infer<
 
 /**
  * Schema that parses ElasticDash media reference magic strings.
- * Format: @@@langfuseMedia:type=image/jpeg|id=<uuid>|source=base64@@@
+ * Format: @@@elasticDashMedia:type=image/jpeg|id=<uuid>|source=base64@@@
  *
  * Note: This schema uses transforms that can throw errors during validation
  * if the magic string format is invalid. Always use with try-catch or safeParse.
@@ -46,8 +46,8 @@ export type ParsedMediaReferenceType = z.infer<
 export const MediaReferenceStringSchema = z
   .string()
   .transform((str, ctx) => {
-    // @@@langfuseMedia:type=image/jpeg|id=cc48838a-3da8-4ca4-a007-2cf8df930e69|source=base64@@@
-    const magicStringPattern = /^@@@langfuseMedia:(.*)@@@$/;
+    // @@@elasticDashMedia:type=image/jpeg|id=cc48838a-3da8-4ca4-a007-2cf8df930e69|source=base64@@@
+    const magicStringPattern = /^@@@elasticDashMedia:(.*)@@@$/;
 
     const match = str.match(magicStringPattern);
     if (!match) {
