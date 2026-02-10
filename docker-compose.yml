@@ -94,8 +94,8 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse} # CHANGEME
     volumes:
-      - elasticdash_clickhouse_data:/var/lib/clickhouse
-      - elasticdash_clickhouse_logs:/var/log/clickhouse-server
+      - langfuse_clickhouse_data:/var/lib/clickhouse
+      - langfuse_clickhouse_logs:/var/log/clickhouse-server
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/custom-limits.xml
     ports:
       - 0.0.0.0:8123:8123
