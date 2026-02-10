@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<clickhouse>
+  <listen_host>0.0.0.0</listen_host>
+  <background_pool_size>8</background_pool_size>
+  <background_schedule_pool_size>8</background_schedule_pool_size>
+  <max_background_merges_mutations_concurrency_ratio>0.3</max_background_merges_mutations_concurrency_ratio>
+  <merge_selecting_sleep_ms>5000</merge_selecting_sleep_ms>
+</clickhouse>

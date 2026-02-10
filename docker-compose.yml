@@ -98,8 +98,8 @@ services:
       - elasticdash_clickhouse_logs:/var/log/clickhouse-server
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.d/custom-limits.xml
     ports:
-      - 127.0.0.1:8123:8123
-      - 127.0.0.1:9000:9000
+      - 0.0.0.0:8123:8123
+      - 0.0.0.0:9000:9000
     # Limit CPU usage to prevent merge storms
     cpus: "2"
     # Reserved memory limit
