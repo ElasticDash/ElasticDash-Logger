@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<clickhouse>
+  <listen_host>0.0.0.0</listen_host>
+  <background_pool_size>8</background_pool_size>
+  <background_schedule_pool_size>8</background_schedule_pool_size>
+  <max_background_merges_mutations_concurrency_ratio>0.3</max_background_merges_mutations_concurrency_ratio>
+
+  <merge_tree>
+    <number_of_free_entries_in_pool_to_execute_mutation>2</number_of_free_entries_in_pool_to_execute_mutation>
+    <number_of_free_entries_in_pool_to_execute_optimize_entire_partition>2</number_of_free_entries_in_pool_to_execute_optimize_entire_partition>
+  </merge_tree>
+
+  <merge_selecting_sleep_ms>5000</merge_selecting_sleep_ms>
+
+  <!-- Allow dropping large system log tables (for cleanup) -->
+  <max_table_size_to_drop>0</max_table_size_to_drop>
+  <max_partition_size_to_drop>0</max_partition_size_to_drop>
+
+  <logger>
+    <level>information</level>
+    <log>/var/log/clickhouse-server/clickhouse-server.log</log>
+    <errorlog>/var/log/clickhouse-server/clickhouse-server.err.log</errorlog>
+    <size>100M</size>
+    <count>7</count>
+    <log_remove_days>7</log_remove_days>
+  </logger>
+
+  <!-- System Log Tables with TTL to prevent bloat (was 54GB!) -->
+
+  <!-- Disable trace_log completely - was consuming 48GB! -->
+  <trace_log>
+    <engine>engine=Null</engine>
+  </trace_log>
+
+  <!-- Text log - keep only 1 day (was 4.5GB) -->
+  <text_log>
+    <database>system</database>
+    <table>text_log</table>
+    <ttl>event_date + INTERVAL 1 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </text_log>
+
+  <!-- Part log - keep 3 days -->
+  <part_log>
+    <database>system</database>
+    <table>part_log</table>
+    <ttl>event_date + INTERVAL 3 DAY</ttl>
+    <partition_by>toYYYYMM(event_date)</partition_by>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </part_log>
+
+  <!-- Metric logs - keep 7 days -->
+  <metric_log>
+    <database>system</database>
+    <table>metric_log</table>
+    <ttl>event_date + INTERVAL 7 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </metric_log>
+
+  <asynchronous_metric_log>
+    <database>system</database>
+    <table>asynchronous_metric_log</table>
+    <ttl>event_date + INTERVAL 7 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </asynchronous_metric_log>
+
+  <!-- Query log - keep 7 days (useful for performance analysis) -->
+  <query_log>
+    <database>system</database>
+    <table>query_log</table>
+    <ttl>event_date + INTERVAL 7 DAY</ttl>
+    <partition_by>toYYYYMM(event_date)</partition_by>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </query_log>
+
+  <!-- Query thread log - keep 1 day -->
+  <query_thread_log>
+    <database>system</database>
+    <table>query_thread_log</table>
+    <ttl>event_date + INTERVAL 1 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </query_thread_log>
+
+  <!-- Error log - keep 30 days (important for debugging) -->
+  <error_log>
+    <database>system</database>
+    <table>error_log</table>
+    <ttl>event_date + INTERVAL 30 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </error_log>
+
+  <!-- Processors profile log - disable (very detailed) -->
+  <processors_profile_log>
+    <database>system</database>
+    <table>processors_profile_log</table>
+    <ttl>event_date + INTERVAL 1 DAY</ttl>
+  </processors_profile_log>
+
+  <!-- OpenTelemetry span log - keep 3 days -->
+  <opentelemetry_span_log>
+    <database>system</database>
+    <table>opentelemetry_span_log</table>
+    <ttl>event_date + INTERVAL 3 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </opentelemetry_span_log>
+
+  <!-- Asynchronous insert log - keep 3 days -->
+  <asynchronous_insert_log>
+    <database>system</database>
+    <table>asynchronous_insert_log</table>
+    <ttl>event_date + INTERVAL 3 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </asynchronous_insert_log>
+
+  <!-- Background schedule pool log - keep 3 days -->
+  <background_schedule_pool_log>
+    <database>system</database>
+    <table>background_schedule_pool_log</table>
+    <ttl>event_date + INTERVAL 3 DAY</ttl>
+  </background_schedule_pool_log>
+
+  <!-- Query metric log - keep 7 days -->
+  <query_metric_log>
+    <database>system</database>
+    <table>query_metric_log</table>
+    <ttl>event_date + INTERVAL 7 DAY</ttl>
+  </query_metric_log>
+
+  <!-- Session log - keep 7 days -->
+  <session_log>
+    <database>system</database>
+    <table>session_log</table>
+    <ttl>event_date + INTERVAL 7 DAY</ttl>
+    <flush_interval_milliseconds>7500</flush_interval_milliseconds>
+  </session_log>
+
+  <!-- Crash log - keep 90 days (important!) -->
+  <crash_log>
+    <database>system</database>
+    <table>crash_log</table>
+    <ttl>event_date + INTERVAL 90 DAY</ttl>
+  </crash_log>
+
+</clickhouse>
