@@ -1,4 +1,4 @@
-import { LangfuseOtelSpanAttributes } from "./attributes";
+import { ElasticDashOtelSpanAttributes } from "./attributes";
 import { type ObservationType, ObservationTypeDomain } from "../../";
 
 type LangfuseObservationType = keyof typeof ObservationType;
@@ -161,7 +161,8 @@ export class ObservationTypeMapperRegistry {
       // canMap?
       (attributes, resourceAttributes, scopeData) => {
         return (
-          attributes[LangfuseOtelSpanAttributes.OBSERVATION_TYPE] === "span" &&
+          attributes[ElasticDashOtelSpanAttributes.OBSERVATION_TYPE] ===
+            "span" &&
           scopeData?.name === "langfuse-sdk" &&
           resourceAttributes?.["telemetry.sdk.language"] === "python"
         );
@@ -179,13 +180,13 @@ export class ObservationTypeMapperRegistry {
 
         // Check for generation-like attributes
         const generationKeys = [
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
-          LangfuseOtelSpanAttributes.OBSERVATION_COST_DETAILS,
-          LangfuseOtelSpanAttributes.OBSERVATION_USAGE_DETAILS,
-          LangfuseOtelSpanAttributes.OBSERVATION_COMPLETION_START_TIME,
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS,
-          LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_NAME,
-          LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_VERSION,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
+          ElasticDashOtelSpanAttributes.OBSERVATION_COST_DETAILS,
+          ElasticDashOtelSpanAttributes.OBSERVATION_USAGE_DETAILS,
+          ElasticDashOtelSpanAttributes.OBSERVATION_COMPLETION_START_TIME,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS,
+          ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_NAME,
+          ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_VERSION,
         ];
 
         const hasGenerationAttributes = Object.keys(attributes).some((key) =>
@@ -204,7 +205,7 @@ export class ObservationTypeMapperRegistry {
     new SimpleAttributeMapper(
       "LangfuseObservationTypeDirectMapping",
       1,
-      LangfuseOtelSpanAttributes.OBSERVATION_TYPE,
+      ElasticDashOtelSpanAttributes.OBSERVATION_TYPE,
       {
         span: "SPAN",
         generation: "GENERATION",
@@ -261,7 +262,7 @@ export class ObservationTypeMapperRegistry {
       // CANMAP?
       (attributes) => {
         const modelKeys = [
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
           "ai.model.id",
           "gen_ai.request.model",
           "gen_ai.response.model",
@@ -386,7 +387,7 @@ export class ObservationTypeMapperRegistry {
       7,
       (attributes, _resourceAttributes, _scopeData) => {
         const modelKeys = [
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
           "gen_ai.request.model",
           "gen_ai.response.model",
           "llm.model_name",
