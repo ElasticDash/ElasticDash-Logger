@@ -54,6 +54,7 @@ export const projectsRouter = createTRPCRouter({
         data: {
           name: input.name,
           orgId: input.orgId,
+          retentionDays: 7, // Default 7-day retention for all new projects
         },
       });
       await auditLog({

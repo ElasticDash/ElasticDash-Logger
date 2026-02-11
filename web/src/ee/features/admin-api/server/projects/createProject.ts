@@ -79,7 +79,7 @@ export async function handleCreateProject(
       data: {
         name,
         orgId: scope.orgId,
-        retentionDays: retention,
+        retentionDays: retention !== undefined ? retention : 7, // Default to 7 days if not specified
         metadata,
       },
     });

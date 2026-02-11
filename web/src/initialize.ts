@@ -90,7 +90,7 @@ if (env.ELASTICDASH_INIT_ORG_ID) {
 
   // Create Project: Org -> Project
   if (env.ELASTICDASH_INIT_PROJECT_ID) {
-    let retentionDays: number | null = null;
+    let retentionDays: number = 7; // Default to 7 days
     const hasRetentionEntitlement = hasEntitlementBasedOnPlan({
       plan: getOrganizationPlanServerSide(),
       entitlement: "data-retention",
