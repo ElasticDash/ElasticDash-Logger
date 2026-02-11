@@ -12,6 +12,10 @@
 
   <merge_selecting_sleep_ms>5000</merge_selecting_sleep_ms>
 
+  <!-- Allow dropping large system log tables (for cleanup) -->
+  <max_table_size_to_drop>0</max_table_size_to_drop>
+  <max_partition_size_to_drop>0</max_partition_size_to_drop>
+
   <logger>
     <level>information</level>
     <log>/var/log/clickhouse-server/clickhouse-server.log</log>
