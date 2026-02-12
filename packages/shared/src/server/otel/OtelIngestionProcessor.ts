@@ -193,7 +193,9 @@ export class OtelIngestionProcessor {
             for (const scopeSpan of resourceSpan?.scopeSpans ?? []) {
               const scopeAttributes = this.extractScopeAttributes(scopeSpan);
               for (const span of scopeSpan?.spans ?? []) {
-                const spanAttributes = this.extractSpanAttributes(span);
+                const spanAttributes = this.normalizeAttributes(
+                  this.extractSpanAttributes(span),
+                );
                 // For LiteLLM spans, use langfuse.trace.id from attributes if provided
                 const isLiteLLMSpan = scopeSpan?.scope?.name === "litellm";
                 const traceId =
@@ -1016,6 +1018,28 @@ export class OtelIngestionProcessor {
     );
   }
 
+  /**
+   * Normalize attribute keys to support both "elasticdash.*" and "langfuse.*" prefixes
+   * Maps elasticdash.* to langfuse.* for backward compatibility
+   */
+  private normalizeAttributes(
+    attributes: Record<string, unknown>,
+  ): Record<string, unknown> {
+    const normalized: Record<string, unknown> = {};
+
+    for (const [key, value] of Object.entries(attributes)) {
+      // Convert elasticdash.* prefix to langfuse.* prefix
+      if (key.startsWith("elasticdash.")) {
+        const normalizedKey = key.replace(/^elasticdash\./, "langfuse.");
+        normalized[normalizedKey] = value;
+      } else {
+        normalized[key] = value;
+      }
+    }
+
+    return normalized;
+  }
+
   private convertValueToPlainJavascript(value: Record<string, any>): any {
     if (value.stringValue !== undefined) {
       return value.stringValue;
@@ -1204,13 +1228,13 @@ export class OtelIngestionProcessor {
     // const toolDefs = attributes["gen_ai.tool.definitions"] || attributes["model_request_parameters"]?.function_tools;
     // if (toolDefs && input && typeof input === "object") { input = { ...input, tools: toolDefs }; }
 
-    // Langfuse
+    // Langfuse - use correct attribute based on domain
     input =
-      domain === "trace" && attributes[LangfuseOtelSpanAttributes.TRACE_INPUT]
+      domain === "trace"
         ? attributes[LangfuseOtelSpanAttributes.TRACE_INPUT]
         : attributes[LangfuseOtelSpanAttributes.OBSERVATION_INPUT];
     output =
-      domain === "trace" && attributes[LangfuseOtelSpanAttributes.TRACE_OUTPUT]
+      domain === "trace"
         ? attributes[LangfuseOtelSpanAttributes.TRACE_OUTPUT]
         : attributes[LangfuseOtelSpanAttributes.OBSERVATION_OUTPUT];
 
