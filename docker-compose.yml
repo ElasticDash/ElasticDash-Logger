@@ -1,6 +1,6 @@
 # Make sure to update the credential placeholders with your own secrets.
 # We mark them with # CHANGEME in the file below.
-# In addition, we recommend to restrict inbound traffic on the host to langfuse-web (port 3000) and minio (port 9090) only.
+# In addition, we recommend to restrict inbound traffic on the host to elasticdash-web (port 3000) and minio (port 9090) only.
 # All other components are bound to localhost (127.0.0.1) to only accept connections from the local machine.
 # External connections from other machines will not be able to reach these services directly.
 services:
@@ -66,8 +66,8 @@ services:
       EMAIL_FROM_ADDRESS: ${EMAIL_FROM_ADDRESS:-}
       SMTP_CONNECTION_URL: ${SMTP_CONNECTION_URL:-}
 
-  langfuse-web:
-    image: docker.io/langfuse/langfuse:3
+  elasticdash-web:
+    image: docker.io/elasticdash/elasticdash-web:0.0.3
     restart: always
     depends_on: *langfuse-depends-on
     ports:
