@@ -1,5 +1,5 @@
 {
-  "name": "@langfuse/ee",
+  "name": "@elasticdash/ee",
   "version": "1.0.0",
   "private": true,
   "main": "./dist/src/index.js",
@@ -24,7 +24,7 @@
     "lint:fix": "eslint . --cache --cache-location dist/.eslintcache --fix"
   },
   "dependencies": {
-    "@langfuse/shared": "workspace:*",
+    "@elasticdash/shared": "workspace:*",
     "@opentelemetry/api": ">=1.0.0 <1.10.0",
     "https-proxy-agent": "^7.0.6",
     "next": "15.5.9",

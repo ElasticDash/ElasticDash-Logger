@@ -1,9 +1,9 @@
 import { Processor } from "bullmq";
-import { logger } from "@langfuse/shared/src/server";
-import { Prisma, prisma } from "@langfuse/shared/src/db";
+import { logger } from "@elasticdash/shared/src/server";
+import { Prisma, prisma } from "@elasticdash/shared/src/db";
 import { env } from "../../env";
 import Stripe from "stripe";
-import { parseDbOrg } from "@langfuse/shared";
+import { parseDbOrg } from "@elasticdash/shared";
 
 export const meteringDataPostgresExportProcessor: Processor =
   async (): Promise<void> => {

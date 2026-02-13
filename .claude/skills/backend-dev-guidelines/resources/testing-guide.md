@@ -18,12 +18,12 @@ Complete guide to testing Langfuse backend services across web, worker, and shar
 
 Langfuse uses multiple testing strategies for different layers:
 
-| Test Type | Framework | Location | Purpose |
-|-----------|-----------|----------|---------|
-| Integration | Jest | `web/src/__tests__/async/` | Full API endpoint testing |
-| tRPC | Jest | `web/src/__tests__/async/` | tRPC procedure testing with auth |
-| Service | Jest | `web/src/__tests__/async/repositories/` | Repository/service function testing |
-| Worker | Vitest | `worker/src/__tests__/` | Queue processors and streams |
+| Test Type   | Framework | Location                                | Purpose                             |
+|-------------|-----------|-----------------------------------------|-------------------------------------|
+| Integration | Jest      | `web/src/__tests__/async/`              | Full API endpoint testing           |
+| tRPC        | Jest      | `web/src/__tests__/async/`              | tRPC procedure testing with auth    |
+| Service     | Jest      | `web/src/__tests__/async/repositories/` | Repository/service function testing |
+| Worker      | Vitest    | `worker/src/__tests__/`                 | Queue processors and streams        |
 
 ---
 
@@ -80,8 +80,8 @@ import {
   createEvent,
   createEventsCh,
   getObservationsWithModelDataFromEventsTable,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import { randomUUID } from "crypto";
 
 describe("Event Repository Tests", () => {
@@ -191,11 +191,11 @@ Test tRPC procedures with caller pattern and auth context.
 ```typescript
 import { appRouter } from "@/src/server/api/root";
 import { createInnerTRPCContext } from "@/src/server/api/trpc";
-import { prisma } from "@langfuse/shared/src/db";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
 import type { Session } from "next-auth";
 import { v4 } from "uuid";
-import { JobConfigState } from "@langfuse/shared";
+import { JobConfigState } from "@elasticdash/shared";
 
 async function prepare() {
   const { project, org } = await createOrgProjectAndApiKey();
@@ -349,7 +349,7 @@ import {
   createScoresCh,
   createTrace,
   createTracesCh,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { getObservationStream } from "../features/database-read-stream/observation-stream";
 
 describe("batch export test suite", () => {
@@ -475,12 +475,12 @@ describe("batch export test suite", () => {
 
 ### By Test Type
 
-| Test Type | Key Principles |
-|-----------|----------------|
-| **Integration** | Test HTTP endpoints, validate status codes and response shapes |
-| **tRPC** | Use `createInnerTRPCContext` and `appRouter.createCaller`, test auth/permissions |
-| **Service** | Test individual functions with isolated data, always cleanup |
-| **Worker** | Use vitest, test streams with async iteration, test filtering logic |
+| Test Type       | Key Principles                                                                   |
+|-----------------|----------------------------------------------------------------------------------|
+| **Integration** | Test HTTP endpoints, validate status codes and response shapes                   |
+| **tRPC**        | Use `createInnerTRPCContext` and `appRouter.createCaller`, test auth/permissions |
+| **Service**     | Test individual functions with isolated data, always cleanup                     |
+| **Worker**      | Use vitest, test streams with async iteration, test filtering logic              |
 
 ### Test Data Management
 

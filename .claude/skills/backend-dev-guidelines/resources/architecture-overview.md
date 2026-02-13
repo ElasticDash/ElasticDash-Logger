@@ -296,13 +296,13 @@ worker/src/
 
 The shared package provides types, utilities, and server code used by both web and worker packages. It has **5 export paths** that control frontend vs backend access:
 
-| Import Path                                | Usage                 | What's Included                                                                    |
-| ------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
+| Import Path                                | Usage                | What's Included                                                                    |
+|--------------------------------------------|----------------------|------------------------------------------------------------------------------------|
 | `@langfuse/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
-| `@langfuse/shared/src/db`                  | 🔒 Backend only       | Prisma client instance                                                             |
-| `@langfuse/shared/src/server`              | 🔒 Backend only       | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
-| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only       | API key management (separated to avoid circular deps)                              |
-| `@langfuse/shared/encryption`              | 🔒 Backend only       | Database field encryption/decryption                                               |
+| `@langfuse/shared/src/db`                  | 🔒 Backend only      | Prisma client instance                                                             |
+| `@langfuse/shared/src/server`              | 🔒 Backend only      | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
+| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only      | API key management (separated to avoid circular deps)                              |
+| `@langfuse/shared/encryption`              | 🔒 Backend only      | Database field encryption/decryption                                               |
 
 **Key Structure:**
 
@@ -336,10 +336,10 @@ import {
   Role,
   type Dataset,
   CloudConfigSchema,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 // 🔒 Database - Backend only
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 // 🔒 Server utilities - Backend only
 import {
@@ -351,13 +351,13 @@ import {
   StorageService,
   fetchLLMCompletion,
   filterToPrisma,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // 🔒 API keys - Backend only
-import { createAndAddApiKeysToDb } from "@langfuse/shared/src/server/auth/apiKeys";
+import { createAndAddApiKeysToDb } from "@elasticdash/shared/src/server/auth/apiKeys";
 
 // 🔒 Encryption - Backend only
-import { encrypt, decrypt } from "@langfuse/shared/encryption";
+import { encrypt, decrypt } from "@elasticdash/shared/encryption";
 ```
 
 ---
@@ -526,8 +526,8 @@ export const datasetRouter = createTRPCRouter({
 
 ```typescript
 // web/src/features/datasets/server/service.ts
-import { prisma } from "@langfuse/shared/src/db";
-import { instrumentAsync, traceException } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { instrumentAsync, traceException } from "@elasticdash/shared/src/server";
 
 export async function createDataset(data: {
   name: string;
@@ -689,12 +689,12 @@ Langfuse uses two databases with different purposes:
 
 ```typescript
 // PostgreSQL via Prisma
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 const dataset = await prisma.dataset.create({ data });
 
 // ClickHouse via helper functions
-import { getTracesTable } from "@langfuse/shared/src/server";
+import { getTracesTable } from "@elasticdash/shared/src/server";
 
 const traces = await getTracesTable({
   projectId,
@@ -703,7 +703,7 @@ const traces = await getTracesTable({
 });
 
 // Redis via queue/cache utilities
-import { redis } from "@langfuse/shared/src/server";
+import { redis } from "@elasticdash/shared/src/server";
 
 await redis.set(`cache:${key}`, value, "EX", 3600);
 ```
@@ -780,7 +780,7 @@ import {
   logger,
   traceException,
   instrumentAsync,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 export async function processEvaluation(evalId: string) {
   return await instrumentAsync(

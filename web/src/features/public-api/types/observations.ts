@@ -6,7 +6,7 @@ import {
   publicApiPaginationZod,
   singleFilter,
   InvalidRequestError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 import {
   reduceUsageOrCostDetails,
@@ -14,7 +14,7 @@ import {
   type ObservationPriceFields,
   OBSERVATION_FIELD_GROUPS,
   type ObservationFieldGroup,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 import { useEventsTableSchema } from "../../query/types";
 

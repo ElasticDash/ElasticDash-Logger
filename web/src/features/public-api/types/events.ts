@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-import { CreateEventEvent } from "@langfuse/shared/src/server";
+import { CreateEventEvent } from "@elasticdash/shared/src/server";
 
 // POST /events
 export const PostEventsV1Body = CreateEventEvent;

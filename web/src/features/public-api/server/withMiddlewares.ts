@@ -7,13 +7,13 @@ import {
   LangfuseNotFoundError,
   MethodNotAllowedError,
   UnauthorizedError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   logger,
   traceException,
   contextWithLangfuseProps,
   ClickHouseResourceError,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
 
 // Exported to silence @typescript-eslint/no-unused-vars v8 warning

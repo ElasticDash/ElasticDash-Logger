@@ -46,7 +46,7 @@ importers:
 
   ee:
     dependencies:
-      '@langfuse/shared':
+      '@elasticdash/shared':
         specifier: workspace:*
         version: link:../packages/shared
       '@opentelemetry/api':
@@ -383,6 +383,12 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.3)
+      '@elasticdash/ee':
+        specifier: workspace:*
+        version: link:../ee
+      '@elasticdash/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       '@ferrucc-io/emoji-picker':
         specifier: ^0.0.47
         version: 0.0.47(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.0)(typescript@5.9.2)))
@@ -401,12 +407,6 @@ importers:
       '@langchain/core':
         specifier: ^0.3.80
         version: 0.3.80(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.53.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.26.0(@opentelemetry/api@1.9.0))(openai@4.104.0(ws@8.18.3)(zod@3.25.62))
-      '@langfuse/ee':
-        specifier: workspace:*
-        version: link:../ee
-      '@langfuse/shared':
-        specifier: workspace:*
-        version: link:../packages/shared
       '@lezer/highlight':
         specifier: ^1.2.3
         version: 1.2.3
@@ -909,7 +909,7 @@ importers:
       '@aws-sdk/client-s3':
         specifier: ^3.675.0
         version: 3.675.0
-      '@langfuse/shared':
+      '@elasticdash/shared':
         specifier: workspace:*
         version: link:../packages/shared
       '@opentelemetry/api':

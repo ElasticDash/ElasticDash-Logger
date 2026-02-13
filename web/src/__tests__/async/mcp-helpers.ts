@@ -5,8 +5,8 @@
  * These helpers allow direct testing of tool handlers without HTTP overhead.
  */
 
-import { prisma } from "@langfuse/shared/src/db";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
 import type { ServerContext } from "@/src/features/mcp/types";
 
 /**

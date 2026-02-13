@@ -1,6 +1,6 @@
 import type { Organization } from "@prisma/client";
-import { prisma } from "@langfuse/shared/src/db";
-import { type ParsedOrganization, Role } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { type ParsedOrganization, Role } from "@elasticdash/shared";
 import {
   sendUsageThresholdWarningEmail,
   sendUsageThresholdSuspensionEmail,
@@ -8,7 +8,7 @@ import {
   recordIncrement,
   traceException,
   getBillingCycleEnd,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   NOTIFICATION_THRESHOLDS,
   BLOCKING_THRESHOLD,

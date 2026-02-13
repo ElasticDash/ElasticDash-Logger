@@ -3,7 +3,7 @@ import {
   CategoricalConfigFields,
   BooleanConfigFields,
   validateNumericRangeFields,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { z } from "zod/v4";
 import { type CreateConfig, type UpdateConfig } from "./upsertFormTypes";
 

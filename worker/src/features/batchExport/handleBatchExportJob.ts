@@ -6,8 +6,8 @@ import {
   BatchExportTableName,
   exportOptions,
   LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   StorageServiceFactory,
   sendBatchExportSuccessEmail,
@@ -15,7 +15,7 @@ import {
   type BatchExportJobType,
   logger,
   getCurrentSpan,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "../../env";
 import { getDatabaseReadStreamPaginated } from "../database-read-stream/getDatabaseReadStream";
 import { getObservationStream } from "../database-read-stream/observation-stream";

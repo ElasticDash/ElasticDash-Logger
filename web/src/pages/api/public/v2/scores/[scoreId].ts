@@ -6,8 +6,8 @@ import {
   GetScoreResponseV2,
   InternalServerError,
   LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { logger, traceException } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { logger, traceException } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({

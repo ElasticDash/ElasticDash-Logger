@@ -2,7 +2,7 @@ import {
   type TriggerEventAction,
   jsonSchemaNullable,
   InternalServerError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getTriggerConfigurations,
   getActionById,
@@ -14,10 +14,10 @@ import {
   type PromptResult,
   getAutomations,
   EntityChangeEventType,
-} from "@langfuse/shared/src/server";
-import { TriggerEventSource } from "@langfuse/shared";
-import { ActionExecutionStatus, JobConfigState } from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { TriggerEventSource } from "@elasticdash/shared";
+import { ActionExecutionStatus, JobConfigState } from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import { v4 } from "uuid";
 
 /**

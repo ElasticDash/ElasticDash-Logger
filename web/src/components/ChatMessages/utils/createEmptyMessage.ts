@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 import {
   type ChatMessage,
   type ChatMessageWithIdNoPlaceholders,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export function createEmptyMessage(
   message: ChatMessage,

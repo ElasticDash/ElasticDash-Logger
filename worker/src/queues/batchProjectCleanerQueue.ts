@@ -3,7 +3,7 @@ import {
   logger,
   QueueJobs,
   BatchProjectCleanerJobType,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   BatchProjectCleaner,
   BatchDeletionTable,

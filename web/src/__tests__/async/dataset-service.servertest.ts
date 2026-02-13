@@ -12,14 +12,14 @@ import {
   getDatasetItemIdsWithRunData,
   createDatasetItem,
   createManyDatasetItems,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   createObservation,
   createTraceScore,
   createTrace,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   enrichAndMapToDatasetItemId,
   getRunItemsByRunIdOrItemId,

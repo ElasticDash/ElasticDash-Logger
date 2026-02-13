@@ -1,6 +1,6 @@
 /** @jest-environment node */
 
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   makeAPICall,
   makeZodVerifiedAPICall,
@@ -9,9 +9,9 @@ import {
   GetLlmConnectionsV1Response,
   PutLlmConnectionV1Response,
 } from "@/src/features/public-api/types/llm-connections";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
-import { LLMAdapter } from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
+import { LLMAdapter } from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
 
 // Generate truly unique provider names for tests to avoid conflicts
 const generateUniqueProvider = (baseName: string) =>

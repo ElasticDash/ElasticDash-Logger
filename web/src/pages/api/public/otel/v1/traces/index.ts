@@ -4,11 +4,11 @@ import {
   logger,
   OtelIngestionProcessor,
   markProjectAsOtelUser,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 import { $root } from "@/src/pages/api/public/otel/otlp-proto/generated/root";
 import { gunzip } from "node:zlib";
-import { ForbiddenError } from "@langfuse/shared";
+import { ForbiddenError } from "@elasticdash/shared";
 
 export const config = {
   api: {

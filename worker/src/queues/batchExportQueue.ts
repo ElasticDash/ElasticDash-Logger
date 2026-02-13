@@ -4,11 +4,11 @@ import {
   BaseError,
   BatchExportStatus,
   LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { kyselyPrisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { kyselyPrisma } from "@elasticdash/shared/src/db";
 
-import { traceException, logger } from "@langfuse/shared/src/server";
-import { QueueName, TQueueJobTypes } from "@langfuse/shared/src/server";
+import { traceException, logger } from "@elasticdash/shared/src/server";
+import { QueueName, TQueueJobTypes } from "@elasticdash/shared/src/server";
 import { handleBatchExportJob } from "../features/batchExport/handleBatchExportJob";
 
 export const batchExportQueueProcessor = async (

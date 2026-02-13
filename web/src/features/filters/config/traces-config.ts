@@ -1,4 +1,4 @@
-import { tracesTableCols } from "@langfuse/shared";
+import { tracesTableCols } from "@elasticdash/shared";
 import type { FilterConfig } from "@/src/features/filters/lib/filter-config";
 
 export const traceFilterConfig: FilterConfig = {

@@ -5,7 +5,7 @@ import {
   type ScoreTarget,
   type ScoreTargetSession,
   ScoreDataTypeEnum,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const isNumericDataType = (dataType: ScoreDataTypeType) =>
   dataType === ScoreDataTypeEnum.NUMERIC;

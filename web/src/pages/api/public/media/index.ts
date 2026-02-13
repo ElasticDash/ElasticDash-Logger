@@ -14,9 +14,9 @@ import {
   ForbiddenError,
   InternalServerError,
   InvalidRequestError,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
-import { logger, instrumentAsync } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { logger, instrumentAsync } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   POST: createAuthedProjectAPIRoute({

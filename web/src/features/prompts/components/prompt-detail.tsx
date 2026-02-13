@@ -25,7 +25,7 @@ import {
   extractVariables,
   PRODUCTION_LABEL,
   PromptType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getPromptTabs,
   PROMPT_TABS,
@@ -66,40 +66,40 @@ const getPythonCode = (
   name: string,
   version: number,
   labels: string[],
-) => `from langfuse import Langfuse
+) => `from elasticdash import ElasticDashClient
 
-# Initialize Langfuse client
-langfuse = Langfuse()
+# Initialize ElasticDash client
+elasticDash = ElasticDashClient()
 
 # Get production prompt
-prompt = langfuse.get_prompt("${name}")
+prompt = elasticDash.prompt.get("${name}")
 
 # Get by label
 # You can use as many labels as you'd like to identify different deployment targets
-${labels.length > 0 ? labels.map((label) => `prompt = langfuse.get_prompt("${name}", label="${label}")`).join("\n") : ""}
+${labels.length > 0 ? labels.map((label) => `prompt = elasticDash.prompt.get("${name}", label="${label}")`).join("\n") : ""}
 
 # Get by version number, usually not recommended as it requires code changes to deploy new prompt versions
-langfuse.get_prompt("${name}", version=${version})
+elasticDash.prompt.get("${name}", version=${version})
 `;
 
 const getJsCode = (
   name: string,
   version: number,
   labels: string[],
-) => `import { LangfuseClient } from "@langfuse/client";
+) => `import { ElasticDashClient } from "@elasticdash/client";
 
-// Initialize the Langfuse client
-const langfuse = new LangfuseClient();
+// Initialize the ElasticDash client
+const elasticDash = new ElasticDashClient();
 
 // Get production prompt
-const prompt = await langfuse.prompt.get("${name}");
+const prompt = await elasticDash.prompt.get("${name}");
 
 // Get by label
 // You can use as many labels as you'd like to identify different deployment targets
-${labels.length > 0 ? labels.map((label) => `const prompt = await langfuse.prompt.get("${name}", { label: "${label}" })`).join("\n") : ""}
+${labels.length > 0 ? labels.map((label) => `const prompt = await elasticDash.prompt.get("${name}", { label: "${label}" })`).join("\n") : ""}
 
 // Get by version number, usually not recommended as it requires code changes to deploy new prompt versions
-await langfuse.prompt.get("${name}", { version: ${version} })
+await elasticDash.prompt.get("${name}", { version: ${version} })
 `;
 
 export const PromptDetail = ({

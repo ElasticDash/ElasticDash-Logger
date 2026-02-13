@@ -1,5 +1,5 @@
 import { showErrorToast } from "@/src/features/notifications/showErrorToast";
-import type { Prisma } from "@langfuse/shared";
+import type { Prisma } from "@elasticdash/shared";
 
 /**
  * Converts a dataset item field value to a formatted JSON string.

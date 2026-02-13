@@ -2,9 +2,9 @@ import {
   DatasetNameSchema,
   InvalidRequestError,
   Prisma,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
-import { validateAllDatasetItems } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { validateAllDatasetItems } from "@elasticdash/shared/src/server";
 
 type DatasetJson =
   | Prisma.InputJsonObject

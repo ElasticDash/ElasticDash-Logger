@@ -1,5 +1,5 @@
 import { DatasetItemDiffView } from "./DatasetItemDiffView";
-import type { DatasetItemDomain } from "@langfuse/shared";
+import type { DatasetItemDomain } from "@elasticdash/shared";
 import {
   stringifyDatasetItemData,
   type DatasetSchema,

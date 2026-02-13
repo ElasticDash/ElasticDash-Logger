@@ -1,7 +1,7 @@
-import { LLMAdapter } from "@langfuse/shared/src/server";
+import { LLMAdapter } from "@elasticdash/shared/src/server";
 import { Langfuse } from "langfuse";
 import { env } from "@/src/env.mjs";
-import { type FilterCondition, singleFilter } from "@langfuse/shared";
+import { type FilterCondition, singleFilter } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
 let langfuseClient: Langfuse | null = null;
@@ -46,7 +46,7 @@ export function parseFiltersFromCompletion(
   return [];
 }
 
-export function getLangfuseClient(
+export function getElasticDashClient(
   publicKey: string,
   secretKey: string,
   baseUrl?: string,

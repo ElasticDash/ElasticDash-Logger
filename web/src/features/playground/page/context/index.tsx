@@ -29,7 +29,7 @@ import {
   type ChatMessage,
   compileChatMessagesWithIds,
   type MessagePlaceholderValues,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 import type { MessagesContext } from "@/src/components/ChatMessages/types";
 import type { ModelParamsContext } from "@/src/components/ModelParameters";

@@ -14,8 +14,8 @@ import {
   ScoreConfigDataType,
   validateDbScoreConfig,
   validateDbScoreConfigSafe,
-} from "@langfuse/shared";
-import { traceException } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { traceException } from "@elasticdash/shared/src/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 
 const ScoreConfigAllInput = z.object({

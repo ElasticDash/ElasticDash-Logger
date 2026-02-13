@@ -67,7 +67,8 @@ services:
       SMTP_CONNECTION_URL: ${SMTP_CONNECTION_URL:-}
 
   elasticdash-web:
-    image: docker.io/elasticdash/elasticdash-web:0.0.3
+    platform: linux/amd64
+    image: docker.io/elasticdash/elasticdash-web:0.0.4
     restart: always
     depends_on: *langfuse-depends-on
     ports:

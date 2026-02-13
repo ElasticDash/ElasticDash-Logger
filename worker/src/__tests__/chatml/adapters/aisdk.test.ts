@@ -3,7 +3,7 @@ import {
   aisdkAdapter,
   normalizeInput,
   type NormalizerContext,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 describe("AI SDK Adapter", () => {
   describe("detection", () => {

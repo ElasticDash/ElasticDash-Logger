@@ -1,5 +1,6 @@
 services:
-  langfuse-web:
+  elasticdash-web:
+    platform: linux/amd64
     build:
       dockerfile: ./web/Dockerfile
       context: .

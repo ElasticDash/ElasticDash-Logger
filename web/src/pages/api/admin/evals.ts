@@ -6,9 +6,9 @@ import {
   QueueName,
   getQueue,
   QueueJobs,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { AdminApiAuthService } from "@/src/ee/features/admin-api/server/adminApiAuth";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 const ManageEvalBody = z.discriminatedUnion("action", [
   z.object({

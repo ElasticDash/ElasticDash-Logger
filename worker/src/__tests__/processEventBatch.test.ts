@@ -1,5 +1,5 @@
 import { describe, it, expect, assert } from "vitest";
-import { processEventBatch } from "@langfuse/shared/src/server";
+import { processEventBatch } from "@elasticdash/shared/src/server";
 
 describe("processEventBatch", () => {
   it("returns early on empty input", async () => {

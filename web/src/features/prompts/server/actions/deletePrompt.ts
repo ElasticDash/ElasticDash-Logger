@@ -1,6 +1,9 @@
-import { InvalidRequestError, LangfuseNotFoundError } from "@langfuse/shared";
-import { prisma, type Prompt } from "@langfuse/shared/src/db";
-import { PromptService, redis, logger } from "@langfuse/shared/src/server";
+import {
+  InvalidRequestError,
+  LangfuseNotFoundError,
+} from "@elasticdash/shared";
+import { prisma, type Prompt } from "@elasticdash/shared/src/db";
+import { PromptService, redis, logger } from "@elasticdash/shared/src/server";
 
 export type DeletePromptParams = {
   promptName: string;

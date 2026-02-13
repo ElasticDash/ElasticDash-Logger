@@ -6,7 +6,7 @@ import {
   type Session,
 } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { verifyPassword } from "@/src/features/auth-credentials/lib/credentialsServerUtils";
 import { parseFlags } from "@/src/features/feature-flags/utils";
 import { env } from "@/src/env.mjs";
@@ -42,7 +42,7 @@ import {
 } from "@/src/ee/features/multi-tenant-sso/utils";
 import { ENTERPRISE_SSO_REQUIRED_MESSAGE } from "@/src/features/auth/constants";
 import { z } from "zod/v4";
-import { CloudConfigSchema } from "@langfuse/shared";
+import { CloudConfigSchema } from "@elasticdash/shared";
 import {
   CustomSSOProvider,
   GitHubEnterpriseProvider,
@@ -52,7 +52,7 @@ import {
   instrumentAsync,
   logger,
   resolveProjectRole,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   getOrganizationPlanServerSide,
   getSelfHostedInstancePlanServerSide,

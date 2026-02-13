@@ -1,4 +1,4 @@
-import { type MetadataDomain } from "@langfuse/shared";
+import { type MetadataDomain } from "@elasticdash/shared";
 
 /**
  * Metadata serialized as string for client-side consumption.

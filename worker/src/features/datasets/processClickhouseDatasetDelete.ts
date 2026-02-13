@@ -4,7 +4,7 @@ import {
   logger,
   traceException,
   DatasetQueueEventType,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 export const processClickhouseDatasetDelete = async (
   jobPayload: DatasetQueueEventType,

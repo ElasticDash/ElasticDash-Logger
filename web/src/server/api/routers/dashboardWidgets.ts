@@ -3,21 +3,25 @@ import {
   createTRPCRouter,
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
-import { orderBy, singleFilter, optionalPaginationZod } from "@langfuse/shared";
+import {
+  orderBy,
+  singleFilter,
+  optionalPaginationZod,
+} from "@elasticdash/shared";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
 import {
   DashboardWidgetChartType,
   DashboardWidgetViews,
-} from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/db";
 import {
   DashboardService,
   DimensionSchema,
   MetricSchema,
   ChartConfigSchema,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { views } from "@/src/features/query";
 import { TRPCError } from "@trpc/server";
-import { LangfuseConflictError } from "@langfuse/shared";
+import { LangfuseConflictError } from "@elasticdash/shared";
 
 const CreateDashboardWidgetInput = z.object({
   projectId: z.string(),

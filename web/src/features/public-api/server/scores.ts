@@ -1,4 +1,4 @@
-import { convertApiProvidedFilterToClickhouseFilter } from "@langfuse/shared/src/server";
+import { convertApiProvidedFilterToClickhouseFilter } from "@elasticdash/shared/src/server";
 import {
   convertClickhouseScoreToDomain,
   StringFilter,
@@ -6,13 +6,13 @@ import {
   type ScoreRecordReadType,
   queryClickhouse,
   measureAndReturn,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   removeObjectKeys,
   ScoreDataTypeEnum,
   type ScoreDataTypeType,
   type ScoreDomain,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 /**
  * Converts a ScoreDomain object to API format.

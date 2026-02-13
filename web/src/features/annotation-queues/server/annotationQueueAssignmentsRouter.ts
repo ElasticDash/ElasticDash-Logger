@@ -8,8 +8,8 @@ import {
   LangfuseNotFoundError,
   optionalPaginationZod,
   Prisma,
-} from "@langfuse/shared";
-import { getUserProjectRoles } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { getUserProjectRoles } from "@elasticdash/shared/src/server";
 import { partition } from "lodash";
 import z from "zod/v4";
 

@@ -9,18 +9,18 @@ import {
   fetchLLMCompletion,
   logger,
   type TraceSinkParams,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "@/src/env.mjs";
 import { CreateNaturalLanguageFilterCompletion } from "./validation";
 import {
   getDefaultModelParams,
   parseFiltersFromCompletion,
-  getLangfuseClient,
+  getElasticDashClient,
 } from "./utils";
 import { randomBytes } from "crypto";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
-import { BEDROCK_USE_DEFAULT_CREDENTIALS } from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
+import { BEDROCK_USE_DEFAULT_CREDENTIALS } from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
 
 export const naturalLanguageFilterRouter = createTRPCRouter({
   createCompletion: protectedProjectProcedure
@@ -73,7 +73,7 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           }
         };
 
-        const client = getLangfuseClient(
+        const client = getElasticDashClient(
           env.LANGFUSE_AI_FEATURES_PUBLIC_KEY as string,
           env.LANGFUSE_AI_FEATURES_SECRET_KEY as string,
           env.LANGFUSE_AI_FEATURES_HOST,

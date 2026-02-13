@@ -18,7 +18,7 @@ Complete guide to database access patterns in Langfuse using PostgreSQL (Prisma 
 Langfuse uses a **dual database architecture**:
 
 | Database       | Technology        | Purpose                                                       | Access Pattern                         |
-| -------------- | ----------------- | ------------------------------------------------------------- | -------------------------------------- |
+|----------------|-------------------|---------------------------------------------------------------|----------------------------------------|
 | **PostgreSQL** | Prisma ORM        | Transactional data, relational data, CRUD operations          | Type-safe ORM with migrations          |
 | **ClickHouse** | Direct SQL client | Analytics data, high-volume traces/observations, aggregations | Raw SQL queries with streaming support |
 | **Redis**      | ioredis           | Queues (BullMQ), caching, rate limiting                       | Direct client access                   |
@@ -34,7 +34,7 @@ Langfuse uses a **dual database architecture**:
 ### Import Pattern
 
 ```typescript
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 // Direct access to Prisma client
 const user = await prisma.user.findUnique({ where: { id } });
@@ -185,8 +185,8 @@ const traces = await prisma.trace.findMany({
 ### Import Pattern
 
 ```typescript
-import { queryClickhouse } from "@langfuse/shared/src/server/repositories/clickhouse";
-import { clickhouseClient } from "@langfuse/shared/src/server/clickhouse/client";
+import { queryClickhouse } from "@elasticdash/shared/src/server/repositories/clickhouse";
+import { clickhouseClient } from "@elasticdash/shared/src/server/clickhouse/client";
 ```
 
 ### ClickHouse Client Singleton
@@ -194,7 +194,7 @@ import { clickhouseClient } from "@langfuse/shared/src/server/clickhouse/client"
 ClickHouse uses a singleton client manager that reuses connections:
 
 ```typescript
-import { clickhouseClient } from "@langfuse/shared/src/server/clickhouse/client";
+import { clickhouseClient } from "@elasticdash/shared/src/server/clickhouse/client";
 
 // Get client (automatically reuses existing connection)
 const client = clickhouseClient();
@@ -212,7 +212,7 @@ ClickHouse queries use **raw SQL** with parameterized queries. Parameters use `{
 **Simple query:**
 
 ```typescript
-import { queryClickhouse } from "@langfuse/shared/src/server/repositories/clickhouse";
+import { queryClickhouse } from "@elasticdash/shared/src/server/repositories/clickhouse";
 
 // ✅ GOOD: Always filter by project_id
 const rows = await queryClickhouse<{ id: string; name: string }>({
@@ -242,7 +242,7 @@ const rows = await queryClickhouse<{ id: string; name: string }>({
 **Streaming query (for large result sets):**
 
 ```typescript
-import { queryClickhouseStream } from "@langfuse/shared/src/server/repositories/clickhouse";
+import { queryClickhouseStream } from "@elasticdash/shared/src/server/repositories/clickhouse";
 
 // Stream results to avoid loading all rows in memory
 for await (const row of queryClickhouseStream<ObservationRecordReadType>({
@@ -262,7 +262,7 @@ for await (const row of queryClickhouseStream<ObservationRecordReadType>({
 **Upsert (insert) operation:**
 
 ```typescript
-import { upsertClickhouse } from "@langfuse/shared/src/server/repositories/clickhouse";
+import { upsertClickhouse } from "@elasticdash/shared/src/server/repositories/clickhouse";
 
 await upsertClickhouse({
   table: "traces",
@@ -289,7 +289,7 @@ await upsertClickhouse({
 **DDL/Administrative commands:**
 
 ```typescript
-import { commandClickhouse } from "@langfuse/shared/src/server/repositories/clickhouse";
+import { commandClickhouse } from "@elasticdash/shared/src/server/repositories/clickhouse";
 
 // Create table, alter schema, etc.
 await commandClickhouse({
@@ -304,7 +304,7 @@ await commandClickhouse({
 ### ClickHouse Type Mapping
 
 | JavaScript Type | ClickHouse Param Type                                     |
-| --------------- | --------------------------------------------------------- |
+|-----------------|-----------------------------------------------------------|
 | `string`        | `String`                                                  |
 | `number`        | `UInt32`, `Int64`, `Float64`                              |
 | `Date`          | `DateTime64(3)` (use `convertDateToClickhouseDateTime()`) |
@@ -314,7 +314,7 @@ await commandClickhouse({
 **Date handling:**
 
 ```typescript
-import { convertDateToClickhouseDateTime } from "@langfuse/shared/src/server/clickhouse/client";
+import { convertDateToClickhouseDateTime } from "@elasticdash/shared/src/server/clickhouse/client";
 
 const params = {
   startTime: convertDateToClickhouseDateTime(new Date()),
@@ -405,7 +405,7 @@ ClickHouse queries automatically retry on network errors (socket hang up). Custo
 import {
   queryClickhouse,
   ClickHouseResourceError,
-} from "@langfuse/shared/src/server/repositories/clickhouse";
+} from "@elasticdash/shared/src/server/repositories/clickhouse";
 
 try {
   const rows = await queryClickhouse({ query, params });
@@ -499,7 +499,7 @@ export const getScoresByTraceId = async (
 ## When to Use Which Database
 
 | Use Case                               | Database   | Reasoning                                  |
-| -------------------------------------- | ---------- | ------------------------------------------ |
+|----------------------------------------|------------|--------------------------------------------|
 | User accounts, projects, API keys      | PostgreSQL | Transactional data with strong consistency |
 | Prompt management, dataset definitions | PostgreSQL | Configuration data with relations          |
 | Project settings, RBAC permissions     | PostgreSQL | Small, frequently updated data             |
@@ -563,7 +563,7 @@ const user = await prisma.user.findUnique({
 
 ```typescript
 import { Prisma } from "@prisma/client";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 try {
   await prisma.user.create({ data: userData });
@@ -599,12 +599,12 @@ try {
 
 **Common Prisma error codes:**
 
-| Code     | Meaning                      | Typical Cause                         |
-| -------- | ---------------------------- | ------------------------------------- |
-| `P2002`  | Unique constraint violation  | Duplicate email, API key, etc.        |
-| `P2003`  | Foreign key constraint       | Referenced record doesn't exist       |
-| `P2025`  | Record not found             | Update/delete of non-existent record  |
-| `P2018`  | Required relation not found  | Connect to non-existent related record |
+| Code    | Meaning                     | Typical Cause                          |
+|---------|-----------------------------|----------------------------------------|
+| `P2002` | Unique constraint violation | Duplicate email, API key, etc.         |
+| `P2003` | Foreign key constraint      | Referenced record doesn't exist        |
+| `P2025` | Record not found            | Update/delete of non-existent record   |
+| `P2018` | Required relation not found | Connect to non-existent related record |
 
 ### ClickHouse Errors
 
@@ -612,7 +612,7 @@ try {
 import {
   queryClickhouse,
   ClickHouseResourceError,
-} from "@langfuse/shared/src/server/repositories/clickhouse";
+} from "@elasticdash/shared/src/server/repositories/clickhouse";
 
 try {
   const rows = await queryClickhouse({ query, params });
@@ -636,11 +636,11 @@ try {
 
 **ClickHouse error types:**
 
-| Error Type      | Discriminator           | Meaning                      | Solution                                           |
-| --------------- | ----------------------- | ---------------------------- | -------------------------------------------------- |
-| `MEMORY_LIMIT`  | "memory limit exceeded" | Query used too much memory   | Use more specific filters or shorter time range    |
-| `OVERCOMMIT`    | "OvercommitTracker"     | Memory overcommit limit hit  | Reduce query complexity or result set size         |
-| `TIMEOUT`       | "Timeout", "timed out"  | Query took too long          | Add filters, reduce time range, or optimize query  |
+| Error Type     | Discriminator           | Meaning                     | Solution                                          |
+|----------------|-------------------------|-----------------------------|---------------------------------------------------|
+| `MEMORY_LIMIT` | "memory limit exceeded" | Query used too much memory  | Use more specific filters or shorter time range   |
+| `OVERCOMMIT`   | "OvercommitTracker"     | Memory overcommit limit hit | Reduce query complexity or result set size        |
+| `TIMEOUT`      | "Timeout", "timed out"  | Query took too long         | Add filters, reduce time range, or optimize query |
 
 **ClickHouse retries:**
 

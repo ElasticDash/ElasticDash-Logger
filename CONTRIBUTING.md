@@ -170,7 +170,7 @@ pnpm run db:seed:examples
 
 - Available packages and their dependencies
 
-  Packages are included in the monorepo according to the `pnpm-workspace.yaml` file. Each package maintains its own dependencies defined in the `package.json`. Internal dependencies can be added as well by adding them to the package dependencies: `"@langfuse/shared": "workspace:*"`.
+  Packages are included in the monorepo according to the `pnpm-workspace.yaml` file. Each package maintains its own dependencies defined in the `package.json`. Internal dependencies can be added as well by adding them to the package dependencies: `"@elasticdash/shared": "workspace:*"`.
 
 - Executing commands
 
@@ -331,7 +331,7 @@ The background color of the following component will be `hsl(var(--primary))` an
 ### Color Variables
 
 | Variable                 | Description                                                        | Examples                         |
-| ------------------------ | ------------------------------------------------------------------ | -------------------------------- |
+|--------------------------|--------------------------------------------------------------------|----------------------------------|
 | --background             | Background color                                                   | Default background color of body |
 | --foreground             | Foreground color                                                   | Default text color of body       |
 | --muted                  | Muted background color                                             | TabsList, Skeleton and Switch    |

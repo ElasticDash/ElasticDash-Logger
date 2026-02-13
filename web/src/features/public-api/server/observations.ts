@@ -8,8 +8,8 @@ import {
   observationsTableUiColumnDefinitions,
   convertObservation,
   shouldSkipObservationsFinal,
-} from "@langfuse/shared/src/server";
-import type { FilterState } from "@langfuse/shared";
+} from "@elasticdash/shared/src/server";
+import type { FilterState } from "@elasticdash/shared";
 
 type QueryType = {
   page: number;
