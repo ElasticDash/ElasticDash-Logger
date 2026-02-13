@@ -39,7 +39,7 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse}
       CLICKHOUSE_CLUSTER_ENABLED: ${CLICKHOUSE_CLUSTER_ENABLED:-false}
-      ELASTICDASH_S3_EVENT_UPLOAD_BUCKET: ${ELASTICDASH_S3_EVENT_UPLOAD_BUCKET:-langfuse}
+      ELASTICDASH_S3_EVENT_UPLOAD_BUCKET: ${ELASTICDASH_S3_EVENT_UPLOAD_BUCKET:-elasticdash}
       ELASTICDASH_S3_EVENT_UPLOAD_REGION: ${ELASTICDASH_S3_EVENT_UPLOAD_REGION:-us-east-1}
       ELASTICDASH_S3_EVENT_UPLOAD_ACCESS_KEY_ID: ${ELASTICDASH_S3_EVENT_UPLOAD_ACCESS_KEY_ID:-minio}
       ELASTICDASH_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY: ${ELASTICDASH_S3_EVENT_UPLOAD_SECRET_ACCESS_KEY:-miniosecret}
@@ -102,8 +102,8 @@ services:
   minio:
     image: cgr.dev/chainguard/minio
     entrypoint: sh
-    # create the 'langfuse' bucket before starting the service
-    command: -c 'mkdir -p /data/langfuse && minio server --address ":9000" --console-address ":9001" /data'
+    # create the 'elasticdash' bucket before starting the service
+    command: -c 'mkdir -p /data/elasticdash && minio server --address ":9000" --console-address ":9001" /data'
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minio}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-miniosecret}

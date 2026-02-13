@@ -26,7 +26,7 @@ groups:
       #   version: 2.20.1
       #   output:
       #     location: local-file-system
-      #     path: ../../../../langfuse-java/src/main/java/com/langfuse/client/
+      #     path: ../../../../elasticdash-java/src/main/java/com/elasticdash/client/
       #   config:
       #     client-class-name: ElasticDashClient
 

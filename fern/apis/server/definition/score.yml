@@ -36,7 +36,7 @@ types:
       metadata: optional<map<string, unknown>>
       environment:
         type: optional<string>
-        docs: The environment of the score. Can be any lowercase alphanumeric string with hyphens and underscores that does not start with 'langfuse'.
+        docs: The environment of the score. Can be any lowercase alphanumeric string with hyphens and underscores that does not start with 'elasticdash'.
       queueId:
         type: optional<string>
         docs: The annotation queue referenced by the score. Indicates if score was initially created while processing annotation queue.

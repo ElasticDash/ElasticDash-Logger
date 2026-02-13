@@ -129,7 +129,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -179,7 +179,7 @@ jobs:
         with:
           version: 9.5.0
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -242,7 +242,7 @@ jobs:
           ELASTICDASH_INIT_PROJECT_NAME: "Seed Project"
           ELASTICDASH_INIT_PROJECT_PUBLIC_KEY: "pk-lf-1234567890"
           ELASTICDASH_INIT_PROJECT_SECRET_KEY: "sk-lf-1234567890"
-          ELASTICDASH_INIT_USER_EMAIL: "demo@langfuse.com"
+          ELASTICDASH_INIT_USER_EMAIL: "demo@elasticdash.com"
           ELASTICDASH_INIT_USER_NAME: "Demo User"
           ELASTICDASH_INIT_USER_PASSWORD: "password"
       - name: run test-sync
@@ -276,7 +276,7 @@ jobs:
         with:
           version: 9.5.0
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -298,7 +298,7 @@ jobs:
           echo "ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS=1" >> .env
           echo "ELASTICDASH_TRACE_DELETE_CONCURRENCY=100" >> .env
           echo "ADMIN_API_KEY=admin-api-key" >> .env
-          echo "ELASTICDASH_EE_LICENSE_KEY=langfuse_ee_test" >> .env
+          echo "ELASTICDASH_EE_LICENSE_KEY=elasticdash_ee_test" >> .env
       - name: Setup Turbo cache
         uses: actions/cache@v4
         with:
@@ -355,7 +355,7 @@ jobs:
           ELASTICDASH_INIT_PROJECT_NAME: "Seed Project"
           ELASTICDASH_INIT_PROJECT_PUBLIC_KEY: "pk-lf-1234567890"
           ELASTICDASH_INIT_PROJECT_SECRET_KEY: "sk-lf-1234567890"
-          ELASTICDASH_INIT_USER_EMAIL: "demo@langfuse.com"
+          ELASTICDASH_INIT_USER_EMAIL: "demo@elasticdash.com"
           ELASTICDASH_INIT_USER_NAME: "Demo User"
           ELASTICDASH_INIT_USER_PASSWORD: "password"
       - name: run tests
@@ -380,7 +380,7 @@ jobs:
         with:
           version: 9.5.0
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -452,7 +452,7 @@ jobs:
         with:
           version: 9.5.0
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -528,7 +528,7 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "pnpm-lock.yaml"
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -598,7 +598,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Login to Docker Hub
-        if: github.repository == 'langfuse/langfuse' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        if: github.repository == 'elasticdash/elasticdash' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME_READ }}
@@ -747,8 +747,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/langfuse/langfuse # GitHub
-            langfuse/langfuse # Docker Hub
+            ghcr.io/elasticdash/elasticdash # GitHub
+            elasticdash/elasticdash # Docker Hub
           flavor: |
             latest=false
           tags: |
@@ -775,8 +775,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ghcr.io/langfuse/langfuse-worker # GitHub
-            langfuse/langfuse-worker # Docker Hub
+            ghcr.io/elasticdash/elasticdash-worker # GitHub
+            elasticdash/elasticdash-worker # Docker Hub
           flavor: |
             latest=false
           tags: |

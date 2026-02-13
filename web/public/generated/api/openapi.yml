@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: langfuse
+  title: elasticdash
   version: ""
   description: >-
     ## Authentication
@@ -19,10 +19,10 @@ info:
     ## Exports
 
 
-    - OpenAPI spec: https://cloud.langfuse.com/generated/api/openapi.yml
+    - OpenAPI spec: https://cloud.elasticdash.com/generated/api/openapi.yml
 
     - Postman collection:
-    https://cloud.langfuse.com/generated/postman/collection.json
+    https://cloud.elasticdash.com/generated/postman/collection.json
 paths:
   /api/public/annotation-queues:
     get:
@@ -1556,7 +1556,7 @@ paths:
 
 
         -> Please use the OpenTelemetry endpoint (`/api/public/otel/v1/traces`).
-        Learn more: https://langfuse.com/integrations/native/opentelemetry
+        Learn more: https://elasticdash.com/integrations/native/opentelemetry
 
 
         Within each batch, there can be multiple events.
@@ -1580,7 +1580,7 @@ paths:
         Notes:
 
         - Introduction to data model:
-        https://langfuse.com/docs/observability/data-model
+        https://elasticdash.com/docs/observability/data-model
 
         - Batch sizes are limited to 3.5 MB in total. You need to adjust the
         number of events per batch accordingly.
@@ -1979,7 +1979,7 @@ paths:
 
 
         For more details, see the [Metrics API
-        documentation](https://langfuse.com/docs/metrics/features/metrics-api).
+        documentation](https://elasticdash.com/docs/metrics/features/metrics-api).
 
 
         ## Available Views
@@ -2268,7 +2268,7 @@ paths:
 
 
         For more details, see the [Metrics API
-        documentation](https://langfuse.com/docs/metrics/features/metrics-api).
+        documentation](https://elasticdash.com/docs/metrics/features/metrics-api).
       operationId: metrics_metrics
       tags:
         - Metrics
@@ -3297,9 +3297,9 @@ paths:
         **Documentation:**
 
         - Integration guide:
-        https://langfuse.com/integrations/native/opentelemetry
+        https://elasticdash.com/integrations/native/opentelemetry
 
-        - Data model: https://langfuse.com/docs/observability/data-model
+        - Data model: https://elasticdash.com/docs/observability/data-model
       operationId: opentelemetry_exportTraces
       tags:
         - Opentelemetry
@@ -3371,7 +3371,7 @@ paths:
                               stringValue: 1.0.0
                       scopeSpans:
                         - scope:
-                            name: langfuse-sdk
+                            name: elasticdash-sdk
                             version: 2.60.3
                           spans:
                             - traceId: 0123456789abcdef0123456789abcdef
@@ -3381,7 +3381,7 @@ paths:
                               startTimeUnixNano: "1747872000000000000"
                               endTimeUnixNano: "1747872001000000000"
                               attributes:
-                                - key: langfuse.observation.type
+                                - key: elasticdash.observation.type
                                   value:
                                     stringValue: generation
                               status: {}
@@ -6455,7 +6455,7 @@ components:
           description: >-
             The environment from which this trace originated. Can be any
             lowercase alphanumeric string with hyphens and underscores that does
-            not start with 'langfuse'.
+            not start with 'elasticdash'.
       required:
         - id
         - timestamp
@@ -6649,7 +6649,7 @@ components:
           description: >-
             The environment from which this observation originated. Can be any
             lowercase alphanumeric string with hyphens and underscores that does
-            not start with 'langfuse'.
+            not start with 'elasticdash'.
       required:
         - id
         - type
@@ -6885,7 +6885,7 @@ components:
           description: >-
             The environment from which this score originated. Can be any
             lowercase alphanumeric string with hyphens and underscores that does
-            not start with 'langfuse'.
+            not start with 'elasticdash'.
       required:
         - id
         - traceId
@@ -7047,7 +7047,7 @@ components:
           description: >-
             The environment from which this score originated. Can be any
             lowercase alphanumeric string with hyphens and underscores that does
-            not start with 'langfuse'.
+            not start with 'elasticdash'.
       required:
         - id
         - name
@@ -9336,7 +9336,7 @@ components:
           nullable: true
           description: >-
             Span attributes including Langfuse-specific attributes
-            (langfuse.observation.*)
+            (elasticdash.observation.*)
         status:
           nullable: true
           description: Span status object
@@ -9348,7 +9348,7 @@ components:
         key:
           type: string
           nullable: true
-          description: Attribute key (e.g., "service.name", "langfuse.observation.type")
+          description: Attribute key (e.g., "service.name", "elasticdash.observation.type")
         value:
           $ref: "#/components/schemas/OtelAttributeValue"
           nullable: true
@@ -10447,7 +10447,7 @@ components:
           description: >-
             The environment of the score. Can be any lowercase alphanumeric
             string with hyphens and underscores that does not start with
-            'langfuse'.
+            'elasticdash'.
         queueId:
           type: string
           nullable: true
