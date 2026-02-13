@@ -82,7 +82,7 @@ const TracingSetup = ({
           our SDKs or 50+ framework integrations. Please follow the quickstart
           in the documentation to add Langfuse to your application.
         </p>
-        <ActionButton href="https://langfuse.com/docs/observability/get-started">
+        <ActionButton href="https://www.elasticdash.com/docs/observability/get-started">
           Instrumentation Quickstart
         </ActionButton>
       </div>
@@ -125,7 +125,7 @@ export default function TracesSetupPage() {
         help: {
           description:
             "Setup tracing to track and analyze your LLM calls. You can create API keys and integrate Langfuse with your application.",
-          href: "https://langfuse.com/docs/observability/overview",
+          href: "https://www.elasticdash.com/docs/observability/overview",
         },
       }}
     >

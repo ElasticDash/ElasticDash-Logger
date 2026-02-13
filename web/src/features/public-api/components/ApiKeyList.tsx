@@ -90,8 +90,8 @@ export function ApiKeyList(props: { entityId: string; scope: ApiKeyScope }) {
           description: `Learn more about ${scope} API keys`,
           href:
             scope === "project"
-              ? "https://langfuse.com/docs/api#authentication"
-              : "https://langfuse.com/docs/api#org-scoped-routes",
+              ? "https://www.elasticdash.com/docs/api#authentication"
+              : "https://www.elasticdash.com/docs/api#org-scoped-routes",
         }}
         actionButtons={<CreateApiKeyButton entityId={entityId} scope={scope} />}
       />

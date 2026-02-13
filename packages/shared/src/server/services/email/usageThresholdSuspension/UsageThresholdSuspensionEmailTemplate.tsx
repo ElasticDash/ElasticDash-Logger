@@ -139,7 +139,7 @@ export const UsageThresholdSuspensionEmailTemplate = ({
                 <strong>Startup Program:</strong> Eligible startups get 50% off
                 for their first year.{" "}
                 <a
-                  href="https://langfuse.com/startups"
+                  href="https://www.elasticdash.com/startups"
                   className="text-blue-600 underline"
                 >
                   Learn more →

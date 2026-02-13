@@ -301,7 +301,7 @@ export const ExperimentMetadataSchema = z
   .strict();
 export type ExperimentMetadata = z.infer<typeof ExperimentMetadataSchema>;
 
-// NOTE: Update docs page when changing this! https://langfuse.com/docs/prompt-management/features/playground#openai-playground--anthropic-playground
+// NOTE: Update docs page when changing this! https://www.elasticdash.com/docs/prompt-management/features/playground#openai-playground--anthropic-playground
 // WARNING: The first entry in the array is chosen as the default model to add LLM API keys
 export const openAIModels = [
   "gpt-4.1",
@@ -406,7 +406,7 @@ export const isOpenAIReasoningModel = (model: OpenAIModel): boolean => {
 
 export type OpenAIModel = (typeof openAIModels)[number];
 
-// NOTE: Update docs page when changing this! https://langfuse.com/docs/prompt-management/features/playground#openai-playground--anthropic-playground
+// NOTE: Update docs page when changing this! https://www.elasticdash.com/docs/prompt-management/features/playground#openai-playground--anthropic-playground
 // WARNING: The first entry in the array is chosen as the default model to add LLM API keys
 export const anthropicModels = [
   "claude-sonnet-4-5-20250929",

@@ -651,7 +651,7 @@ export default function ObservationsTable({
       headerTooltip: {
         description:
           "You can differentiate the importance of observations with the level attribute to control the verbosity of your traces and highlight errors and warnings.",
-        href: "https://langfuse.com/docs/observability/features/log-levels",
+        href: "https://www.elasticdash.com/docs/observability/features/log-levels",
       },
       enableHiding: true,
       cell({ row }) {
@@ -678,7 +678,7 @@ export default function ObservationsTable({
       headerTooltip: {
         description:
           "Use a statusMessage to e.g. provide additional information on a status such as level=ERROR.",
-        href: "https://langfuse.com/docs/observability/features/log-levels",
+        href: "https://www.elasticdash.com/docs/observability/features/log-levels",
       },
       enableHiding: true,
       defaultHidden: true,
@@ -848,7 +848,7 @@ export default function ObservationsTable({
       header: "Prompt",
       headerTooltip: {
         description: "Link to prompt version in Langfuse prompt management.",
-        href: "https://langfuse.com/docs/prompt-management/get-started",
+        href: "https://www.elasticdash.com/docs/prompt-management/get-started",
       },
       size: 200,
       enableHiding: true,
@@ -907,7 +907,7 @@ export default function ObservationsTable({
       size: 300,
       headerTooltip: {
         description: "Add metadata to traces to track additional information.",
-        href: "https://langfuse.com/docs/observability/features/metadata",
+        href: "https://www.elasticdash.com/docs/observability/features/metadata",
       },
       cell: ({ row }) => {
         const observationId: string = row.getValue("id");
@@ -1005,7 +1005,7 @@ export default function ObservationsTable({
       size: 100,
       headerTooltip: {
         description: "Track changes via the version tag.",
-        href: "https://langfuse.com/docs/experimentation",
+        href: "https://www.elasticdash.com/docs/experimentation",
       },
       enableHiding: true,
       enableSorting: true,

@@ -80,7 +80,7 @@ export default function BlobStorageIntegrationSettings() {
         actionButtonsRight: (
           <Button asChild variant="secondary">
             <Link
-              href="https://langfuse.com/docs/api-and-data-platform/features/export-to-blob-storage"
+              href="https://www.elasticdash.com/docs/api-and-data-platform/features/export-to-blob-storage"
               target="_blank"
             >
               Integration Docs ↗

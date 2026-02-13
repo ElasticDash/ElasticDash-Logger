@@ -285,7 +285,7 @@ export const PromptDetail = ({
         help: {
           description:
             "You can use this prompt within your application through the Langfuse SDKs and integrations. Refer to the documentation for more information.",
-          href: "https://langfuse.com/docs/prompts",
+          href: "https://www.elasticdash.com/docs/prompts",
         },
         breadcrumb: [
           {
@@ -580,7 +580,7 @@ export const PromptDetail = ({
                 <p className="pl-1 text-xs text-muted-foreground">
                   See{" "}
                   <a
-                    href="https://langfuse.com/docs/prompts"
+                    href="https://www.elasticdash.com/docs/prompts"
                     className="underline"
                     target="_blank"
                     rel="noopener noreferrer"

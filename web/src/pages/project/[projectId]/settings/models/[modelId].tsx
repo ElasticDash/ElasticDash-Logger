@@ -122,7 +122,7 @@ export default function ModelDetailPage() {
         title: model.modelName,
         help: {
           description: "Model configuration and pricing details",
-          href: "https://langfuse.com/docs/model-usage-and-cost",
+          href: "https://www.elasticdash.com/docs/model-usage-and-cost",
         },
         breadcrumb: [
           {

@@ -51,7 +51,7 @@ export function DatasetsOnboarding({ projectId }: { projectId: string }) {
       }}
       secondaryAction={{
         label: "Learn More",
-        href: "https://langfuse.com/docs/datasets",
+        href: "https://www.elasticdash.com/docs/datasets",
       }}
       videoSrc="https://static.langfuse.com/prod-assets/onboarding/datasets-overview-v1.mp4"
     />

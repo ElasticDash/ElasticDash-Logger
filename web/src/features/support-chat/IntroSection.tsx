@@ -30,7 +30,7 @@ export function IntroSection({
   const { isLangfuseCloud } = useLangfuseCloudRegion();
 
   // Note: We previously added an entitlement for in-app support, but removed it for now.
-  //       The issue was that on global routes e.g., https://langfuse.com/setup, the entitlement
+  //       The issue was that on global routes e.g., https://www.elasticdash.com/setup, the entitlement
   //       hook would not have access to an org or project an therefore no plan, always returning
   //       false if asked. However on these pages, the in-app-chat should be available.
   //       Therefore we now check for whether wer are in a cloud deployment instead.
@@ -65,7 +65,7 @@ export function IntroSection({
 
         <RainbowButton asChild>
           <a
-            href="https://langfuse.com/docs/ask-ai"
+            href="https://www.elasticdash.com/docs/ask-ai"
             target="_blank"
             rel="noopener"
           >
@@ -88,7 +88,8 @@ export function IntroSection({
         <Button asChild variant="outline">
           <a
             href={
-              uiCustomization?.documentationHref ?? "https://langfuse.com/docs"
+              uiCustomization?.documentationHref ??
+              "https://www.elasticdash.com/docs"
             }
             target="_blank"
             rel="noopener"
@@ -134,7 +135,7 @@ export function IntroSection({
               <>
                 <Button variant="outline" asChild>
                   <a
-                    href="https://langfuse.com/ideas"
+                    href="https://www.elasticdash.com/ideas"
                     target="_blank"
                     rel="noopener"
                   >
@@ -143,7 +144,7 @@ export function IntroSection({
                 </Button>
                 <Button variant="outline" asChild>
                   <a
-                    href="https://langfuse.com/issues"
+                    href="https://www.elasticdash.com/issues"
                     target="_blank"
                     rel="noopener"
                   >
@@ -189,7 +190,7 @@ export function IntroSection({
             </p>
             <Button variant="outline" asChild>
               <a
-                href="https://langfuse.com/gh-support"
+                href="https://www.elasticdash.com/gh-support"
                 target="_blank"
                 rel="noopener"
               >
@@ -198,7 +199,7 @@ export function IntroSection({
             </Button>
             <Button variant="outline" asChild>
               <a
-                href="https://langfuse.com/ideas"
+                href="https://www.elasticdash.com/ideas"
                 target="_blank"
                 rel="noopener"
               >
@@ -207,7 +208,7 @@ export function IntroSection({
             </Button>
             <Button variant="outline" asChild>
               <a
-                href="https://langfuse.com/issues"
+                href="https://www.elasticdash.com/issues"
                 target="_blank"
                 rel="noopener"
               >
@@ -231,7 +232,7 @@ export function IntroSection({
           <div className="mt-3 grid grid-cols-1 gap-2">
             <Button asChild variant="ghost" className="justify-start px-1.5">
               <a
-                href="https://langfuse.com/gh-support"
+                href="https://www.elasticdash.com/gh-support"
                 target="_blank"
                 rel="noopener"
               >
@@ -240,7 +241,7 @@ export function IntroSection({
             </Button>
             <Button asChild variant="ghost" className="justify-start px-1.5">
               <a
-                href="https://langfuse.com/discord"
+                href="https://www.elasticdash.com/discord"
                 target="_blank"
                 rel="noopener"
                 className="flex items-center"

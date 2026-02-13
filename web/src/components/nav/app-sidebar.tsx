@@ -98,7 +98,7 @@ const DemoBadge = () => {
               variant="cta"
             >
               <Link
-                href="https://langfuse.com/docs/demo"
+                href="https://www.elasticdash.com/docs/demo"
                 target="_blank"
                 rel="noopener noreferrer"
               >

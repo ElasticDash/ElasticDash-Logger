@@ -67,7 +67,7 @@ export default function UsersPage() {
         help: {
           description:
             "Attribute data in Langfuse to a user by adding a userId to your traces. See docs to learn more.",
-          href: "https://langfuse.com/docs/user-explorer",
+          href: "https://www.elasticdash.com/docs/user-explorer",
         },
       }}
       scrollable={showOnboarding}
@@ -220,7 +220,7 @@ const UsersTable = () => {
       headerTooltip: {
         description:
           "The unique identifier for the user that was logged in Langfuse. See docs for more details on how to set this up.",
-        href: "https://langfuse.com/docs/observability/features/users",
+        href: "https://www.elasticdash.com/docs/observability/features/users",
       },
       size: 150,
       cell: ({ row }) => {
@@ -289,7 +289,7 @@ const UsersTable = () => {
       headerTooltip: {
         description:
           "Total number of events for the user, includes traces and observations. See data model for more details.",
-        href: "https://langfuse.com/docs/observability/data-model",
+        href: "https://www.elasticdash.com/docs/observability/data-model",
       },
       size: 120,
       cell: ({ row }) => {
@@ -306,7 +306,7 @@ const UsersTable = () => {
       headerTooltip: {
         description:
           "Total number of tokens used for the user across all generations.",
-        href: "https://langfuse.com/docs/model-usage-and-cost",
+        href: "https://www.elasticdash.com/docs/model-usage-and-cost",
       },
       size: 120,
       cell: ({ row }) => {
@@ -322,7 +322,7 @@ const UsersTable = () => {
       header: "Total Cost",
       headerTooltip: {
         description: "Total cost for the user across all generations.",
-        href: "https://langfuse.com/docs/model-usage-and-cost",
+        href: "https://www.elasticdash.com/docs/model-usage-and-cost",
       },
       size: 120,
       cell: ({ row }) => {

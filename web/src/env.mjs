@@ -53,7 +53,7 @@ export const env = createEnv({
       .optional(),
     SALT: z.string({
       required_error:
-        "A strong Salt is required to encrypt API keys securely. See: https://langfuse.com/self-hosting#deploy-the-container",
+        "A strong Salt is required to encrypt API keys securely. See: https://www.elasticdash.com/self-hosting#deploy-the-container",
     }),
     // Add newly signed up users to default org and/or project with role
     ELASTICDASH_DEFAULT_ORG_ID: z.string().optional(),

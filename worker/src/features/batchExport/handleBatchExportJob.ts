@@ -26,7 +26,7 @@ export const handleBatchExportJob = async (
 ) => {
   if (env.ELASTICDASH_S3_BATCH_EXPORT_ENABLED !== "true") {
     throw new Error(
-      "Batch export is not enabled. Configure environment variables to use this feature. See https://langfuse.com/self-hosting/infrastructure/blobstorage#batch-exports for more details.",
+      "Batch export is not enabled. Configure environment variables to use this feature. See https://www.elasticdash.com/self-hosting/infrastructure/blobstorage#batch-exports for more details.",
     );
   }
 
