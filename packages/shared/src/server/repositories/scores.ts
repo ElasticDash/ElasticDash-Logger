@@ -1164,7 +1164,7 @@ export const deleteScores = async (projectId: string, scoreIds: string[]) => {
       scoreIds,
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DELETION_TIMEOUT_MS,
+      request_timeout: env.ELASTICDASH_CLICKHOUSE_DELETION_TIMEOUT_MS,
     },
     tags: {
       feature: "tracing",
@@ -1225,7 +1225,7 @@ export const deleteScoresByProjectId = async (
     query,
     params: { projectId },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DELETION_TIMEOUT_MS,
+      request_timeout: env.ELASTICDASH_CLICKHOUSE_DELETION_TIMEOUT_MS,
     },
     tags,
   });
@@ -1283,7 +1283,7 @@ export const deleteScoresOlderThanDays = async (
       cutoffDate: convertDateToClickhouseDateTime(beforeDate),
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DELETION_TIMEOUT_MS,
+      request_timeout: env.ELASTICDASH_CLICKHOUSE_DELETION_TIMEOUT_MS,
     },
     tags: {
       feature: "tracing",
@@ -1566,7 +1566,8 @@ export const getScoresForBlobStorageExport = function (
       projectId,
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
+      request_timeout:
+        env.ELASTICDASH_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
     },
   });
 
@@ -1638,7 +1639,8 @@ export const getScoresForAnalyticsIntegrations = async function* (
       projectId,
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
+      request_timeout:
+        env.ELASTICDASH_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
       clickhouse_settings: {
         join_algorithm: "grace_hash",
         grace_hash_join_initial_buckets: "32",

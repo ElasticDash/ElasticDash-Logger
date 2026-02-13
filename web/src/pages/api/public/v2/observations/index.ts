@@ -17,7 +17,7 @@ export default withMiddlewares({
     querySchema: GetObservationsV2Query,
     responseSchema: GetObservationsV2Response,
     fn: async ({ query, auth }) => {
-      if (env.LANGFUSE_ENABLE_EVENTS_TABLE_V2_APIS !== "true") {
+      if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_V2_APIS !== "true") {
         throw new NotImplementedError(
           "v2 APIs are currently in beta and only available on Langfuse Cloud",
         );

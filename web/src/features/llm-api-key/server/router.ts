@@ -137,7 +137,9 @@ export const llmApiKeyRouter = createTRPCRouter({
         });
 
         // Validate that default credentials sentinel is only allowed for Bedrock/VertexAI in self-hosted deployments
-        const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+        const isLangfuseCloud = Boolean(
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
+        );
 
         if (input.secretKey === BEDROCK_USE_DEFAULT_CREDENTIALS) {
           if (isLangfuseCloud || input.adapter !== LLMAdapter.Bedrock) {
@@ -160,7 +162,7 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         if (!env.ENCRYPTION_KEY) {
-          if (env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+          if (env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
             throw new TRPCError({
               code: "INTERNAL_SERVER_ERROR",
               message: "Internal server error",
@@ -444,7 +446,9 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         // Validate that default credentials sentinel is only allowed for Bedrock/VertexAI in self-hosted deployments
-        const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+        const isLangfuseCloud = Boolean(
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
+        );
 
         if (input.secretKey === BEDROCK_USE_DEFAULT_CREDENTIALS) {
           if (isLangfuseCloud || input.adapter !== LLMAdapter.Bedrock) {
