@@ -296,13 +296,13 @@ worker/src/
 
 The shared package provides types, utilities, and server code used by both web and worker packages. It has **5 export paths** that control frontend vs backend access:
 
-| Import Path                                | Usage                | What's Included                                                                    |
-|--------------------------------------------|----------------------|------------------------------------------------------------------------------------|
-| `@langfuse/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
-| `@langfuse/shared/src/db`                  | 🔒 Backend only      | Prisma client instance                                                             |
-| `@langfuse/shared/src/server`              | 🔒 Backend only      | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
-| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only      | API key management (separated to avoid circular deps)                              |
-| `@langfuse/shared/encryption`              | 🔒 Backend only      | Database field encryption/decryption                                               |
+| Import Path                                   | Usage                | What's Included                                                                    |
+|-----------------------------------------------|----------------------|------------------------------------------------------------------------------------|
+| `@elasticdash/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
+| `@elasticdash/shared/src/db`                  | 🔒 Backend only      | Prisma client instance                                                             |
+| `@elasticdash/shared/src/server`              | 🔒 Backend only      | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
+| `@elasticdash/shared/src/server/auth/apiKeys` | 🔒 Backend only      | API key management (separated to avoid circular deps)                              |
+| `@elasticdash/shared/encryption`              | 🔒 Backend only      | Database field encryption/decryption                                               |
 
 **Key Structure:**
 

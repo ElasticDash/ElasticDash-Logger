@@ -9,7 +9,7 @@ This repo contains the web application, worker, and supporting packages but nota
 ## Repository Structure
 High level structure. There are more folders (eg for hooks etc).
 ```
-langfuse/
+elasticdash/
 ├── web/                     # Next.js 14 frontend/backend application
 │   ├── src/
 │   │   ├── components/     # Reusable UI components (shadcn/ui)
@@ -176,7 +176,7 @@ pnpm run nuke              # Remove all node_modules, build files, wipe database
 ## Login for Development
 
 When running locally with seed data:
-- Username: `demo@langfuse.com`
+- Username: `demo@elasticdash.com`
 - Password: `password`
 - Demo project URL: `http://localhost:3000/project/7a88fb47-b4e2-43b8-a06c-a5ce950dc53a`
 

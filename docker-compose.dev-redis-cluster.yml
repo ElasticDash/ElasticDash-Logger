@@ -7,8 +7,8 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse}
     volumes:
-      - langfuse_clickhouse_data:/var/lib/clickhouse
-      - langfuse_clickhouse_logs:/var/log/clickhouse-server
+      - elasticdash_clickhouse_data:/var/lib/clickhouse
+      - elasticdash_clickhouse_logs:/var/log/clickhouse-server
     ports:
       - 127.0.0.1:8123:8123
       - 127.0.0.1:9000:9000
@@ -27,7 +27,7 @@ services:
       - 127.0.0.1:9090:9000
       - 127.0.0.1:9091:9001
     volumes:
-      - langfuse_minio_data:/data
+      - elasticdash_minio_data:/data
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
       interval: 1s
@@ -53,7 +53,7 @@ services:
     ports:
       - 127.0.0.1:5433:5433
     volumes:
-      - langfuse_postgres_data:/var/lib/postgresql/data
+      - elasticdash_postgres_data:/var/lib/postgresql/data
 
   # Redis Cluster. Requires a Unix host to work for network_mode: host. I.e. tests will fail on windows and mac with this setup.
   redis-node-0:
@@ -126,13 +126,13 @@ services:
       REDIS_CLUSTER_CREATOR: yes
 
 volumes:
-  langfuse_postgres_data:
+  elasticdash_postgres_data:
     driver: local
-  langfuse_clickhouse_data:
+  elasticdash_clickhouse_data:
     driver: local
-  langfuse_clickhouse_logs:
+  elasticdash_clickhouse_logs:
     driver: local
-  langfuse_minio_data:
+  elasticdash_minio_data:
     driver: local
   redis-cluster_data-0:
     driver: local

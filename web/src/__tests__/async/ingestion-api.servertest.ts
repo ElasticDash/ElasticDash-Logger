@@ -612,7 +612,7 @@ describe("/api/public/ingestion API Endpoint", () => {
   });
 
   it.each([
-    "langfuse-test",
+    "elasticdash-test",
     ".invalidcharacter!",
     "incrediblylongstringwithmorethan40characters",
   ])(

@@ -40,7 +40,7 @@ import { prisma } from "@elasticdash/shared/src/db";
 const user = await prisma.user.findUnique({ where: { id } });
 ```
 
-**Important**: Always import from `@langfuse/shared/src/db`, not `@prisma/client` directly.
+**Important**: Always import from `@elasticdash/shared/src/db`, not `@prisma/client` directly.
 
 ### Common CRUD Operations
 

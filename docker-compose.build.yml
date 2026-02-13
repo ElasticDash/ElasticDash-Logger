@@ -6,7 +6,7 @@ services:
       context: .
       args:
         - NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION=${NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION}
-    depends_on: &langfuse-depends-on
+    depends_on: &elasticdash-depends-on
       postgres:
         condition: service_healthy
       minio:
@@ -17,7 +17,7 @@ services:
         condition: service_healthy
     ports:
       - "3002:3000"
-    environment: &langfuse-web-env
+    environment: &elasticdash-web-env
       DATABASE_URL: ${DATABASE_URL:-postgresql://postgres:postgres@postgres:5433/postgres}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
       SALT: ${SALT}
@@ -60,18 +60,18 @@ services:
       timeout: 10s
       retries: 3
 
-  langfuse-worker:
+  elasticdash-worker:
     build:
       dockerfile: ./worker/Dockerfile
       context: .
       args:
         - NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION=${NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION}
-    depends_on: *langfuse-depends-on
+    depends_on: *elasticdash-depends-on
     ports:
       - "3030:3030"
     command: ["postgres", "-p", "5433"]
     environment:
-      <<: *langfuse-web-env
+      <<: *elasticdash-web-env
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3030/api/health"]
@@ -87,8 +87,8 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse}
     volumes:
-      - langfuse_clickhouse_data:/var/lib/clickhouse
-      - langfuse_clickhouse_logs:/var/log/clickhouse-server
+      - elasticdash_clickhouse_data:/var/lib/clickhouse
+      - elasticdash_clickhouse_logs:/var/log/clickhouse-server
     ports:
       - "8123:8123"
       - "9000:9000"
@@ -111,7 +111,7 @@ services:
       - "9090:9000"
       - "9091:9001"
     volumes:
-      - langfuse_minio_data:/data
+      - elasticdash_minio_data:/data
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
       interval: 1s
@@ -150,14 +150,14 @@ services:
     ports:
       - 5433:5433
     volumes:
-      - langfuse_postgres_data:/var/lib/postgresql/data
+      - elasticdash_postgres_data:/var/lib/postgresql/data
 
 volumes:
-  langfuse_postgres_data:
+  elasticdash_postgres_data:
     driver: local
-  langfuse_clickhouse_data:
+  elasticdash_clickhouse_data:
     driver: local
-  langfuse_clickhouse_logs:
+  elasticdash_clickhouse_logs:
     driver: local
-  langfuse_minio_data:
+  elasticdash_minio_data:
     driver: local

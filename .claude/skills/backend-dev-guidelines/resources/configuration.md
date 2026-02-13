@@ -38,7 +38,7 @@ Complete guide to managing configuration across Langfuse's monorepo packages.
 Each package has its own `env.ts` or `env.mjs` file that validates and exports environment variables:
 
 ```
-langfuse/
+elasticdash/
 ├── web/src/env.mjs              # Next.js app (t3-env pattern)
 ├── worker/src/env.ts            # Worker service (Zod schema)
 ├── packages/shared/src/env.ts   # Shared config (Zod schema)
@@ -539,7 +539,7 @@ OPTIONAL_VAR=    # Treated as undefined, not empty string
 ## Configuration File Locations
 
 ```
-langfuse/
+elasticdash/
 ├── .env                          # Local development overrides
 ├── .env.dev.example              # Example dev configuration
 ├── web/src/env.mjs               # Web app env validation

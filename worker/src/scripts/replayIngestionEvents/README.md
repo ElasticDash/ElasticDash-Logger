@@ -27,7 +27,7 @@ Or provide your own file. It is expected that it adheres to the following format
 ...
 ```
 
-Make sure to place the csv file as `./worker/events.csv` in the langfuse repo.
+Make sure to place the csv file as `./worker/events.csv` in the elasticdash repo.
 
 ## 2. Connect to your Redis instances from your local machine
 

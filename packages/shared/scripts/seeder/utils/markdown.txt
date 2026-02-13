@@ -12,28 +12,28 @@
 
 ### Prerequisites
 \`\`\`bash  
-npm install @langfuse/core  
-pip install langfuse  
+npm install @elasticdash/core  
+pip install elasticdash  
 \`\`\`
 
 ### Quick Setup
 1. **Initialize your project**
    \`\`\`typescript  
-   import { Langfuse } from 'langfuse'  
+   import { Langfuse } from 'elasticdash'  
 
-   const langfuse = new Langfuse({  
+   const elasticdash = new Langfuse({  
      secretKey: process.env.ELASTICDASH_SECRET_KEY,  
      publicKey: process.env.ELASTICDASH_PUBLIC_KEY,  
-     baseUrl: 'https://cloud.langfuse.com'  
+     baseUrl: 'https://cloud.elasticdash.com'  
    })  
    \`\`\`
 
 2. **Create your first trace**
    \`\`\`python  
-   from langfuse import Langfuse  
+   from elasticdash import Langfuse  
 
-   langfuse = Langfuse()  
-   trace = langfuse.trace(name="chat-application")  
+   elasticdash = Langfuse()  
+   trace = elasticdash.trace(name="chat-application")  
    \`\`\`
 
 ---
@@ -74,7 +74,7 @@ graph TD
 #### Creating Traces
 \`\`\`typescript  
 // Basic trace creation  
-const trace = langfuse.trace({  
+const trace = elasticdash.trace({  
   name: "user-query-processing",  
   userId: "user-123",  
   sessionId: "session-456",  
@@ -109,15 +109,15 @@ const generation = span.generation({
 #### 🔄 Async Processing
 \`\`\`python  
 import asyncio  
-from langfuse import Langfuse  
+from elasticdash import Langfuse  
 
 async def process_batch():  
-    langfuse = Langfuse()  
+    elasticdash = Langfuse()  
 
     tasks = []  
     for item in batch_items:  
         task = asyncio.create_task(  
-            process_item_with_tracing(langfuse, item)  
+            process_item_with_tracing(elasticdash, item)  
         )  
         tasks.append(task)  
 
@@ -210,7 +210,7 @@ for (let i = 0; i < data.length; i += batchSize) {
 }  
 
 // Flush all traces at once  
-await langfuse.flushAsync()  
+await elasticdash.flushAsync()  
 \`\`\`
 
 ---
@@ -221,11 +221,11 @@ await langfuse.flushAsync()
 \`\`\`python
 class MultiAgentTracer:  
     def __init__(self):  
-        self.langfuse = Langfuse()  
+        self.elasticdash = Langfuse()  
 
     async def orchestrate_agents(self, task):  
         # Main orchestration trace  
-        main_trace = self.langfuse.trace(  
+        main_trace = self.elasticdash.trace(  
             name="multi-agent-orchestration",  
             input={"task": task}  
         )  
@@ -261,6 +261,6 @@ With proper implementation of Langfuse tracing, you can:
 - ✅ **Scale** your applications with confidence
 
 ### Next Steps
-1. Review the [official documentation](https://langfuse.com/docs)
-2. Join our [Discord community](https://discord.gg/langfuse)
-3. Check out [example projects](https://github.com/langfuse/langfuse)
+1. Review the [official documentation](https://elasticdash.com/docs)
+2. Join our [Discord community](https://discord.gg/elasticdash)
+3. Check out [example projects](https://github.com/elasticdash/elasticdash)

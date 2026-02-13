@@ -186,13 +186,13 @@ shared/src/
 
 The shared package exposes specific import paths for different use cases:
 
-| Import Path                                | Maps To                           | Use For                                                         |
-| ------------------------------------------ | --------------------------------- | --------------------------------------------------------------- |
-| `@langfuse/shared`                         | `dist/src/index.js`               | General types, schemas, utilities, constants                    |
-| `@langfuse/shared/src/db`                  | `dist/src/db.js`                  | Prisma client and database types                                |
-| `@langfuse/shared/src/server`              | `dist/src/server/index.js`        | Server-side utilities (queues, auth, services, instrumentation) |
-| `@langfuse/shared/src/server/auth/apiKeys` | `dist/src/server/auth/apiKeys.js` | API key management utilities                                    |
-| `@langfuse/shared/encryption`              | `dist/src/encryption/index.js`    | Encryption and signature utilities                              |
+| Import Path                                   | Maps To                           | Use For                                                         |
+| --------------------------------------------- | --------------------------------- | --------------------------------------------------------------- |
+| `@elasticdash/shared`                         | `dist/src/index.js`               | General types, schemas, utilities, constants                    |
+| `@elasticdash/shared/src/db`                  | `dist/src/db.js`                  | Prisma client and database types                                |
+| `@elasticdash/shared/src/server`              | `dist/src/server/index.js`        | Server-side utilities (queues, auth, services, instrumentation) |
+| `@elasticdash/shared/src/server/auth/apiKeys` | `dist/src/server/auth/apiKeys.js` | API key management utilities                                    |
+| `@elasticdash/shared/encryption`              | `dist/src/encryption/index.js`    | Encryption and signature utilities                              |
 
 **Usage Examples:**
 
@@ -236,13 +236,13 @@ import { encrypt, decrypt, sign, verify } from "@elasticdash/shared/encryption";
 
 The shared package provides types, utilities, and server code used by both web and worker packages. It has **5 export paths** that control frontend vs backend access:
 
-| Import Path                                | Usage                 | What's Included                                                                    |
-| ------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
-| `@langfuse/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
-| `@langfuse/shared/src/db`                  | 🔒 Backend only       | Prisma client instance                                                             |
-| `@langfuse/shared/src/server`              | 🔒 Backend only       | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
-| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only       | API key management (separated to avoid circular deps)                              |
-| `@langfuse/shared/encryption`              | 🔒 Backend only       | Database field encryption/decryption                                               |
+| Import Path                                   | Usage                 | What's Included                                                                    |
+| --------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------- |
+| `@elasticdash/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
+| `@elasticdash/shared/src/db`                  | 🔒 Backend only       | Prisma client instance                                                             |
+| `@elasticdash/shared/src/server`              | 🔒 Backend only       | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
+| `@elasticdash/shared/src/server/auth/apiKeys` | 🔒 Backend only       | API key management (separated to avoid circular deps)                              |
+| `@elasticdash/shared/encryption`              | 🔒 Backend only       | Database field encryption/decryption                                               |
 
 **Naming Conventions:**
 
