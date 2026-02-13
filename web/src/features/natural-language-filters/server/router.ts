@@ -79,9 +79,8 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           env.ELASTICDASH_AI_FEATURES_HOST,
         );
 
-        const promptResponse = await client.getPrompt(
+        const promptResponse = await client.prompt.get(
           "get-filter-conditions-from-query",
-          undefined,
           { type: "chat" },
         );
 

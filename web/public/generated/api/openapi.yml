@@ -7421,7 +7421,7 @@ components:
           description: >-
             Optional. Configuration for the selected tokenizer. Needs to be
             JSON. See docs for more details.
-        isLangfuseManaged:
+        isElasticDashManaged:
           type: boolean
         createdAt:
           type: string
@@ -7471,7 +7471,7 @@ components:
         - modelName
         - matchPattern
         - tokenizerConfig
-        - isLangfuseManaged
+        - isElasticDashManaged
         - createdAt
         - prices
         - pricingTiers

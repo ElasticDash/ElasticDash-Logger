@@ -132,7 +132,7 @@ describe("/models API Endpoints", () => {
     expect(models.status).toBe(200);
     expect(models.body.data.length).toBe(2);
     expect(models.body.data[0]).toMatchObject({
-      isLangfuseManaged: true,
+      isElasticDashManaged: true,
       modelName: "gpt-3.5-turbo",
       prices: {
         input: { price: 0.001 },
@@ -176,7 +176,7 @@ describe("/models API Endpoints", () => {
       },
       auth,
     );
-    expect(customModel.body.isLangfuseManaged).toBe(false);
+    expect(customModel.body.isElasticDashManaged).toBe(false);
     expect(customModel.body.prices).toMatchObject({
       input: { price: 0.002 },
       output: { price: 0.004 },
@@ -207,7 +207,7 @@ describe("/models API Endpoints", () => {
       outputPrice: 0.004,
       unit: "TOKENS",
       tokenizerConfig: { tokensPerMessage: 3, tokensPerName: 1 },
-      isLangfuseManaged: false,
+      isElasticDashManaged: false,
       prices: {
         input: { price: 0.002 },
         output: { price: 0.004 },

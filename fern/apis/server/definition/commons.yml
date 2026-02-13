@@ -542,7 +542,7 @@ types:
       tokenizerConfig:
         docs: Optional. Configuration for the selected tokenizer. Needs to be JSON. See docs for more details.
         type: unknown
-      isLangfuseManaged:
+      isElasticDashManaged:
         type: boolean
       createdAt:
         docs: Timestamp when the model was created

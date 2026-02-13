@@ -1,4 +1,4 @@
-export enum LangfuseOtelSpanAttributes {
+export enum ElasticDashOtelSpanAttributes {
   // Langfuse-Trace attributes
   TRACE_NAME = "langfuse.trace.name",
   TRACE_USER_ID = "user.id",

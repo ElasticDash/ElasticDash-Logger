@@ -1,4 +1,4 @@
-![Langfuse GitHub Banner](https://elasticdash.com/images/docs/github-readme/github-banner.png)
+![ElasticDash GitHub Banner](https://elasticdash.com/images/docs/github-readme/github-banner.png)
 
 <div align="center">
    <div>
@@ -7,7 +7,7 @@
             <strong>🇯🇵 🤝 🪢</strong>
          </a> · 
          <a href="https://cloud.elasticdash.com">
-            <strong>Langfuse Cloud</strong>
+            <strong>ElasticDash Cloud</strong>
          </a> · 
          <a href="https://elasticdash.com/docs/deployment/self-host">
             <strong>セルフホスティング</strong>
@@ -26,7 +26,7 @@
       <a href="https://elasticdash.com/roadmap"><strong>ロードマップ</strong></a> ·
    </div>
    <br/>
-   <span>Langfuseは、サポートと機能リクエストのために <a href="https://github.com/orgs/elasticdash/discussions"><strong>GitHub Discussions</strong></a> を利用しています。</span>
+   <span>ElasticDashは、サポートと機能リクエストのために <a href="https://github.com/orgs/elasticdash/discussions"><strong>GitHub Discussions</strong></a> を利用しています。</span>
    <br/>
    <span><b>We're hiring.</b> <a href="https://elasticdash.com/careers"><strong>チームに加わる</strong></a> （製品エンジニアリングおよびテクニカルGTMのポジション）への応募をお待ちしています。</span>
    <br/>
@@ -69,18 +69,18 @@
   <a href="./README.kr.md"><img alt="README in Korean" src="https://img.shields.io/badge/한국어-d9d9d9"></a>
 </p>
 
-Langfuseは**オープンソースのLLMエンジニアリング**プラットフォームです。  
+ElasticDashは**オープンソースのLLMエンジニアリング**プラットフォームです。  
 チームが共同でAIアプリケーションを**開発、監視、評価**、および**デバッグ**するのを支援します。  
-Langfuseは**数分でセルフホスト可能**で、**多くの実績を持つ**システムです。
+ElasticDashは**数分でセルフホスト可能**で、**多くの実績を持つ**システムです。
 
-[![Langfuse Overview Video](https://github.com/user-attachments/assets/3926b288-ff61-4b95-8aa1-45d041c70866)](https://elasticdash.com/watch-demo)
+[![ElasticDash Overview Video](https://github.com/user-attachments/assets/3926b288-ff61-4b95-8aa1-45d041c70866)](https://elasticdash.com/watch-demo)
 
 ## ✨ コア機能
 
-![Langfuse Overview](https://elasticdash.com/images/docs/github-readme/github-feature-overview.png)
+![ElasticDash Overview](https://elasticdash.com/images/docs/github-readme/github-feature-overview.png)
 
 - **[LLMアプリケーションの可観測性](https://elasticdash.com/docs/tracing):**  
-  アプリケーションにインストゥルメンテーションを導入し、Langfuseへトレースを取り込むことで、LLM呼び出しやリトリーバル、埋め込み、エージェントアクションなどの関連ロジックを追跡できます。  
+  アプリケーションにインストゥルメンテーションを導入し、ElasticDashへトレースを取り込むことで、LLM呼び出しやリトリーバル、埋め込み、エージェントアクションなどの関連ロジックを追跡できます。  
   複雑なログやユーザーセッションを解析・デバッグできます。  
   インタラクティブな[デモ](https://elasticdash.com/docs/demo)で動作を確認してください。
 
@@ -89,7 +89,7 @@ Langfuseは**数分でセルフホスト可能**で、**多くの実績を持つ
   サーバーおよびクライアント側で強力なキャッシングを行うため、アプリケーションのレイテンシを増やすことなくプロンプトの改良が可能です。
 
 - **[評価](https://elasticdash.com/docs/evaluation/overview):**  
-  評価はLLMアプリケーション開発ワークフローの要であり、Langfuseは多様なニーズに対応します。  
+  評価はLLMアプリケーション開発ワークフローの要であり、ElasticDashは多様なニーズに対応します。  
   LLMを判定者として用いる方法、ユーザーフィードバックの収集、手動によるラベリング、API/SDKを通じたカスタム評価パイプラインをサポートします。
 
 - **[データセット](https://elasticdash.com/docs/evaluation/dataset-runs/datasets):**  
@@ -101,45 +101,45 @@ Langfuseは**数分でセルフホスト可能**で、**多くの実績を持つ
   トレースで不具合が見つかった場合、直接プレイグラウンドへ飛び、迅速に改善できます。
 
 - **[包括的なAPI](https://elasticdash.com/docs/api):**  
-  LangfuseはAPIを通じて提供されるビルディングブロックを用い、カスタムLLMOpsワークフローの基盤として頻繁に利用されます。  
+  ElasticDashはAPIを通じて提供されるビルディングブロックを用い、カスタムLLMOpsワークフローの基盤として頻繁に利用されます。  
   OpenAPI仕様、Postmanコレクション、PythonやJS/TS向けの型付きSDKが利用可能です。
 
-## 📦 Langfuseのデプロイ
+## 📦 ElasticDashのデプロイ
 
-![Langfuse Deployment Options](https://elasticdash.com/images/docs/github-readme/github-deployment-options.png)
+![ElasticDash Deployment Options](https://elasticdash.com/images/docs/github-readme/github-deployment-options.png)
 
-### Langfuse Cloud
+### ElasticDash Cloud
 
-Langfuseチームによるマネージドデプロイメント。充実した無料プラン（ホビープラン）で、クレジットカード不要です。
+ElasticDashチームによるマネージドデプロイメント。充実した無料プラン（ホビープラン）で、クレジットカード不要です。
 
 <div align="center">
     <a href="https://cloud.elasticdash.com" target="_blank">
-        <img alt="Static Badge" src="https://img.shields.io/badge/»%20Sign%20up%20for%20Langfuse%20Cloud-8A2BE2?&color=orange">
+        <img alt="Static Badge" src="https://img.shields.io/badge/»%20Sign%20up%20for%20ElasticDash%20Cloud-8A2BE2?&color=orange">
     </a>
 </div>
 
-### セルフホスティング Langfuse
+### セルフホスティング ElasticDash
 
-自身のインフラ上でLangfuseを実行できます:
+自身のインフラ上でElasticDashを実行できます:
 
 - **[Local (docker compose)](https://elasticdash.com/self-hosting/local):**  
-  Docker Composeを使用して、たった5分で自分のマシン上でLangfuseを実行できます.
+  Docker Composeを使用して、たった5分で自分のマシン上でElasticDashを実行できます.
 
   ```bash
-  # 最新のLangfuseリポジトリのコピーを取得
+  # 最新のElasticDashリポジトリのコピーを取得
   git clone https://github.com/elasticdash/elasticdash.git
   cd elasticdash
 
-  # Langfuseのdocker composeを起動
+  # ElasticDashのdocker composeを起動
   docker compose up
   ```
 
 - **[Kubernetes (Helm)](https://elasticdash.com/self-hosting/kubernetes-helm):**  
-  Helmを使用してKubernetesクラスター上でLangfuseを実行します。  
+  Helmを使用してKubernetesクラスター上でElasticDashを実行します。  
   こちらが推奨される本番環境でのデプロイ方法です。
 
 - **[VM](https://elasticdash.com/self-hosting/docker-compose):**  
-  Docker Composeを使用して、単一の仮想マシン上でLangfuseを実行します。
+  Docker Composeを使用して、単一の仮想マシン上でElasticDashを実行します。
 
 - Terraform テンプレート: [AWS](https://elasticdash.com/self-hosting/aws), [Azure](https://elasticdash.com/self-hosting/azure), [GCP](https://elasticdash.com/self-hosting/gcp)
 
@@ -147,7 +147,7 @@ Langfuseチームによるマネージドデプロイメント。充実した無
 
 ## 🔌 インテグレーション
 
-![Langfuse Integrations](https://elasticdash.com/images/docs/github-readme/github-integrations.png)
+![ElasticDash Integrations](https://elasticdash.com/images/docs/github-readme/github-integrations.png)
 
 ### 主なインテグレーション:
 
@@ -162,7 +162,7 @@ Langfuseチームによるマネージドデプロイメント。充実した無
 | [Vercel AI SDK](https://elasticdash.com/docs/integrations/vercel-ai-sdk)        | JS/TS                      | React、Next.js、Vue、Svelte、Node.jsを使用してAI搭載アプリケーションの構築を支援するTypeScriptツールキットです。                                         |
 | [API](https://elasticdash.com/docs/api)                                         |                            | 公開APIを直接呼び出すことが可能です。OpenAPI仕様も利用できます。                                                                            |
 
-### Langfuseと統合されているパッケージ:
+### ElasticDashと統合されているパッケージ:
 
 | 名前                                                                                     | タイプ            | 説明                                                           |
 |------------------------------------------------------------------------------------------|----------------|----------------------------------------------------------------|
@@ -188,19 +188,19 @@ Langfuseチームによるマネージドデプロイメント。充実した無
 
 ## 🚀 クイックスタート
 
-アプリケーションにインストゥルメンテーションを導入し、LLM呼び出しやリトリーバル、埋め込み、エージェントアクションなどの動作をLangfuseに記録しましょう。  
+アプリケーションにインストゥルメンテーションを導入し、LLM呼び出しやリトリーバル、埋め込み、エージェントアクションなどの動作をElasticDashに記録しましょう。  
 複雑なログやユーザーセッションの解析・デバッグが可能になります。
 
 ### 1️⃣ 新規プロジェクトの作成
 
-1. [Langfuseアカウント作成](https://cloud.elasticdash.com/auth/sign-up) または [セルフホスト](https://elasticdash.com/self-hosting)
+1. [ElasticDashアカウント作成](https://cloud.elasticdash.com/auth/sign-up) または [セルフホスト](https://elasticdash.com/self-hosting)
 2. 新規プロジェクトを作成
 3. プロジェクト設定で新しいAPIクレデンシャルを作成
 
 ### 2️⃣ 初めてのLLM呼び出しのログ記録
 
 [`@observe()` デコレーター](https://elasticdash.com/docs/sdk/python/decorators)を利用することで、任意のPython製LLMアプリケーションのトレースが簡単に行えます。  
-このクイックスタートでは、Langfuseの[OpenAI統合](https://elasticdash.com/integrations/model-providers/openai-py)を使用して、全てのモデルパラメータを自動で取得します。
+このクイックスタートでは、ElasticDashの[OpenAI統合](https://elasticdash.com/integrations/model-providers/openai-py)を使用して、全てのモデルパラメータを自動で取得します。
 
 > [!TIP]
 > OpenAIを利用していない場合は、[こちらのドキュメント](https://elasticdash.com/docs/get-started#log-your-first-llm-call-to-elasticdash)で、他のモデルやフレームワークのログ記録方法をご確認ください。
@@ -224,7 +224,7 @@ from elasticdash.openai import openai  # OpenAI統合
 def story():
     return openai.chat.completions.create(
         model="gpt-4o",
-        messages=[{"role": "user", "content": "What is Langfuse?"}],
+        messages=[{"role": "user", "content": "What is ElasticDash?"}],
     ).choices[0].message.content
 
 @observe()
@@ -234,19 +234,19 @@ def main():
 main()
 ```
 
-### 3️⃣ Langfuseでトレースを確認する
+### 3️⃣ ElasticDashでトレースを確認する
 
-Langfuse上で、LLM呼び出しおよびその他のアプリケーションロジックのトレースを確認できます。
+ElasticDash上で、LLM呼び出しおよびその他のアプリケーションロジックのトレースを確認できます。
 
-![Example trace in Langfuse](https://elasticdash.com/images/docs/github-readme/github-example-trace.png)
+![Example trace in ElasticDash](https://elasticdash.com/images/docs/github-readme/github-example-trace.png)
 
-_[Langfuseの公開トレース例](https://cloud.elasticdash.com/project/cloramnkj0002jz088vzn1ja4/traces/2cec01e3-3dc2-472f-afcf-3b968cf0c1f4?timestamp=2025-02-10T14%3A27%3A30.275Z&observation=cb5ff844-07ef-41e6-b8e2-6c64344bc13b)_
+_[ElasticDashの公開トレース例](https://cloud.elasticdash.com/project/cloramnkj0002jz088vzn1ja4/traces/2cec01e3-3dc2-472f-afcf-3b968cf0c1f4?timestamp=2025-02-10T14%3A27%3A30.275Z&observation=cb5ff844-07ef-41e6-b8e2-6c64344bc13b)_
 
 > [!TIP]
 >
-> Langfuseでのトレースの詳細については、[こちら](https://elasticdash.com/docs/tracing)をご参照いただくか、[インタラクティブデモ](https://elasticdash.com/docs/demo)でお試しください。
+> ElasticDashでのトレースの詳細については、[こちら](https://elasticdash.com/docs/tracing)をご参照いただくか、[インタラクティブデモ](https://elasticdash.com/docs/demo)でお試しください。
 
-## ⭐️ Star Langfuse
+## ⭐️ Star ElasticDash
 
 ![star-elasticdash-on-github](https://github.com/user-attachments/assets/79a1d816-d229-4526-aecc-097d4a19f1ad)
 
@@ -255,7 +255,7 @@ _[Langfuseの公開トレース例](https://cloud.elasticdash.com/project/cloram
 質問の回答をお探しの場合は:
 
 - 当社の[ドキュメント](https://elasticdash.com/docs)は、回答を探すための最良の出発点です。内容が充実しており、継続的なメンテナンスに努めています。GitHubを通じてドキュメントへの修正提案も可能です。
-- よくある質問は[Langfuse FAQ](https://elasticdash.com/faq)にまとめられています。
+- よくある質問は[ElasticDash FAQ](https://elasticdash.com/faq)にまとめられています。
 - [Ask AI](https://elasticdash.com/docs/ask-ai)を利用すれば、質問に対して即座に回答を得ることができます。
 - 日本語のサポートや決済, 請求書払いなどをお求めの場合は、日本のリセラー (https://gao-ai.com) にご相談ください。
 
@@ -290,9 +290,9 @@ _[Langfuseの公開トレース例](https://cloud.elasticdash.com/project/cloram
  </picture>
 </a>
 
-## ❤️ Langfuseを利用しているオープンソースプロジェクト
+## ❤️ ElasticDashを利用しているオープンソースプロジェクト
 
-Langfuseを利用している主要なオープンソースPythonプロジェクト（スター数順）: ([出典](https://github.com/elasticdash/elasticdash-docs/blob/main/components-mdx/dependents))
+ElasticDashを利用している主要なオープンソースPythonプロジェクト（スター数順）: ([出典](https://github.com/elasticdash/elasticdash-docs/blob/main/components-mdx/dependents))
 
 | リポジトリ                                                                                                                                                                                                                                                               |   スター |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------:|
@@ -348,9 +348,9 @@ Langfuseを利用している主要なオープンソースPythonプロジェク
 
 ### テレメトリー
 
-デフォルトでは、Langfuseは以下の目的でセルフホストされたインスタンスの基本的な使用統計情報を中央サーバ（PostHog）へ自動的に報告します。
+デフォルトでは、ElasticDashは以下の目的でセルフホストされたインスタンスの基本的な使用統計情報を中央サーバ（PostHog）へ自動的に報告します。
 
-1. Langfuseの利用状況を把握し、最も重要な機能の改善に役立てる
+1. ElasticDashの利用状況を把握し、最も重要な機能の改善に役立てる
 2. 内部および外部（例：資金調達）のレポートのために全体の利用状況を追跡する
 
 収集されたデータは第三者と共有されず、機微な情報は一切含まれていません。  

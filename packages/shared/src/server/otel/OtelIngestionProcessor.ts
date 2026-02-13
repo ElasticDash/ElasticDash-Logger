@@ -20,7 +20,7 @@ import {
   UsageDetails,
 } from "../";
 
-import { LangfuseOtelSpanAttributes } from "./attributes";
+import { ElasticDashOtelSpanAttributes } from "./attributes";
 import { ObservationTypeMapperRegistry } from "./ObservationTypeMapper";
 import { env } from "../../env";
 import { OtelIngestionQueue } from "../redis/otelIngestionQueue";
@@ -306,7 +306,7 @@ export class OtelIngestionProcessor {
                     resourceAttributes,
                   ),
                   version:
-                    spanAttributes?.[LangfuseOtelSpanAttributes.VERSION] ??
+                    spanAttributes?.[ElasticDashOtelSpanAttributes.VERSION] ??
                     resourceAttributes?.["service.version"] ??
                     null,
 
@@ -315,28 +315,28 @@ export class OtelIngestionProcessor {
 
                   level:
                     spanAttributes[
-                      LangfuseOtelSpanAttributes.OBSERVATION_LEVEL
+                      ElasticDashOtelSpanAttributes.OBSERVATION_LEVEL
                     ] ??
                     (span.status?.code === 2
                       ? ObservationLevel.ERROR
                       : ObservationLevel.DEFAULT),
                   statusMessage:
                     spanAttributes[
-                      LangfuseOtelSpanAttributes.OBSERVATION_STATUS_MESSAGE
+                      ElasticDashOtelSpanAttributes.OBSERVATION_STATUS_MESSAGE
                     ] ??
                     span.status?.message ??
                     null,
 
                   promptName:
                     spanAttributes?.[
-                      LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_NAME
+                      ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_NAME
                     ] ??
                     spanAttributes["langfuse.prompt.name"] ??
                     this.parseLangfusePromptFromAISDK(spanAttributes)?.name ??
                     null,
                   promptVersion:
                     spanAttributes?.[
-                      LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_VERSION
+                      ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_VERSION
                     ] ??
                     spanAttributes["langfuse.prompt.version"] ??
                     this.parseLangfusePromptFromAISDK(spanAttributes)
@@ -363,8 +363,9 @@ export class OtelIngestionProcessor {
                   tags: this.extractTags(spanAttributes),
                   public: this.extractPublic(spanAttributes),
                   traceName:
-                    spanAttributes?.[LangfuseOtelSpanAttributes.TRACE_NAME] ??
-                    null,
+                    spanAttributes?.[
+                      ElasticDashOtelSpanAttributes.TRACE_NAME
+                    ] ?? null,
                   userId: this.extractUserId(spanAttributes),
                   sessionId: this.extractSessionId(spanAttributes),
 
@@ -666,7 +667,7 @@ export class OtelIngestionProcessor {
 
     const isRootSpan =
       !parentObservationId ||
-      String(attributes[LangfuseOtelSpanAttributes.AS_ROOT]) === "true";
+      String(attributes[ElasticDashOtelSpanAttributes.AS_ROOT]) === "true";
 
     const hasTraceUpdates = this.hasTraceUpdates(attributes);
 
@@ -749,7 +750,7 @@ export class OtelIngestionProcessor {
       trace = {
         ...trace,
         name:
-          (attributes[LangfuseOtelSpanAttributes.TRACE_NAME] as string) ??
+          (attributes[ElasticDashOtelSpanAttributes.TRACE_NAME] as string) ??
           this.extractName(span.name, attributes),
         metadata: {
           ...resourceAttributeMetadata,
@@ -763,12 +764,12 @@ export class OtelIngestionProcessor {
           },
         } as Record<string, string | Record<string, string | number>>,
         version:
-          (attributes?.[LangfuseOtelSpanAttributes.VERSION] as string) ??
+          (attributes?.[ElasticDashOtelSpanAttributes.VERSION] as string) ??
           resourceAttributes?.["service.version"] ??
           null,
         release:
-          (attributes?.[LangfuseOtelSpanAttributes.RELEASE] as string) ??
-          resourceAttributes?.[LangfuseOtelSpanAttributes.RELEASE] ??
+          (attributes?.[ElasticDashOtelSpanAttributes.RELEASE] as string) ??
+          resourceAttributes?.[ElasticDashOtelSpanAttributes.RELEASE] ??
           null,
         userId: this.extractUserId(attributes),
         sessionId: this.extractSessionId(attributes),
@@ -783,7 +784,7 @@ export class OtelIngestionProcessor {
     if (hasTraceUpdates && !isRootSpan) {
       trace = {
         ...trace,
-        name: attributes[LangfuseOtelSpanAttributes.TRACE_NAME] as string,
+        name: attributes[ElasticDashOtelSpanAttributes.TRACE_NAME] as string,
         metadata: {
           ...resourceAttributeMetadata,
           ...this.extractMetadata(attributes, "trace"),
@@ -798,20 +799,20 @@ export class OtelIngestionProcessor {
           },
         } as Record<string, string | Record<string, string | number>>,
         version:
-          (attributes?.[LangfuseOtelSpanAttributes.VERSION] as string) ??
+          (attributes?.[ElasticDashOtelSpanAttributes.VERSION] as string) ??
           resourceAttributes?.["service.version"] ??
           null,
         release:
-          (attributes?.[LangfuseOtelSpanAttributes.RELEASE] as string) ??
-          resourceAttributes?.[LangfuseOtelSpanAttributes.RELEASE] ??
+          (attributes?.[ElasticDashOtelSpanAttributes.RELEASE] as string) ??
+          resourceAttributes?.[ElasticDashOtelSpanAttributes.RELEASE] ??
           null,
         userId: this.extractUserId(attributes),
         sessionId: this.extractSessionId(attributes),
         public: this.extractPublic(attributes),
         tags: this.extractTags(attributes),
         environment: this.extractEnvironment(attributes, resourceAttributes),
-        input: attributes[LangfuseOtelSpanAttributes.TRACE_INPUT],
-        output: attributes[LangfuseOtelSpanAttributes.TRACE_OUTPUT],
+        input: attributes[ElasticDashOtelSpanAttributes.TRACE_INPUT],
+        output: attributes[ElasticDashOtelSpanAttributes.TRACE_OUTPUT],
       };
     }
 
@@ -835,7 +836,7 @@ export class OtelIngestionProcessor {
     attributes?: Record<string, unknown>,
   ): boolean | undefined {
     const value =
-      attributes?.[LangfuseOtelSpanAttributes.TRACE_PUBLIC] ??
+      attributes?.[ElasticDashOtelSpanAttributes.TRACE_PUBLIC] ??
       attributes?.["langfuse.public"];
 
     if (value == null) return;
@@ -889,16 +890,16 @@ export class OtelIngestionProcessor {
         scope: { ...scopeSpan.scope, attributes: scopeAttributes },
       },
       level:
-        attributes[LangfuseOtelSpanAttributes.OBSERVATION_LEVEL] ??
+        attributes[ElasticDashOtelSpanAttributes.OBSERVATION_LEVEL] ??
         (span.status?.code === 2
           ? ObservationLevel.ERROR
           : ObservationLevel.DEFAULT),
       statusMessage:
-        attributes[LangfuseOtelSpanAttributes.OBSERVATION_STATUS_MESSAGE] ??
+        attributes[ElasticDashOtelSpanAttributes.OBSERVATION_STATUS_MESSAGE] ??
         span.status?.message ??
         null,
       version:
-        attributes[LangfuseOtelSpanAttributes.VERSION] ??
+        attributes[ElasticDashOtelSpanAttributes.VERSION] ??
         resourceAttributes?.["service.version"] ??
         null,
       modelParameters: this.extractModelParameters(
@@ -907,12 +908,14 @@ export class OtelIngestionProcessor {
       ) as any,
       model: this.extractModelName(attributes),
       promptName:
-        attributes?.[LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_NAME] ??
+        attributes?.[ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_NAME] ??
         attributes["langfuse.prompt.name"] ??
         this.parseLangfusePromptFromAISDK(attributes)?.name ??
         null,
       promptVersion:
-        attributes?.[LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_VERSION] ??
+        attributes?.[
+          ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_VERSION
+        ] ??
         attributes["langfuse.prompt.version"] ??
         this.parseLangfusePromptFromAISDK(attributes)?.version ??
         null,
@@ -956,23 +959,23 @@ export class OtelIngestionProcessor {
 
   private hasTraceUpdates(attributes: Record<string, unknown>): boolean {
     const hasExactMatchingAttributeName = [
-      LangfuseOtelSpanAttributes.TRACE_NAME,
-      LangfuseOtelSpanAttributes.TRACE_INPUT,
-      LangfuseOtelSpanAttributes.TRACE_OUTPUT,
-      LangfuseOtelSpanAttributes.TRACE_METADATA,
-      LangfuseOtelSpanAttributes.TRACE_USER_ID,
-      LangfuseOtelSpanAttributes.TRACE_SESSION_ID,
-      LangfuseOtelSpanAttributes.TRACE_PUBLIC,
-      LangfuseOtelSpanAttributes.TRACE_TAGS,
-      LangfuseOtelSpanAttributes.TRACE_COMPAT_USER_ID,
-      LangfuseOtelSpanAttributes.TRACE_COMPAT_SESSION_ID,
+      ElasticDashOtelSpanAttributes.TRACE_NAME,
+      ElasticDashOtelSpanAttributes.TRACE_INPUT,
+      ElasticDashOtelSpanAttributes.TRACE_OUTPUT,
+      ElasticDashOtelSpanAttributes.TRACE_METADATA,
+      ElasticDashOtelSpanAttributes.TRACE_USER_ID,
+      ElasticDashOtelSpanAttributes.TRACE_SESSION_ID,
+      ElasticDashOtelSpanAttributes.TRACE_PUBLIC,
+      ElasticDashOtelSpanAttributes.TRACE_TAGS,
+      ElasticDashOtelSpanAttributes.TRACE_COMPAT_USER_ID,
+      ElasticDashOtelSpanAttributes.TRACE_COMPAT_SESSION_ID,
       // OpenAI and Langchain integrations
-      `${LangfuseOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_user_id`,
-      `${LangfuseOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_session_id`,
-      `${LangfuseOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_tags`,
-      `${LangfuseOtelSpanAttributes.TRACE_METADATA}.langfuse_session_id`,
-      `${LangfuseOtelSpanAttributes.TRACE_METADATA}.langfuse_user_id`,
-      `${LangfuseOtelSpanAttributes.TRACE_METADATA}.langfuse_tags`,
+      `${ElasticDashOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_user_id`,
+      `${ElasticDashOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_session_id`,
+      `${ElasticDashOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_tags`,
+      `${ElasticDashOtelSpanAttributes.TRACE_METADATA}.langfuse_session_id`,
+      `${ElasticDashOtelSpanAttributes.TRACE_METADATA}.langfuse_user_id`,
+      `${ElasticDashOtelSpanAttributes.TRACE_METADATA}.langfuse_tags`,
       // Vercel AI SDK
       `ai.telemetry.metadata.sessionId`,
       `ai.telemetry.metadata.userId`,
@@ -983,7 +986,7 @@ export class OtelIngestionProcessor {
 
     const attributeKeys = Object.keys(attributes);
     const hasTraceMetadataKey = attributeKeys.some((key) =>
-      key.startsWith(LangfuseOtelSpanAttributes.TRACE_METADATA),
+      key.startsWith(ElasticDashOtelSpanAttributes.TRACE_METADATA),
     );
 
     return hasExactMatchingAttributeName || hasTraceMetadataKey;
@@ -1151,10 +1154,10 @@ export class OtelIngestionProcessor {
     // This ensures that if multiple frameworks' attributes are present, they're all filtered
     const potentialInputOutputKeys = [
       // Langfuse SDK
-      LangfuseOtelSpanAttributes.TRACE_INPUT,
-      LangfuseOtelSpanAttributes.TRACE_OUTPUT,
-      LangfuseOtelSpanAttributes.OBSERVATION_INPUT,
-      LangfuseOtelSpanAttributes.OBSERVATION_OUTPUT,
+      ElasticDashOtelSpanAttributes.TRACE_INPUT,
+      ElasticDashOtelSpanAttributes.TRACE_OUTPUT,
+      ElasticDashOtelSpanAttributes.OBSERVATION_INPUT,
+      ElasticDashOtelSpanAttributes.OBSERVATION_OUTPUT,
       // Vercel AI SDK
       "ai.prompt.messages",
       "ai.prompt",
@@ -1231,12 +1234,12 @@ export class OtelIngestionProcessor {
     // Langfuse - use correct attribute based on domain
     input =
       domain === "trace"
-        ? attributes[LangfuseOtelSpanAttributes.TRACE_INPUT]
-        : attributes[LangfuseOtelSpanAttributes.OBSERVATION_INPUT];
+        ? attributes[ElasticDashOtelSpanAttributes.TRACE_INPUT]
+        : attributes[ElasticDashOtelSpanAttributes.OBSERVATION_INPUT];
     output =
       domain === "trace"
-        ? attributes[LangfuseOtelSpanAttributes.TRACE_OUTPUT]
-        : attributes[LangfuseOtelSpanAttributes.OBSERVATION_OUTPUT];
+        ? attributes[ElasticDashOtelSpanAttributes.TRACE_OUTPUT]
+        : attributes[ElasticDashOtelSpanAttributes.OBSERVATION_OUTPUT];
 
     if (input != null || output != null) {
       return { input, output, filteredAttributes };
@@ -1549,7 +1552,7 @@ export class OtelIngestionProcessor {
     resourceAttributes: Record<string, unknown>,
   ): string {
     const environmentAttributeKeys = [
-      LangfuseOtelSpanAttributes.ENVIRONMENT,
+      ElasticDashOtelSpanAttributes.ENVIRONMENT,
       "deployment.environment.name",
       "deployment.environment",
     ];
@@ -1614,8 +1617,8 @@ export class OtelIngestionProcessor {
 
     const metadataKeyPrefix =
       domain === "observation"
-        ? LangfuseOtelSpanAttributes.OBSERVATION_METADATA
-        : LangfuseOtelSpanAttributes.TRACE_METADATA;
+        ? ElasticDashOtelSpanAttributes.OBSERVATION_METADATA
+        : ElasticDashOtelSpanAttributes.TRACE_METADATA;
 
     const langfuseMetadataAttribute =
       attributes[metadataKeyPrefix] || attributes["langfuse.metadata"];
@@ -1681,8 +1684,8 @@ export class OtelIngestionProcessor {
     const userIdKeys = [
       "langfuse.user.id",
       "user.id",
-      `${LangfuseOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_user_id`,
-      `${LangfuseOtelSpanAttributes.TRACE_METADATA}.langfuse_user_id`,
+      `${ElasticDashOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_user_id`,
+      `${ElasticDashOtelSpanAttributes.TRACE_METADATA}.langfuse_user_id`,
       `ai.telemetry.metadata.userId`,
     ];
 
@@ -1702,8 +1705,8 @@ export class OtelIngestionProcessor {
       "langfuse.session.id",
       "session.id",
       "gen_ai.conversation.id",
-      `${LangfuseOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_session_id`,
-      `${LangfuseOtelSpanAttributes.TRACE_METADATA}.langfuse_session_id`,
+      `${ElasticDashOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_session_id`,
+      `${ElasticDashOtelSpanAttributes.TRACE_METADATA}.langfuse_session_id`,
       `ai.telemetry.metadata.sessionId`,
     ];
 
@@ -1720,12 +1723,14 @@ export class OtelIngestionProcessor {
     attributes: Record<string, unknown>,
     instrumentationScopeName: string,
   ): Record<string, unknown> {
-    if (attributes[LangfuseOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS]) {
+    if (
+      attributes[ElasticDashOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS]
+    ) {
       try {
         return this.sanitizeModelParams(
           JSON.parse(
             attributes[
-              LangfuseOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS
+              ElasticDashOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS
             ] as string,
           ),
         );
@@ -1830,7 +1835,7 @@ export class OtelIngestionProcessor {
     attributes: Record<string, unknown>,
   ): string | undefined {
     const modelNameKeys = [
-      LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
+      ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
       "gen_ai.response.model",
       "ai.model.id",
       "gen_ai.request.model",
@@ -1851,11 +1856,11 @@ export class OtelIngestionProcessor {
     attributes: Record<string, unknown>,
     instrumentationScopeName: string,
   ): Record<string, unknown> {
-    if (attributes[LangfuseOtelSpanAttributes.OBSERVATION_USAGE_DETAILS]) {
+    if (attributes[ElasticDashOtelSpanAttributes.OBSERVATION_USAGE_DETAILS]) {
       try {
         return JSON.parse(
           attributes[
-            LangfuseOtelSpanAttributes.OBSERVATION_USAGE_DETAILS
+            ElasticDashOtelSpanAttributes.OBSERVATION_USAGE_DETAILS
           ] as string,
         );
       } catch {
@@ -2044,11 +2049,11 @@ export class OtelIngestionProcessor {
   private extractCostDetails(
     attributes: Record<string, unknown>,
   ): Record<string, unknown> {
-    if (attributes[LangfuseOtelSpanAttributes.OBSERVATION_COST_DETAILS]) {
+    if (attributes[ElasticDashOtelSpanAttributes.OBSERVATION_COST_DETAILS]) {
       try {
         return JSON.parse(
           attributes[
-            LangfuseOtelSpanAttributes.OBSERVATION_COST_DETAILS
+            ElasticDashOtelSpanAttributes.OBSERVATION_COST_DETAILS
           ] as string,
         );
       } catch {
@@ -2068,7 +2073,7 @@ export class OtelIngestionProcessor {
   ): string | null {
     try {
       const value = attributes[
-        LangfuseOtelSpanAttributes.OBSERVATION_COMPLETION_START_TIME
+        ElasticDashOtelSpanAttributes.OBSERVATION_COMPLETION_START_TIME
       ] as any;
 
       if (isValidDateString(value)) return value;
@@ -2102,13 +2107,13 @@ export class OtelIngestionProcessor {
 
   private extractTags(attributes: Record<string, unknown>): string[] {
     const tagsValue =
-      attributes[LangfuseOtelSpanAttributes.TRACE_TAGS] ||
+      attributes[ElasticDashOtelSpanAttributes.TRACE_TAGS] ||
       attributes["langfuse.tags"] ||
       attributes[
-        `${LangfuseOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_tags`
+        `${ElasticDashOtelSpanAttributes.OBSERVATION_METADATA}.langfuse_tags`
       ] ||
       attributes[
-        `${LangfuseOtelSpanAttributes.TRACE_METADATA}.langfuse_tags`
+        `${ElasticDashOtelSpanAttributes.TRACE_METADATA}.langfuse_tags`
       ] ||
       attributes["ai.telemetry.metadata.tags"] ||
       attributes["tag.tags"];
@@ -2161,27 +2166,28 @@ export class OtelIngestionProcessor {
     experimentItemMetadataNames?: string[];
     experimentItemMetadataValues?: Array<string | null | undefined>;
   } {
-    const experimentId = attributes[LangfuseOtelSpanAttributes.EXPERIMENT_ID];
+    const experimentId =
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_ID];
     const experimentName =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_NAME];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_NAME];
     const experimentDescription =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_DESCRIPTION];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_DESCRIPTION];
     const experimentDatasetId =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_DATASET_ID];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_DATASET_ID];
     const experimentItemId =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_ITEM_ID];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_ITEM_ID];
     const experimentItemRootSpanId =
       attributes[
-        LangfuseOtelSpanAttributes.EXPERIMENT_ITEM_ROOT_OBSERVATION_ID
+        ElasticDashOtelSpanAttributes.EXPERIMENT_ITEM_ROOT_OBSERVATION_ID
       ];
     const experimentItemExpectedOutput =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_ITEM_EXPECTED_OUTPUT];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_ITEM_EXPECTED_OUTPUT];
     const experimentItemVersion =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_ITEM_VERSION];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_ITEM_VERSION];
 
     // Extract experiment metadata
     const experimentMetadataStr =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_METADATA];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_METADATA];
     let experimentMetadata: Record<string, unknown> = {};
     if (experimentMetadataStr && typeof experimentMetadataStr === "string") {
       try {
@@ -2195,7 +2201,7 @@ export class OtelIngestionProcessor {
 
     // Extract experiment item metadata
     const experimentItemMetadataStr =
-      attributes[LangfuseOtelSpanAttributes.EXPERIMENT_ITEM_METADATA];
+      attributes[ElasticDashOtelSpanAttributes.EXPERIMENT_ITEM_METADATA];
     let experimentItemMetadata: Record<string, unknown> = {};
     if (
       experimentItemMetadataStr &&

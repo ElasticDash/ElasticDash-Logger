@@ -1,6 +1,6 @@
 # Database Patterns - PostgreSQL & ClickHouse
 
-Complete guide to database access patterns in Langfuse using PostgreSQL (Prisma ORM) and ClickHouse (direct client).
+Complete guide to database access patterns in ElasticDash using PostgreSQL (Prisma ORM) and ClickHouse (direct client).
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ Complete guide to database access patterns in Langfuse using PostgreSQL (Prisma 
 
 ## Database Architecture Overview
 
-Langfuse uses a **dual database architecture**:
+ElasticDash uses a **dual database architecture**:
 
 | Database       | Technology        | Purpose                                                       | Access Pattern                         |
 |----------------|-------------------|---------------------------------------------------------------|----------------------------------------|
@@ -341,7 +341,7 @@ const query = `
 ```
 
 **Why this is important:**
-- Langfuse is multi-tenant - each project's data must be isolated
+- ElasticDash is multi-tenant - each project's data must be isolated
 - The `project_id` filter ensures queries only access data from the intended tenant
 - All queries on project-scoped tables (traces, observations, scores, sessions, etc.) must filter by `project_id`
 
@@ -422,7 +422,7 @@ try {
 
 ## Repository Pattern
 
-Langfuse uses repositories in `packages/shared/src/server/repositories/` for complex data access patterns.
+ElasticDash uses repositories in `packages/shared/src/server/repositories/` for complex data access patterns.
 
 ### When to Use Repositories
 

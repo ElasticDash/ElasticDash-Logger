@@ -1,7 +1,7 @@
-import { LangfuseOtelSpanAttributes } from "./attributes";
+import { ElasticDashOtelSpanAttributes } from "./attributes";
 import { type ObservationType, ObservationTypeDomain } from "../../";
 
-type LangfuseObservationType = keyof typeof ObservationType;
+type ElasticDashObservationType = keyof typeof ObservationType;
 
 interface ObservationTypeMapper {
   readonly name: string;
@@ -15,7 +15,7 @@ interface ObservationTypeMapper {
     attributes: Record<string, unknown>,
     resourceAttributes?: Record<string, unknown>,
     scopeData?: Record<string, unknown>,
-  ): LangfuseObservationType | null;
+  ): ElasticDashObservationType | null;
 }
 
 class SimpleAttributeMapper implements ObservationTypeMapper {
@@ -41,7 +41,7 @@ class SimpleAttributeMapper implements ObservationTypeMapper {
     attributes: Record<string, unknown>,
     _resourceAttributes?: Record<string, unknown>,
     _scopeData?: Record<string, unknown>,
-  ): LangfuseObservationType | null {
+  ): ElasticDashObservationType | null {
     const value = attributes[this.attributeKey] as string;
     const mappedType = this.mappings[value];
 
@@ -49,7 +49,7 @@ class SimpleAttributeMapper implements ObservationTypeMapper {
       mappedType &&
       ObservationTypeDomain.safeParse(mappedType.toUpperCase()).success
     ) {
-      return mappedType as LangfuseObservationType;
+      return mappedType as ElasticDashObservationType;
     }
 
     return null;
@@ -72,7 +72,7 @@ class CustomAttributeMapper implements ObservationTypeMapper {
       attributes: Record<string, unknown>,
       resourceAttributes?: Record<string, unknown>,
       scopeData?: Record<string, unknown>,
-    ) => LangfuseObservationType | null,
+    ) => ElasticDashObservationType | null,
   ) {}
 
   canMap(
@@ -87,7 +87,7 @@ class CustomAttributeMapper implements ObservationTypeMapper {
     attributes: Record<string, unknown>,
     resourceAttributes?: Record<string, unknown>,
     scopeData?: Record<string, unknown>,
-  ): LangfuseObservationType | null {
+  ): ElasticDashObservationType | null {
     const result = this.mapFn(attributes, resourceAttributes, scopeData);
 
     if (
@@ -161,7 +161,8 @@ export class ObservationTypeMapperRegistry {
       // canMap?
       (attributes, resourceAttributes, scopeData) => {
         return (
-          attributes[LangfuseOtelSpanAttributes.OBSERVATION_TYPE] === "span" &&
+          attributes[ElasticDashOtelSpanAttributes.OBSERVATION_TYPE] ===
+            "span" &&
           scopeData?.name === "langfuse-sdk" &&
           resourceAttributes?.["telemetry.sdk.language"] === "python"
         );
@@ -179,13 +180,13 @@ export class ObservationTypeMapperRegistry {
 
         // Check for generation-like attributes
         const generationKeys = [
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
-          LangfuseOtelSpanAttributes.OBSERVATION_COST_DETAILS,
-          LangfuseOtelSpanAttributes.OBSERVATION_USAGE_DETAILS,
-          LangfuseOtelSpanAttributes.OBSERVATION_COMPLETION_START_TIME,
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS,
-          LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_NAME,
-          LangfuseOtelSpanAttributes.OBSERVATION_PROMPT_VERSION,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
+          ElasticDashOtelSpanAttributes.OBSERVATION_COST_DETAILS,
+          ElasticDashOtelSpanAttributes.OBSERVATION_USAGE_DETAILS,
+          ElasticDashOtelSpanAttributes.OBSERVATION_COMPLETION_START_TIME,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL_PARAMETERS,
+          ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_NAME,
+          ElasticDashOtelSpanAttributes.OBSERVATION_PROMPT_VERSION,
         ];
 
         const hasGenerationAttributes = Object.keys(attributes).some((key) =>
@@ -202,9 +203,9 @@ export class ObservationTypeMapperRegistry {
 
     // Priority 1: maps langfuse.observation.type directly
     new SimpleAttributeMapper(
-      "LangfuseObservationTypeDirectMapping",
+      "ElasticDashObservationTypeDirectMapping",
       1,
-      LangfuseOtelSpanAttributes.OBSERVATION_TYPE,
+      ElasticDashOtelSpanAttributes.OBSERVATION_TYPE,
       {
         span: "SPAN",
         generation: "GENERATION",
@@ -261,7 +262,7 @@ export class ObservationTypeMapperRegistry {
       // CANMAP?
       (attributes) => {
         const modelKeys = [
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
           "ai.model.id",
           "gen_ai.request.model",
           "gen_ai.response.model",
@@ -291,7 +292,7 @@ export class ObservationTypeMapperRegistry {
       (attributes) => {
         // IMPORTANT: prefixes inversely ordered by length to avoid false matches
         // AI SDK may append function ID after operation name (e.g., "ai.embed my-function")
-        const prefixMappings: Array<[string[], LangfuseObservationType]> = [
+        const prefixMappings: Array<[string[], ElasticDashObservationType]> = [
           [
             [
               "ai.generateText.doGenerate",
@@ -386,7 +387,7 @@ export class ObservationTypeMapperRegistry {
       7,
       (attributes, _resourceAttributes, _scopeData) => {
         const modelKeys = [
-          LangfuseOtelSpanAttributes.OBSERVATION_MODEL,
+          ElasticDashOtelSpanAttributes.OBSERVATION_MODEL,
           "gen_ai.request.model",
           "gen_ai.response.model",
           "llm.model_name",
@@ -413,7 +414,7 @@ export class ObservationTypeMapperRegistry {
     attributes: Record<string, unknown>,
     resourceAttributes?: Record<string, unknown>,
     scopeData?: Record<string, unknown>,
-  ): LangfuseObservationType | null {
+  ): ElasticDashObservationType | null {
     const sortedMappers = this.getSortedMappers();
     for (const mapper of sortedMappers) {
       if (mapper.canMap(attributes, resourceAttributes, scopeData)) {
