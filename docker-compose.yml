@@ -95,8 +95,8 @@ services:
       CLICKHOUSE_USER: ${CLICKHOUSE_USER:-clickhouse}
       CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD:-clickhouse} # CHANGEME
     volumes:
-      - elasticdash_clickhouse_data:/var/lib/clickhouse
-      - elasticdash_clickhouse_logs:/var/log/clickhouse-server
+      - langfuse_clickhouse_data:/var/lib/clickhouse
+      - langfuse_clickhouse_logs:/var/log/clickhouse-server
       - ./clickhouse-config.xml:/etc/clickhouse-server/config.xml:ro
     ports:
       - 0.0.0.0:8123:8123
@@ -121,7 +121,7 @@ services:
       - 9090:9000
       - 127.0.0.1:9091:9001
     volumes:
-      - elasticdash_minio_data:/data
+      - langfuse_minio_data:/data
     healthcheck:
       test: ["CMD", "mc", "ready", "local"]
       interval: 1s
@@ -162,14 +162,14 @@ services:
       - 127.0.0.1:5433:5433
     command: -p 5433
     volumes:
-      - elasticdash_postgres_data:/var/lib/postgresql/data
+      - langfuse_postgres_data:/var/lib/postgresql/data
 
 volumes:
-  elasticdash_postgres_data:
+  langfuse_postgres_data:
     driver: local
-  elasticdash_clickhouse_data:
+  langfuse_clickhouse_data:
     driver: local
-  elasticdash_clickhouse_logs:
+  langfuse_clickhouse_logs:
     driver: local
-  elasticdash_minio_data:
+  langfuse_minio_data:
     driver: local
