@@ -1,43 +1,59 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# migrate_volumes.sh
-# Migrate Docker volumes from elasticdash_* to langfuse_*
-# Usage: bash migrate_volumes.sh
+# migrate_replace_volumes.sh
+# Remove target volume → recreate → copy data from source volume
 
-
-set -e
-
-
-# Define source (langfuse_*) and target (elasticdash_*) volume names
 VOLUMES=(
-  "postgres_data"
-  "clickhouse_data"
-  "clickhouse_logs"
-  "minio_data"
+  postgres_data
+  clickhouse_data
+  clickhouse_logs
+  minio_data
 )
 
+SRC_PREFIX="langfuse"
+DEST_PREFIX="elasticdash"
+
+echo "=== Starting Volume Replacement Migration ==="
 
 for v in "${VOLUMES[@]}"; do
-  SRC="langfuse_${v}"
-  DEST="elasticdash_${v}"
-  echo "Migrating $SRC → $DEST ..."
+  SRC="${SRC_PREFIX}_${v}"
+  DEST="${DEST_PREFIX}_${v}"
 
-  # Remove destination volume if it exists
+  echo ""
+  echo ">>> Migrating ${SRC} → ${DEST}"
+
+  # Validate source exists
+  if ! docker volume inspect "$SRC" >/dev/null 2>&1; then
+    echo "ERROR: Source volume ${SRC} does not exist"
+    exit 1
+  fi
+
+  # Remove destination volume if exists
   if docker volume inspect "$DEST" >/dev/null 2>&1; then
-    echo "Removing existing $DEST volume..."
+    echo "Removing existing destination volume ${DEST}"
     docker volume rm "$DEST"
   fi
 
-  # Create a fresh destination volume
+  # Create clean destination
   docker volume create "$DEST"
 
-  # Copy data from source to destination
+  echo "Copying data..."
+
   docker run --rm \
-    -v "$SRC:/from" \
-    -v "$DEST:/to" \
-    alpine ash -c "cd /from && cp -a . /to"
+    -v "${SRC}:/from:ro" \
+    -v "${DEST}:/to" \
+    ubuntu bash -c "
+      set -e
+      echo 'Source contents:'
+      ls -lah /from || true
+
+      cd /from
+      tar cf - . | tar xf - -C /to
+    "
+
+  echo "Completed ${v}"
 done
 
-echo "\nMigration complete!"
-echo "Verify your data, then remove old volumes with:"
-echo "  docker volume rm langfuse_postgres_data langfuse_clickhouse_data langfuse_clickhouse_logs langfuse_minio_data"
+echo ""
+echo "=== Migration Completed ==="
