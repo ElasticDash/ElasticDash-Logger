@@ -1,5 +1,8 @@
-import { ClickHouseClientManager, logger } from "@langfuse/shared/src/server";
-import { redis } from "@langfuse/shared/src/server";
+import {
+  ClickHouseClientManager,
+  logger,
+} from "@elasticdash/shared/src/server";
+import { redis } from "@elasticdash/shared/src/server";
 
 import { ClickhouseWriter } from "../services/ClickhouseWriter";
 import { setSigtermReceived } from "../features/health";
@@ -7,7 +10,7 @@ import { server } from "../index";
 import { freeAllTokenizers } from "../features/tokenisation/usage";
 import { getTokenCountWorkerManager } from "../features/tokenisation/async-usage";
 import { WorkerManager } from "../queues/workerManager";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { BackgroundMigrationManager } from "../backgroundMigrations/backgroundMigrationManager";
 import { MutationMonitor } from "../features/mutation-monitoring/mutationMonitor";
 

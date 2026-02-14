@@ -103,7 +103,7 @@ export const CreateExperimentsForm = ({
             Experiments allow you to test iterations of your application or
             prompt on a dataset. Learn more about experiments{" "}
             <Link
-              href="https://langfuse.com/docs/evaluation/dataset-runs/datasets"
+              href="https://www.elasticdash.com/docs/evaluation/dataset-runs/datasets"
               target="_blank"
               className="underline"
             >
@@ -121,7 +121,8 @@ export const CreateExperimentsForm = ({
                   via User Interface
                 </CardTitle>
                 <CardDescription>
-                  Test single prompts and model configurations via Langfuse UI
+                  Test single prompts and model configurations via ElasticDash
+                  UI
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -146,7 +147,7 @@ export const CreateExperimentsForm = ({
                     capture("dataset_run:view_prompt_experiment_docs")
                   }
                 >
-                  <Link href="https://langfuse.com/docs/evaluation/dataset-runs/native-run">
+                  <Link href="https://www.elasticdash.com/docs/evaluation/dataset-runs/native-run">
                     View Docs
                   </Link>
                 </Button>
@@ -160,7 +161,7 @@ export const CreateExperimentsForm = ({
                   via SDK / API
                 </CardTitle>
                 <CardDescription>
-                  Start any dataset run via the Langfuse SDKs
+                  Start any dataset run via the ElasticDash SDKs
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -198,7 +199,7 @@ export const CreateExperimentsForm = ({
                   }
                 >
                   <Link
-                    href="https://langfuse.com/docs/evaluation/dataset-runs/remote-run"
+                    href="https://www.elasticdash.com/docs/evaluation/dataset-runs/remote-run"
                     target="_blank"
                   >
                     View Docs

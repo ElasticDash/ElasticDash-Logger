@@ -6,7 +6,7 @@ import {
   isJsonPath,
   testJsonPath,
   generateJsonPathSuggestions,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 describe("applyFieldMapping", () => {
   // Sample observation data for testing

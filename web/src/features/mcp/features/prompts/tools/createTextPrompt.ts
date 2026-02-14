@@ -1,7 +1,7 @@
 /**
  * MCP Tool: createTextPrompt
  *
- * Creates a new text prompt version in Langfuse.
+ * Creates a new text prompt version in ElasticDash.
  * Write operation with destructive hint.
  */
 
@@ -13,11 +13,11 @@ import {
   PromptNameSchema,
   COMMIT_MESSAGE_MAX_LENGTH,
   PROMPT_NAME_MAX_LENGTH,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { createPrompt as createPromptAction } from "@/src/features/prompts/server/actions/createPrompt";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
-import { instrumentAsync } from "@langfuse/shared/src/server";
+import { instrumentAsync } from "@elasticdash/shared/src/server";
 import { SpanKind } from "@opentelemetry/api";
 
 /**
@@ -72,7 +72,7 @@ const CreateTextPromptInputSchema = z.object({
 export const [createTextPromptTool, handleCreateTextPrompt] = defineTool({
   name: "createTextPrompt",
   description: [
-    "Create a new text prompt version in Langfuse.",
+    "Create a new text prompt version in ElasticDash.",
     "",
     "Important:",
     "- Prompts are immutable - cannot modify existing versions",
@@ -91,8 +91,8 @@ export const [createTextPromptTool, handleCreateTextPrompt] = defineTool({
       async (span) => {
         // Set span attributes for observability
         span.setAttributes({
-          "langfuse.project.id": context.projectId,
-          "langfuse.org.id": context.orgId,
+          "elasticdash.project.id": context.projectId,
+          "elasticdash.org.id": context.orgId,
           "mcp.api_key_id": context.apiKeyId,
           "mcp.prompt_name": input.name,
           "mcp.prompt_type": "text",

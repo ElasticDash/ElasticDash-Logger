@@ -1,11 +1,11 @@
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import { DatasetAggregateTableCell } from "@/src/features/datasets/components/DatasetAggregateTableCell";
 import { type DatasetCompareRunRowData } from "@/src/features/datasets/components/DatasetCompareRunsTable";
 import { PopoverFilterBuilder } from "@/src/features/filters/components/filter-builder";
-import { type ColumnDefinition } from "@langfuse/shared";
-import { type FilterState } from "@langfuse/shared";
-import { type EnrichedDatasetRunItem } from "@langfuse/shared/src/server";
+import { type ColumnDefinition } from "@elasticdash/shared";
+import { type FilterState } from "@elasticdash/shared";
+import { type EnrichedDatasetRunItem } from "@elasticdash/shared/src/server";
 import { type Row } from "@tanstack/react-table";
 import React, { useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/src/hooks/useDebounce";
@@ -178,7 +178,7 @@ export const constructDatasetRunAggregateColumns = ({
   updateRunFilters: (runId: string, filters: FilterState) => void;
   getFiltersForRun: (runId: string) => FilterState;
   serverScoreColumns?: ScoreColumn[];
-}): LangfuseColumnDef<DatasetCompareRunRowData>[] => {
+}): ElasticDashColumnDef<DatasetCompareRunRowData>[] => {
   const isDataLoading = !isScoreColumnsAvailable(serverScoreColumns);
 
   return runAggregateColumnProps.map((col) => {

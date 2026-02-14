@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
 import {
@@ -8,7 +8,7 @@ import {
   PostDatasetRunItemsV1Body,
   PostDatasetRunItemsV1Response,
 } from "@/src/features/public-api/types/datasets";
-import { LangfuseNotFoundError } from "@langfuse/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import { addDatasetRunItemsToEvalQueue } from "@/src/features/evals/server/addDatasetRunItemsToEvalQueue";
 import {
   eventTypes,
@@ -16,7 +16,7 @@ import {
   processEventBatch,
   getObservationById,
   getDatasetItemById,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
 import { createOrFetchDatasetRun } from "@/src/features/public-api/server/dataset-runs";
 import {
@@ -43,7 +43,7 @@ export default withMiddlewares({
       });
 
       if (!datasetItem) {
-        throw new LangfuseNotFoundError("Dataset item not found");
+        throw new ElasticDashNotFoundError("Dataset item not found");
       }
 
       let finalTraceId = traceId;
@@ -56,13 +56,13 @@ export default withMiddlewares({
           fetchWithInputOutput: false,
         });
         if (observationId && !observation) {
-          throw new LangfuseNotFoundError("Observation not found");
+          throw new ElasticDashNotFoundError("Observation not found");
         }
         finalTraceId = observation?.traceId;
       }
 
       if (!finalTraceId) {
-        throw new LangfuseNotFoundError("Trace not found");
+        throw new ElasticDashNotFoundError("Trace not found");
       }
 
       /********************
@@ -102,7 +102,7 @@ export default withMiddlewares({
       };
       // note: currently we do not accept user defined ids for dataset run items
       const ingestionResult = await processEventBatch([event], auth, {
-        isLangfuseInternal: true,
+        isElasticDashInternal: true,
       });
       if (ingestionResult.errors.length > 0) {
         const error = ingestionResult.errors[0];
@@ -168,7 +168,7 @@ export default withMiddlewares({
       });
 
       if (!datasetRun) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Dataset run not found for the given project and dataset id",
         );
       }

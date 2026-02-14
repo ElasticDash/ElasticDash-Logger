@@ -1,5 +1,5 @@
 import { env } from "@/src/env.mjs";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 
 /**
@@ -20,20 +20,20 @@ import { TRPCError } from "@trpc/server";
  * Creates a Stripe client reference by combining cloud region and organization ID.
  * Used when creating new checkout sessions in stripeBillingService.ts.
  *
- * @throws {TRPCError} If not running in a Langfuse Cloud environment
+ * @throws {TRPCError} If not running in a ElasticDash Cloud environment
  */
 export const createStripeClientReference = (orgId: string) => {
-  if (!env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+  if (!env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
     logger.error(
-      "Returning null stripeClientReference, you cannot run the checkout page outside of Langfuse Cloud",
+      "Returning null stripeClientReference, you cannot run the checkout page outside of ElasticDash Cloud",
     );
     throw new TRPCError({
       code: "INTERNAL_SERVER_ERROR",
       message:
-        "Cannot create stripe client reference outside of Langfuse Cloud",
+        "Cannot create stripe client reference outside of ElasticDash Cloud",
     });
   }
-  return `${env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION}-${orgId}`;
+  return `${env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION}-${orgId}`;
 };
 
 /**
@@ -46,8 +46,8 @@ export const createStripeClientReference = (orgId: string) => {
 export const isStripeClientReferenceFromCurrentCloudRegion = (
   clientReference: string,
 ) =>
-  env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION &&
-  clientReference.startsWith(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+  env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION &&
+  clientReference.startsWith(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION);
 
 /**
  * Extracts the organization ID from a client reference.
@@ -57,4 +57,4 @@ export const isStripeClientReferenceFromCurrentCloudRegion = (
  * @returns The extracted organization ID
  */
 export const getOrgIdFromStripeClientReference = (clientReference: string) =>
-  clientReference.replace(`${env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION}-`, "");
+  clientReference.replace(`${env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION}-`, "");

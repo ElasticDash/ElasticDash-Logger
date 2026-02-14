@@ -1,12 +1,12 @@
 import { type z } from "zod/v4";
 import { protectedProjectProcedure } from "@/src/server/api/trpc";
-import { paginationZod } from "@langfuse/shared";
+import { paginationZod } from "@elasticdash/shared";
 import { GenerationTableOptions } from "./utils/GenerationTableOptions";
 import { getAllGenerations } from "@/src/server/api/routers/generations/db/getAllGenerationsSqlQuery";
 import {
   getObservationsCountFromEventsTable,
   getObservationsTableCount,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "@/src/env.mjs";
 import { applyCommentFilters } from "@/src/features/comments/server/commentFilterHelpers";
 
@@ -61,7 +61,7 @@ export const getAllQueries = {
         offset: 0,
       };
       const countQuery =
-        env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
+        env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
           ? await getObservationsCountFromEventsTable(queryOpts)
           : await getObservationsTableCount(queryOpts);
       return {

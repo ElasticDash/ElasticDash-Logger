@@ -3,8 +3,8 @@ import {
   type ScoreTargetTrace,
   type ScoreTargetSession,
   ScoreSourceEnum,
-} from "@langfuse/shared";
-import { type ScoreConfigDomain } from "@langfuse/shared";
+} from "@elasticdash/shared";
+import { type ScoreConfigDomain } from "@elasticdash/shared";
 import { isTraceScore } from "@/src/features/scores/lib/helpers";
 import { type AnnotationScoreDataSchema } from "@/src/features/scores/schema";
 import { type z } from "zod/v4";

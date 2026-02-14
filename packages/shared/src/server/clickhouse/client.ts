@@ -95,7 +95,7 @@ export class ClickHouseClientManager {
       const cloudOptions: Record<string, unknown> = {};
       if (
         ["STAGING", "EU", "US", "HIPAA"].includes(
-          env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION ?? "",
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION ?? "",
         )
       ) {
         cloudOptions.input_format_json_throw_on_bad_escape_sequence = 0;
@@ -110,7 +110,7 @@ export class ClickHouseClientManager {
         max_open_connections: env.CLICKHOUSE_MAX_OPEN_CONNECTIONS,
         log: {
           LoggerClass: ClickHouseLogger,
-          level: mapLogLevel(env.LANGFUSE_LOG_LEVEL ?? "info"),
+          level: mapLogLevel(env.ELASTICDASH_LOG_LEVEL ?? "info"),
         },
         clickhouse_settings: {
           // Overwrite async insert settings to tune throughput

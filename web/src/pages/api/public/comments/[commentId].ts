@@ -1,7 +1,7 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { LangfuseNotFoundError } from "@langfuse/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import {
   GetCommentV1Query,
   GetCommentV1Response,
@@ -23,7 +23,7 @@ export default withMiddlewares({
       });
 
       if (!comment) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Comment not found within authorized project",
         );
       }

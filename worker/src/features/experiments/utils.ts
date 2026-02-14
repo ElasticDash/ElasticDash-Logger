@@ -10,7 +10,7 @@ import {
   PromptContent,
   PromptType,
   stringifyValue,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { compileTemplateString } from "../utils/utilities";
 import {
   logger,
@@ -21,8 +21,8 @@ import {
   ExperimentMetadataSchema,
   LLMApiKeySchema,
   PromptContentSchema,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import z from "zod/v4";
 import { UnrecoverableError } from "../../errors/UnrecoverableError";
 
@@ -179,7 +179,7 @@ export async function validateAndSetupExperiment(
   );
   if (!validatedRunMetadata.success) {
     throw new UnrecoverableError(
-      "Langfuse in-app experiments require prompt and model configurations in dataset run metadata",
+      "ElasticDash in-app experiments require prompt and model configurations in dataset run metadata",
     );
   }
 

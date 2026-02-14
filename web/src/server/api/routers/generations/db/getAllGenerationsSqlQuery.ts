@@ -3,13 +3,13 @@ import { aggregateScores } from "@/src/features/scores/lib/aggregateScores";
 import {
   AGGREGATABLE_SCORE_TYPES,
   filterAndValidateDbScoreList,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getObservationsTableWithModelData,
   getObservationsWithModelDataFromEventsTable,
   getScoresForObservations,
   traceException,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { type GetAllGenerationsInput } from "../getAllQueries";
 
 export async function getAllGenerations({
@@ -30,7 +30,7 @@ export async function getAllGenerations({
     limit: input.limit,
   };
   let generations =
-    env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
+    env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
       ? await getObservationsWithModelDataFromEventsTable(queryOpts)
       : await getObservationsTableWithModelData(queryOpts);
 

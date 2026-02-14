@@ -38,7 +38,7 @@ export default function Traces() {
           help: {
             description:
               "A trace represents a single function/api invocation. Traces contain observations. See docs to learn more.",
-            href: "https://langfuse.com/docs/observability/data-model",
+            href: "https://www.elasticdash.com/docs/observability/data-model",
           },
         }}
         scrollable
@@ -55,7 +55,7 @@ export default function Traces() {
         help: {
           description:
             "A trace represents a single function/api invocation. Traces contain observations. See docs to learn more.",
-          href: "https://langfuse.com/docs/observability/data-model",
+          href: "https://www.elasticdash.com/docs/observability/data-model",
         },
         tabsProps: {
           tabs: getTracingTabs(projectId),

@@ -1,4 +1,4 @@
-import { type Role } from "@langfuse/shared/src/db";
+import { type Role } from "@elasticdash/shared/src/db";
 
 // Exported to silence @typescript-eslint/no-unused-vars v8 warning
 // (used for type extraction via typeof, which is a legitimate pattern)
@@ -10,7 +10,7 @@ export const organizationScopes = [
   "organization:delete",
   "organizationMembers:read",
   "organizationMembers:CUD",
-  "langfuseCloudBilling:CRUD",
+  "elasticdashCloudBilling:CRUD",
 ] as const;
 
 // type string of all Resource:Action, e.g. "organizationMembers:read"
@@ -25,7 +25,7 @@ export const organizationRoleAccessRights: Record<Role, OrganizationScope[]> = {
     "organization:delete",
     "organizationMembers:CUD",
     "organizationMembers:read",
-    "langfuseCloudBilling:CRUD",
+    "elasticdashCloudBilling:CRUD",
   ],
   ADMIN: [
     "projects:create",

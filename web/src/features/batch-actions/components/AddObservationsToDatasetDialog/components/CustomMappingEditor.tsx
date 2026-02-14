@@ -12,7 +12,7 @@ import type {
   ObservationPreviewData,
   MappingTarget,
 } from "../types";
-import { isJsonPath } from "@langfuse/shared";
+import { isJsonPath } from "@elasticdash/shared";
 
 type CustomMappingEditorProps = {
   config: CustomMappingConfig;

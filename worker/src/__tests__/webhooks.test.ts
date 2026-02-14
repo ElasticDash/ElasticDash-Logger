@@ -13,19 +13,19 @@ import {
   JobConfigState,
   PromptDomainSchema,
   WebhookActionConfigWithSecrets,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   WebhookInput,
   createOrgProjectAndApiKey,
   getActionByIdWithSecrets,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   decrypt,
   encrypt,
   generateWebhookSignature,
-} from "@langfuse/shared/encryption";
-import { generateWebhookSecret } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared/encryption";
+import { generateWebhookSecret } from "@elasticdash/shared/encryption";
 import { setupServer } from "msw/node";
 import { http, HttpResponse } from "msw";
 import { executeWebhook } from "../queues/webhooks";
@@ -241,12 +241,12 @@ describe("Webhook Integration Tests", () => {
       expect(request.headers["x-custom-header-2"]).toBe("test-value-2");
       expect(request.headers["x-custom-header"]).toBe("test-value");
 
-      expect(request.headers["x-langfuse-signature"]).toMatch(
+      expect(request.headers["x-elasticdash-signature"]).toMatch(
         /^t=\d+,v1=[a-f0-9]+$/,
       );
 
       // check signature
-      const signature = request.headers["x-langfuse-signature"];
+      const signature = request.headers["x-elasticdash-signature"];
       const payload = JSON.parse(request.body);
 
       const action = await prisma.action.findUnique({
@@ -676,7 +676,7 @@ describe("Webhook Integration Tests", () => {
       expect(request.headers["x-secret-token"]).toBe("bearer-token-value");
 
       // Verify signature is present
-      expect(request.headers["x-langfuse-signature"]).toMatch(
+      expect(request.headers["x-elasticdash-signature"]).toMatch(
         /^t=\d+,v1=[a-f0-9]+$/,
       );
 
@@ -1091,7 +1091,7 @@ describe("Webhook Integration Tests", () => {
 
       // Import the function to test it directly
       const { getConsecutiveAutomationFailures } = await import(
-        "@langfuse/shared/src/server"
+        "@elasticdash/shared/src/server"
       );
 
       // Check that consecutive failures is 0 since there are no executions after the lastFailingExecutionId

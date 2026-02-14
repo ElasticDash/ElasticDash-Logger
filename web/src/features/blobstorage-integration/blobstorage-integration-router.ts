@@ -6,7 +6,7 @@ import {
   createTRPCRouter,
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
-import { encrypt } from "@langfuse/shared/encryption";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { blobStorageIntegrationFormSchema } from "@/src/features/blobstorage-integration/types";
 import { TRPCError } from "@trpc/server";
 import {
@@ -14,14 +14,14 @@ import {
   BlobStorageIntegrationProcessingQueue,
   QueueJobs,
   StorageServiceFactory,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { randomUUID } from "crypto";
-import { decrypt } from "@langfuse/shared/encryption";
+import { decrypt } from "@elasticdash/shared/encryption";
 import {
   type BlobStorageIntegration,
   BlobStorageIntegrationType,
   BlobStorageExportMode,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { env } from "@/src/env.mjs";
 
 export const blobStorageIntegrationRouter = createTRPCRouter({
@@ -90,7 +90,7 @@ export const blobStorageIntegrationRouter = createTRPCRouter({
           exportStartDate,
         } = input;
 
-        const isSelfHosted = !env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION;
+        const isSelfHosted = !env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION;
         const canUseHostCredentials =
           isSelfHosted && type === BlobStorageIntegrationType.S3;
         const isUsingHostCredentials =
@@ -348,8 +348,8 @@ export const blobStorageIntegrationRouter = createTRPCRouter({
 
         // Create a test file
         const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
-        const testFileName = `${prefix || ""}langfuse-validation-test-${timestamp}.txt`;
-        const testContent = `Langfuse blob storage validation test
+        const testFileName = `${prefix || ""}elasticdash-validation-test-${timestamp}.txt`;
+        const testContent = `ElasticDash blob storage validation test
 Project ID: ${input.projectId}
 Timestamp: ${new Date().toISOString()}
 Configuration: ${type} storage

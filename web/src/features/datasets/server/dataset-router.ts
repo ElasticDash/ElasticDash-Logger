@@ -3,7 +3,7 @@ import {
   createTRPCRouter,
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
-import { Prisma, type Dataset } from "@langfuse/shared/src/db";
+import { Prisma, type Dataset } from "@elasticdash/shared/src/db";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import { DB } from "@/src/server/db";
@@ -18,9 +18,9 @@ import {
   timeFilter,
   isClickhouseFilterColumn,
   optionalPaginationZod,
-  LangfuseConflictError,
-  LangfuseNotFoundError,
-} from "@langfuse/shared";
+  ElasticDashConflictError,
+  ElasticDashNotFoundError,
+} from "@elasticdash/shared";
 import { TRPCError } from "@trpc/server";
 import {
   datasetRunsTableSchema,
@@ -64,13 +64,13 @@ import {
   getDatasetItemVersionHistory,
   getDatasetItemChangesSinceVersion,
   getDatasetItemsCountGrouped,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { aggregateScores } from "@/src/features/scores/lib/aggregateScores";
 import {
   updateDataset,
   upsertDataset,
 } from "@/src/features/datasets/server/actions/createDataset";
-import { type BulkDatasetItemValidationError } from "@langfuse/shared";
+import { type BulkDatasetItemValidationError } from "@elasticdash/shared";
 import { v4 } from "uuid";
 
 // Batch size kept small (100) as items may have large input/output/metadata JSON
@@ -667,7 +667,7 @@ export const datasetRouter = createTRPCRouter({
         datasetId: input.datasetId,
       });
       if (!item) {
-        throw new LangfuseNotFoundError("Dataset item not found");
+        throw new ElasticDashNotFoundError("Dataset item not found");
       }
       return item;
     }),
@@ -999,7 +999,7 @@ export const datasetRouter = createTRPCRouter({
           error instanceof Prisma.PrismaClientKnownRequestError &&
           error.code === "P2025"
         ) {
-          throw new LangfuseConflictError(
+          throw new ElasticDashConflictError(
             "The dataset you are trying to delete has likely been deleted",
           );
         }

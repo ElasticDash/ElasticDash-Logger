@@ -9,8 +9,8 @@ import {
   removeObjectKeys,
   type DatasetRunItemDomain,
   type DatasetItemDomain,
-} from "@langfuse/shared";
-import { DatasetJSONSchema } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { DatasetJSONSchema } from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 
 /**

@@ -23,7 +23,7 @@ interface FeedbackDialogProps {
 export function FeedbackButtonWrapper({
   className,
   children,
-  description = "What do you think about Langfuse? What can be improved? Please share it with the community on GitHub to shape the future of Langfuse.",
+  description = "What do you think about ElasticDash? What can be improved? Please share it with the community on GitHub to shape the future of ElasticDash.",
   title = "Provide Feedback",
 }: FeedbackDialogProps) {
   const [open, setOpen] = useState(false);
@@ -45,12 +45,12 @@ export function FeedbackButtonWrapper({
           </DialogHeader>
           <DialogBody>
             <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:justify-start">
-              <Link href="https://langfuse.com/ideas" target="_blank">
+              <Link href="https://www.elasticdash.com/ideas" target="_blank">
                 <Button variant="secondary">
                   <Sparkles className="mr-2 h-4 w-4" /> Submit Feature Request
                 </Button>
               </Link>
-              <Link href="https://langfuse.com/issues" target="_blank">
+              <Link href="https://www.elasticdash.com/issues" target="_blank">
                 <Button variant="secondary">
                   <Bug className="mr-2 h-4 w-4" /> Report a Bug
                 </Button>

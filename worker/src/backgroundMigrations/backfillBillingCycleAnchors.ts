@@ -1,8 +1,8 @@
 import { IBackgroundMigration } from "./IBackgroundMigration";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { parseArgs } from "node:util";
-import { prisma } from "@langfuse/shared/src/db";
-import { parseDbOrg } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { parseDbOrg } from "@elasticdash/shared";
 import Stripe from "stripe";
 import { env } from "../env";
 
@@ -29,7 +29,7 @@ export default class BackfillBillingCycleAnchors
     _args: Record<string, unknown>,
   ): Promise<{ valid: boolean; invalidReason: string | undefined }> {
     // If not in cloud environment, validation passes (will skip in run())
-    if (!env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+    if (!env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
       logger.info(
         "[Background Migration] Not in cloud environment, migration will be skipped",
       );
@@ -84,7 +84,7 @@ export default class BackfillBillingCycleAnchors
     );
 
     // Skip if not in cloud environment (graceful skip, not an error)
-    if (!env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+    if (!env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
       logger.info(
         "[Background Migration] Not in cloud environment, skipping migration",
       );

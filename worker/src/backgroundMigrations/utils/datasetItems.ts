@@ -1,5 +1,5 @@
-import { Prisma, prisma } from "@langfuse/shared/src/db";
-import { logger } from "@langfuse/shared/src/server";
+import { Prisma, prisma } from "@elasticdash/shared/src/db";
+import { logger } from "@elasticdash/shared/src/server";
 
 export const backfillValidToForDatasetItems = async (
   lastProcessedProjectId: string,

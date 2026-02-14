@@ -3,9 +3,9 @@ import {
   LLMAdapter,
   ObservationType,
   variableMappingList,
-} from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
-import { kyselyPrisma, prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
+import { kyselyPrisma, prisma } from "@elasticdash/shared/src/db";
 import {
   convertDateToClickhouseDateTime,
   createObservation,
@@ -18,8 +18,8 @@ import {
   createDatasetRunItem,
   createOrgProjectAndApiKey,
   LLMCompletionError,
-  LangfuseInternalTraceEnvironment,
-} from "@langfuse/shared/src/server";
+  ElasticDashInternalTraceEnvironment,
+} from "@elasticdash/shared/src/server";
 import { randomUUID } from "crypto";
 import Decimal from "decimal.js";
 import { sql } from "kysely";
@@ -35,8 +35,8 @@ import {
 import { requiresDatabaseLookup } from "../features/evaluation/traceFilterUtils";
 
 // Mock fetchLLMCompletion module with default passthrough behavior
-vi.mock("@langfuse/shared/src/server", async () => {
-  const actual = await vi.importActual("@langfuse/shared/src/server");
+vi.mock("@elasticdash/shared/src/server", async () => {
+  const actual = await vi.importActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     fetchLLMCompletion: vi
@@ -46,14 +46,14 @@ vi.mock("@langfuse/shared/src/server", async () => {
 });
 
 // Import the mocked function
-import { fetchLLMCompletion } from "@langfuse/shared/src/server";
+import { fetchLLMCompletion } from "@elasticdash/shared/src/server";
 import { UnrecoverableError } from "../errors/UnrecoverableError";
 
 let OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-// Check for both OPENAI_API_KEY and LANGFUSE_LLM_CONNECTION_OPENAI_KEY
+// Check for both OPENAI_API_KEY and ELASTICDASH_LLM_CONNECTION_OPENAI_KEY
 // to avoid interfering with llmConnections tests that use the latter
 const hasActiveKey = Boolean(
-  OPENAI_API_KEY || process.env.LANGFUSE_LLM_CONNECTION_OPENAI_KEY,
+  OPENAI_API_KEY || process.env.ELASTICDASH_LLM_CONNECTION_OPENAI_KEY,
 );
 if (!hasActiveKey) {
   OPENAI_API_KEY = "sk-test_not_used_as_network_mocks_are_activated";
@@ -2446,12 +2446,12 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
       const variableMapping = variableMappingList.parse([
         {
-          langfuseObject: "dataset_item",
+          elasticdashObject: "dataset_item",
           selectedColumnId: "input",
           templateVariable: "input",
         },
         {
-          langfuseObject: "dataset_item",
+          elasticdashObject: "dataset_item",
           selectedColumnId: "expected_output",
           templateVariable: "output",
         },
@@ -2495,12 +2495,12 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
       const variableMapping = variableMappingList.parse([
         {
-          langfuseObject: "trace",
+          elasticdashObject: "trace",
           selectedColumnId: "input",
           templateVariable: "input",
         },
         {
-          langfuseObject: "trace",
+          elasticdashObject: "trace",
           selectedColumnId: "output",
           templateVariable: "output",
         },
@@ -2558,13 +2558,13 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
       const variableMapping = variableMappingList.parse([
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "input",
           templateVariable: "input",
           objectName: "great-llm-name",
         },
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "output",
           templateVariable: "output",
           objectName: "great-llm-name",
@@ -2598,13 +2598,13 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
       const variableMapping = variableMappingList.parse([
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "input",
           templateVariable: "input",
           objectName: "great-llm-name",
         },
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "output",
           templateVariable: "output",
           objectName: "great-llm-name",
@@ -2654,13 +2654,13 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
       const variableMapping = variableMappingList.parse([
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "input",
           templateVariable: "input",
           objectName: "great-llm-name",
         },
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "output",
           templateVariable: "output",
           objectName: "great-llm-name",
@@ -2735,13 +2735,13 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
       const variableMapping = variableMappingList.parse([
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "input",
           templateVariable: "input",
           objectName: "great-llm-name",
         },
         {
-          langfuseObject: "generation",
+          elasticdashObject: "generation",
           selectedColumnId: "output",
           templateVariable: "output",
           objectName: "great-llm-name",
@@ -2806,13 +2806,13 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
 
         const variableMapping = variableMappingList.parse([
           {
-            langfuseObject: observationType.toLowerCase(),
+            elasticdashObject: observationType.toLowerCase(),
             selectedColumnId: "input",
             templateVariable: "input",
             objectName: `great-${observationType.toLowerCase()}-name`,
           },
           {
-            langfuseObject: observationType.toLowerCase(),
+            elasticdashObject: observationType.toLowerCase(),
             selectedColumnId: "output",
             templateVariable: "output",
             objectName: `great-${observationType.toLowerCase()}-name`,
@@ -2931,7 +2931,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
           targetObject: "trace",
           scoreName: "test-score",
           variableMapping: JSON.parse(
-            '[{"langfuseObject":"trace","selectedColumnId":"input","templateVariable":"input"}]',
+            '[{"elasticdashObject":"trace","selectedColumnId":"input","templateVariable":"input"}]',
           ),
           status: "ACTIVE",
           evalTemplateId: templateId,
@@ -2975,7 +2975,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
         "Execute evaluator: test-evaluator",
       );
       expect(capturedTraceSinkParams.environment).toBe(
-        LangfuseInternalTraceEnvironment.LLMJudge,
+        ElasticDashInternalTraceEnvironment.LLMJudge,
       );
       expect(capturedTraceSinkParams.metadata).toMatchObject({
         job_execution_id: jobExecutionId,
@@ -2996,7 +2996,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       await upsertTrace({
         id: traceId,
         project_id: projectId,
-        environment: LangfuseInternalTraceEnvironment.LLMJudge,
+        environment: ElasticDashInternalTraceEnvironment.LLMJudge,
         timestamp: convertDateToClickhouseDateTime(new Date()),
         created_at: convertDateToClickhouseDateTime(new Date()),
         updated_at: convertDateToClickhouseDateTime(new Date()),
@@ -3020,7 +3020,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       const payload = {
         projectId,
         traceId,
-        traceEnvironment: LangfuseInternalTraceEnvironment.LLMJudge,
+        traceEnvironment: ElasticDashInternalTraceEnvironment.LLMJudge,
       };
 
       // Attempt to create eval jobs
@@ -3048,7 +3048,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       await upsertTrace({
         id: traceId,
         project_id: projectId,
-        environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+        environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
         timestamp: convertDateToClickhouseDateTime(new Date()),
         created_at: convertDateToClickhouseDateTime(new Date()),
         updated_at: convertDateToClickhouseDateTime(new Date()),
@@ -3072,7 +3072,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       const payload = {
         projectId,
         traceId,
-        traceEnvironment: LangfuseInternalTraceEnvironment.PromptExperiments,
+        traceEnvironment: ElasticDashInternalTraceEnvironment.PromptExperiments,
       };
 
       // Attempt to create eval jobs
@@ -3143,7 +3143,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       await upsertTrace({
         id: traceId,
         project_id: projectId,
-        environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+        environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
         timestamp: convertDateToClickhouseDateTime(new Date()),
         created_at: convertDateToClickhouseDateTime(new Date()),
         updated_at: convertDateToClickhouseDateTime(new Date()),
@@ -3168,7 +3168,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
         projectId,
         traceId,
         datasetItemId,
-        traceEnvironment: LangfuseInternalTraceEnvironment.PromptExperiments,
+        traceEnvironment: ElasticDashInternalTraceEnvironment.PromptExperiments,
       };
 
       // Attempt to create eval jobs via dataset-run-item-upsert
@@ -3295,15 +3295,15 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       expect(jobs[0].job_input_trace_id).toBe(traceId);
     }, 10_000);
 
-    test("does not create eval jobs for trace-upsert with 'langfuse' environment without hyphen", async () => {
+    test("does not create eval jobs for trace-upsert with 'elasticdash' environment without hyphen", async () => {
       const { projectId } = await createOrgProjectAndApiKey();
       const traceId = randomUUID();
 
-      // Create trace with "langfuse" environment (no hyphen)
+      // Create trace with "elasticdash" environment (no hyphen)
       await upsertTrace({
         id: traceId,
         project_id: projectId,
-        environment: "langfuse",
+        environment: "elasticdash",
         timestamp: convertDateToClickhouseDateTime(new Date()),
         created_at: convertDateToClickhouseDateTime(new Date()),
         updated_at: convertDateToClickhouseDateTime(new Date()),
@@ -3327,7 +3327,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
       const payload = {
         projectId,
         traceId,
-        traceEnvironment: "langfuse",
+        traceEnvironment: "elasticdash",
       };
 
       // Attempt to create eval jobs
@@ -3337,7 +3337,7 @@ Respond with JSON: {"score": <number>, "reasoning": "<explanation>"}`;
         jobTimestamp,
       });
 
-      // Verify eval jobs WERE created (only "langfuse-" prefix is blocked)
+      // Verify eval jobs WERE created (only "elasticdash-" prefix is blocked)
       const jobs = await kyselyPrisma.$kysely
         .selectFrom("job_executions")
         .selectAll()

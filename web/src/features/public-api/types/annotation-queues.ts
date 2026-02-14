@@ -2,11 +2,11 @@ import { z } from "zod/v4";
 import {
   paginationMetaResponseZod,
   publicApiPaginationZod,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   AnnotationQueueObjectType,
   AnnotationQueueStatus,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 /**
  * Common Types

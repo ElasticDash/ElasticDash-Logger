@@ -1,7 +1,7 @@
 import * as React from "react";
 import { EvalTemplateForm } from "@/src/features/evals/components/template-form";
 import { api } from "@/src/utils/api";
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 import { useRouter } from "next/router";
 import {
   Select,
@@ -25,7 +25,7 @@ import {
   SidePanelHeader,
   SidePanelTitle,
 } from "@/src/components/ui/side-panel";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 
 export const EvalTemplateDetail = () => {
   const router = useRouter();
@@ -240,7 +240,7 @@ export function UpdateTemplate({
   if (!isCustom) {
     return (
       <div className="flex items-center gap-2">
-        <LangfuseIcon size={16} />
+        <ElasticDashIcon size={16} />
         <span className="text-sm font-medium text-muted-foreground">
           View only
         </span>

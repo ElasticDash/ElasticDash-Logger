@@ -1,6 +1,6 @@
-# Architecture Overview - Langfuse Backend
+# Architecture Overview - ElasticDash Backend
 
-Complete guide to the layered architecture pattern used in Langfuse's Next.js 14/tRPC/Express monorepo.
+Complete guide to the layered architecture pattern used in ElasticDash's Next.js 14/tRPC/Express monorepo.
 
 ## Table of Contents
 
@@ -15,7 +15,7 @@ Complete guide to the layered architecture pattern used in Langfuse's Next.js 14
 
 ## Layered Architecture Pattern
 
-Langfuse uses a **three-layer architecture** with two primary entry points (tRPC and Public API) plus async processing via Worker.
+ElasticDash uses a **three-layer architecture** with two primary entry points (tRPC and Public API) plus async processing via Worker.
 
 ### The Three Layers
 
@@ -296,13 +296,13 @@ worker/src/
 
 The shared package provides types, utilities, and server code used by both web and worker packages. It has **5 export paths** that control frontend vs backend access:
 
-| Import Path                                | Usage                 | What's Included                                                                    |
-| ------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
-| `@langfuse/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
-| `@langfuse/shared/src/db`                  | 🔒 Backend only       | Prisma client instance                                                             |
-| `@langfuse/shared/src/server`              | 🔒 Backend only       | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
-| `@langfuse/shared/src/server/auth/apiKeys` | 🔒 Backend only       | API key management (separated to avoid circular deps)                              |
-| `@langfuse/shared/encryption`              | 🔒 Backend only       | Database field encryption/decryption                                               |
+| Import Path                                   | Usage                | What's Included                                                                    |
+|-----------------------------------------------|----------------------|------------------------------------------------------------------------------------|
+| `@elasticdash/shared`                         | ✅ Frontend + Backend | Prisma types, Zod schemas, constants, table definitions, domain models, utilities  |
+| `@elasticdash/shared/src/db`                  | 🔒 Backend only      | Prisma client instance                                                             |
+| `@elasticdash/shared/src/server`              | 🔒 Backend only      | Services, repositories, queues, auth, ClickHouse, LLM integration, instrumentation |
+| `@elasticdash/shared/src/server/auth/apiKeys` | 🔒 Backend only      | API key management (separated to avoid circular deps)                              |
+| `@elasticdash/shared/encryption`              | 🔒 Backend only      | Database field encryption/decryption                                               |
 
 **Key Structure:**
 
@@ -336,10 +336,10 @@ import {
   Role,
   type Dataset,
   CloudConfigSchema,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 // 🔒 Database - Backend only
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 // 🔒 Server utilities - Backend only
 import {
@@ -351,13 +351,13 @@ import {
   StorageService,
   fetchLLMCompletion,
   filterToPrisma,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 // 🔒 API keys - Backend only
-import { createAndAddApiKeysToDb } from "@langfuse/shared/src/server/auth/apiKeys";
+import { createAndAddApiKeysToDb } from "@elasticdash/shared/src/server/auth/apiKeys";
 
 // 🔒 Encryption - Backend only
-import { encrypt, decrypt } from "@langfuse/shared/encryption";
+import { encrypt, decrypt } from "@elasticdash/shared/encryption";
 ```
 
 ---
@@ -526,8 +526,8 @@ export const datasetRouter = createTRPCRouter({
 
 ```typescript
 // web/src/features/datasets/server/service.ts
-import { prisma } from "@langfuse/shared/src/db";
-import { instrumentAsync, traceException } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { instrumentAsync, traceException } from "@elasticdash/shared/src/server";
 
 export async function createDataset(data: {
   name: string;
@@ -640,7 +640,7 @@ export async function processDatasetExport(
 
 ### Dual Database System
 
-Langfuse uses two databases with different purposes:
+ElasticDash uses two databases with different purposes:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -689,12 +689,12 @@ Langfuse uses two databases with different purposes:
 
 ```typescript
 // PostgreSQL via Prisma
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 const dataset = await prisma.dataset.create({ data });
 
 // ClickHouse via helper functions
-import { getTracesTable } from "@langfuse/shared/src/server";
+import { getTracesTable } from "@elasticdash/shared/src/server";
 
 const traces = await getTracesTable({
   projectId,
@@ -703,14 +703,14 @@ const traces = await getTracesTable({
 });
 
 // Redis via queue/cache utilities
-import { redis } from "@langfuse/shared/src/server";
+import { redis } from "@elasticdash/shared/src/server";
 
 await redis.set(`cache:${key}`, value, "EX", 3600);
 ```
 
 **Repository Pattern:**
 
-Langfuse uses repositories in `packages/shared/src/server/repositories/` for complex data access patterns. Repositories provide:
+ElasticDash uses repositories in `packages/shared/src/server/repositories/` for complex data access patterns. Repositories provide:
 
 - Abstraction over complex queries (traces, observations, scores, events)
 - Data converters for transforming database models to application models
@@ -771,7 +771,7 @@ export async function createDataset(ctx: TRPCContext) {
 
 ### 3. Observability with OpenTelemetry + DataDog
 
-**Langfuse uses OpenTelemetry for backend observability, with traces and logs sent to DataDog.**
+**ElasticDash uses OpenTelemetry for backend observability, with traces and logs sent to DataDog.**
 
 Use structured logging and instrumentation:
 
@@ -780,7 +780,7 @@ import {
   logger,
   traceException,
   instrumentAsync,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 export async function processEvaluation(evalId: string) {
   return await instrumentAsync(

@@ -1,7 +1,7 @@
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { prisma } from "@langfuse/shared/src/db";
-import { LangfuseNotFoundError, Prisma } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { ElasticDashNotFoundError, Prisma } from "@elasticdash/shared";
 import {
   AnnotationQueueAssignmentQuery,
   CreateAnnotationQueueAssignmentBody,
@@ -9,7 +9,7 @@ import {
   DeleteAnnotationQueueAssignmentBody,
   DeleteAnnotationQueueAssignmentResponse,
 } from "@/src/features/public-api/types/annotation-queues";
-import { getUserProjectRoles } from "@langfuse/shared/src/server";
+import { getUserProjectRoles } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   POST: createAuthedProjectAPIRoute({
@@ -29,7 +29,7 @@ export default withMiddlewares({
       });
 
       if (!queue) {
-        throw new LangfuseNotFoundError("Annotation queue not found");
+        throw new ElasticDashNotFoundError("Annotation queue not found");
       }
 
       // Verify the user exists and has access to the project
@@ -51,7 +51,7 @@ export default withMiddlewares({
       });
 
       if (!user || user.length === 0) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "User not found or not authorized for this project",
         );
       }
@@ -98,7 +98,7 @@ export default withMiddlewares({
       });
 
       if (!queue) {
-        throw new LangfuseNotFoundError("Annotation queue not found");
+        throw new ElasticDashNotFoundError("Annotation queue not found");
       }
 
       // Delete the assignment if it exists

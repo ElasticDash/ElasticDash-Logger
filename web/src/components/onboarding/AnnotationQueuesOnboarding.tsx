@@ -55,9 +55,9 @@ export function AnnotationQueuesOnboarding({
       }}
       secondaryAction={{
         label: "Learn More",
-        href: "https://langfuse.com/docs/scores/annotation",
+        href: "https://www.elasticdash.com/docs/scores/annotation",
       }}
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/annotation-queue-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/annotation-queue-overview-v1.mp4"
     />
   );
 }

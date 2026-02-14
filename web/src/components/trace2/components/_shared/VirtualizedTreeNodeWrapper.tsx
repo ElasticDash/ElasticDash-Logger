@@ -15,7 +15,10 @@
 
 import { type ReactNode } from "react";
 import { Button } from "@/src/components/ui/button";
-import { ItemBadge, type LangfuseItemType } from "@/src/components/ItemBadge";
+import {
+  ItemBadge,
+  type ElasticDashItemType,
+} from "@/src/components/ItemBadge";
 import { ChevronRight } from "lucide-react";
 import { cn } from "@/src/utils/tailwind";
 
@@ -28,7 +31,7 @@ export interface TreeNodeMetadata {
 interface TreeNodeWrapperProps {
   // Tree structure data
   metadata: TreeNodeMetadata;
-  nodeType: LangfuseItemType; // For the icon badge (e.g., "SPAN", "GENERATION", "TRACE")
+  nodeType: ElasticDashItemType; // For the icon badge (e.g., "SPAN", "GENERATION", "TRACE")
   hasChildren: boolean;
   isCollapsed: boolean;
   onToggleCollapse: () => void;

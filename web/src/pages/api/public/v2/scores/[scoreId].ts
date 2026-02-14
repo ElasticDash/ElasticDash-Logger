@@ -5,9 +5,9 @@ import {
   GetScoreQueryV2,
   GetScoreResponseV2,
   InternalServerError,
-  LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { logger, traceException } from "@langfuse/shared/src/server";
+  ElasticDashNotFoundError,
+} from "@elasticdash/shared";
+import { logger, traceException } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({
@@ -22,7 +22,7 @@ export default withMiddlewares({
       });
 
       if (!score) {
-        throw new LangfuseNotFoundError("Score not found");
+        throw new ElasticDashNotFoundError("Score not found");
       }
 
       const parsedScore = GetScoreResponseV2.safeParse(score);

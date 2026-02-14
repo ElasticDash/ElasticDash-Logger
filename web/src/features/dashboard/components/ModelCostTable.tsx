@@ -3,7 +3,7 @@ import { RightAlignedCell } from "@/src/features/dashboard/components/RightAlign
 import { LeftAlignedCell } from "@/src/features/dashboard/components/LeftAlignedCell";
 import { DashboardCard } from "@/src/features/dashboard/components/cards/DashboardCard";
 import { DashboardTable } from "@/src/features/dashboard/components/cards/DashboardTable";
-import { type FilterState, getGenerationLikeTypes } from "@langfuse/shared";
+import { type FilterState, getGenerationLikeTypes } from "@elasticdash/shared";
 import { api } from "@/src/utils/api";
 import { compactNumberFormatter } from "@/src/utils/numbers";
 import { TotalMetric } from "./TotalMetric";
@@ -117,7 +117,7 @@ export const ModelCostTable = ({
         >
           <DocPopup
             description="Calculated multiplying the number of tokens with cost per token for each model."
-            href="https://langfuse.com/docs/model-usage-and-cost"
+            href="https://www.elasticdash.com/docs/model-usage-and-cost"
           />
         </TotalMetric>
       </DashboardTable>

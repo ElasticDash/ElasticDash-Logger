@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   GetObservationV1Query,
   GetObservationV1Response,
@@ -6,12 +6,12 @@ import {
 } from "@/src/features/public-api/types/observations";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { LangfuseNotFoundError } from "@langfuse/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import {
   enrichObservationWithModelData,
   getObservationById,
   getObservationByIdFromEventsTable,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "@/src/env.mjs";
 
 export default withMiddlewares({
@@ -24,7 +24,7 @@ export default withMiddlewares({
       const useEventsTable =
         query.useEventsTable !== undefined && query.useEventsTable !== null
           ? query.useEventsTable === true
-          : env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS;
+          : env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS;
 
       const clickhouseObservation = useEventsTable
         ? await getObservationByIdFromEventsTable({
@@ -41,7 +41,7 @@ export default withMiddlewares({
           });
 
       if (!clickhouseObservation) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Observation not found within authorized project",
         );
       }
@@ -83,7 +83,7 @@ export default withMiddlewares({
       };
 
       if (!observation) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Observation not found within authorized project",
         );
       }

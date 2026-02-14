@@ -7,7 +7,7 @@ import {
   DataTableControls,
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { InlineFilterState } from "@/src/features/filters/components/filter-builder";
 import { useDetailPageLists } from "@/src/features/navigate-detail-pages/context";
@@ -15,7 +15,7 @@ import { useSidebarFilterState } from "@/src/features/filters/hooks/useSidebarFi
 import { evaluatorFilterConfig } from "@/src/features/filters/config/evaluators-config";
 import { type RouterOutputs, api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
-import { type FilterState, singleFilter } from "@langfuse/shared";
+import { type FilterState, singleFilter } from "@elasticdash/shared";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import {
@@ -355,7 +355,7 @@ export default function EvaluatorTable({ projectId }: { projectId: string }) {
         );
       },
     }),
-  ] as LangfuseColumnDef<EvaluatorDataRow>[];
+  ] as ElasticDashColumnDef<EvaluatorDataRow>[];
 
   const [columnVisibility, setColumnVisibility] =
     useColumnVisibility<EvaluatorDataRow>(
@@ -391,8 +391,8 @@ export default function EvaluatorTable({ projectId }: { projectId: string }) {
         ? jobConfig.evalTemplate.projectId
           ? "User maintained"
           : jobConfig.evalTemplate.name.startsWith(RAGAS_TEMPLATE_PREFIX)
-            ? "Langfuse and Ragas maintained"
-            : "Langfuse maintained"
+            ? "ElasticDash and Ragas maintained"
+            : "ElasticDash maintained"
         : "Not available",
       totalCost: costData,
     };

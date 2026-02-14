@@ -10,7 +10,7 @@
  * - Proper indentation for nested dimension levels
  * - Subtotal and grand total calculations
  * - Responsive design within dashboard grid
- * - Consistent styling with Langfuse design system
+ * - Consistent styling with ElasticDash design system
  * - Row limiting to prevent performance issues
  * - Interactive sorting with hierarchical behavior
  *
@@ -43,7 +43,7 @@ import {
 import { type ChartProps } from "@/src/features/widgets/chart-library/chart-props";
 import { numberFormatter } from "@/src/utils/numbers";
 import { formatMetricName } from "@/src/features/widgets/utils";
-import { type OrderByState } from "@langfuse/shared";
+import { type OrderByState } from "@elasticdash/shared";
 import { Loader2 } from "lucide-react";
 
 /**

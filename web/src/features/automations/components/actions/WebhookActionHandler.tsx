@@ -8,7 +8,7 @@ import {
   WebhookDefaultHeaders,
   type ActionCreate,
   type ActionDomain,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { z } from "zod/v4";
 
 // Define the form schema for webhook actions
@@ -135,7 +135,7 @@ export class WebhookActionHandler
             defaultHeaderKeys.includes(header.name.trim().toLowerCase())
           ) {
             errors.push(
-              `Header ${index + 1}: "${header.name}" is automatically added by Langfuse and cannot be customized`,
+              `Header ${index + 1}: "${header.name}" is automatically added by ElasticDash and cannot be customized`,
             );
           }
         }

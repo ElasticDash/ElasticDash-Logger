@@ -46,7 +46,7 @@ importers:
 
   ee:
     dependencies:
-      '@langfuse/shared':
+      '@elasticdash/shared':
         specifier: workspace:*
         version: link:../packages/shared
       '@opentelemetry/api':
@@ -383,6 +383,15 @@ importers:
       '@dnd-kit/utilities':
         specifier: ^3.2.2
         version: 3.2.2(react@19.2.3)
+      '@elasticdash/client':
+        specifier: 0.0.10
+        version: 0.0.10(@opentelemetry/api@1.9.0)
+      '@elasticdash/ee':
+        specifier: workspace:*
+        version: link:../ee
+      '@elasticdash/shared':
+        specifier: workspace:*
+        version: link:../packages/shared
       '@ferrucc-io/emoji-picker':
         specifier: ^0.0.47
         version: 0.0.47(@babel/core@7.28.5)(@babel/template@7.27.2)(@types/react@19.2.3)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.0)(typescript@5.9.2)))
@@ -401,12 +410,6 @@ importers:
       '@langchain/core':
         specifier: ^0.3.80
         version: 0.3.80(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.53.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.26.0(@opentelemetry/api@1.9.0))(openai@4.104.0(ws@8.18.3)(zod@3.25.62))
-      '@langfuse/ee':
-        specifier: workspace:*
-        version: link:../ee
-      '@langfuse/shared':
-        specifier: workspace:*
-        version: link:../packages/shared
       '@lezer/highlight':
         specifier: ^1.2.3
         version: 1.2.3
@@ -653,9 +656,6 @@ importers:
       langchain:
         specifier: ^0.3.37
         version: 0.3.37(48b7a36b740ff8e4161f6da1f7c468fd)
-      langfuse:
-        specifier: 3.38.4
-        version: 3.38.4
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -909,7 +909,7 @@ importers:
       '@aws-sdk/client-s3':
         specifier: ^3.675.0
         version: 3.675.0
-      '@langfuse/shared':
+      '@elasticdash/shared':
         specifier: workspace:*
         version: link:../packages/shared
       '@opentelemetry/api':
@@ -2239,6 +2239,22 @@ packages:
   '@egjs/hammerjs@2.0.17':
     resolution: {integrity: sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==}
     engines: {node: '>=0.8.0'}
+
+  '@elasticdash/client@0.0.10':
+    resolution: {integrity: sha512-4Kp/dWhJL1qjDIZFbAI5g0ogP9jyodML1b6T2h3le8t1GQ4m4F4B0nHywdWtO9Cc0EjwKmFmbTXftwCaHsP3AQ==}
+    peerDependencies:
+      '@opentelemetry/api': ^1.9.0
+
+  '@elasticdash/core@0.0.10':
+    resolution: {integrity: sha512-kkBdb2/RdZ7mBp4Q0Buy28kx7k/AiAwKHN0Kj7jegNRl1V5XdVriQuJX6zVMk900yqScZ3N12emhiMWRS2wB5g==}
+    peerDependencies:
+      '@opentelemetry/api': ^1.9.0
+
+  '@elasticdash/tracing@0.0.10':
+    resolution: {integrity: sha512-drbv9zWaTvFJjeWuPiRmpDAPg0tzOs/FvximyNANR3avRBrWzr+PNFX2N83LbWrdou1T1/g+807g33/+jr0UmA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      '@opentelemetry/api': ^1.9.0
 
   '@emnapi/core@1.7.1':
     resolution: {integrity: sha512-o1uhUASyo921r2XtHYOHy7gdkGLge8ghBEQHMWmyJFoXlpU58kIrhhN3w26lpQb6dspetweapMn2CSNwQ8I4wg==}
@@ -9410,10 +9426,6 @@ packages:
       typeorm:
         optional: true
 
-  langfuse-core@3.38.4:
-    resolution: {integrity: sha512-onTAqcEGhoXuBgqDFXe2t+bt9Vi+5YChRgdz3voM49JKoHwtVZQiUdqTfjSivGR75eSbYoiaIL8IRoio+jaqwg==}
-    engines: {node: '>=18'}
-
   langfuse-core@3.38.6:
     resolution: {integrity: sha512-EcZXa+DK9FJdi1I30+u19eKjuBJ04du6j2Nybk19KKCuraLczg/ppkTQcGvc4QOk//OAi3qUHrajUuV74RXsBQ==}
     engines: {node: '>=18'}
@@ -9423,10 +9435,6 @@ packages:
     engines: {node: '>=18'}
     peerDependencies:
       langchain: '>=0.0.157 <0.4.0'
-
-  langfuse@3.38.4:
-    resolution: {integrity: sha512-2UqMeHLl3DGNX1Nh/cO4jGhk7TzDJ6gjQLlyS9rwFCKVO81xot6b58yeTsTB5YrWupWsOxQtMNoQYIQGOUlH9Q==}
-    engines: {node: '>=18'}
 
   langfuse@3.38.6:
     resolution: {integrity: sha512-mtwfsNGIYvObRh+NYNGlJQJDiBN+Wr3Hnr++wN25mxuOpSTdXX+JQqVCyAqGL5GD2TAXRZ7COsN42Vmp9krYmg==}
@@ -15349,6 +15357,22 @@ snapshots:
   '@egjs/hammerjs@2.0.17':
     dependencies:
       '@types/hammerjs': 2.0.46
+
+  '@elasticdash/client@0.0.10(@opentelemetry/api@1.9.0)':
+    dependencies:
+      '@elasticdash/core': 0.0.10(@opentelemetry/api@1.9.0)
+      '@elasticdash/tracing': 0.0.10(@opentelemetry/api@1.9.0)
+      '@opentelemetry/api': 1.9.0
+      mustache: 4.2.0
+
+  '@elasticdash/core@0.0.10(@opentelemetry/api@1.9.0)':
+    dependencies:
+      '@opentelemetry/api': 1.9.0
+
+  '@elasticdash/tracing@0.0.10(@opentelemetry/api@1.9.0)':
+    dependencies:
+      '@elasticdash/core': 0.0.10(@opentelemetry/api@1.9.0)
+      '@opentelemetry/api': 1.9.0
 
   '@emnapi/core@1.7.1':
     dependencies:
@@ -23977,10 +24001,6 @@ snapshots:
       - openai
       - ws
 
-  langfuse-core@3.38.4:
-    dependencies:
-      mustache: 4.2.0
-
   langfuse-core@3.38.6:
     dependencies:
       mustache: 4.2.0
@@ -23990,10 +24010,6 @@ snapshots:
       langchain: 0.3.37(c4f36ce30438bade2a9603ee191f8687)
       langfuse: 3.38.6
       langfuse-core: 3.38.6
-
-  langfuse@3.38.4:
-    dependencies:
-      langfuse-core: 3.38.4
 
   langfuse@3.38.6:
     dependencies:

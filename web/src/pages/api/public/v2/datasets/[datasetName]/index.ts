@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   GetDatasetV2Query,
   GetDatasetV2Response,
@@ -6,7 +6,7 @@ import {
 } from "@/src/features/public-api/types/datasets";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { LangfuseNotFoundError } from "@langfuse/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({
@@ -25,7 +25,7 @@ export default withMiddlewares({
       });
 
       if (!dataset) {
-        throw new LangfuseNotFoundError("Dataset not found");
+        throw new ElasticDashNotFoundError("Dataset not found");
       }
       return transformDbDatasetToAPIDataset(dataset);
     },

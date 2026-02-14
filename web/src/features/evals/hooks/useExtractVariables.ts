@@ -1,7 +1,7 @@
 import { type VariableMapping } from "@/src/features/evals/utils/evaluator-form-utils";
 import { api } from "@/src/utils/api";
 import { trpcErrorToast } from "@/src/utils/trpcErrorToast";
-import { extractValueFromObject } from "@langfuse/shared";
+import { extractValueFromObject } from "@elasticdash/shared";
 import { useEffect, useState, useRef } from "react";
 
 /**
@@ -109,7 +109,7 @@ export function useExtractVariables({
       }
 
       let object;
-      if (mapping.langfuseObject === "trace") {
+      if (mapping.elasticdashObject === "trace") {
         object = trace;
       } else if (mapping.objectName) {
         // For observations, find them in the pre-loaded trace data

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
-import { singleFilter, TracingSearchType } from "@langfuse/shared";
-import { orderBy } from "@langfuse/shared";
+import { singleFilter, TracingSearchType } from "@elasticdash/shared";
+import { orderBy } from "@elasticdash/shared";
 
 export const GenerationTableOptions = z.object({
   projectId: z.string(), // Required for protectedProjectProcedure

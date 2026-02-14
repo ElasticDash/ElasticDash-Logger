@@ -1,8 +1,8 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   getObservationsFromEventsTableForPublicApi,
   getObservationsCountFromEventsTableForPublicApi,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "@/src/env.mjs";
 
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
@@ -45,7 +45,7 @@ export default withMiddlewares({
       const useEventsTable =
         query.useEventsTable !== undefined && query.useEventsTable !== null
           ? query.useEventsTable === true
-          : env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS;
+          : env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS;
 
       if (useEventsTable) {
         const [items, count] = await Promise.all([

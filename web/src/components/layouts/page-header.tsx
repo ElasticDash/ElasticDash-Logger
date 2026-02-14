@@ -1,5 +1,8 @@
 import { EnvLabel } from "@/src/components/EnvLabel";
-import { ItemBadge, type LangfuseItemType } from "@/src/components/ItemBadge";
+import {
+  ItemBadge,
+  type ElasticDashItemType,
+} from "@/src/components/ItemBadge";
 import BreadcrumbComponent from "@/src/components/layouts/breadcrumb";
 import DocPopup from "@/src/components/layouts/doc-popup";
 import { SidebarTrigger } from "@/src/components/ui/sidebar";
@@ -40,7 +43,7 @@ export type PageHeaderProps = {
   actionButtonsRight?: React.ReactNode; // Right-side actions (buttons, etc.)
   help?: { description: string; href?: string; className?: string };
   titleTooltip?: string;
-  itemType?: LangfuseItemType;
+  itemType?: ElasticDashItemType;
   container?: boolean;
   tabsProps?: PageTabsProps;
   className?: string;

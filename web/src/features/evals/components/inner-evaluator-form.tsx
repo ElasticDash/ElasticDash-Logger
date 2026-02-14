@@ -28,12 +28,12 @@ import {
   datasetFormFilterColsWithOptions,
   availableDatasetEvalVariables,
   type ObservationType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { z } from "zod/v4";
 import { useEffect, useMemo, useState, memo } from "react";
 import { api } from "@/src/utils/api";
 import { InlineFilterBuilder } from "@/src/features/filters/components/filter-builder";
-import { type EvalTemplate, variableMapping } from "@langfuse/shared";
+import { type EvalTemplate, variableMapping } from "@elasticdash/shared";
 import { useRouter } from "next/router";
 import { Slider } from "@/src/components/ui/slider";
 import { Card } from "@/src/components/ui/card";
@@ -47,7 +47,7 @@ import {
   type EvalFormType,
   isTraceOrDatasetObject,
   isTraceTarget,
-  type LangfuseObject,
+  type ElasticDashObject,
   type VariableMapping,
 } from "@/src/features/evals/utils/evaluator-form-utils";
 import { ExecutionCountTooltip } from "@/src/features/evals/components/execution-count-tooltip";
@@ -92,9 +92,9 @@ const OUTPUT_MAPPING = [
 
 const inferDefaultMapping = (
   variable: string,
-): Pick<VariableMapping, "langfuseObject" | "selectedColumnId"> => {
+): Pick<VariableMapping, "elasticdashObject" | "selectedColumnId"> => {
   return {
-    langfuseObject: "trace" as const,
+    elasticdashObject: "trace" as const,
     selectedColumnId: OUTPUT_MAPPING.includes(variable.toLowerCase())
       ? "output"
       : "input",
@@ -191,7 +191,7 @@ export const InnerEvaluatorForm = (props: {
             props.evalTemplate
               ? props.evalTemplate.vars.map((v) => ({
                   templateVariable: v,
-                  langfuseObject: "trace" as const,
+                  elasticdashObject: "trace" as const,
                   selectedColumnId: "input",
                 }))
               : [],
@@ -513,14 +513,14 @@ export const InnerEvaluatorForm = (props: {
                       value={field.value}
                       onValueChange={(value) => {
                         const isTrace = isTraceTarget(value);
-                        const langfuseObject: LangfuseObject = isTrace
+                        const elasticdashObject: ElasticDashObject = isTrace
                           ? "trace"
                           : "dataset_item";
                         const newMapping = form
                           .getValues("mapping")
                           .map((field) => ({
                             ...field,
-                            langfuseObject,
+                            elasticdashObject,
                           }));
                         form.setValue("filter", []);
                         form.setValue("mapping", newMapping);
@@ -861,23 +861,23 @@ export const InnerEvaluatorForm = (props: {
                               "Variable in the template to be replaced with the mapped data."
                             }
                             href={
-                              "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
+                              "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
                             }
                           />
                         </div>
                         <FormField
                           control={form.control}
-                          key={`${mappingField.id}-langfuseObject`}
-                          name={`mapping.${index}.langfuseObject`}
+                          key={`${mappingField.id}-elasticdashObject`}
+                          name={`mapping.${index}.elasticdashObject`}
                           render={({ field }) => (
                             <div className="flex items-center gap-2">
                               <VariableMappingDescription
                                 title="Object"
                                 description={
-                                  "Langfuse object to retrieve the data from."
+                                  "ElasticDash object to retrieve the data from."
                                 }
                                 href={
-                                  "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
+                                  "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
                                 }
                               />
                               <FormItem className="w-2/3">
@@ -915,7 +915,7 @@ export const InnerEvaluatorForm = (props: {
                         />
 
                         {!isTraceOrDatasetObject(
-                          form.watch(`mapping.${index}.langfuseObject`),
+                          form.watch(`mapping.${index}.elasticdashObject`),
                         ) ? (
                           <FormField
                             control={form.control}
@@ -923,7 +923,9 @@ export const InnerEvaluatorForm = (props: {
                             name={`mapping.${index}.objectName`}
                             render={({ field }) => {
                               const type = String(
-                                form.watch(`mapping.${index}.langfuseObject`),
+                                form.watch(
+                                  `mapping.${index}.elasticdashObject`,
+                                ),
                               ).toUpperCase() as ObservationType;
                               const nameOptions = Array.from(
                                 observationTypeToNames.get(type) ?? [],
@@ -937,10 +939,10 @@ export const InnerEvaluatorForm = (props: {
                                   <VariableMappingDescription
                                     title={"Object Name"}
                                     description={
-                                      "Name of the Langfuse object to retrieve the data from."
+                                      "Name of the ElasticDash object to retrieve the data from."
                                     }
                                     href={
-                                      "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
+                                      "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
                                     }
                                   />
                                   <FormItem className="w-2/3">
@@ -987,7 +989,7 @@ export const InnerEvaluatorForm = (props: {
                                             onChange={(e) =>
                                               field.onChange(e.target.value)
                                             }
-                                            placeholder="Enter langfuse object name"
+                                            placeholder="Enter elasticdash object name"
                                             disabled={props.disabled}
                                           />
                                         </div>
@@ -1037,10 +1039,10 @@ export const InnerEvaluatorForm = (props: {
                               <VariableMappingDescription
                                 title={"Object Variable"}
                                 description={
-                                  "Variable on the Langfuse object to insert into the template."
+                                  "Variable on the ElasticDash object to insert into the template."
                                 }
                                 href={
-                                  "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
+                                  "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
                                 }
                               />
                               <FormItem className="w-2/3">
@@ -1054,7 +1056,7 @@ export const InnerEvaluatorForm = (props: {
                                           (evalObject) =>
                                             evalObject.id ===
                                             form.watch(
-                                              `mapping.${index}.langfuseObject`,
+                                              `mapping.${index}.elasticdashObject`,
                                             ),
                                         )?.availableColumns;
 
@@ -1074,7 +1076,7 @@ export const InnerEvaluatorForm = (props: {
                                           (evalObject) =>
                                             evalObject.id ===
                                             form.watch(
-                                              `mapping.${index}.langfuseObject`,
+                                              `mapping.${index}.elasticdashObject`,
                                             ),
                                         )
                                         ?.availableColumns.map((column) => (
@@ -1108,7 +1110,7 @@ export const InnerEvaluatorForm = (props: {
                                     "Optional selection: Use JsonPath syntax to select from a JSON object stored on a trace. If not selected, we will pass the entire object into the prompt."
                                   }
                                   href={
-                                    "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
+                                    "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge"
                                   }
                                 />
                                 <FormItem className="w-2/3">

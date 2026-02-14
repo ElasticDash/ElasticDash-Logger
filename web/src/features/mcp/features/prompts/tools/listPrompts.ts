@@ -14,7 +14,7 @@ import {
 } from "../validation";
 import { ParamLimit, ParamPage } from "../../../core/validation";
 import { getPromptsMeta } from "@/src/features/prompts/server/actions/getPromptsMeta";
-import { instrumentAsync } from "@langfuse/shared/src/server";
+import { instrumentAsync } from "@elasticdash/shared/src/server";
 import { SpanKind } from "@opentelemetry/api";
 
 /**
@@ -57,8 +57,8 @@ export const [listPromptsTool, handleListPrompts] = defineTool({
 
         // Set span attributes for observability
         span.setAttributes({
-          "langfuse.project.id": context.projectId,
-          "langfuse.org.id": context.orgId,
+          "elasticdash.project.id": context.projectId,
+          "elasticdash.org.id": context.orgId,
           "mcp.api_key_id": context.apiKeyId,
           "mcp.pagination_page": page ?? 1,
           "mcp.pagination_limit": limit ?? 50,

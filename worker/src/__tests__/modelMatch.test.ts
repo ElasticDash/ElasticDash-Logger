@@ -1,12 +1,15 @@
 import { expect, describe, it } from "vitest";
-import { prisma } from "@langfuse/shared/src/db";
-import { createOrgProjectAndApiKey, redis } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import {
+  createOrgProjectAndApiKey,
+  redis,
+} from "@elasticdash/shared/src/server";
 import {
   findModel,
   findModelInPostgres,
   getRedisModelKey,
   clearModelCacheForProject,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 as uuidv4 } from "uuid";
 
 describe("modelMatch", () => {
@@ -142,7 +145,7 @@ describe("modelMatch", () => {
         model: nonExistentModel,
       });
       const cachedValue = await redis?.get(redisKey);
-      expect(cachedValue).toBe("LANGFUSE_MODEL_MATCH_NOT_FOUND");
+      expect(cachedValue).toBe("ELASTICDASH_MODEL_MATCH_NOT_FOUND");
     });
   });
 
@@ -256,7 +259,7 @@ describe("modelMatch", () => {
       // Verify the not-found token is cached
       const redisKey = getRedisModelKey({ projectId, model: nonExistentModel });
       const cachedValue = await redis?.get(redisKey);
-      expect(cachedValue).toBe("LANGFUSE_MODEL_MATCH_NOT_FOUND");
+      expect(cachedValue).toBe("ELASTICDASH_MODEL_MATCH_NOT_FOUND");
 
       // Clear the cache for the project
       await clearModelCacheForProject(projectId);

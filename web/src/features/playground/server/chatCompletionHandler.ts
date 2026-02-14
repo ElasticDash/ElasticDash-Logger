@@ -6,20 +6,20 @@ import {
   ForbiddenError,
   InternalServerError,
   InvalidRequestError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 import { PosthogCallbackHandler } from "./analytics/posthogCallback";
 import { authorizeRequestOrThrow } from "./authorizeRequest";
 import { validateChatCompletionBody } from "./validateChatCompletionBody";
 
 import { env } from "@/src/env.mjs";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   LLMApiKeySchema,
   logger,
   fetchLLMCompletion,
-  contextWithLangfuseProps,
-} from "@langfuse/shared/src/server";
+  contextWithElasticDashProps,
+} from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
 
 export default async function chatCompletionHandler(req: NextRequest) {
@@ -27,14 +27,14 @@ export default async function chatCompletionHandler(req: NextRequest) {
     const body = validateChatCompletionBody(await req.json());
     const { userId } = await authorizeRequestOrThrow(body.projectId);
 
-    const blockedUsers = env.LANGFUSE_BLOCKED_USERIDS_CHATCOMPLETION;
+    const blockedUsers = env.ELASTICDASH_BLOCKED_USERIDS_CHATCOMPLETION;
     if (blockedUsers.has(userId)) {
       const reason = blockedUsers.get(userId);
       logger.warn("Blocked chat completion access", { userId, reason });
       throw new ForbiddenError("Access denied");
     }
 
-    const baggageCtx = contextWithLangfuseProps({
+    const baggageCtx = contextWithElasticDashProps({
       userId: userId,
       projectId: body.projectId,
     });

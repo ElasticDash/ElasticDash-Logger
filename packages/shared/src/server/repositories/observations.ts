@@ -6,7 +6,7 @@ import {
   upsertClickhouse,
 } from "./clickhouse";
 import { logger } from "../logger";
-import { InternalServerError, LangfuseNotFoundError } from "../../errors";
+import { InternalServerError, ElasticDashNotFoundError } from "../../errors";
 import { prisma } from "../../db";
 import { ObservationRecordReadType } from "./definitions";
 import { FilterState } from "../../types";
@@ -228,8 +228,10 @@ export const getObservationsForTrace = async <IncludeIO extends boolean>(
       }
     });
 
-    if (payloadSize >= env.LANGFUSE_API_TRACE_OBSERVATIONS_SIZE_LIMIT_BYTES) {
-      const errorMessage = `Observations in trace are too large: ${(payloadSize / 1e6).toFixed(2)}MB exceeds limit of ${(env.LANGFUSE_API_TRACE_OBSERVATIONS_SIZE_LIMIT_BYTES / 1e6).toFixed(2)}MB`;
+    if (
+      payloadSize >= env.ELASTICDASH_API_TRACE_OBSERVATIONS_SIZE_LIMIT_BYTES
+    ) {
+      const errorMessage = `Observations in trace are too large: ${(payloadSize / 1e6).toFixed(2)}MB exceeds limit of ${(env.ELASTICDASH_API_TRACE_OBSERVATIONS_SIZE_LIMIT_BYTES / 1e6).toFixed(2)}MB`;
 
       throw new Error(errorMessage);
     }
@@ -241,7 +243,7 @@ export const getObservationsForTrace = async <IncludeIO extends boolean>(
       metadata: r.metadata ?? {},
     });
     recordDistribution(
-      "langfuse.query_by_id_age",
+      "elasticdash.query_by_id_age",
       new Date().getTime() - observation.startTime.getTime(),
       {
         table: "observations",
@@ -363,7 +365,7 @@ export const getObservationById = async ({
 
   mapped.forEach((observation) => {
     recordDistribution(
-      "langfuse.query_by_id_age",
+      "elasticdash.query_by_id_age",
       new Date().getTime() - observation.startTime.getTime(),
       {
         table: "observations",
@@ -371,7 +373,7 @@ export const getObservationById = async ({
     );
   });
   if (mapped.length === 0) {
-    throw new LangfuseNotFoundError(`Observation with id ${id} not found`);
+    throw new ElasticDashNotFoundError(`Observation with id ${id} not found`);
   }
 
   if (mapped.length > 1) {
@@ -471,7 +473,7 @@ const getObservationByIdInternal = async ({
     level,
     status_message,
     version,
-    ${fetchWithInputOutput ? (renderingProps.truncated ? `leftUTF8(input, ${env.LANGFUSE_SERVER_SIDE_IO_CHAR_LIMIT}) as input, leftUTF8(output, ${env.LANGFUSE_SERVER_SIDE_IO_CHAR_LIMIT}) as output,` : "input, output,") : ""}
+    ${fetchWithInputOutput ? (renderingProps.truncated ? `leftUTF8(input, ${env.ELASTICDASH_SERVER_SIDE_IO_CHAR_LIMIT}) as input, leftUTF8(output, ${env.ELASTICDASH_SERVER_SIDE_IO_CHAR_LIMIT}) as output,` : "input, output,") : ""}
     provided_model_name,
     internal_model_id,
     model_parameters,
@@ -1238,7 +1240,7 @@ export const deleteObservationsByTraceIds = async (
       traceIds,
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DELETION_TIMEOUT_MS,
+      request_timeout: env.ELASTICDASH_CLICKHOUSE_DELETION_TIMEOUT_MS,
     },
     tags: {
       feature: "tracing",
@@ -1294,7 +1296,7 @@ export const deleteObservationsByProjectId = async (
     query,
     params: { projectId },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DELETION_TIMEOUT_MS,
+      request_timeout: env.ELASTICDASH_CLICKHOUSE_DELETION_TIMEOUT_MS,
     },
     tags,
   });
@@ -1352,7 +1354,7 @@ export const deleteObservationsOlderThanDays = async (
       cutoffDate: convertDateToClickhouseDateTime(beforeDate),
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DELETION_TIMEOUT_MS,
+      request_timeout: env.ELASTICDASH_CLICKHOUSE_DELETION_TIMEOUT_MS,
     },
     tags: {
       feature: "tracing",
@@ -1775,7 +1777,8 @@ export const getObservationsForBlobStorageExport = function (
       projectId,
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
+      request_timeout:
+        env.ELASTICDASH_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
     },
   });
 
@@ -1838,7 +1841,8 @@ export const getGenerationsForAnalyticsIntegrations = async function* (
       projectId,
     },
     clickhouseConfigs: {
-      request_timeout: env.LANGFUSE_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
+      request_timeout:
+        env.ELASTICDASH_CLICKHOUSE_DATA_EXPORT_REQUEST_TIMEOUT_MS,
       clickhouse_settings: {
         join_algorithm: "grace_hash",
         grace_hash_join_initial_buckets: "32",
@@ -1850,30 +1854,30 @@ export const getGenerationsForAnalyticsIntegrations = async function* (
   for await (const record of records) {
     yield {
       timestamp: record.start_time,
-      langfuse_generation_name: record.name,
-      langfuse_trace_name: record.trace_name,
-      langfuse_trace_id: record.trace_id,
-      langfuse_url: `${baseUrl}/project/${projectId}/traces/${encodeURIComponent(record.trace_id as string)}?observation=${encodeURIComponent(record.id as string)}`,
-      langfuse_user_url: record.trace_user_id
+      elasticdash_generation_name: record.name,
+      elasticdash_trace_name: record.trace_name,
+      elasticdash_trace_id: record.trace_id,
+      elasticdash_url: `${baseUrl}/project/${projectId}/traces/${encodeURIComponent(record.trace_id as string)}?observation=${encodeURIComponent(record.id as string)}`,
+      elasticdash_user_url: record.trace_user_id
         ? `${baseUrl}/project/${projectId}/users/${encodeURIComponent(record.trace_user_id as string)}`
         : undefined,
-      langfuse_id: record.id,
-      langfuse_cost_usd: record.total_cost,
-      langfuse_input_units: record.input_tokens,
-      langfuse_output_units: record.output_tokens,
-      langfuse_total_units: record.total_tokens,
-      langfuse_session_id: record.trace_session_id,
-      langfuse_project_id: projectId,
-      langfuse_user_id: record.trace_user_id || null,
-      langfuse_latency: record.latency,
-      langfuse_time_to_first_token: record.time_to_first_token,
-      langfuse_release: record.trace_release,
-      langfuse_version: record.version,
-      langfuse_model: record.model,
-      langfuse_level: record.level,
-      langfuse_tags: record.trace_tags,
-      langfuse_environment: record.environment,
-      langfuse_event_version: "1.0.0",
+      elasticdash_id: record.id,
+      elasticdash_cost_usd: record.total_cost,
+      elasticdash_input_units: record.input_tokens,
+      elasticdash_output_units: record.output_tokens,
+      elasticdash_total_units: record.total_tokens,
+      elasticdash_session_id: record.trace_session_id,
+      elasticdash_project_id: projectId,
+      elasticdash_user_id: record.trace_user_id || null,
+      elasticdash_latency: record.latency,
+      elasticdash_time_to_first_token: record.time_to_first_token,
+      elasticdash_release: record.trace_release,
+      elasticdash_version: record.version,
+      elasticdash_model: record.model,
+      elasticdash_level: record.level,
+      elasticdash_tags: record.trace_tags,
+      elasticdash_environment: record.environment,
+      elasticdash_event_version: "1.0.0",
       posthog_session_id: record.posthog_session_id ?? null,
       mixpanel_session_id: record.mixpanel_session_id ?? null,
     } satisfies AnalyticsGenerationEvent;

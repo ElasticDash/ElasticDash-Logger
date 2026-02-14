@@ -3,9 +3,9 @@ import {
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
 import { z } from "zod/v4";
-import { SlackService } from "@langfuse/shared/src/server";
+import { SlackService } from "@elasticdash/shared/src/server";
 import { throwIfNoProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import { env } from "@/src/env.mjs";
@@ -233,7 +233,7 @@ export const slackRouter = createTRPCRouter({
             type: "header",
             text: {
               type: "plain_text",
-              text: "🎉 Test Message from Langfuse",
+              text: "🎉 Test Message from ElasticDash",
               emoji: true,
             },
           },
@@ -241,7 +241,7 @@ export const slackRouter = createTRPCRouter({
             type: "section",
             text: {
               type: "mrkdwn",
-              text: "Hello from Langfuse! This is a test message to verify your Slack integration is working properly.",
+              text: "Hello from ElasticDash! This is a test message to verify your Slack integration is working properly.",
             },
           },
           {
@@ -272,7 +272,7 @@ export const slackRouter = createTRPCRouter({
                 type: "button",
                 text: {
                   type: "plain_text",
-                  text: "Open Langfuse",
+                  text: "Open ElasticDash",
                   emoji: true,
                 },
                 url: `${env.NEXTAUTH_URL}/project/${input.projectId}`,
@@ -286,7 +286,7 @@ export const slackRouter = createTRPCRouter({
           client,
           channelId: input.channelId,
           blocks: testBlocks,
-          text: "Test message from Langfuse",
+          text: "Test message from ElasticDash",
         });
 
         await auditLog({

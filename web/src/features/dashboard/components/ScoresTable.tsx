@@ -4,7 +4,7 @@ import {
   type ScoreDataTypeType,
   type ScoreSourceType,
   type FilterState,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { api } from "@/src/utils/api";
 import { compactNumberFormatter } from "@/src/utils/numbers";
 import { RightAlignedCell } from "./RightAlignedCell";
@@ -238,7 +238,7 @@ export const ScoresTable = ({
         noDataProps={{
           description:
             "Scores evaluate LLM quality and can be created manually or using the SDK.",
-          href: "https://langfuse.com/docs/evaluation/overview",
+          href: "https://www.elasticdash.com/docs/evaluation/overview",
         }}
       >
         <TotalMetric

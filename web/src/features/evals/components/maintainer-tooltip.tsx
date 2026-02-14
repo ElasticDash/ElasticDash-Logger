@@ -1,4 +1,4 @@
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import {
   Tooltip,
   TooltipTrigger,
@@ -6,12 +6,13 @@ import {
 } from "@/src/components/ui/tooltip";
 import { RagasLogoIcon } from "@/src/features/evals/components/ragas-logo";
 import { UserCircle2Icon } from "lucide-react";
+import React from "react";
 
 function MaintainerIcon({ maintainer }: { maintainer: string }) {
   if (maintainer.includes("Ragas")) {
     return <RagasLogoIcon />;
-  } else if (maintainer.includes("Langfuse")) {
-    return <LangfuseIcon size={16} />;
+  } else if (maintainer.includes("ElasticDash")) {
+    return <ElasticDashIcon size={16} />;
   } else {
     return <UserCircle2Icon className="h-4 w-4" />;
   }

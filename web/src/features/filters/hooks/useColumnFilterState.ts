@@ -1,4 +1,4 @@
-import { type FilterState } from "@langfuse/shared";
+import { type FilterState } from "@elasticdash/shared";
 import { useQueryParam, JsonParam, withDefault } from "use-query-params";
 
 /**

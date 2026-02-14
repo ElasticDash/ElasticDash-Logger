@@ -16,18 +16,18 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/src/components/ui/dialog";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 const regions =
-  env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION === "STAGING"
+  env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "STAGING"
     ? [
         {
           name: "STAGING",
-          hostname: "staging.langfuse.com",
+          hostname: "staging.elasticdash.com",
           flag: "🇪🇺",
         },
       ]
-    : env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION === "DEV"
+    : env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "DEV"
       ? [
           {
             name: "DEV",
@@ -38,17 +38,17 @@ const regions =
       : [
           {
             name: "US",
-            hostname: "us.cloud.langfuse.com",
+            hostname: "us.cloud.elasticdash.com",
             flag: "🇺🇸",
           },
           {
             name: "EU",
-            hostname: "cloud.langfuse.com",
+            hostname: "cloud.elasticdash.com",
             flag: "🇪🇺",
           },
           {
             name: "HIPAA",
-            hostname: "hipaa.cloud.langfuse.com",
+            hostname: "hipaa.cloud.elasticdash.com",
             flag: "⚕️",
           },
         ];
@@ -59,9 +59,10 @@ export function CloudRegionSwitch({
   isSignUpPage?: boolean;
 }) {
   const capture = usePostHogClientCapture();
-  const { isLangfuseCloud, region: cloudRegion } = useLangfuseCloudRegion();
+  const { isElasticDashCloud, region: cloudRegion } =
+    useElasticDashCloudRegion();
 
-  if (!isLangfuseCloud) return null;
+  if (!isElasticDashCloud) return null;
 
   const currentRegion = regions.find((region) => region.name === cloudRegion);
 
@@ -117,7 +118,7 @@ export function CloudRegionSwitch({
               The Business Associate Agreement (BAA) is only effective on the
               Cloud Pro and Teams plans.{" "}
               <a
-                href="https://langfuse.com/security/hipaa"
+                href="https://www.elasticdash.com/security/hipaa"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary-accent underline hover:text-hover-primary-accent"
@@ -150,7 +151,7 @@ const DataRegionInfo = () => (
       </DialogHeader>
       <DialogBody>
         <DialogDescription className="flex flex-col gap-2">
-          <p>Langfuse Cloud is available in three data regions:</p>
+          <p>ElasticDash Cloud is available in three data regions:</p>
           <ul className="list-disc pl-5">
             <li>US: Oregon (AWS us-west-2)</li>
             <li>EU: Ireland (AWS eu-west-1)</li>
@@ -171,7 +172,7 @@ const DataRegionInfo = () => (
           <p>
             Learn more about{" "}
             <a
-              href="https://langfuse.com/security/data-regions"
+              href="https://www.elasticdash.com/security/data-regions"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-accent underline"
@@ -180,7 +181,7 @@ const DataRegionInfo = () => (
             </a>{" "}
             and{" "}
             <a
-              href="https://langfuse.com/docs/data-security-privacy"
+              href="https://www.elasticdash.com/docs/data-security-privacy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary-accent underline"

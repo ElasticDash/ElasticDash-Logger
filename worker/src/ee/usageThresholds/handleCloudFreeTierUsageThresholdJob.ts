@@ -1,4 +1,4 @@
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { Job } from "bullmq";
 import { processUsageAggregationForAllOrgs } from "./usageAggregation";
 

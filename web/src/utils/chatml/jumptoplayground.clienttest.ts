@@ -1,6 +1,6 @@
-// Mock the problematic @langfuse/shared import before importing our functions
-jest.mock("@langfuse/shared", () => {
-  const actual = jest.requireActual("@langfuse/shared");
+// Mock the problematic @elasticdash/shared import before importing our functions
+jest.mock("@elasticdash/shared", () => {
+  const actual = jest.requireActual("@elasticdash/shared");
   const { z } = require("zod/v4");
 
   const OpenAITextContentPart = z.object({
@@ -89,7 +89,7 @@ describe("Playground Jump Full Pipeline", () => {
         "deployment.environment": "prod",
       },
       scope: {
-        name: "langfuse-sdk",
+        name: "elasticdash-sdk",
         version: "3.2.3",
         attributes: {
           public_key: "pk-lf-1234567890",

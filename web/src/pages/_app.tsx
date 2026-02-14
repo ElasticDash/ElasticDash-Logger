@@ -74,7 +74,7 @@ import { env } from "@/src/env.mjs";
 import { ThemeProvider } from "@/src/features/theming/ThemeProvider";
 import { MarkdownContextProvider } from "@/src/features/theming/useMarkdownContext";
 import { SupportDrawerProvider } from "@/src/features/support-chat/SupportDrawerProvider";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 import { ScoreCacheProvider } from "@/src/features/scores/contexts/ScoreCacheContext";
 import { CorrectionCacheProvider } from "@/src/features/corrections/contexts/CorrectionCacheContext";
 
@@ -111,7 +111,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
   const router = useRouter();
 
   useEffect(() => {
-    // PostHog (cloud.langfuse.com)
+    // PostHog (cloud.elasticdash.com)
     if (env.NEXT_PUBLIC_POSTHOG_KEY && env.NEXT_PUBLIC_POSTHOG_HOST) {
       const handleRouteChange = () => {
         posthog.capture("$pageview");
@@ -168,7 +168,7 @@ export default api.withTRPC(MyApp);
 
 function UserTracking() {
   const session = useSession();
-  const { region } = useLangfuseCloudRegion();
+  const { region } = useElasticDashCloudRegion();
   const sessionUser = session.data?.user;
 
   // Track user identity and properties
@@ -194,7 +194,7 @@ function UserTracking() {
                 organization: org,
               })),
             ) ?? undefined,
-          LANGFUSE_CLOUD_REGION: region,
+          ELASTICDASH_CLOUD_REGION: region,
         });
 
       // Sentry

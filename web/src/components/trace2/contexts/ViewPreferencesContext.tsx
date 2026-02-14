@@ -12,7 +12,10 @@
  */
 
 import { createContext, useContext, useMemo, type ReactNode } from "react";
-import { type ObservationLevelType, ObservationLevel } from "@langfuse/shared";
+import {
+  type ObservationLevelType,
+  ObservationLevel,
+} from "@elasticdash/shared";
 import useLocalStorage from "@/src/components/useLocalStorage";
 
 /** Log view ordering mode */

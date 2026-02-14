@@ -390,12 +390,12 @@ export const UpsertModelFormDialog = (({
                       </SelectContent>
                     </Select>
                     <FormDescription>
-                      Optionally, Langfuse can tokenize the input and output of
-                      a generation if no unit counts are ingested. This is
+                      Optionally, ElasticDash can tokenize the input and output
+                      of a generation if no unit counts are ingested. This is
                       useful for e.g. streamed OpenAI completions. For details
                       on the supported tokenizers, see the{" "}
                       <Link
-                        href="https://langfuse.com/docs/model-usage-and-cost"
+                        href="https://www.elasticdash.com/docs/model-usage-and-cost"
                         className="underline"
                         target="_blank"
                       >
@@ -424,7 +424,7 @@ export const UpsertModelFormDialog = (({
                         The config for the tokenizer. Required for openai. See
                         the{" "}
                         <Link
-                          href="https://langfuse.com/docs/model-usage-and-cost"
+                          href="https://www.elasticdash.com/docs/model-usage-and-cost"
                           className="underline"
                           target="_blank"
                         >

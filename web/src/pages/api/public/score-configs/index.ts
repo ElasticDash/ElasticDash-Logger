@@ -6,9 +6,9 @@ import { isBooleanDataType } from "@/src/features/scores/lib/helpers";
 import {
   filterAndValidateDbScoreConfigList,
   validateDbScoreConfig,
-} from "@langfuse/shared";
-import { Prisma, prisma } from "@langfuse/shared/src/db";
-import { traceException } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { Prisma, prisma } from "@elasticdash/shared/src/db";
+import { traceException } from "@elasticdash/shared/src/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import {
   GetScoreConfigsQuery,

@@ -14,9 +14,9 @@ import { SiDiscord } from "react-icons/si";
 import { RainbowButton } from "@/src/components/magicui/rainbow-button";
 import { Separator } from "@/src/components/ui/separator";
 import { usePlan } from "@/src/features/entitlements/hooks";
-import { isCloudPlan } from "@langfuse/shared";
+import { isCloudPlan } from "@elasticdash/shared";
 import { useUiCustomization } from "@/src/ee/features/ui-customization/useUiCustomization";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 type SupportType = "in-app-support" | "custom" | "community";
 
@@ -27,15 +27,15 @@ export function IntroSection({
   displayDensity?: "default" | "compact";
 }) {
   const uiCustomization = useUiCustomization();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
 
   // Note: We previously added an entitlement for in-app support, but removed it for now.
-  //       The issue was that on global routes e.g., https://langfuse.com/setup, the entitlement
+  //       The issue was that on global routes e.g., https://www.elasticdash.com/setup, the entitlement
   //       hook would not have access to an org or project an therefore no plan, always returning
   //       false if asked. However on these pages, the in-app-chat should be available.
   //       Therefore we now check for whether wer are in a cloud deployment instead.
   // const hasInAppSupportEntitlement = useHasEntitlement("in-app-support");
-  const hasInAppSupportEntitlement = !!isLangfuseCloud;
+  const hasInAppSupportEntitlement = !!isElasticDashCloud;
   const plan = usePlan();
 
   const supportType: SupportType = useMemo(() => {
@@ -65,7 +65,7 @@ export function IntroSection({
 
         <RainbowButton asChild>
           <a
-            href="https://langfuse.com/docs/ask-ai"
+            href="https://www.elasticdash.com/docs/ask-ai"
             target="_blank"
             rel="noopener"
           >
@@ -88,7 +88,8 @@ export function IntroSection({
         <Button asChild variant="outline">
           <a
             href={
-              uiCustomization?.documentationHref ?? "https://langfuse.com/docs"
+              uiCustomization?.documentationHref ??
+              "https://www.elasticdash.com/docs"
             }
             target="_blank"
             rel="noopener"
@@ -134,7 +135,7 @@ export function IntroSection({
               <>
                 <Button variant="outline" asChild>
                   <a
-                    href="https://langfuse.com/ideas"
+                    href="https://www.elasticdash.com/ideas"
                     target="_blank"
                     rel="noopener"
                   >
@@ -143,7 +144,7 @@ export function IntroSection({
                 </Button>
                 <Button variant="outline" asChild>
                   <a
-                    href="https://langfuse.com/issues"
+                    href="https://www.elasticdash.com/issues"
                     target="_blank"
                     rel="noopener"
                   >
@@ -189,7 +190,7 @@ export function IntroSection({
             </p>
             <Button variant="outline" asChild>
               <a
-                href="https://langfuse.com/gh-support"
+                href="https://www.elasticdash.com/gh-support"
                 target="_blank"
                 rel="noopener"
               >
@@ -198,7 +199,7 @@ export function IntroSection({
             </Button>
             <Button variant="outline" asChild>
               <a
-                href="https://langfuse.com/ideas"
+                href="https://www.elasticdash.com/ideas"
                 target="_blank"
                 rel="noopener"
               >
@@ -207,7 +208,7 @@ export function IntroSection({
             </Button>
             <Button variant="outline" asChild>
               <a
-                href="https://langfuse.com/issues"
+                href="https://www.elasticdash.com/issues"
                 target="_blank"
                 rel="noopener"
               >
@@ -226,12 +227,12 @@ export function IntroSection({
             <Github className="h-4 w-4" /> Community & Resources
           </div>
           <p className="mt-1 text-sm text-muted-foreground">
-            Join the conversation and connect with the Langfuse community.
+            Join the conversation and connect with the ElasticDash community.
           </p>
           <div className="mt-3 grid grid-cols-1 gap-2">
             <Button asChild variant="ghost" className="justify-start px-1.5">
               <a
-                href="https://langfuse.com/gh-support"
+                href="https://www.elasticdash.com/gh-support"
                 target="_blank"
                 rel="noopener"
               >
@@ -240,7 +241,7 @@ export function IntroSection({
             </Button>
             <Button asChild variant="ghost" className="justify-start px-1.5">
               <a
-                href="https://langfuse.com/discord"
+                href="https://www.elasticdash.com/discord"
                 target="_blank"
                 rel="noopener"
                 className="flex items-center"
@@ -252,7 +253,7 @@ export function IntroSection({
             {showStatusPageLink && (
               <Button asChild variant="ghost" className="justify-start px-1.5">
                 <a
-                  href="https://status.langfuse.com"
+                  href="https://status.elasticdash.com"
                   target="_blank"
                   rel="noopener"
                   className="flex items-center"

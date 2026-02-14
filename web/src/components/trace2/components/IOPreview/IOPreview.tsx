@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { type ScoreDomain, type Prisma } from "@langfuse/shared";
+import { type ScoreDomain, type Prisma } from "@elasticdash/shared";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import useLocalStorage from "@/src/components/useLocalStorage";
 import usePreserveRelativeScroll from "@/src/hooks/usePreserveRelativeScroll";
@@ -318,7 +318,7 @@ export function IOPreview({
             <ActionButton
               variant="outline"
               size="sm"
-              href="https://langfuse.com/faq/all/empty-trace-input-and-output"
+              href="https://www.elasticdash.com/faq/all/empty-trace-input-and-output"
               trackingEventName="notification:click_link"
               trackingProps={{ notification_id: EMPTY_IO_ALERT_ID }}
             >

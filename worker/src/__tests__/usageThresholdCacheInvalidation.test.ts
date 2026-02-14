@@ -1,18 +1,19 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
-import { prisma } from "@langfuse/shared/src/db";
-import { type ParsedOrganization } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { type ParsedOrganization } from "@elasticdash/shared";
 import {
   redis,
   hashSecretKey,
   getDisplaySecretKey,
   createShaHash,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { processThresholds } from "../ee/usageThresholds/thresholdProcessing";
 import { bulkUpdateOrganizations } from "../ee/usageThresholds/bulkUpdates";
 
 // Enable enforcement feature flag for tests
 vi.hoisted(() => {
-  process.env.LANGFUSE_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED = "true";
+  process.env.ELASTICDASH_FREE_TIER_USAGE_THRESHOLD_ENFORCEMENT_ENABLED =
+    "true";
 });
 
 // SALT is defined in web env, not worker env

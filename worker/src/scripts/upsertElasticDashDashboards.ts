@@ -1,11 +1,11 @@
 import { z } from "zod/v4";
-import { prisma } from "@langfuse/shared/src/db";
-import langfuseDashboards from "../constants/langfuse-dashboards.json";
+import { prisma } from "@elasticdash/shared/src/db";
+import elasticdashDashboards from "../constants/elasticdash-dashboards.json";
 import {
   logger,
   WidgetDomainSchema,
   DashboardDomainSchema,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 /**
  * JSON STRUCTURE & SCHEMAS
@@ -51,22 +51,24 @@ const FileSchema = z.object({
 type ParsedWidgets = z.infer<typeof WidgetDomainSchema>[];
 type ParsedDashboards = z.infer<typeof DashboardDomainSchema>[];
 
-export const upsertLangfuseDashboards = async (force = false) => {
+export const upsertElasticDashDashboards = async (force = false) => {
   const startTime = Date.now();
   try {
-    logger.debug(`Starting upsert of Langfuse dashboards (force = ${force})`);
+    logger.debug(
+      `Starting upsert of ElasticDash dashboards (force = ${force})`,
+    );
 
-    const parsed = FileSchema.parse(langfuseDashboards);
+    const parsed = FileSchema.parse(elasticdashDashboards);
 
     await upsertWidgets(parsed.widgets, force);
     await upsertDashboards(parsed.dashboards, force);
 
     logger.info(
-      `Finished upserting Langfuse dashboards and widgets in ${Date.now() - startTime}ms`,
+      `Finished upserting ElasticDash dashboards and widgets in ${Date.now() - startTime}ms`,
     );
   } catch (error) {
     logger.error(
-      `Error upserting Langfuse dashboards after ${Date.now() - startTime}ms: ${
+      `Error upserting ElasticDash dashboards after ${Date.now() - startTime}ms: ${
         error instanceof Error ? error.message : ""
       }`,
       { error },

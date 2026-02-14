@@ -2,7 +2,7 @@ import {
   queryClickhouse,
   measureAndReturn,
   logger,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { QueryBuilder } from "@/src/features/query/server/queryBuilder";
 import { type QueryType, type ViewVersion } from "@/src/features/query/types";
 import { getViewDeclaration } from "@/src/features/query/dataModel";
@@ -230,7 +230,7 @@ export async function executeQuery(
 
   // Add shadow test query if optimization is OFF and shadow testing is enabled
   const shadowTestEnabled =
-    env.LANGFUSE_ENABLE_QUERY_OPTIMIZATION_SHADOW_TEST === "true";
+    env.ELASTICDASH_ENABLE_QUERY_OPTIMIZATION_SHADOW_TEST === "true";
 
   if (!enableSingleLevelOptimization && shadowTestEnabled) {
     const { query: optimizedQuery, parameters: optimizedParams } =

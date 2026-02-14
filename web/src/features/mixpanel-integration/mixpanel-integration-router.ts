@@ -6,7 +6,7 @@ import {
   createTRPCRouter,
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
-import { decrypt, encrypt } from "@langfuse/shared/encryption";
+import { decrypt, encrypt } from "@elasticdash/shared/encryption";
 import { mixpanelIntegrationFormSchema } from "@/src/features/mixpanel-integration/types";
 import { TRPCError } from "@trpc/server";
 import { env } from "@/src/env.mjs";
@@ -54,7 +54,7 @@ export const mixpanelIntegrationRouter = createTRPCRouter({
         scope: "integrations:CRUD",
       });
       if (!env.ENCRYPTION_KEY) {
-        if (env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+        if (env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
           throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
             message: "Internal server error",
@@ -63,7 +63,7 @@ export const mixpanelIntegrationRouter = createTRPCRouter({
           throw new TRPCError({
             code: "BAD_REQUEST",
             message:
-              "Missing environment variable: `ENCRYPTION_KEY`. Please consult our docs: https://langfuse.com/self-hosting",
+              "Missing environment variable: `ENCRYPTION_KEY`. Please consult our docs: https://www.elasticdash.com/self-hosting",
           });
         }
       }

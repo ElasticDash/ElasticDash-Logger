@@ -11,15 +11,18 @@ import {
   createPublicApiTracesColumnMapping,
   tracesTableUiColumnDefinitions,
   shouldSkipObservationsFinal,
-} from "@langfuse/shared/src/server";
-import { AGGREGATABLE_SCORE_TYPES, type OrderByState } from "@langfuse/shared";
+} from "@elasticdash/shared/src/server";
+import {
+  AGGREGATABLE_SCORE_TYPES,
+  type OrderByState,
+} from "@elasticdash/shared";
 import {
   TRACE_FIELD_GROUPS,
   type TraceFieldGroup,
 } from "@/src/features/public-api/types/traces";
 import { env } from "@/src/env.mjs";
 
-import type { FilterState } from "@langfuse/shared";
+import type { FilterState } from "@elasticdash/shared";
 import { snakeCase } from "lodash";
 
 export type TraceQueryType = {
@@ -70,7 +73,8 @@ async function buildTracesBaseQuery(
     props.projectId,
   );
   const propagateObservationsTimeBounds =
-    env.LANGFUSE_API_CLICKHOUSE_PROPAGATE_OBSERVATIONS_TIME_BOUNDS === "true";
+    env.ELASTICDASH_API_CLICKHOUSE_PROPAGATE_OBSERVATIONS_TIME_BOUNDS ===
+    "true";
 
   let filter = deriveFilters(
     props,

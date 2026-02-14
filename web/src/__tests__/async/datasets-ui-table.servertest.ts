@@ -4,10 +4,10 @@ import {
   createManyDatasetItems,
   createOrgProjectAndApiKey,
   getDatasetRunItemsCountCh,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 as uuidv4 } from "uuid";
-import { prisma } from "@langfuse/shared/src/db";
-import { type FilterState } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { type FilterState } from "@elasticdash/shared";
 
 process.env.LANGFUSE_DATASET_SERVICE_READ_FROM_VERSIONED_IMPLEMENTATION =
   "true";

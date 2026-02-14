@@ -21,7 +21,7 @@ import {
   UNCLOSED_VARIABLE_REGEX,
   PromptDependencyRegex,
   parsePromptDependencyTags,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { lightTheme } from "@/src/components/editor/light-theme";
 import { darkTheme } from "@/src/components/editor/dark-theme";
 
@@ -31,7 +31,7 @@ const promptLanguage = StreamLanguage.define({
   startState: () => ({}),
   token: (stream: StringStream) => {
     // Highlight prompt tags
-    if (stream.match("@@@langfusePrompt:")) {
+    if (stream.match("@@@elasticdashPrompt:")) {
       stream.skipTo("@@@") || stream.skipToEnd();
       stream.match("@@@");
 

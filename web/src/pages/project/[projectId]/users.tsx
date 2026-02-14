@@ -10,14 +10,14 @@ import {
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
 import { DataTable } from "@/src/components/table/data-table";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import { useQueryFilterState } from "@/src/features/filters/hooks/useFilterState";
 import { useDetailPageLists } from "@/src/features/navigate-detail-pages/context";
 import { api } from "@/src/utils/api";
 import { compactNumberFormatter, usdFormatter } from "@/src/utils/numbers";
 import { type RouterOutput } from "@/src/utils/types";
-import { type FilterState, usersTableCols } from "@langfuse/shared";
+import { type FilterState, usersTableCols } from "@elasticdash/shared";
 import { joinTableCoreAndMetrics } from "@/src/components/table/utils/joinTableCoreAndMetrics";
 import { useTableDateRange } from "@/src/hooks/useTableDateRange";
 import { toAbsoluteTimeRange } from "@/src/utils/date-range-utils";
@@ -66,8 +66,8 @@ export default function UsersPage() {
         title: "Users",
         help: {
           description:
-            "Attribute data in Langfuse to a user by adding a userId to your traces. See docs to learn more.",
-          href: "https://langfuse.com/docs/user-explorer",
+            "Attribute data in ElasticDash to a user by adding a userId to your traces. See docs to learn more.",
+          href: "https://www.elasticdash.com/docs/user-explorer",
         },
       }}
       scrollable={showOnboarding}
@@ -212,15 +212,15 @@ const UsersTable = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users.isSuccess, users.data]);
 
-  const columns: LangfuseColumnDef<RowData>[] = [
+  const columns: ElasticDashColumnDef<RowData>[] = [
     {
       accessorKey: "userId",
       enableColumnFilter: true,
       header: "User ID",
       headerTooltip: {
         description:
-          "The unique identifier for the user that was logged in Langfuse. See docs for more details on how to set this up.",
-        href: "https://langfuse.com/docs/observability/features/users",
+          "The unique identifier for the user that was logged in ElasticDash. See docs for more details on how to set this up.",
+        href: "https://www.elasticdash.com/docs/observability/features/users",
       },
       size: 150,
       cell: ({ row }) => {
@@ -289,7 +289,7 @@ const UsersTable = () => {
       headerTooltip: {
         description:
           "Total number of events for the user, includes traces and observations. See data model for more details.",
-        href: "https://langfuse.com/docs/observability/data-model",
+        href: "https://www.elasticdash.com/docs/observability/data-model",
       },
       size: 120,
       cell: ({ row }) => {
@@ -306,7 +306,7 @@ const UsersTable = () => {
       headerTooltip: {
         description:
           "Total number of tokens used for the user across all generations.",
-        href: "https://langfuse.com/docs/model-usage-and-cost",
+        href: "https://www.elasticdash.com/docs/model-usage-and-cost",
       },
       size: 120,
       cell: ({ row }) => {
@@ -322,7 +322,7 @@ const UsersTable = () => {
       header: "Total Cost",
       headerTooltip: {
         description: "Total cost for the user across all generations.",
-        href: "https://langfuse.com/docs/model-usage-and-cost",
+        href: "https://www.elasticdash.com/docs/model-usage-and-cost",
       },
       size: 120,
       cell: ({ row }) => {

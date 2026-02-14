@@ -23,7 +23,7 @@ import {
   type ScoreDomain,
   AGGREGATABLE_SCORE_TYPES,
   ScoreDataTypeEnum,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   traceException,
   getTracesTable,
@@ -48,7 +48,7 @@ import {
   getTracesGroupedBySessionId,
   updateEvents,
   getScoresAndCorrectionsForTraces,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import { createBatchActionJob } from "@/src/features/table/server/createBatchActionJob";
 import { throwIfNoEntitlement } from "@/src/features/entitlements/server/hasEntitlement";
@@ -489,7 +489,7 @@ export const traceRouter = createTRPCRouter({
           const promises = [
             upsertTrace(convertTraceDomainToClickhouse(clickhouseTrace)),
           ];
-          if (env.LANGFUSE_ENABLE_EVENTS_TABLE_FLAGS === "true") {
+          if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_FLAGS === "true") {
             promises.push(
               updateEvents(
                 input.projectId,
@@ -554,7 +554,7 @@ export const traceRouter = createTRPCRouter({
         const promises = [
           upsertTrace(convertTraceDomainToClickhouse(clickhouseTrace)),
         ];
-        if (env.LANGFUSE_ENABLE_EVENTS_TABLE_FLAGS === "true") {
+        if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_FLAGS === "true") {
           promises.push(
             updateEvents(
               input.projectId,

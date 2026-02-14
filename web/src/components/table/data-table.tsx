@@ -1,5 +1,5 @@
 "use client";
-import { type OrderByState } from "@langfuse/shared";
+import { type OrderByState } from "@elasticdash/shared";
 import React, {
   useState,
   useMemo,
@@ -13,7 +13,7 @@ import {
   type RowHeight,
   getRowHeightTailwindClass,
 } from "@/src/components/table/data-table-row-height-switch";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { type ModelTableRow } from "@/src/components/table/use-cases/models";
 import {
   Table,
@@ -49,7 +49,7 @@ import { useRouter } from "next/router";
 import { useColumnSizing } from "@/src/components/table/hooks/useColumnSizing";
 
 interface DataTableProps<TData, TValue> {
-  columns: LangfuseColumnDef<TData, TValue>[];
+  columns: ElasticDashColumnDef<TData, TValue>[];
   data: AsyncTableData<TData[]>;
   pagination?: {
     totalCount: number | null; // null if loading
@@ -300,7 +300,7 @@ export function DataTable<TData extends object, TValue>({
                 <TableRow key={headerGroup.id}>
                   {headerGroup.headers.map((header) => {
                     const columnDef = header.column
-                      .columnDef as LangfuseColumnDef<ModelTableRow>;
+                      .columnDef as ElasticDashColumnDef<ModelTableRow>;
                     const sortingEnabled = columnDef.enableSorting;
                     // if the header id does not translate to a valid css variable name, default to 150px as width
                     // may only happen for dynamic columns, as column names are user defined
@@ -469,7 +469,7 @@ interface TableBodyComponentProps<TData> {
   table: ReturnType<typeof useReactTable<TData>>;
   rowheighttw?: string;
   rowHeight?: RowHeight;
-  columns: LangfuseColumnDef<TData, any>[];
+  columns: ElasticDashColumnDef<TData, any>[];
   data: AsyncTableData<TData[]>;
   help?: { description: string; href: string };
   onRowClick?: (row: TData, event?: React.MouseEvent) => void;

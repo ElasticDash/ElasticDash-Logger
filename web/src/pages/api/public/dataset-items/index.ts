@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
 import {
@@ -8,14 +8,14 @@ import {
   PostDatasetItemsV1Response,
   transformDbDatasetItemDomainToAPIDatasetItem,
 } from "@/src/features/public-api/types/datasets";
-import { LangfuseNotFoundError, Prisma } from "@langfuse/shared";
+import { ElasticDashNotFoundError, Prisma } from "@elasticdash/shared";
 import {
   createDatasetItemFilterState,
   getDatasetItems,
   getDatasetItemsCount,
   logger,
   upsertDatasetItem,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 
 export const config = {
@@ -84,7 +84,7 @@ export default withMiddlewares({
             logger.warn(
               `Failed to upsert dataset item. Dataset item ${id} in project ${auth.scope.projectId} already exists for a different dataset than ${datasetName}`,
             );
-            throw new LangfuseNotFoundError(
+            throw new ElasticDashNotFoundError(
               `The dataset item with id ${id} already exists in a dataset other than ${datasetName}`,
             );
           }
@@ -111,7 +111,7 @@ export default withMiddlewares({
           },
         });
         if (!dataset) {
-          throw new LangfuseNotFoundError("Dataset not found");
+          throw new ElasticDashNotFoundError("Dataset not found");
         }
         datasetId = dataset.id;
       }

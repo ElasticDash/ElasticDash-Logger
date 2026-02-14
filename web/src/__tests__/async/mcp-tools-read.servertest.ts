@@ -1,8 +1,8 @@
 /** @jest-environment node */
 
 // Mock queue operations to avoid Redis dependency in tests
-jest.mock("@langfuse/shared/src/server", () => {
-  const actual = jest.requireActual("@langfuse/shared/src/server");
+jest.mock("@elasticdash/shared/src/server", () => {
+  const actual = jest.requireActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     // Mock queue getInstance to return a no-op queue
@@ -534,7 +534,7 @@ describe("MCP Read Tools", () => {
 
       // Create a prompt with dependency tags (unresolved)
       const rawPromptContent =
-        "You are a helpful assistant. @@@langfusePrompt:name=base-instructions|label=production@@@";
+        "You are a helpful assistant. @@@elasticdashPrompt:name=base-instructions|label=production@@@";
 
       await createPromptInDb({
         name: promptName,
@@ -560,7 +560,7 @@ describe("MCP Read Tools", () => {
       // Verify dependency tags are NOT resolved
       expect(result.prompt).toBe(rawPromptContent);
       expect(result.prompt).toContain(
-        "@@@langfusePrompt:name=base-instructions|label=production@@@",
+        "@@@elasticdashPrompt:name=base-instructions|label=production@@@",
       );
     });
 
@@ -571,7 +571,7 @@ describe("MCP Read Tools", () => {
       // Create v1 with staging label
       await createPromptInDb({
         name: promptName,
-        prompt: "Version 1 @@@langfusePrompt:name=helper|label=staging@@@",
+        prompt: "Version 1 @@@elasticdashPrompt:name=helper|label=staging@@@",
         projectId,
         labels: ["staging"],
         version: 1,
@@ -580,7 +580,8 @@ describe("MCP Read Tools", () => {
       // Create v2 with production label
       await createPromptInDb({
         name: promptName,
-        prompt: "Version 2 @@@langfusePrompt:name=helper|label=production@@@",
+        prompt:
+          "Version 2 @@@elasticdashPrompt:name=helper|label=production@@@",
         projectId,
         labels: ["production"],
         version: 2,
@@ -593,7 +594,7 @@ describe("MCP Read Tools", () => {
 
       expect(result.version).toBe(1);
       expect(result.prompt).toBe(
-        "Version 1 @@@langfusePrompt:name=helper|label=staging@@@",
+        "Version 1 @@@elasticdashPrompt:name=helper|label=staging@@@",
       );
     });
 
@@ -603,7 +604,7 @@ describe("MCP Read Tools", () => {
 
       await createPromptInDb({
         name: promptName,
-        prompt: "V1 content @@@langfusePrompt:name=dep|label=v1@@@",
+        prompt: "V1 content @@@elasticdashPrompt:name=dep|label=v1@@@",
         projectId,
         labels: ["staging"],
         version: 1,
@@ -611,7 +612,7 @@ describe("MCP Read Tools", () => {
 
       await createPromptInDb({
         name: promptName,
-        prompt: "V2 content @@@langfusePrompt:name=dep|label=v2@@@",
+        prompt: "V2 content @@@elasticdashPrompt:name=dep|label=v2@@@",
         projectId,
         labels: ["production"],
         version: 2,
@@ -624,7 +625,7 @@ describe("MCP Read Tools", () => {
 
       expect(result.version).toBe(1);
       expect(result.prompt).toBe(
-        "V1 content @@@langfusePrompt:name=dep|label=v1@@@",
+        "V1 content @@@elasticdashPrompt:name=dep|label=v1@@@",
       );
     });
 
@@ -660,11 +661,12 @@ describe("MCP Read Tools", () => {
         {
           role: "system",
           content:
-            "You are helpful @@@langfusePrompt:name=system-base|label=production@@@",
+            "You are helpful @@@elasticdashPrompt:name=system-base|label=production@@@",
         },
         {
           role: "user",
-          content: "@@@langfusePrompt:name=user-template|label=production@@@",
+          content:
+            "@@@elasticdashPrompt:name=user-template|label=production@@@",
         },
       ];
 
@@ -689,7 +691,7 @@ describe("MCP Read Tools", () => {
       expect(result.type).toBe("chat");
       expect(result.prompt).toEqual(chatMessages);
       expect(result.prompt[0].content).toContain(
-        "@@@langfusePrompt:name=system-base|label=production@@@",
+        "@@@elasticdashPrompt:name=system-base|label=production@@@",
       );
     });
   });

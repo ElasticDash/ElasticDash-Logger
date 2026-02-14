@@ -1,5 +1,9 @@
 import { Job } from "bullmq";
-import { logger, QueueName, TQueueJobTypes } from "@langfuse/shared/src/server";
+import {
+  logger,
+  QueueName,
+  TQueueJobTypes,
+} from "@elasticdash/shared/src/server";
 import { entityChangeWorker } from "../features/entityChange/entityChangeWorker";
 
 export const entityChangeQueueProcessor = async (

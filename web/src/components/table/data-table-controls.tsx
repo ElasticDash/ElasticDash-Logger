@@ -39,8 +39,8 @@ import {
   PopoverTrigger,
 } from "@/src/components/ui/popover";
 import { DataTableAIFilters } from "@/src/components/table/data-table-ai-filters";
-import { type FilterState } from "@langfuse/shared";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { type FilterState } from "@elasticdash/shared";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 interface ControlsContextType {
   open: boolean;
@@ -108,7 +108,7 @@ export function DataTableControls({
   queryFilter,
   filterWithAI,
 }: DataTableControlsProps) {
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
   const [aiPopoverOpen, setAiPopoverOpen] = useState(false);
 
   const handleFiltersGenerated = useCallback(
@@ -157,7 +157,7 @@ export function DataTableControls({
               <TooltipContent>Clear all filters</TooltipContent>
             </Tooltip>
           )}
-          {filterWithAI && isLangfuseCloud && (
+          {filterWithAI && isElasticDashCloud && (
             <Popover open={aiPopoverOpen} onOpenChange={setAiPopoverOpen}>
               <Tooltip>
                 <TooltipTrigger asChild>

@@ -4,16 +4,16 @@ import { type NextApiRequest, type NextApiResponse } from "next";
 import { type ZodError } from "zod/v4";
 import {
   BaseError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   MethodNotAllowedError,
   UnauthorizedError,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   logger,
   traceException,
-  contextWithLangfuseProps,
+  contextWithElasticDashProps,
   ClickHouseResourceError,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
 
 // Exported to silence @typescript-eslint/no-unused-vars v8 warning
@@ -33,12 +33,12 @@ const defaultHandler = () => {
 
 const CH_ERROR_ADVICE_FULL = [
   ClickHouseResourceError.ERROR_ADVICE_MESSAGE,
-  "See https://langfuse.com/docs/api-and-data-platform/features/public-api for more details.",
+  "See https://www.elasticdash.com/docs/api-and-data-platform/features/public-api for more details.",
 ].join("\n");
 
 export function withMiddlewares(handlers: Handlers) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    const ctx = contextWithLangfuseProps({
+    const ctx = contextWithElasticDashProps({
       headers: req.headers,
     });
 
@@ -63,7 +63,7 @@ export function withMiddlewares(handlers: Handlers) {
         return await finalHandlers[method](req, res);
       } catch (error) {
         if (
-          error instanceof LangfuseNotFoundError ||
+          error instanceof ElasticDashNotFoundError ||
           error instanceof UnauthorizedError
         ) {
           logger.info(error);

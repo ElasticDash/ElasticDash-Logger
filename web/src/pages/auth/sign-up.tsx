@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod/v4";
 import { env } from "@/src/env.mjs";
 import { useState } from "react";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import { CloudPrivacyNotice } from "@/src/features/auth/components/AuthCloudPrivacyNotice";
 import { CloudRegionSwitch } from "@/src/features/auth/components/AuthCloudRegionSwitch";
 import {
@@ -26,11 +26,12 @@ import {
   type PageProps,
 } from "@/src/pages/auth/sign-in";
 import { PasswordInput } from "@/src/components/ui/password-input";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 import { useRouter } from "next/router";
 import { getSafeRedirectPath } from "@/src/utils/redirect";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import useLocalStorage from "@/src/components/useLocalStorage";
+import React from "react";
 
 // Use the same getServerSideProps function as src/pages/auth/sign-in.tsx
 export { getServerSideProps } from "@/src/pages/auth/sign-in";
@@ -42,7 +43,7 @@ export default function SignIn({
   runningOnHuggingFaceSpaces,
 }: PageProps) {
   useHuggingFaceRedirect(runningOnHuggingFaceSpaces);
-  const { isLangfuseCloud, region } = useLangfuseCloudRegion();
+  const { isElasticDashCloud, region } = useElasticDashCloudRegion();
   const router = useRouter();
   const capture = usePostHogClientCapture();
 
@@ -65,7 +66,7 @@ export default function SignIn({
   const [continueLoading, setContinueLoading] = useState<boolean>(false);
   const [lastUsedAuthMethod, setLastUsedAuthMethod] =
     useLocalStorage<NextAuthProvider | null>(
-      "langfuse_last_used_auth_method",
+      "elasticdash_last_used_auth_method",
       null,
     );
 
@@ -177,7 +178,7 @@ export default function SignIn({
         password: values.password,
         callbackUrl:
           targetPath ??
-          (isLangfuseCloud && region !== "DEV"
+          (isElasticDashCloud && region !== "DEV"
             ? `${env.NEXT_PUBLIC_BASE_PATH ?? ""}/onboarding`
             : `${env.NEXT_PUBLIC_BASE_PATH ?? ""}/`),
       });
@@ -189,7 +190,7 @@ export default function SignIn({
   return (
     <>
       <Head>
-        <title>Sign up | Langfuse</title>
+        <title>Sign up | ElasticDash</title>
         <meta
           name="description"
           content="Create an account, no credit card required."
@@ -198,12 +199,12 @@ export default function SignIn({
       </Head>
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <LangfuseIcon className="mx-auto" />
+          <ElasticDashIcon className="mx-auto" />
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-primary">
             Create new account
           </h2>
         </div>
-        {isLangfuseCloud ? (
+        {isElasticDashCloud ? (
           <div className="text-center sm:mx-auto sm:w-full sm:max-w-[480px]">
             No credit card required.
           </div>

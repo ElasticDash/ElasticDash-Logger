@@ -1,7 +1,7 @@
 import { VERSION } from "@/src/constants/VERSION";
 import { env } from "@/src/env.mjs";
 import { createTRPCRouter, publicProcedure } from "@/src/server/api/trpc";
-import { logger, compareVersions } from "@langfuse/shared/src/server";
+import { logger, compareVersions } from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 
 const ReleaseApiRes = z.array(
@@ -15,13 +15,13 @@ const ReleaseApiRes = z.array(
 
 export const publicRouter = createTRPCRouter({
   checkUpdate: publicProcedure.query(async () => {
-    // Skip update check on Langfuse Cloud
-    if (env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) return null;
+    // Skip update check on ElasticDash Cloud
+    if (env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) return null;
 
     let body;
     try {
       const response = await fetch(
-        `https://langfuse.com/api/latest-releases?repo=langfuse/langfuse&version=${VERSION}`,
+        `https://www.elasticdash.com/api/latest-releases?repo=elasticdash/elasticdash&version=${VERSION}`,
       );
       body = await response.json();
     } catch (error) {
@@ -44,23 +44,26 @@ export const publicRouter = createTRPCRouter({
       );
       return null;
     }
-    const langfuseRelease = releases.data.find(
-      (release) => release.repo === "langfuse/langfuse",
+    const elasticdashRelease = releases.data.find(
+      (release) => release.repo === "elasticdash/elasticdash",
     );
-    if (!langfuseRelease) {
+    if (!elasticdashRelease) {
       logger.error(
-        "[trpc.public.checkUpdate] Release API response is invalid, does not contain langfuse/langfuse",
+        "[trpc.public.checkUpdate] Release API response is invalid, does not contain elasticdash/elasticdash",
       );
       return null;
     }
 
-    const updateType = compareVersions(VERSION, langfuseRelease.latestRelease);
+    const updateType = compareVersions(
+      VERSION,
+      elasticdashRelease.latestRelease,
+    );
 
     return {
       updateType,
       currentVersion: VERSION,
-      latestRelease: langfuseRelease.latestRelease,
-      url: langfuseRelease.url,
+      latestRelease: elasticdashRelease.latestRelease,
+      url: elasticdashRelease.url,
     };
   }),
 });

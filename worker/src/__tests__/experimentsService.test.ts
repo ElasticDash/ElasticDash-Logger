@@ -1,15 +1,15 @@
 import { expect, test, describe, beforeEach, vi, afterEach } from "vitest";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { randomUUID } from "crypto";
 import { pruneDatabase } from "./utils";
-import { LLMAdapter } from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
+import { LLMAdapter } from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { createExperimentJobClickhouse } from "../features/experiments/experimentServiceClickhouse";
-import { createDatasetItem, logger } from "@langfuse/shared/src/server";
+import { createDatasetItem, logger } from "@elasticdash/shared/src/server";
 
 // Mock the logger to capture log calls
-vi.mock("@langfuse/shared/src/server", async () => {
-  const actual = await vi.importActual("@langfuse/shared/src/server");
+vi.mock("@elasticdash/shared/src/server", async () => {
+  const actual = await vi.importActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     fetchLLMCompletion: vi.fn().mockResolvedValue({ id: "test-id" }),
@@ -560,7 +560,7 @@ describe("experiment processing integration", () => {
     //   expect.any(String),
     //   expect.any(String),
     //   expect.objectContaining({
-    //     environment: "langfuse-prompt-experiment",
+    //     environment: "elasticdash-prompt-experiment",
     //     traceName: expect.stringMatching(/^dataset-run-item-/),
     //     traceId: expect.any(String),
     //     projectId: projectId,

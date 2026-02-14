@@ -1,4 +1,4 @@
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 import { cn } from "@/src/utils/tailwind";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
@@ -6,9 +6,9 @@ import { useState } from "react";
 export const EnvLabel = ({ className }: { className?: string }) => {
   const [isHidden, setIsHidden] = useState(false);
   const session = useSession();
-  const { isLangfuseCloud, region } = useLangfuseCloudRegion();
-  if (!isLangfuseCloud) return null;
-  if (!session.data?.user?.email?.endsWith("@langfuse.com")) return null;
+  const { isElasticDashCloud, region } = useElasticDashCloudRegion();
+  if (!isElasticDashCloud) return null;
+  if (!session.data?.user?.email?.endsWith("@elasticdash.com")) return null;
   if (isHidden) return null;
   return (
     <div

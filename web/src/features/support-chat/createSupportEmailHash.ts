@@ -1,10 +1,10 @@
 import { env } from "@/src/env.mjs";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import * as crypto from "node:crypto";
 
 export const createSupportEmailHash = (email: string): string | undefined => {
   if (!env.PLAIN_AUTHENTICATION_SECRET) {
-    if (env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+    if (env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
       logger.error("PLAIN_AUTHENTICATION_SECRET is not set");
     }
     return undefined;

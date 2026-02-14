@@ -1,8 +1,8 @@
 import { DataTable } from "@/src/components/table/data-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
-import { type BatchExport } from "@langfuse/shared";
+import { type BatchExport } from "@elasticdash/shared";
 import { StatusBadge } from "@/src/components/layouts/status-badge";
 import { NumberParam, useQueryParams, withDefault } from "use-query-params";
 import { ActionButton } from "@/src/components/ActionButton";
@@ -220,7 +220,7 @@ export function BatchExportsTable(props: { projectId: string }) {
         );
       },
     },
-  ] as LangfuseColumnDef<BatchExport>[];
+  ] as ElasticDashColumnDef<BatchExport>[];
 
   return (
     <>

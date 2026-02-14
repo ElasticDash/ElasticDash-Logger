@@ -3,11 +3,11 @@ import {
   createTRPCRouter,
   protectedGetTraceProcedure,
 } from "@/src/server/api/trpc";
-import { LangfuseNotFoundError, parseIO } from "@langfuse/shared";
+import { ElasticDashNotFoundError, parseIO } from "@elasticdash/shared";
 import {
   getObservationById,
   getObservationByIdFromEventsTable,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 import { toDomainWithStringifiedMetadata } from "@/src/utils/clientSideDomainTypes";
 
@@ -35,11 +35,11 @@ export const observationsRouter = createTRPCRouter({
         },
       };
       const obs =
-        env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
+        env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
           ? await getObservationByIdFromEventsTable(queryOpts)
           : await getObservationById(queryOpts);
       if (!obs) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Observation not found within authorized project",
         );
       }

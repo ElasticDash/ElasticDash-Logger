@@ -1,16 +1,16 @@
-import { LLMAdapter } from "@langfuse/shared/src/server";
-import { Langfuse } from "langfuse";
+import { LLMAdapter } from "@elasticdash/shared/src/server";
+import { ElasticDashClient } from "@elasticdash/client";
 import { env } from "@/src/env.mjs";
-import { type FilterCondition, singleFilter } from "@langfuse/shared";
+import { type FilterCondition, singleFilter } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
-let langfuseClient: Langfuse | null = null;
+let elasticdashClient: ElasticDashClient | null = null;
 
 export function getDefaultModelParams() {
   return {
     provider: "bedrock",
     adapter: LLMAdapter.Bedrock,
-    model: env.LANGFUSE_AWS_BEDROCK_MODEL ?? "",
+    model: env.ELASTICDASH_AWS_BEDROCK_MODEL ?? "",
     temperature: 0.1,
     maxTokens: 1000,
     topP: 0.9,
@@ -46,17 +46,17 @@ export function parseFiltersFromCompletion(
   return [];
 }
 
-export function getLangfuseClient(
+export function getElasticDashClient(
   publicKey: string,
   secretKey: string,
   baseUrl?: string,
-): Langfuse {
-  if (!langfuseClient) {
-    langfuseClient = new Langfuse({
+): ElasticDashClient {
+  if (!elasticdashClient) {
+    elasticdashClient = new ElasticDashClient({
       publicKey,
       secretKey,
       baseUrl,
     });
   }
-  return langfuseClient;
+  return elasticdashClient;
 }

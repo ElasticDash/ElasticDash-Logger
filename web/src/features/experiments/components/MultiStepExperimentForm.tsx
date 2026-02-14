@@ -49,7 +49,7 @@ import { ExperimentDetailsStep } from "./steps/ExperimentDetailsStep";
 import { ReviewStep } from "./steps/ReviewStep";
 
 // Import step prop types
-import { PromptType } from "@langfuse/shared";
+import { PromptType } from "@elasticdash/shared";
 
 export const MultiStepExperimentForm = ({
   projectId,
@@ -423,7 +423,7 @@ export const MultiStepExperimentForm = ({
           Run an experiment to evaluate prompts and model configurations against
           a dataset. See{" "}
           <Link
-            href="https://langfuse.com/docs/evaluation/dataset-runs/native-run"
+            href="https://www.elasticdash.com/docs/evaluation/dataset-runs/native-run"
             target="_blank"
             className="underline"
           >

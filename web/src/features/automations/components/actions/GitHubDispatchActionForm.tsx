@@ -8,7 +8,7 @@ import {
   FormMessage,
 } from "@/src/components/ui/form";
 import { type UseFormReturn } from "react-hook-form";
-import { type ActionDomain } from "@langfuse/shared";
+import { type ActionDomain } from "@elasticdash/shared";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 
@@ -112,7 +112,7 @@ export const GitHubDispatchActionForm: React.FC<
                 ? " Leave empty to keep existing token."
                 : ""}{" "}
               <Link
-                href="https://github.com/settings/tokens/new?scopes=repo&description=Langfuse%20Automation"
+                href="https://github.com/settings/tokens/new?scopes=repo&description=ElasticDash%20Automation"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-primary hover:underline"

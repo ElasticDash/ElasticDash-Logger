@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   Avatar,
   AvatarFallback,
@@ -11,7 +11,7 @@ import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
 import type { RouterOutput } from "@/src/utils/types";
 import { Trash } from "lucide-react";
-import { type Organization, type Role } from "@langfuse/shared";
+import { type Organization, type Role } from "@elasticdash/shared";
 import { useHasProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
 import Header from "@/src/components/layouts/header";
 import useSessionStorage from "@/src/components/useSessionStorage";
@@ -95,7 +95,7 @@ export function MembershipInvitesPage({
     scope: "organizationMembers:CUD",
   });
 
-  const columns: LangfuseColumnDef<InvitesTableRow>[] = [
+  const columns: ElasticDashColumnDef<InvitesTableRow>[] = [
     {
       accessorKey: "email",
       id: "email",

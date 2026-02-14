@@ -3,8 +3,8 @@ import {
   paginationMetaResponseZod,
   publicApiPaginationZod,
   singleFilter,
-} from "@langfuse/shared";
-import { stringDateTime } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { stringDateTime } from "@elasticdash/shared/src/server";
 import { z } from "zod/v4";
 import {
   dimension,

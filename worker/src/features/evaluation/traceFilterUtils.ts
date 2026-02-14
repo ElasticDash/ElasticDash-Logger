@@ -1,5 +1,5 @@
-import { FilterState, TraceDomain } from "@langfuse/shared";
-import { tracesTableUiColumnDefinitions } from "@langfuse/shared/src/server";
+import { FilterState, TraceDomain } from "@elasticdash/shared";
+import { tracesTableUiColumnDefinitions } from "@elasticdash/shared/src/server";
 
 // Uses the uiTableId for mapping fields later.
 const evalTraceFilterColumns = [

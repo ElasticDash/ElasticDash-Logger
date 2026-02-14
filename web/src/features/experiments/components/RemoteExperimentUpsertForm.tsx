@@ -26,7 +26,7 @@ import { showSuccessToast } from "@/src/features/notifications/showSuccessToast"
 import { showErrorToast } from "@/src/features/notifications/showErrorToast";
 import { CodeMirrorEditor } from "@/src/components/editor/CodeMirrorEditor";
 import { Loader2 } from "lucide-react";
-import { type Prisma } from "@langfuse/shared";
+import { type Prisma } from "@elasticdash/shared";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import { getFormattedPayload } from "@/src/features/experiments/utils/format";
 
@@ -176,7 +176,7 @@ export const RemoteExperimentUpsertForm = ({
           </strong>
           . Configure a webhook URL to trigger remote custom dataset runs from
           UI. We will send dataset info (name, id) and config to your service,
-          which can run against the dataset and post results to Langfuse.
+          which can run against the dataset and post results to ElasticDash.
         </DialogDescription>
       </DialogHeader>
 

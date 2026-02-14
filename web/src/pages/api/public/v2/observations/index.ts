@@ -1,5 +1,5 @@
-import { getObservationsV2FromEventsTableForPublicApi } from "@langfuse/shared/src/server";
-import { NotImplementedError } from "@langfuse/shared";
+import { getObservationsV2FromEventsTableForPublicApi } from "@elasticdash/shared/src/server";
+import { NotImplementedError } from "@elasticdash/shared";
 
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
@@ -17,9 +17,9 @@ export default withMiddlewares({
     querySchema: GetObservationsV2Query,
     responseSchema: GetObservationsV2Response,
     fn: async ({ query, auth }) => {
-      if (env.LANGFUSE_ENABLE_EVENTS_TABLE_V2_APIS !== "true") {
+      if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_V2_APIS !== "true") {
         throw new NotImplementedError(
-          "v2 APIs are currently in beta and only available on Langfuse Cloud",
+          "v2 APIs are currently in beta and only available on ElasticDash Cloud",
         );
       }
 

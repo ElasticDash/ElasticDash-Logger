@@ -1,12 +1,12 @@
 import { type NextApiRequest } from "next";
 import { verifyAuth } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { env } from "@/src/env.mjs";
 import {
   createOrgProjectAndApiKey,
   hashSecretKey,
   getDisplaySecretKey,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 describe("Admin API Key Authentication", () => {
   const ADMIN_API_KEY = "test-admin-key-123";
@@ -108,8 +108,8 @@ describe("Admin API Key Authentication", () => {
       const mockReq = {
         headers: {
           authorization: `Bearer ${ADMIN_API_KEY}`,
-          "x-langfuse-admin-api-key": ADMIN_API_KEY,
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-admin-api-key": ADMIN_API_KEY,
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 
@@ -137,7 +137,7 @@ describe("Admin API Key Authentication", () => {
       expect(result.scope.apiKeyId).not.toBe("ADMIN_API_KEY");
     });
 
-    it("should fall back to basic auth when no x-langfuse-admin-api-key header", async () => {
+    it("should fall back to basic auth when no x-elasticdash-admin-api-key header", async () => {
       const mockReq = {
         headers: {
           authorization: auth,
@@ -150,20 +150,20 @@ describe("Admin API Key Authentication", () => {
       expect(result.scope.projectId).toBe(projectId);
     });
 
-    it("should fail on Langfuse Cloud", async () => {
+    it("should fail on ElasticDash Cloud", async () => {
       (env as any).NEXT_PUBLIC_LANGFUSE_CLOUD_REGION = "prod-us";
 
       const mockReq = {
         headers: {
           authorization: `Bearer ${ADMIN_API_KEY}`,
-          "x-langfuse-admin-api-key": ADMIN_API_KEY,
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-admin-api-key": ADMIN_API_KEY,
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 
       await expect(verifyAuth(mockReq, true)).rejects.toEqual({
         status: 403,
-        message: "Admin API key auth is not available on Langfuse Cloud",
+        message: "Admin API key auth is not available on ElasticDash Cloud",
       });
 
       (env as any).NEXT_PUBLIC_LANGFUSE_CLOUD_REGION = undefined;
@@ -175,8 +175,8 @@ describe("Admin API Key Authentication", () => {
       const mockReq = {
         headers: {
           authorization: "Bearer some-key",
-          "x-langfuse-admin-api-key": "some-key",
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-admin-api-key": "some-key",
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 
@@ -192,8 +192,8 @@ describe("Admin API Key Authentication", () => {
       const mockReq = {
         headers: {
           authorization: "Bearer wrong-key",
-          "x-langfuse-admin-api-key": ADMIN_API_KEY,
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-admin-api-key": ADMIN_API_KEY,
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 
@@ -203,12 +203,12 @@ describe("Admin API Key Authentication", () => {
       });
     });
 
-    it("should fail with invalid x-langfuse-admin-api-key header", async () => {
+    it("should fail with invalid x-elasticdash-admin-api-key header", async () => {
       const mockReq = {
         headers: {
           authorization: `Bearer ${ADMIN_API_KEY}`,
-          "x-langfuse-admin-api-key": "wrong-key",
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-admin-api-key": "wrong-key",
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 
@@ -222,8 +222,8 @@ describe("Admin API Key Authentication", () => {
       const mockReq = {
         headers: {
           authorization: "Bearer different-key-1",
-          "x-langfuse-admin-api-key": "different-key-2",
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-admin-api-key": "different-key-2",
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 
@@ -233,18 +233,18 @@ describe("Admin API Key Authentication", () => {
       });
     });
 
-    it("should fail without x-langfuse-project-id header", async () => {
+    it("should fail without x-elasticdash-project-id header", async () => {
       const mockReq = {
         headers: {
           authorization: `Bearer ${ADMIN_API_KEY}`,
-          "x-langfuse-admin-api-key": ADMIN_API_KEY,
+          "x-elasticdash-admin-api-key": ADMIN_API_KEY,
         },
       } as NextApiRequest;
 
       await expect(verifyAuth(mockReq, true)).rejects.toEqual({
         status: 400,
         message:
-          "x-langfuse-project-id header is required for admin API key authentication",
+          "x-elasticdash-project-id header is required for admin API key authentication",
       });
     });
 
@@ -252,8 +252,8 @@ describe("Admin API Key Authentication", () => {
       const mockReq = {
         headers: {
           authorization: `Bearer ${ADMIN_API_KEY}`,
-          "x-langfuse-admin-api-key": ADMIN_API_KEY,
-          "x-langfuse-project-id": "non-existent-project",
+          "x-elasticdash-admin-api-key": ADMIN_API_KEY,
+          "x-elasticdash-project-id": "non-existent-project",
         },
       } as NextApiRequest;
 
@@ -267,7 +267,7 @@ describe("Admin API Key Authentication", () => {
       const mockReq = {
         headers: {
           authorization: auth,
-          "x-langfuse-project-id": projectId,
+          "x-elasticdash-project-id": projectId,
         },
       } as NextApiRequest;
 

@@ -7,7 +7,7 @@ import {
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { TokenUsageBadge } from "@/src/components/token-usage-badge";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { useSidebarFilterState } from "@/src/features/filters/hooks/useSidebarFilterState";
@@ -24,7 +24,7 @@ import {
   BatchActionType,
   ActionId,
   type TimeFilter,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { useDetailPageLists } from "@/src/features/navigate-detail-pages/context";
 import { useOrderByState } from "@/src/features/orderBy/hooks/useOrderByState";
 import { api } from "@/src/utils/api";
@@ -45,7 +45,7 @@ import useColumnOrder from "@/src/features/column-visibility/hooks/useColumnOrde
 import { LocalIsoDate } from "@/src/components/LocalIsoDate";
 import { useTableViewManager } from "@/src/components/table/table-view-presets/hooks/useTableViewManager";
 import { Badge } from "@/src/components/ui/badge";
-import { type ScoreAggregate } from "@langfuse/shared";
+import { type ScoreAggregate } from "@elasticdash/shared";
 import { useSelectAll } from "@/src/features/table/hooks/useSelectAll";
 import { type TableAction } from "@/src/features/table/types";
 import { TableActionMenu } from "@/src/features/table/components/TableActionMenu";
@@ -359,7 +359,7 @@ export default function SessionsTable({
     },
   ];
 
-  const columns: LangfuseColumnDef<SessionTableRow>[] = [
+  const columns: ElasticDashColumnDef<SessionTableRow>[] = [
     selectActionColumn,
     {
       accessorKey: "bookmarked",
@@ -808,7 +808,7 @@ export default function SessionsTable({
               help={{
                 description:
                   "A session is a collection of related traces, such as a conversation or thread. To begin, add a sessionId to the trace.",
-                href: "https://langfuse.com/docs/observability/features/sessions",
+                href: "https://www.elasticdash.com/docs/observability/features/sessions",
               }}
               rowHeight={rowHeight}
             />

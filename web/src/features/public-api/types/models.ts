@@ -4,7 +4,7 @@ import {
   type Model as PrismaModel,
   jsonSchema,
   publicApiPaginationZod,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { z } from "zod/v4";
 import { type Decimal } from "decimal.js";
 import {
@@ -12,7 +12,7 @@ import {
   PricingTierConditionSchema,
   PricingTierInputSchema,
   type PricingTierCondition,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 /**
  * Objects
@@ -51,7 +51,7 @@ const APIModelDefinition = z
     unit: APIModelUsageUnit.nullish(),
     tokenizerId: z.string().nullable(),
     tokenizerConfig: z.any(), // Assuming Prisma.JsonValue is any type
-    isLangfuseManaged: z.boolean(),
+    isElasticDashManaged: z.boolean(),
     createdAt: z.coerce.date(),
     prices: z.record(z.string(), z.object({ price: z.number() })),
     pricingTiers: z.array(APIPricingTier),
@@ -107,7 +107,7 @@ export function prismaToApiModelDefinition({
     outputPrice: flatPrices.output?.price ?? outputPrice?.toNumber() ?? null,
     totalPrice: flatPrices.total?.price ?? totalPrice?.toNumber() ?? null,
     prices: flatPrices,
-    isLangfuseManaged: !Boolean(projectId),
+    isElasticDashManaged: !Boolean(projectId),
     pricingTiers:
       pricingTiers?.map((tier) => ({
         id: tier.id,

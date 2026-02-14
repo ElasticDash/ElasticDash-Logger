@@ -6,13 +6,13 @@ import {
   GetCommentV1Response,
   PostCommentsV1Response,
 } from "@/src/features/public-api/types/comments";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { z } from "zod/v4";
 import {
   createObservationsCh,
   createTracesCh,
-} from "@langfuse/shared/src/server";
-import { createObservation, createTrace } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
+import { createObservation, createTrace } from "@elasticdash/shared/src/server";
 
 describe("Create and get comments", () => {
   beforeAll(async () => {
@@ -78,7 +78,7 @@ describe("Create and get comments", () => {
       );
     } catch (error) {
       expect((error as Error).message).toBe(
-        `API call did not return 200, returned status 404, body {\"message\":\"Reference object, TRACE: invalid-trace-id not found in Clickhouse. Skipping creating comment.\",\"error\":\"LangfuseNotFoundError\"}`,
+        `API call did not return 200, returned status 404, body {\"message\":\"Reference object, TRACE: invalid-trace-id not found in Clickhouse. Skipping creating comment.\",\"error\":\"ElasticDashNotFoundError\"}`,
       );
     }
   });

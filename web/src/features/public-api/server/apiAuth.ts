@@ -12,19 +12,19 @@ import {
   invalidateCachedApiKeys as invalidateCachedApiKeysShared,
   invalidateCachedOrgApiKeys as invalidateCachedOrgApiKeysShared,
   invalidateCachedProjectApiKeys as invalidateCachedProjectApiKeysShared,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   type PrismaClient,
   type ApiKey,
   type Prisma,
   type ApiKeyScope,
-} from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/db";
 import { isPrismaException } from "@/src/utils/exceptions";
 import { type Redis, type Cluster } from "ioredis";
 import { getOrganizationPlanServerSide } from "@/src/features/entitlements/server/getPlan";
-import { API_KEY_NON_EXISTENT } from "@langfuse/shared/src/server";
+import { API_KEY_NON_EXISTENT } from "@elasticdash/shared/src/server";
 import { type z } from "zod/v4";
-import { CloudConfigSchema, isPlan } from "@langfuse/shared";
+import { CloudConfigSchema, isPlan } from "@elasticdash/shared";
 
 export class ApiAuthService {
   prisma: PrismaClient;
@@ -292,17 +292,17 @@ export class ApiAuthService {
     const redisApiKey = await this.fetchApiKeyFromRedis(hash);
 
     if (redisApiKey === API_KEY_NON_EXISTENT) {
-      recordIncrement("langfuse.api_key.cache_hit", 1);
+      recordIncrement("elasticdash.api_key.cache_hit", 1);
       throw new Error("Invalid credentials");
     }
 
     // if we found something, return the object.
     if (redisApiKey) {
-      recordIncrement("langfuse.api_key.cache_hit", 1);
+      recordIncrement("elasticdash.api_key.cache_hit", 1);
       return redisApiKey;
     }
 
-    recordIncrement("langfuse.api_key.cache_miss", 1);
+    recordIncrement("elasticdash.api_key.cache_miss", 1);
 
     // if redis not available or object not found, try the database
     const apiKeyAndOrganisation = await this.prisma.apiKey.findUnique({
@@ -330,7 +330,7 @@ export class ApiAuthService {
     hash: string,
     newApiKey: z.infer<typeof OrgEnrichedApiKey> | typeof API_KEY_NON_EXISTENT,
   ) {
-    if (!this.redis || env.LANGFUSE_CACHE_API_KEY_ENABLED !== "true") {
+    if (!this.redis || env.ELASTICDASH_CACHE_API_KEY_ENABLED !== "true") {
       return;
     }
 
@@ -339,7 +339,7 @@ export class ApiAuthService {
         this.createRedisKey(hash),
         JSON.stringify(newApiKey),
         "EX",
-        env.LANGFUSE_CACHE_API_KEY_TTL_SECONDS, // redis API is in seconds
+        env.ELASTICDASH_CACHE_API_KEY_TTL_SECONDS, // redis API is in seconds
       );
     } catch (error: unknown) {
       logger.error("Error adding key to redis", error);
@@ -347,7 +347,7 @@ export class ApiAuthService {
   }
 
   private async fetchApiKeyFromRedis(hash: string) {
-    if (!this.redis || env.LANGFUSE_CACHE_API_KEY_ENABLED !== "true") {
+    if (!this.redis || env.ELASTICDASH_CACHE_API_KEY_ENABLED !== "true") {
       return null;
     }
 
@@ -355,7 +355,7 @@ export class ApiAuthService {
       const redisApiKey = await this.redis.getex(
         this.createRedisKey(hash),
         "EX",
-        env.LANGFUSE_CACHE_API_KEY_TTL_SECONDS, // redis API is in seconds
+        env.ELASTICDASH_CACHE_API_KEY_TTL_SECONDS, // redis API is in seconds
       );
 
       if (!redisApiKey) {

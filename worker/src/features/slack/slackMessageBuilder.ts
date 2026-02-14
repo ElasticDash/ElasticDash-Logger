@@ -1,9 +1,9 @@
-import { logger } from "@langfuse/shared/src/server";
-import type { WebhookInput } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
+import type { WebhookInput } from "@elasticdash/shared/src/server";
 import { env } from "../../env";
 
 /**
- * Builds Slack Block Kit messages for different Langfuse event types
+ * Builds Slack Block Kit messages for different ElasticDash event types
  */
 export class SlackMessageBuilder {
   /**
@@ -94,7 +94,7 @@ export class SlackMessageBuilder {
         elements: [
           {
             type: "mrkdwn",
-            text: `🕒 ${new Date().toLocaleString()} | Langfuse`,
+            text: `🕒 ${new Date().toLocaleString()} | ElasticDash`,
           },
         ],
       },
@@ -112,7 +112,7 @@ export class SlackMessageBuilder {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: `*Langfuse Notification*\n${payload.type} event: *${payload.action}*`,
+          text: `*ElasticDash Notification*\n${payload.type} event: *${payload.action}*`,
         },
       },
       {
@@ -120,7 +120,7 @@ export class SlackMessageBuilder {
         elements: [
           {
             type: "mrkdwn",
-            text: `🕒 ${new Date().toLocaleString()} | Langfuse`,
+            text: `🕒 ${new Date().toLocaleString()} | ElasticDash`,
           },
         ],
       },

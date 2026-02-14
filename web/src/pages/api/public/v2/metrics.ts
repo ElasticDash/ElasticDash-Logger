@@ -1,12 +1,12 @@
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
 import { env } from "@/src/env.mjs";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import {
   GetMetricsV2Query,
   GetMetricsV2Response,
 } from "@/src/features/public-api/types/metrics";
-import { InvalidRequestError, NotImplementedError } from "@langfuse/shared";
+import { InvalidRequestError, NotImplementedError } from "@elasticdash/shared";
 import {
   executeQuery,
   validateQuery,
@@ -21,9 +21,9 @@ export default withMiddlewares({
     querySchema: GetMetricsV2Query,
     responseSchema: GetMetricsV2Response,
     fn: async ({ query, auth }) => {
-      if (env.LANGFUSE_ENABLE_EVENTS_TABLE_V2_APIS !== "true") {
+      if (env.ELASTICDASH_ENABLE_EVENTS_TABLE_V2_APIS !== "true") {
         throw new NotImplementedError(
-          "v2 APIs are currently in beta and only available on Langfuse Cloud",
+          "v2 APIs are currently in beta and only available on ElasticDash Cloud",
         );
       }
 

@@ -37,7 +37,7 @@ export default function Generations() {
         help: {
           description:
             "An observation captures a single function call in an application. See docs to learn more.",
-          href: "https://langfuse.com/docs/observability/data-model",
+          href: "https://www.elasticdash.com/docs/observability/data-model",
         },
         tabsProps: {
           tabs: getTracingTabs(projectId),

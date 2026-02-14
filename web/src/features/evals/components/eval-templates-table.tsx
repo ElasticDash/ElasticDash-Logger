@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { type RouterOutputs, api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
@@ -283,7 +283,7 @@ export default function EvalsTemplateTable({
         );
       },
     }),
-  ] as LangfuseColumnDef<EvalsTemplateRow>[];
+  ] as ElasticDashColumnDef<EvalsTemplateRow>[];
 
   const [columnVisibility, setColumnVisibility] =
     useColumnVisibility<EvalsTemplateRow>(
@@ -432,7 +432,7 @@ export default function EvalsTemplateTable({
             }
             cloneSourceId={cloneTemplateId}
             onBeforeSubmit={(template) => {
-              // Only show reference dialog for Langfuse maintained templates
+              // Only show reference dialog for ElasticDash maintained templates
               if (
                 cloneTemplateId &&
                 cloneTemplate.data &&
@@ -478,7 +478,7 @@ export default function EvalsTemplateTable({
             <DialogTitle>Update running evaluators?</DialogTitle>
             <DialogDescription>
               Do you want all running evaluators attached to the original
-              Langfuse evaluator to reference your new project-level version?
+              ElasticDash evaluator to reference your new project-level version?
               <br />
               <br />
               <strong>Warning:</strong> This might break workflows if you have

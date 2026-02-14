@@ -1,5 +1,5 @@
 {
-  "name": "langfuse-development",
+  "name": "elasticdash-development",
   "build": {
     "dockerfile": "Dockerfile"
   },

@@ -20,7 +20,7 @@ type MatchedModelCardProps = {
 export type { MatchedModelCardProps };
 
 export function MatchedModelCard({ model }: MatchedModelCardProps) {
-  const isLangfuseModel = !model.projectId;
+  const isElasticDashModel = !model.projectId;
 
   return (
     <Card>
@@ -34,9 +34,9 @@ export function MatchedModelCard({ model }: MatchedModelCardProps) {
           <span className="font-mono text-base font-semibold">
             {model.modelName}
           </span>
-          {isLangfuseModel && (
+          {isElasticDashModel && (
             <Badge variant="secondary" className="text-xs">
-              Langfuse
+              ElasticDash
             </Badge>
           )}
         </div>

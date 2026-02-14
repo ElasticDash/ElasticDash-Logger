@@ -5,14 +5,14 @@ import {
   type OrderByState,
   type TableViewPresetDomain,
   type ColumnDefinition,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { useRouter } from "next/router";
 import { useEffect, useCallback, useState, useRef } from "react";
 import { type VisibilityState } from "@tanstack/react-table";
 import { StringParam, withDefault } from "use-query-params";
 import useSessionStorage from "@/src/components/useSessionStorage";
 import { useQueryParam } from "use-query-params";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { showErrorToast } from "@/src/features/notifications/showErrorToast";
 import { isEqual } from "lodash";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
@@ -31,7 +31,7 @@ interface UseTableStateProps {
   projectId: string;
   stateUpdaters: TableStateUpdaters;
   validationContext?: {
-    columns?: LangfuseColumnDef<any, any>[];
+    columns?: ElasticDashColumnDef<any, any>[];
     filterColumnDefinition?: ColumnDefinition[];
   };
   currentFilterState?: FilterState;

@@ -49,7 +49,7 @@ import { decryptAndParseExtraHeaders } from "./utils";
 import { logger } from "../logger";
 import { LLMCompletionError } from "./errors";
 
-const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+const isElasticDashCloud = Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION);
 
 const PROVIDERS_WITH_REQUIRED_USER_MESSAGE = [
   LLMAdapter.VertexAI,
@@ -83,7 +83,7 @@ type LLMCompletionParams = {
   callbacks?: BaseCallbackHandler[];
   maxRetries?: number;
   traceSinkParams?: TraceSinkParams;
-  shouldUseLangfuseAPIKey?: boolean;
+  shouldUseElasticDashAPIKey?: boolean;
 };
 
 type FetchLLMCompletionParams = LLMCompletionParams & {
@@ -134,7 +134,7 @@ export async function fetchLLMCompletion(
     llmConnection,
     maxRetries,
     traceSinkParams,
-    shouldUseLangfuseAPIKey = false,
+    shouldUseElasticDashAPIKey = false,
   } = params;
 
   const { baseURL, config } = llmConnection;
@@ -145,12 +145,12 @@ export async function fetchLLMCompletion(
   let processTracedEvents: ProcessTracedEvents = () => Promise.resolve();
 
   if (traceSinkParams) {
-    // Safeguard: All internal traces must use LangfuseInternalTraceEnvironment enum values
+    // Safeguard: All internal traces must use ElasticDashInternalTraceEnvironment enum values
     // This prevents infinite eval loops (user trace → eval → eval trace → another eval)
     // See corresponding check in worker/src/features/evaluation/evalService.ts createEvalJobs()
-    if (!traceSinkParams.environment?.startsWith("langfuse")) {
+    if (!traceSinkParams.environment?.startsWith("elasticdash")) {
       logger.warn(
-        "Skipping trace creation: internal traces must use LangfuseInternalTraceEnvironment enum",
+        "Skipping trace creation: internal traces must use ElasticDashInternalTraceEnvironment enum",
         {
           environment: traceSinkParams.environment,
           traceId: traceSinkParams.traceId,
@@ -225,7 +225,7 @@ export async function fetchLLMCompletion(
   // Common proxy configuration for all adapters
   const proxyUrl = env.HTTPS_PROXY;
   const proxyAgent = proxyUrl ? new HttpsProxyAgent(proxyUrl) : undefined;
-  const timeoutMs = env.LANGFUSE_FETCH_LLM_COMPLETION_TIMEOUT_MS;
+  const timeoutMs = env.ELASTICDASH_FETCH_LLM_COMPLETION_TIMEOUT_MS;
 
   let chatModel:
     | ChatOpenAI
@@ -323,16 +323,16 @@ export async function fetchLLMCompletion(
       modelKwargs: modelParams.providerOptions,
     });
   } else if (modelParams.adapter === LLMAdapter.Bedrock) {
-    const { region } = shouldUseLangfuseAPIKey
-      ? { region: env.LANGFUSE_AWS_BEDROCK_REGION }
+    const { region } = shouldUseElasticDashAPIKey
+      ? { region: env.ELASTICDASH_AWS_BEDROCK_REGION }
       : BedrockConfigSchema.parse(config);
 
     // Handle both explicit credentials and default provider chain
     // Only allow default provider chain in self-hosted or internal AI features
-    const isSelfHosted = !isLangfuseCloud;
+    const isSelfHosted = !isElasticDashCloud;
     const credentials =
       apiKey === BEDROCK_USE_DEFAULT_CREDENTIALS &&
-      (isSelfHosted || shouldUseLangfuseAPIKey)
+      (isSelfHosted || shouldUseElasticDashAPIKey)
         ? undefined // undefined = use AWS SDK default credential provider chain
         : BedrockCredentialSchema.parse(JSON.parse(apiKey));
 
@@ -356,7 +356,7 @@ export async function fetchLLMCompletion(
     // Handle both explicit credentials and default provider chain (ADC)
     // Only allow default provider chain in self-hosted or internal AI features
     const shouldUseDefaultCredentials =
-      apiKey === VERTEXAI_USE_DEFAULT_CREDENTIALS && !isLangfuseCloud;
+      apiKey === VERTEXAI_USE_DEFAULT_CREDENTIALS && !isElasticDashCloud;
 
     // When using ADC, authOptions must be undefined to use google-auth-library's default credential chain
     // This supports: GKE Workload Identity, Cloud Run service accounts, GCE metadata service, gcloud auth

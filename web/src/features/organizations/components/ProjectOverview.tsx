@@ -29,7 +29,7 @@ import {
   createOrganizationRoute,
   createProjectRoute,
 } from "@/src/features/setup/setupRoutes";
-import { isCloudPlan, planLabels } from "@langfuse/shared";
+import { isCloudPlan, planLabels } from "@elasticdash/shared";
 import ContainerPage from "@/src/components/layouts/container-page";
 import { type User } from "next-auth";
 
@@ -79,11 +79,11 @@ const DemoOrganizationTile = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Try Langfuse Demo</CardTitle>
+        <CardTitle>Try ElasticDash Demo</CardTitle>
       </CardHeader>
       <CardContent>
-        We have built a Q&A chatbot that answers questions based on the Langfuse
-        Docs. Interact with it to see traces in Langfuse.
+        We have built a Q&A chatbot that answers questions based on the
+        ElasticDash Docs. Interact with it to see traces in ElasticDash.
       </CardContent>
       <CardFooter>
         <Button asChild variant="secondary">
@@ -272,7 +272,7 @@ export const OrganizationProjectOverview = () => {
         help: {
           description:
             "Organizations help you manage access to projects. Each organization can have multiple projects and team members with different roles.",
-          href: "https://langfuse.com/docs/rbac",
+          href: "https://www.elasticdash.com/docs/rbac",
         },
         breadcrumb: [
           {
@@ -338,7 +338,7 @@ const Onboarding = () => {
         <CardDescription>
           {canCreateOrgs
             ? "Create an organization to get started. Alternatively, ask your organization admin to invite you."
-            : "You need to get invited to an organization to get started with Langfuse."}
+            : "You need to get invited to an organization to get started with ElasticDash."}
         </CardDescription>
       </CardContent>
       <CardFooter className="flex gap-4">
@@ -351,13 +351,13 @@ const Onboarding = () => {
           </Button>
         )}
         <Button variant="secondary" asChild>
-          <Link href="https://langfuse.com/docs" target="_blank">
+          <Link href="https://www.elasticdash.com/docs" target="_blank">
             <BookOpen className="mr-2 h-4 w-4" aria-hidden="true" />
             Docs
           </Link>
         </Button>
         <Button variant="secondary" asChild>
-          <Link href="https://langfuse.com/docs/ask-ai" target="_blank">
+          <Link href="https://www.elasticdash.com/docs/ask-ai" target="_blank">
             <MessageSquareText className="mr-2 h-4 w-4" aria-hidden="true" />
             Ask AI
           </Link>

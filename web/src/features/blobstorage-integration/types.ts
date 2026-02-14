@@ -3,7 +3,7 @@ import {
   BlobStorageIntegrationType,
   BlobStorageIntegrationFileType,
   BlobStorageExportMode,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const blobStorageIntegrationFormSchema = z.object({
   type: z.enum(BlobStorageIntegrationType),

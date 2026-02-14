@@ -1,12 +1,12 @@
 import { expect, describe, it, beforeEach, vi, afterEach } from "vitest";
 import { MutationMonitor } from "../features/mutation-monitoring/mutationMonitor";
 import { WorkerManager } from "../queues/workerManager";
-import * as shared from "@langfuse/shared/src/server";
+import * as shared from "@elasticdash/shared/src/server";
 import { Worker } from "bullmq";
 
 // Mock the dependencies
-vi.mock("@langfuse/shared/src/server", async () => {
-  const actual = await vi.importActual("@langfuse/shared/src/server");
+vi.mock("@elasticdash/shared/src/server", async () => {
+  const actual = await vi.importActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     queryClickhouse: vi.fn(),
@@ -29,10 +29,10 @@ vi.mock("@langfuse/shared/src/server", async () => {
 vi.mock("../queues/workerManager");
 vi.mock("../env", () => ({
   env: {
-    LANGFUSE_MUTATION_MONITOR_ENABLED: "true",
-    LANGFUSE_MUTATION_MONITOR_CHECK_INTERVAL_MS: 1000,
-    LANGFUSE_DELETION_MUTATIONS_MAX_COUNT: 40,
-    LANGFUSE_DELETION_MUTATIONS_SAFE_COUNT: 15,
+    ELASTICDASH_MUTATION_MONITOR_ENABLED: "true",
+    ELASTICDASH_MUTATION_MONITOR_CHECK_INTERVAL_MS: 1000,
+    ELASTICDASH_DELETION_MUTATIONS_MAX_COUNT: 40,
+    ELASTICDASH_DELETION_MUTATIONS_SAFE_COUNT: 15,
     CLICKHOUSE_DB: "default",
   },
 }));

@@ -14,7 +14,7 @@ import {
   ParamPromptVersion,
 } from "../validation";
 import { UserInputError } from "../../../core/errors";
-import { instrumentAsync } from "@langfuse/shared/src/server";
+import { instrumentAsync } from "@elasticdash/shared/src/server";
 import { SpanKind } from "@opentelemetry/api";
 import { getPromptByName } from "@/src/features/prompts/server/actions/getPromptByName";
 
@@ -68,8 +68,8 @@ export const [getPromptUnresolvedTool, handleGetPromptUnresolved] = defineTool({
 
         // Set span attributes for observability
         span.setAttributes({
-          "langfuse.project.id": context.projectId,
-          "langfuse.org.id": context.orgId,
+          "elasticdash.project.id": context.projectId,
+          "elasticdash.org.id": context.orgId,
           "mcp.api_key_id": context.apiKeyId,
           "mcp.prompt_name": name,
           "mcp.unresolved": true,

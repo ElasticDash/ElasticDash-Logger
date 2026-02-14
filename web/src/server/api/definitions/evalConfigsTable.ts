@@ -1,4 +1,4 @@
-import { type ColumnDefinition, JobConfigState } from "@langfuse/shared";
+import { type ColumnDefinition, JobConfigState } from "@elasticdash/shared";
 
 export const evalConfigFilterColumns: ColumnDefinition[] = [
   {

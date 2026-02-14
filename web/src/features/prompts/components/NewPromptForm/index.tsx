@@ -30,7 +30,7 @@ import {
   PromptType,
   extractVariables,
   getIsCharOrUnderscore,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { PromptChatMessages } from "./PromptChatMessages";
 import { ReviewPromptDialog } from "./ReviewPromptDialog";
 import {
@@ -218,7 +218,7 @@ export const NewPromptForm: React.FC<NewPromptFormProps> = (props) => {
                       <a
                         target="_blank"
                         rel="noopener noreferrer"
-                        href="https://langfuse.com/docs/prompt-management/get-started#prompt-folders-for-organization"
+                        href="https://www.elasticdash.com/docs/prompt-management/get-started#prompt-folders-for-organization"
                       >
                         <i>folders</i>
                       </a>

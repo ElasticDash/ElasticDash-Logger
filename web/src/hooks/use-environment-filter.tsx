@@ -31,7 +31,7 @@ export function useEnvironmentFilter(
 ) {
   const [visibilityMap, setVisibilityMap] =
     useLocalStorage<EnvironmentVisibility>(
-      `langfuse-environment-visibility-${projectId}`,
+      `elasticdash-environment-visibility-${projectId}`,
       {},
     );
 
@@ -59,9 +59,9 @@ export function useEnvironmentFilter(
 
     availableEnvironments.forEach((env) => {
       // If environment doesn't exist in map, set default visibility
-      // Environments prefixed with "langfuse-" are deselected by default
+      // Environments prefixed with "elasticdash-" are deselected by default
       if (updatedMap[env] === undefined) {
-        updatedMap[env] = !env.startsWith("langfuse-");
+        updatedMap[env] = !env.startsWith("elasticdash-");
         hasChanges = true;
       }
     });

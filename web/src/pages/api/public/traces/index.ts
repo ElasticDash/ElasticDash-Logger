@@ -8,14 +8,14 @@ import {
 } from "@/src/features/public-api/types/traces";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { processEventBatch } from "@langfuse/shared/src/server";
+import { processEventBatch } from "@elasticdash/shared/src/server";
 import {
   eventTypes,
   logger,
   traceDeletionProcessor,
   getTracesFromEventsTableForPublicApi,
   getTracesCountFromEventsTableForPublicApi,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
 import { telemetry } from "@/src/features/telemetry";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
@@ -83,7 +83,7 @@ export default withMiddlewares({
       const useEventsTable =
         query.useEventsTable !== undefined && query.useEventsTable !== null
           ? query.useEventsTable === true
-          : env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true";
+          : env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true";
 
       if (useEventsTable) {
         const [items, count] = await Promise.all([

@@ -3,12 +3,12 @@ import { Job } from "bullmq";
 import {
   BaseError,
   BatchExportStatus,
-  LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { kyselyPrisma } from "@langfuse/shared/src/db";
+  ElasticDashNotFoundError,
+} from "@elasticdash/shared";
+import { kyselyPrisma } from "@elasticdash/shared/src/db";
 
-import { traceException, logger } from "@langfuse/shared/src/server";
-import { QueueName, TQueueJobTypes } from "@langfuse/shared/src/server";
+import { traceException, logger } from "@elasticdash/shared/src/server";
+import { QueueName, TQueueJobTypes } from "@elasticdash/shared/src/server";
 import { handleBatchExportJob } from "../features/batchExport/handleBatchExportJob";
 
 export const batchExportQueueProcessor = async (
@@ -22,7 +22,7 @@ export const batchExportQueueProcessor = async (
 
     return true;
   } catch (e) {
-    if (e instanceof LangfuseNotFoundError) {
+    if (e instanceof ElasticDashNotFoundError) {
       logger.warn(
         `Batch export ${job.data.payload.batchExportId} not found. Job will be skipped.`,
       );
