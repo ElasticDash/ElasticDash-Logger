@@ -24,7 +24,7 @@ import {
   AvailableWebhookApiSchema,
   type SafeWebhookActionConfig,
   WebhookDefaultHeaders,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { api } from "@/src/utils/api";
 import { useState } from "react";
 import {
@@ -57,7 +57,7 @@ export const webhookSchema = z.object({
         },
         {
           message:
-            "This header is automatically added by Langfuse and cannot be customized",
+            "This header is automatically added by ElasticDash and cannot be customized",
         },
       ),
       value: z.string(),
@@ -181,11 +181,11 @@ export const WebhookActionForm: React.FC<WebhookActionFormProps> = ({
         {/* Default Headers Section */}
         <div className="mb-4">
           <FormDescription className="mb-2">
-            Default headers (automatically added by Langfuse):
+            Default headers (automatically added by ElasticDash):
           </FormDescription>
           {Object.entries({
             ...WebhookDefaultHeaders,
-            "x-langfuse-signature": `t=<timestamp>,v1=<signature>`,
+            "x-elasticdash-signature": `t=<timestamp>,v1=<signature>`,
           }).map(([key, value]) => (
             <div
               key={key}
@@ -312,7 +312,7 @@ export const WebhookActionForm: React.FC<WebhookActionFormProps> = ({
         <FormLabel>Webhook Secret</FormLabel>
         <FormDescription className="mb-2">
           Use this secret to verify webhook signatures for security. The secret
-          is automatically included in the x-langfuse-signature header.
+          is automatically included in the x-elasticdash-signature header.
         </FormDescription>
 
         {action?.id ? (

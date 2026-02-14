@@ -28,15 +28,15 @@ type SidebarNotification = {
 const notifications: SidebarNotification[] = [
   {
     id: "github-star",
-    title: "Star Langfuse",
+    title: "Star ElasticDash",
     description:
       "See the latest releases and help grow the community on GitHub",
-    link: "https://github.com/langfuse/langfuse",
+    link: "https://github.com/elasticdash/elasticdash",
     linkContent: (
       // eslint-disable-next-line @next/next/no-img-element
       <img
-        alt="Langfuse GitHub stars"
-        src="https://img.shields.io/github/stars/langfuse/langfuse?label=langfuse&amp;style=social"
+        alt="ElasticDash GitHub stars"
+        src="https://img.shields.io/github/stars/elasticdash/elasticdash?label=elasticdash&amp;style=social"
       />
     ),
   },

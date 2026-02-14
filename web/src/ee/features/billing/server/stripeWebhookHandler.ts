@@ -4,7 +4,7 @@ import {
 } from "@/src/ee/features/billing/utils/stripeClientReference";
 import { env } from "@/src/env.mjs";
 import { type NextRequest, NextResponse } from "next/server";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { stripeClient } from "@/src/ee/features/billing/utils/stripe";
 import type Stripe from "stripe";
 import {
@@ -12,13 +12,13 @@ import {
   InternalServerError,
   type Organization,
   parseDbOrg,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   traceException,
   logger,
   invalidateCachedOrgApiKeys,
   startOfDayUTC,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import { type StripeSubscriptionMetadata } from "@/src/ee/features/billing/utils/stripeSubscriptionMetadata";
 
@@ -48,10 +48,14 @@ export async function stripeWebhookHandler(req: NextRequest) {
       { status: 405 },
     );
 
-  if (!env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION || !stripeClient) {
-    logger.error("[Stripe Webhook] Endpoint only available in Langfuse Cloud");
+  if (!env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION || !stripeClient) {
+    logger.error(
+      "[Stripe Webhook] Endpoint only available in ElasticDash Cloud",
+    );
     return NextResponse.json(
-      { message: "Stripe webhook endpoint only available in Langfuse Cloud" },
+      {
+        message: "Stripe webhook endpoint only available in ElasticDash Cloud",
+      },
       { status: 500 },
     );
   }
@@ -118,7 +122,7 @@ export async function stripeWebhookHandler(req: NextRequest) {
 }
 
 /**
- * Retrieves an organization by its Langfuse organization ID.
+ * Retrieves an organization by its ElasticDash organization ID.
  */
 async function getOrgById(orgId: string): Promise<Organization | null> {
   const org = await prisma.organization.findUnique({
@@ -290,14 +294,14 @@ async function ensureMetadataIsSetOnStripeSubscription(
   if (subscription.metadata?.orgId && subscription.metadata?.cloudRegion) {
     return;
   }
-  const currentEnvironment = env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION;
+  const currentEnvironment = env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION;
 
   if (!currentEnvironment) {
     traceException(
-      "[Stripe Webhook] NEXT_PUBLIC_LANGFUSE_CLOUD_REGION is not set but webhook is running",
+      "[Stripe Webhook] NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION is not set but webhook is running",
     );
     throw new InternalServerError(
-      "[Stripe Webhook] NEXT_PUBLIC_LANGFUSE_CLOUD_REGION is not set but webhook is running",
+      "[Stripe Webhook] NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION is not set but webhook is running",
     ); // we throw here because this should really never happen
   }
 
@@ -377,14 +381,14 @@ async function handleSubscriptionChanged(
   subscription: Stripe.Subscription,
   action: "created" | "deleted" | "updated",
 ) {
-  const currentEnvironment = env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION;
+  const currentEnvironment = env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION;
 
   if (!currentEnvironment) {
     traceException(
-      `[Stripe Webhook] NEXT_PUBLIC_LANGFUSE_CLOUD_REGION is not set but webhook received event subscription.${action}`,
+      `[Stripe Webhook] NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION is not set but webhook received event subscription.${action}`,
     );
     throw new InternalServerError(
-      `[Stripe Webhook] NEXT_PUBLIC_LANGFUSE_CLOUD_REGION is not set but webhook received event subscription.${action}`, // we throw here because this should really never happen
+      `[Stripe Webhook] NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION is not set but webhook received event subscription.${action}`, // we throw here because this should really never happen
     );
   }
 

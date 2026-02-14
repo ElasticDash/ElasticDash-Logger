@@ -1,4 +1,4 @@
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 import {
   AlertCircle,
   CheckIcon,
@@ -47,10 +47,10 @@ export function EvaluatorSelector({
 }: EvaluatorSelectorProps) {
   const [search, setSearch] = useState("");
 
-  // Group templates by name and whether they are managed by Langfuse
+  // Group templates by name and whether they are managed by ElasticDash
   const groupedTemplates = evalTemplates.reduce(
     (acc, template) => {
-      const group = template.projectId ? "custom" : "langfuse";
+      const group = template.projectId ? "custom" : "elasticdash";
       if (!acc[group][template.name]) {
         acc[group][template.name] = [];
       }
@@ -58,7 +58,7 @@ export function EvaluatorSelector({
       return acc;
     },
     {
-      langfuse: {} as Record<string, EvalTemplate[]>,
+      elasticdash: {} as Record<string, EvalTemplate[]>,
       custom: {} as Record<string, EvalTemplate[]>,
     },
   );
@@ -67,11 +67,11 @@ export function EvaluatorSelector({
   const sortByCreatedAt = (arr: EvalTemplate[]) =>
     arr.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
   Object.values(groupedTemplates.custom).forEach(sortByCreatedAt);
-  Object.values(groupedTemplates.langfuse).forEach(sortByCreatedAt);
+  Object.values(groupedTemplates.elasticdash).forEach(sortByCreatedAt);
 
   // Filter templates based on search
   const filteredTemplates = {
-    langfuse: Object.entries(groupedTemplates.langfuse)
+    elasticdash: Object.entries(groupedTemplates.elasticdash)
       .filter(([name]) => name.toLowerCase().includes(search.toLowerCase()))
       .sort(([nameA, templatesA], [nameB, templatesB]) => {
         // Get partners
@@ -92,7 +92,7 @@ export function EvaluatorSelector({
 
   // Check if we have results
   const hasResults =
-    filteredTemplates.langfuse.length > 0 ||
+    filteredTemplates.elasticdash.length > 0 ||
     filteredTemplates.custom.length > 0;
 
   const { isTemplateInvalid } = useSingleTemplateValidation({
@@ -191,16 +191,16 @@ export function EvaluatorSelector({
           </>
         )}
 
-        {filteredTemplates.langfuse.length > 0 && (
+        {filteredTemplates.elasticdash.length > 0 && (
           <>
-            <InputCommandGroup heading="Langfuse managed evaluators">
-              {filteredTemplates.langfuse.map(([name, templateData]) => {
+            <InputCommandGroup heading="ElasticDash managed evaluators">
+              {filteredTemplates.elasticdash.map(([name, templateData]) => {
                 const latestVersion = templateData[templateData.length - 1];
                 const isInvalid = isTemplateInvalid(latestVersion);
 
                 return (
                   <InputCommandItem
-                    key={`langfuse-${name}`}
+                    key={`elasticdash-${name}`}
                     disabled={isInvalid}
                     onSelect={() => {
                       onTemplateSelect(

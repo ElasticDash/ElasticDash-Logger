@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { SlackMessageBuilder } from "../features/slack/slackMessageBuilder";
-import type { WebhookInput } from "@langfuse/shared/src/server";
+import type { WebhookInput } from "@elasticdash/shared/src/server";
 
 describe("SlackMessageBuilder", () => {
   const mockPromptPayload: WebhookInput["payload"] = {
@@ -107,7 +107,7 @@ describe("SlackMessageBuilder", () => {
         elements: [
           {
             type: "mrkdwn",
-            text: expect.stringMatching(/🕒 .+ \| Langfuse/),
+            text: expect.stringMatching(/🕒 .+ \| ElasticDash/),
           },
         ],
       });
@@ -193,7 +193,7 @@ describe("SlackMessageBuilder", () => {
         type: "section",
         text: {
           type: "mrkdwn",
-          text: "*Langfuse Notification*\nunknown-event event: *triggered*",
+          text: "*ElasticDash Notification*\nunknown-event event: *triggered*",
         },
       });
 
@@ -202,7 +202,7 @@ describe("SlackMessageBuilder", () => {
         elements: [
           {
             type: "mrkdwn",
-            text: expect.stringMatching(/🕒 .+ \| Langfuse/),
+            text: expect.stringMatching(/🕒 .+ \| ElasticDash/),
           },
         ],
       });
@@ -228,7 +228,7 @@ describe("SlackMessageBuilder", () => {
 
       // Should be a fallback message (2 blocks)
       expect(blocks).toHaveLength(2);
-      expect(blocks[0].text.text).toContain("Langfuse Notification");
+      expect(blocks[0].text.text).toContain("ElasticDash Notification");
     });
 
     it("should handle errors gracefully and return fallback", () => {
@@ -243,7 +243,7 @@ describe("SlackMessageBuilder", () => {
 
       // Should fallback to simple message
       expect(blocks).toHaveLength(2);
-      expect(blocks[0].text.text).toContain("Langfuse Notification");
+      expect(blocks[0].text.text).toContain("ElasticDash Notification");
     });
   });
 });

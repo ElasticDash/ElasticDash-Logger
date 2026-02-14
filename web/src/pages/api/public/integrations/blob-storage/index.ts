@@ -1,7 +1,7 @@
 import { ApiAuthService } from "@/src/features/public-api/server/apiAuth";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
-import { prisma } from "@langfuse/shared/src/db";
-import { redis } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { redis } from "@elasticdash/shared/src/server";
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { hasEntitlementBasedOnPlan } from "@/src/features/entitlements/server/hasEntitlement";
 import {
@@ -9,11 +9,11 @@ import {
   type BlobStorageIntegrationResponseType,
 } from "@/src/features/public-api/types/blob-storage-integrations";
 import {
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   UnauthorizedError,
   ForbiddenError,
-} from "@langfuse/shared";
-import { encrypt } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared";
+import { encrypt } from "@elasticdash/shared/encryption";
 
 export default withMiddlewares({
   GET: handleGetBlobStorageIntegrations,
@@ -141,7 +141,7 @@ async function handleUpsertBlobStorageIntegration(
     select: { id: true, orgId: true },
   });
   if (!project || project.orgId !== authCheck.scope.orgId) {
-    throw new LangfuseNotFoundError("Project not found");
+    throw new ElasticDashNotFoundError("Project not found");
   }
 
   // Prepare data for database

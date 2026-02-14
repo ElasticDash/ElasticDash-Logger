@@ -1,6 +1,6 @@
 # Configuration Management - Environment Variables
 
-Complete guide to managing configuration across Langfuse's monorepo packages.
+Complete guide to managing configuration across ElasticDash's monorepo packages.
 
 ## Table of Contents
 
@@ -38,7 +38,7 @@ Complete guide to managing configuration across Langfuse's monorepo packages.
 Each package has its own `env.ts` or `env.mjs` file that validates and exports environment variables:
 
 ```
-langfuse/
+elasticdash/
 ├── web/src/env.mjs              # Next.js app (t3-env pattern)
 ├── worker/src/env.ts            # Worker service (Zod schema)
 ├── packages/shared/src/env.ts   # Shared config (Zod schema)
@@ -119,7 +119,7 @@ Uses **plain Zod schema** for Express.js worker service.
 
 ```typescript
 import { z } from "zod/v4";
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 
 const EnvSchema = z.object({
   BUILD_ID: z.string().optional(),
@@ -136,7 +136,7 @@ const EnvSchema = z.object({
 
   // S3 Event Upload (required)
   LANGFUSE_S3_EVENT_UPLOAD_BUCKET: z.string({
-    error: "Langfuse requires a bucket name for S3 Event Uploads.",
+    error: "ElasticDash requires a bucket name for S3 Event Uploads.",
   }),
 
   // Queue concurrency settings
@@ -234,7 +234,7 @@ export const env: z.infer<typeof EnvSchema> =
 **Usage:**
 
 ```typescript
-import { env } from "@langfuse/shared/src/env";
+import { env } from "@elasticdash/shared/src/env";
 
 const redisHost = env.REDIS_HOST;
 const clickhouseUrl = env.CLICKHOUSE_URL;
@@ -248,7 +248,7 @@ Minimal Zod schema for EE-specific variables.
 
 ```typescript
 import { z } from "zod/v4";
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 
 const EnvSchema = z.object({
   NEXT_PUBLIC_LANGFUSE_CLOUD_REGION: z.string().optional(),
@@ -261,7 +261,7 @@ export const env = EnvSchema.parse(removeEmptyEnvVariables(process.env));
 **Usage:**
 
 ```typescript
-import { env } from "@langfuse/ee/src/env";
+import { env } from "@elasticdash/ee/src/env";
 
 const licenseKey = env.LANGFUSE_EE_LICENSE_KEY;
 ```
@@ -272,7 +272,7 @@ const licenseKey = env.LANGFUSE_EE_LICENSE_KEY;
 
 ### NEXT_PUBLIC_LANGFUSE_CLOUD_REGION
 
-**Purpose:** Identifies the cloud deployment region for Langfuse Cloud.
+**Purpose:** Identifies the cloud deployment region for ElasticDash Cloud.
 
 **Type:** `"US" | "EU" | "STAGING" | "DEV" | "HIPAA" | undefined`
 
@@ -285,13 +285,13 @@ const licenseKey = env.LANGFUSE_EE_LICENSE_KEY;
 
 **When Set:**
 
-| Environment              | Value                  | Purpose                                        |
-| ------------------------ | ---------------------- | ---------------------------------------------- |
-| **Developer Laptop**     | `"DEV"` or `"STAGING"` | Local development against cloud infrastructure |
-| **Langfuse Cloud US**    | `"US"`                 | Production US region                           |
-| **Langfuse Cloud EU**    | `"EU"`                 | Production EU region                           |
-| **Langfuse Cloud HIPAA** | `"HIPAA"`              | HIPAA-compliant region                         |
-| **OSS Self-Hosted**      | `undefined` (not set)  | Self-hosted deployments don't have region      |
+| Environment                 | Value                  | Purpose                                        |
+|-----------------------------|------------------------|------------------------------------------------|
+| **Developer Laptop**        | `"DEV"` or `"STAGING"` | Local development against cloud infrastructure |
+| **ElasticDash Cloud US**    | `"US"`                 | Production US region                           |
+| **ElasticDash Cloud EU**    | `"EU"`                 | Production EU region                           |
+| **ElasticDash Cloud HIPAA** | `"HIPAA"`              | HIPAA-compliant region                         |
+| **OSS Self-Hosted**         | `undefined` (not set)  | Self-hosted deployments don't have region      |
 
 **Use Cases:**
 
@@ -343,11 +343,11 @@ NEXT_PUBLIC_LANGFUSE_CLOUD_REGION=US
 
 **When Set:**
 
-| Deployment          | Value              | Features Enabled                                                 |
-| ------------------- | ------------------ | ---------------------------------------------------------------- |
-| **Langfuse Cloud**  | Not set            | Cloud features controlled by `NEXT_PUBLIC_LANGFUSE_CLOUD_REGION` |
-| **OSS Self-Hosted** | Not set            | Core open-source features only                                   |
-| **EE Self-Hosted**  | License key string | Enterprise features enabled                                      |
+| Deployment            | Value              | Features Enabled                                                 |
+|-----------------------|--------------------|------------------------------------------------------------------|
+| **ElasticDash Cloud** | Not set            | Cloud features controlled by `NEXT_PUBLIC_LANGFUSE_CLOUD_REGION` |
+| **OSS Self-Hosted**   | Not set            | Core open-source features only                                   |
+| **EE Self-Hosted**    | License key string | Enterprise features enabled                                      |
 
 **Enterprise Features Controlled:**
 
@@ -387,7 +387,7 @@ if (env.LANGFUSE_EE_LICENSE_KEY) {
 # EE self-hosted
 LANGFUSE_EE_LICENSE_KEY=ee_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-# Langfuse Cloud (uses region instead)
+# ElasticDash Cloud (uses region instead)
 NEXT_PUBLIC_LANGFUSE_CLOUD_REGION=US
 # LANGFUSE_EE_LICENSE_KEY not used
 ```
@@ -448,7 +448,7 @@ import { env } from "@/src/env.mjs";
 import { env } from "./env";
 
 // In shared package
-import { env } from "@langfuse/shared/src/env";
+import { env } from "@elasticdash/shared/src/env";
 ```
 
 ### 3. Client Variables Must Start with NEXT*PUBLIC*
@@ -522,7 +522,7 @@ export const env =
 Treats empty strings as undefined:
 
 ```typescript
-import { removeEmptyEnvVariables } from "@langfuse/shared";
+import { removeEmptyEnvVariables } from "@elasticdash/shared";
 
 EnvSchema.parse(removeEmptyEnvVariables(process.env));
 ```
@@ -539,7 +539,7 @@ OPTIONAL_VAR=    # Treated as undefined, not empty string
 ## Configuration File Locations
 
 ```
-langfuse/
+elasticdash/
 ├── .env                          # Local development overrides
 ├── .env.dev.example              # Example dev configuration
 ├── web/src/env.mjs               # Web app env validation

@@ -18,7 +18,7 @@ import {
 import { transformFiltersForBackend } from "@/src/features/filters/lib/filter-transform";
 import { formatIntervalSeconds } from "@/src/utils/dates";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   type ObservationLevelType,
   type FilterState,
@@ -29,7 +29,7 @@ import {
   BatchActionType,
   ActionId,
   type TimeFilter,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { cn } from "@/src/utils/tailwind";
 import { LevelColors } from "@/src/components/level-colors";
 import { numberFormatter, usdFormatter } from "@/src/utils/numbers";
@@ -38,7 +38,7 @@ import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-
 import { MemoizedIOTableCell } from "../../ui/IOTableCell";
 import { useTableDateRange } from "@/src/hooks/useTableDateRange";
 import { toAbsoluteTimeRange } from "@/src/utils/date-range-utils";
-import { type ScoreAggregate } from "@langfuse/shared";
+import { type ScoreAggregate } from "@elasticdash/shared";
 import TagList from "@/src/features/tag/components/TagList";
 import useColumnOrder from "@/src/features/column-visibility/hooks/useColumnOrder";
 import { BatchExportTableButton } from "@/src/components/BatchExportTableButton";
@@ -561,7 +561,7 @@ export default function ObservationsTable({
     },
   ];
 
-  const columns: LangfuseColumnDef<ObservationsTableRow>[] = [
+  const columns: ElasticDashColumnDef<ObservationsTableRow>[] = [
     selectActionColumn,
     {
       accessorKey: "startTime",
@@ -651,7 +651,7 @@ export default function ObservationsTable({
       headerTooltip: {
         description:
           "You can differentiate the importance of observations with the level attribute to control the verbosity of your traces and highlight errors and warnings.",
-        href: "https://langfuse.com/docs/observability/features/log-levels",
+        href: "https://www.elasticdash.com/docs/observability/features/log-levels",
       },
       enableHiding: true,
       cell({ row }) {
@@ -678,7 +678,7 @@ export default function ObservationsTable({
       headerTooltip: {
         description:
           "Use a statusMessage to e.g. provide additional information on a status such as level=ERROR.",
-        href: "https://langfuse.com/docs/observability/features/log-levels",
+        href: "https://www.elasticdash.com/docs/observability/features/log-levels",
       },
       enableHiding: true,
       defaultHidden: true,
@@ -847,8 +847,8 @@ export default function ObservationsTable({
       id: "promptName",
       header: "Prompt",
       headerTooltip: {
-        description: "Link to prompt version in Langfuse prompt management.",
-        href: "https://langfuse.com/docs/prompt-management/get-started",
+        description: "Link to prompt version in ElasticDash prompt management.",
+        href: "https://www.elasticdash.com/docs/prompt-management/get-started",
       },
       size: 200,
       enableHiding: true,
@@ -907,7 +907,7 @@ export default function ObservationsTable({
       size: 300,
       headerTooltip: {
         description: "Add metadata to traces to track additional information.",
-        href: "https://langfuse.com/docs/observability/features/metadata",
+        href: "https://www.elasticdash.com/docs/observability/features/metadata",
       },
       cell: ({ row }) => {
         const observationId: string = row.getValue("id");
@@ -1005,7 +1005,7 @@ export default function ObservationsTable({
       size: 100,
       headerTooltip: {
         description: "Track changes via the version tag.",
-        href: "https://langfuse.com/docs/experimentation",
+        href: "https://www.elasticdash.com/docs/experimentation",
       },
       enableHiding: true,
       enableSorting: true,

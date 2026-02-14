@@ -1,5 +1,5 @@
 import { env } from "@/src/env.mjs";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   clickhouseClient,
   createBasicAuthHeader,
@@ -9,13 +9,13 @@ import {
   OtelIngestionQueue,
   QueueName,
   TraceUpsertQueue,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { type z } from "zod/v4";
 
 export const ensureTestDatabaseExists = async () => {
   // Only create test database if we're in test environment with test database URL
   if (
-    !env.DATABASE_URL.includes("langfuse_test") ||
+    !env.DATABASE_URL.includes("elasticdash_test") ||
     process.env.NODE_ENV !== "test"
   ) {
     return; // Not using test database or not in test environment, skip

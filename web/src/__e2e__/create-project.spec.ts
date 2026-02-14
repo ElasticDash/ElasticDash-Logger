@@ -1,5 +1,5 @@
 import { test, expect, type Page } from "@playwright/test";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 // const checkConsoleErrors = async (page: Page) => {
 //   const errors: string[] = [];
@@ -39,7 +39,7 @@ test.describe("Create project", () => {
 
     // Sign in
     await page.goto("/auth/sign-in");
-    await page.fill('input[name="email"]', "demo@langfuse.com");
+    await page.fill('input[name="email"]', "demo@elasticdash.com");
     await page.fill('input[type="password"]', "password");
     await page.click(
       'button[data-testid="submit-email-password-sign-in-form"]',
@@ -120,7 +120,7 @@ test.describe("Create project", () => {
 
       await page.waitForTimeout(2000);
 
-      const projectUrl = await getProjectUrlForEmail("demo@langfuse.com");
+      const projectUrl = await getProjectUrlForEmail("demo@elasticdash.com");
       await page.goto(projectUrl + url, { waitUntil: "networkidle" });
       await page.waitForTimeout(2000);
       await expect(page).toHaveURL(projectUrl + url);
@@ -140,7 +140,7 @@ test.describe("Create project", () => {
 
 const signin = async (page: Page) => {
   await page.goto("/auth/sign-in");
-  await page.fill('input[name="email"]', "demo@langfuse.com");
+  await page.fill('input[name="email"]', "demo@elasticdash.com");
   await page.fill('input[type="password"]', "password");
   await page.click('button[data-testid="submit-email-password-sign-in-form"]');
   await page.waitForTimeout(2000);

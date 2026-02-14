@@ -1,9 +1,9 @@
 import { useMemo, useState, useEffect, useRef, useCallback, memo } from "react";
 import { cn } from "@/src/utils/tailwind";
-import { deepParseJson } from "@langfuse/shared";
+import { deepParseJson } from "@elasticdash/shared";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import { type MediaReturnType } from "@/src/features/media/validation";
-import { LangfuseMediaView } from "@/src/components/ui/LangfuseMediaView";
+import { ElasticDashMediaView } from "@/src/components/ui/ElasticDashMediaView";
 import { MarkdownJsonViewHeader } from "@/src/components/ui/MarkdownJsonView";
 import { copyTextToClipboard } from "@/src/utils/clipboard";
 import { JSONView } from "@/src/components/ui/CodeJsonViewer";
@@ -23,10 +23,10 @@ import {
   type ExpandedState,
   type Row,
 } from "@tanstack/react-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 
 // Custom expanded state type that allows false ("user intentionally collapsed all")
-type LangfuseExpandedState = ExpandedState | false;
+type ElasticDashExpandedState = ExpandedState | false;
 import {
   Table,
   TableBody,
@@ -52,7 +52,10 @@ import {
   ValueCell,
   getValueStringLength,
 } from "@/src/components/table/ValueCell";
-import { ItemBadge, type LangfuseItemType } from "@/src/components/ItemBadge";
+import {
+  ItemBadge,
+  type ElasticDashItemType,
+} from "@/src/components/ItemBadge";
 
 // Constants for table layout
 const INDENTATION_PER_LEVEL = 16;
@@ -467,7 +470,7 @@ function JsonPrettyTable({
     }
   }, [stickyTopLevelKey, data, expanded]);
 
-  const columns: LangfuseColumnDef<JsonTableRow, unknown>[] = [
+  const columns: ElasticDashColumnDef<JsonTableRow, unknown>[] = [
     {
       accessorKey: "key",
       header: "Path",
@@ -492,7 +495,7 @@ function JsonPrettyTable({
           "type" in row.original.value &&
           typeof (row.original.value as any).type === "string" &&
           (row.original.value as any).type
-            ? ((row.original.value as any).type as LangfuseItemType)
+            ? ((row.original.value as any).type as ElasticDashItemType)
             : null;
 
         const content = (
@@ -829,7 +832,7 @@ export function PrettyJsonView(props: {
 
   // View's own state, lower precedence than optionally supplied external expansion state
   const [internalExpansionState, setInternalExpansionState] =
-    useState<LangfuseExpandedState>({});
+    useState<ElasticDashExpandedState>({});
 
   const isChatML = useMemo(() => isChatMLFormat(parsedJson), [parsedJson]);
   const { isMarkdown, content: markdownContent } = useMemo(
@@ -1094,7 +1097,7 @@ export function PrettyJsonView(props: {
         newState = updater(
           actualExpansionState === false ? {} : actualExpansionState,
         );
-        const finalState: LangfuseExpandedState =
+        const finalState: ElasticDashExpandedState =
           typeof newState === "object" && Object.keys(newState).length === 0
             ? false
             : newState;
@@ -1118,7 +1121,7 @@ export function PrettyJsonView(props: {
         }
       } else if (typeof updater !== "boolean") {
         newState = updater;
-        const finalState: LangfuseExpandedState =
+        const finalState: ElasticDashExpandedState =
           typeof newState === "object" && Object.keys(newState).length === 0
             ? false
             : newState;
@@ -1286,7 +1289,7 @@ export function PrettyJsonView(props: {
           </div>
           <div className="flex flex-wrap gap-2 p-4 pt-1">
             {props.media.map((m) => (
-              <LangfuseMediaView
+              <ElasticDashMediaView
                 mediaAPIReturnValue={m}
                 asFileIcon={true}
                 key={m.mediaId}

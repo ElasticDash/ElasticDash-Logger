@@ -26,10 +26,10 @@ import {
   type OpenAIOutputAudioType,
   isOpenAITextContentPart,
   isOpenAIImageContentPart,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { type z } from "zod/v4";
 import { ResizableImage } from "@/src/components/ui/resizable-image";
-import { LangfuseMediaView } from "@/src/components/ui/LangfuseMediaView";
+import { ElasticDashMediaView } from "@/src/components/ui/ElasticDashMediaView";
 import { type MediaReturnType } from "@/src/features/media/validation";
 import { JSONView } from "@/src/components/ui/CodeJsonViewer";
 import { MarkdownJsonViewHeader } from "@/src/components/ui/MarkdownJsonView";
@@ -425,7 +425,7 @@ export function MarkdownView({
                 </div>
               ) : MediaReferenceStringSchema.safeParse(content.image_url.url)
                   .success ? (
-                <LangfuseMediaView
+                <ElasticDashMediaView
                   mediaReferenceString={content.image_url.url}
                 />
               ) : (
@@ -439,7 +439,7 @@ export function MarkdownView({
                 </div>
               )
             ) : content.type === "input_audio" ? (
-              <LangfuseMediaView
+              <ElasticDashMediaView
                 mediaReferenceString={content.input_audio.data}
               />
             ) : null,
@@ -452,7 +452,7 @@ export function MarkdownView({
               theme={theme}
               customCodeHeaderClassName={customCodeHeaderClassName}
             />
-            <LangfuseMediaView
+            <ElasticDashMediaView
               mediaReferenceString={audio.data.referenceString}
             />
           </>
@@ -465,7 +465,7 @@ export function MarkdownView({
           </div>
           <div className="flex flex-wrap gap-2 p-4 pt-1">
             {media.map((m) => (
-              <LangfuseMediaView
+              <ElasticDashMediaView
                 mediaAPIReturnValue={m}
                 asFileIcon={true}
                 key={m.mediaId}

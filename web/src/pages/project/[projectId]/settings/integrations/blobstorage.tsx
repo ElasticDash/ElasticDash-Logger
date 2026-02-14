@@ -41,8 +41,8 @@ import {
   BlobStorageIntegrationFileType,
   BlobStorageExportMode,
   type BlobStorageIntegration,
-} from "@langfuse/shared";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+} from "@elasticdash/shared";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 export default function BlobStorageIntegrationSettings() {
   const router = useRouter();
@@ -80,7 +80,7 @@ export default function BlobStorageIntegrationSettings() {
         actionButtonsRight: (
           <Button asChild variant="secondary">
             <Link
-              href="https://langfuse.com/docs/api-and-data-platform/features/export-to-blob-storage"
+              href="https://www.elasticdash.com/docs/api-and-data-platform/features/export-to-blob-storage"
               target="_blank"
             >
               Integration Docs ↗
@@ -162,12 +162,12 @@ const BlobStorageIntegrationSettingsForm = ({
   isLoading: boolean;
 }) => {
   const capture = usePostHogClientCapture();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
   const [integrationType, setIntegrationType] =
     useState<BlobStorageIntegrationType>(BlobStorageIntegrationType.S3);
 
   // Check if this is a self-hosted instance (no cloud region set)
-  const isSelfHosted = !isLangfuseCloud;
+  const isSelfHosted = !isElasticDashCloud;
 
   const blobStorageForm = useForm({
     resolver: zodResolver(blobStorageIntegrationFormSchema),
@@ -471,10 +471,10 @@ const BlobStorageIntegrationSettingsForm = ({
               </FormControl>
               <FormDescription>
                 {integrationType === "AZURE_BLOB_STORAGE"
-                  ? 'Optional prefix path for exported files in your Azure container (e.g., "langfuse-exports/")'
+                  ? 'Optional prefix path for exported files in your Azure container (e.g., "elasticdash-exports/")'
                   : integrationType === "S3"
-                    ? 'Optional prefix path for exported files in your S3 bucket (e.g., "langfuse-exports/")'
-                    : 'Optional prefix path for exported files (e.g., "langfuse-exports/")'}
+                    ? 'Optional prefix path for exported files in your S3 bucket (e.g., "elasticdash-exports/")'
+                    : 'Optional prefix path for exported files (e.g., "elasticdash-exports/")'}
               </FormDescription>
               <FormMessage />
             </FormItem>

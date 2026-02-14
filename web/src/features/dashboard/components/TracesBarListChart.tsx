@@ -1,5 +1,5 @@
 import { api } from "@/src/utils/api";
-import { type FilterState } from "@langfuse/shared";
+import { type FilterState } from "@elasticdash/shared";
 import { ExpandListButton } from "@/src/features/dashboard/components/cards/ChevronButton";
 import { useState } from "react";
 import { DashboardCard } from "@/src/features/dashboard/components/cards/DashboardCard";
@@ -130,7 +130,7 @@ export const TracesBarListChart = ({
           <NoDataOrLoading
             isLoading={isLoading || traces.isPending || totalTraces.isPending}
             description="Traces contain details about LLM applications and can be created using the SDK."
-            href="https://langfuse.com/docs/get-started"
+            href="https://www.elasticdash.com/docs/get-started"
           />
         )}
         <ExpandListButton

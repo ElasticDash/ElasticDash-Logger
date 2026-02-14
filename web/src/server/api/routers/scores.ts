@@ -18,7 +18,7 @@ import {
   timeFilter,
   UpdateAnnotationScoreData,
   validateDbScore,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   InternalServerError,
   BatchActionQuerySchema,
   BatchActionType,
@@ -30,7 +30,7 @@ import {
   ScoreSourceEnum,
   ScoreDataTypeEnum,
   CORRECTION_NAME,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getScoresGroupedByNameSourceType,
   getScoresUiCount,
@@ -54,7 +54,7 @@ import {
   deleteScores,
   getTracesIdentifierForSession,
   validateConfigAgainstBody,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
 import { throwIfNoEntitlement } from "@/src/features/entitlements/server/hasEntitlement";
 import { createBatchActionJob } from "@/src/features/table/server/createBatchActionJob";
@@ -328,7 +328,7 @@ export const scoresRouter = createTRPCRouter({
           logger.error(
             `No trace with id ${inflatedParams.traceId} in project ${input.projectId} in Clickhouse`,
           );
-          throw new LangfuseNotFoundError(
+          throw new ElasticDashNotFoundError(
             `No trace with id ${inflatedParams.traceId} in project ${input.projectId} in Clickhouse`,
           );
         }
@@ -342,7 +342,7 @@ export const scoresRouter = createTRPCRouter({
           logger.error(
             `No trace referencing session with id ${inflatedParams.sessionId} in project ${input.projectId} in Clickhouse`,
           );
-          throw new LangfuseNotFoundError(
+          throw new ElasticDashNotFoundError(
             `No trace referencing session with id ${inflatedParams.sessionId} in project ${input.projectId} in Clickhouse`,
           );
         }
@@ -450,7 +450,7 @@ export const scoresRouter = createTRPCRouter({
           logger.warn(
             `No annotation score with id ${input.id} in project ${input.projectId} in Clickhouse, and no timestamp provided`,
           );
-          throw new LangfuseNotFoundError(
+          throw new ElasticDashNotFoundError(
             `No annotation score with id ${input.id} in project ${input.projectId} in Clickhouse`,
           );
         }
@@ -467,7 +467,7 @@ export const scoresRouter = createTRPCRouter({
           },
         });
         if (!config) {
-          throw new LangfuseNotFoundError(
+          throw new ElasticDashNotFoundError(
             `No score config with id ${input.configId} in project ${input.projectId}`,
           );
         }
@@ -496,7 +496,7 @@ export const scoresRouter = createTRPCRouter({
             logger.error(
               `No trace with id ${inflatedParams.traceId} in project ${input.projectId} in Clickhouse`,
             );
-            throw new LangfuseNotFoundError(
+            throw new ElasticDashNotFoundError(
               `No trace with id ${inflatedParams.traceId} in project ${input.projectId} in Clickhouse`,
             );
           }
@@ -510,7 +510,7 @@ export const scoresRouter = createTRPCRouter({
             logger.error(
               `No trace referencing session with id ${inflatedParams.sessionId} in project ${input.projectId} in Clickhouse`,
             );
-            throw new LangfuseNotFoundError(
+            throw new ElasticDashNotFoundError(
               `No trace referencing session with id ${inflatedParams.sessionId} in project ${input.projectId} in Clickhouse`,
             );
           }
@@ -595,7 +595,7 @@ export const scoresRouter = createTRPCRouter({
             },
           });
           if (!config) {
-            throw new LangfuseNotFoundError(
+            throw new ElasticDashNotFoundError(
               `No score config with id ${score.configId} in project ${input.projectId}`,
             );
           }
@@ -706,7 +706,7 @@ export const scoresRouter = createTRPCRouter({
         logger.warn(
           `No annotation score with id ${input.id} in project ${input.projectId} in Clickhouse`,
         );
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           `No annotation score with id ${input.id} in project ${input.projectId} in Clickhouse`,
         );
       }
@@ -753,7 +753,7 @@ export const scoresRouter = createTRPCRouter({
         logger.error(
           `No trace with id ${input.traceId} in project ${input.projectId} in Clickhouse`,
         );
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           `No trace with id ${input.traceId} in project ${input.projectId} in Clickhouse`,
         );
       }

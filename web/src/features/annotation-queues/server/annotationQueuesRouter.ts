@@ -9,11 +9,11 @@ import {
   AnnotationQueueStatus,
   CreateQueueData,
   filterAndValidateDbScoreConfigList,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   optionalPaginationZod,
   Prisma,
-} from "@langfuse/shared";
-import { getObservationById, logger } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { getObservationById, logger } from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod/v4";
 
@@ -392,7 +392,7 @@ export const queueRouter = createTRPCRouter({
         });
 
         if (!queue) {
-          throw new LangfuseNotFoundError("Queue not found in project");
+          throw new ElasticDashNotFoundError("Queue not found in project");
         }
 
         const updatedQueue = await ctx.prisma.annotationQueue.update({

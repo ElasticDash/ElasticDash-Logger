@@ -1,5 +1,5 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { AdminApiAuthService } from "@/src/ee/features/admin-api/server/adminApiAuth";
 import {
   handleGetOrganizationById,
@@ -14,7 +14,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   try {
-    // Verify admin API authentication, only allow on self-hosted (not on Langfuse Cloud)
+    // Verify admin API authentication, only allow on self-hosted (not on ElasticDash Cloud)
     if (!AdminApiAuthService.handleAdminAuth(req, res)) {
       return;
     }

@@ -1,9 +1,9 @@
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   type FilterState,
   type ColumnDefinition,
   type OrderByState,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { normalizeFilterColumnNames } from "@/src/features/filters/lib/filter-transform";
 
 /**
@@ -11,7 +11,7 @@ import { normalizeFilterColumnNames } from "@/src/features/filters/lib/filter-tr
  */
 export function validateOrderBy(
   orderBy: OrderByState | null,
-  columns?: LangfuseColumnDef<any, any>[],
+  columns?: ElasticDashColumnDef<any, any>[],
 ): OrderByState | null {
   if (!orderBy || !columns || columns.length === 0) return null;
 

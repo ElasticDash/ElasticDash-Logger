@@ -11,7 +11,7 @@ import type {
 import {
   applyFieldMappingConfig,
   validateFieldAgainstSchema,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 type MappingPreviewPanelProps = {
   fieldLabel: string;

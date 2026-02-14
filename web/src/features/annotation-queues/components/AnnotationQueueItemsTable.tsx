@@ -1,12 +1,12 @@
 import { DataTable } from "@/src/components/table/data-table";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
 import { useQueryParams, withDefault, NumberParam } from "use-query-params";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
-import { type AnnotationQueueStatus } from "@langfuse/shared";
+import { type AnnotationQueueStatus } from "@elasticdash/shared";
 import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-height-switch";
 import { ChevronDown, ListTree, Trash } from "lucide-react";
 import useColumnOrder from "@/src/features/column-visibility/hooks/useColumnOrder";
@@ -178,7 +178,7 @@ export function AnnotationQueueItemsTable({
     limit: paginationState.pageSize,
   });
 
-  const columns: LangfuseColumnDef<QueueItemRowData>[] = [
+  const columns: ElasticDashColumnDef<QueueItemRowData>[] = [
     {
       id: "select",
       accessorKey: "select",
@@ -468,7 +468,7 @@ export function AnnotationQueueItemsTable({
         help={{
           description:
             "Add traces and/or observations to your annotation queue to have them annotated by your team across predefined dimensions.",
-          href: "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
+          href: "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
         }}
         pagination={{
           totalCount: items.data?.totalItems ?? null,

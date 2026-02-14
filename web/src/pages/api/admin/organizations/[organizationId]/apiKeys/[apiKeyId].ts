@@ -1,11 +1,11 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { AdminApiAuthService } from "@/src/ee/features/admin-api/server/adminApiAuth";
 import {
   validateQueryParams,
   handleDeleteApiKey,
 } from "@/src/ee/features/admin-api/server/organizations/apiKeys/apiKeyById";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { hasEntitlementBasedOnPlan } from "@/src/features/entitlements/server/hasEntitlement";
 import { getSelfHostedInstancePlanServerSide } from "@/src/features/entitlements/server/getPlan";
 
@@ -19,7 +19,7 @@ export default async function handler(
       return;
     }
 
-    // Verify admin API authentication, only allow on self-hosted (not on Langfuse Cloud)
+    // Verify admin API authentication, only allow on self-hosted (not on ElasticDash Cloud)
     if (!AdminApiAuthService.handleAdminAuth(req, res)) {
       return;
     }

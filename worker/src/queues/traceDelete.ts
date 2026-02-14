@@ -5,8 +5,8 @@ import {
   QueueName,
   shouldSkipTraceDeletionFor,
   TQueueJobTypes,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 
 import { processClickhouseTraceDelete } from "../features/traces/processClickhouseTraceDelete";
 import { processPostgresTraceDelete } from "../features/traces/processPostgresTraceDelete";
@@ -72,7 +72,10 @@ export const traceDeleteProcessor: Processor = async (
     `Batch deleting ${allTraceIds.length} traces for project ${projectId}`,
   );
 
-  const traceIdsToDelete = allTraceIds.slice(0, env.LANGFUSE_DELETE_BATCH_SIZE);
+  const traceIdsToDelete = allTraceIds.slice(
+    0,
+    env.ELASTICDASH_DELETE_BATCH_SIZE,
+  );
 
   // Add all trace IDs to span attributes for observability
   if (span) {

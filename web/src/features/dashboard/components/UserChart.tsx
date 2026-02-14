@@ -1,5 +1,5 @@
 import { api } from "@/src/utils/api";
-import { type FilterState, getGenerationLikeTypes } from "@langfuse/shared";
+import { type FilterState, getGenerationLikeTypes } from "@elasticdash/shared";
 import { DashboardCard } from "@/src/features/dashboard/components/cards/DashboardCard";
 import { compactNumberFormatter } from "@/src/utils/numbers";
 import { TabComponent } from "@/src/features/dashboard/components/TabsComponent";
@@ -187,7 +187,7 @@ export const UserChart = ({
                   <NoDataOrLoading
                     isLoading={isLoading || user.isPending}
                     description="Consumption per user is tracked by passing their ids on traces."
-                    href="https://langfuse.com/docs/observability/features/users"
+                    href="https://www.elasticdash.com/docs/observability/features/users"
                   />
                 )}
               </>

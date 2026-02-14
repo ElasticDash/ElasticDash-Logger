@@ -1,16 +1,17 @@
 /**
- * When running Langfuse in HuggingFace Spaces, the app needs to be opened in a new tab.
+ * When running ElasticDash in HuggingFace Spaces, the app needs to be opened in a new tab.
  * Otherwise, the app will not be able to access the session cookie.
  */
 
 import { Button } from "@/src/components/ui/button";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import Head from "next/head";
 import Link from "next/link";
 import { type GetServerSideProps } from "next";
 import { env } from "@/src/env.mjs";
 import { PlusIcon } from "lucide-react";
 import { CodeView } from "@/src/components/ui/CodeJsonViewer";
+import React from "react";
 
 type PageProps = {
   deploymentDomain: string;
@@ -30,12 +31,12 @@ export default function HfSpaces({ deploymentDomain }: PageProps) {
   return (
     <>
       <Head>
-        <title>Langfuse on Hugging Face</title>
+        <title>ElasticDash on Hugging Face</title>
       </Head>
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex items-center justify-center gap-2">
-            <LangfuseIcon />
+            <ElasticDashIcon />
             <PlusIcon size={12} className="ml-1" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -46,7 +47,7 @@ export default function HfSpaces({ deploymentDomain }: PageProps) {
             />
           </div>
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-primary">
-            Langfuse on Hugging Face
+            ElasticDash on Hugging Face
           </h2>
         </div>
 

@@ -1,4 +1,4 @@
-import { type AggregatedScoreData } from "@langfuse/shared";
+import { type AggregatedScoreData } from "@elasticdash/shared";
 import type Decimal from "decimal.js";
 
 export type NumericDiff = {

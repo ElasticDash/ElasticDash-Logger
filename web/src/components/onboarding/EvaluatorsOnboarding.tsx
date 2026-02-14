@@ -48,9 +48,9 @@ export function EvaluatorsOnboarding({ projectId }: EvaluatorsOnboardingProps) {
       }}
       secondaryAction={{
         label: "Learn More",
-        href: "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
+        href: "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
       }}
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/scores-llm-as-a-judge-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/scores-llm-as-a-judge-overview-v1.mp4"
     />
   );
 }

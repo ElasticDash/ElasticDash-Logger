@@ -6,7 +6,7 @@ import {
   type ScoreSourceType,
   type FilterState,
   type ScoreDataTypeType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   extractTimeSeriesData,
   fillMissingValuesAndTransform,

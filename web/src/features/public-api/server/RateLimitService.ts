@@ -7,14 +7,14 @@ import {
   type RateLimitResource,
   type RateLimitConfig,
   type Plan,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   recordIncrement,
   type ApiAccessScope,
   logger,
   createNewRedisInstance,
   redisQueueRetryOptions,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { type NextApiResponse } from "next";
 
 // Business Logic
@@ -53,11 +53,11 @@ export class RateLimitService {
     resource: z.infer<typeof RateLimitResource>,
   ) {
     // if cloud config is not present, we don't apply rate limits and just return
-    if (!env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+    if (!env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
       return new RateLimitHelper(undefined);
     }
 
-    if (env.LANGFUSE_RATE_LIMITS_ENABLED === "false") {
+    if (env.ELASTICDASH_RATE_LIMITS_ENABLED === "false") {
       return new RateLimitHelper(undefined);
     }
 
@@ -136,7 +136,7 @@ export class RateLimitService {
     }
 
     if (res.remainingPoints < 1) {
-      recordIncrement("langfuse.rate_limit.exceeded", 1, {
+      recordIncrement("elasticdash.rate_limit.exceeded", 1, {
         orgId: scope.orgId,
         plan: scope.plan,
         resource: resource,

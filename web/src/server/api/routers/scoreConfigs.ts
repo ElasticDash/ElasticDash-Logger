@@ -8,14 +8,14 @@ import {
 import {
   filterAndValidateDbScoreConfigList,
   InvalidRequestError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   optionalPaginationZod,
   ScoreConfigCategory,
   ScoreConfigDataType,
   validateDbScoreConfig,
   validateDbScoreConfigSafe,
-} from "@langfuse/shared";
-import { traceException } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { traceException } from "@elasticdash/shared/src/server";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 
 const ScoreConfigAllInput = z.object({
@@ -123,7 +123,7 @@ export const scoreConfigsRouter = createTRPCRouter({
         },
       });
       if (!existingConfig) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "No score config with this id in this project.",
         );
       }

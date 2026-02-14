@@ -1,6 +1,6 @@
 import { Job } from "bullmq";
-import { JobExecutionStatus } from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+import { JobExecutionStatus } from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   QueueName,
   TQueueJobTypes,
@@ -10,7 +10,7 @@ import {
   QueueJobs,
   getCurrentSpan,
   isLLMCompletionError,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { createEvalJobs, evaluate } from "../features/evaluation/evalService";
 import { delayInMs } from "./utils/delays";
 import { createW3CTraceId, retryLLMRateLimitError } from "../features/utils";

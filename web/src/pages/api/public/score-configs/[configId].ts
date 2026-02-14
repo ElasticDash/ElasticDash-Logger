@@ -10,11 +10,11 @@ import {
 import {
   InternalServerError,
   InvalidRequestError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   validateDbScoreConfigSafe,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
-import { traceException } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { traceException } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
   GET: createAuthedProjectAPIRoute({
@@ -30,7 +30,7 @@ export default withMiddlewares({
       });
 
       if (!config) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Score config not found within authorized project",
         );
       }
@@ -58,7 +58,7 @@ export default withMiddlewares({
       });
 
       if (!existingConfig) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Score config not found within authorized project",
         );
       }

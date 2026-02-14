@@ -11,7 +11,7 @@ import {
   createObservationsCh,
   createTraceScore,
   createScoresCh,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { randomUUID } from "crypto";
 
 describe("queryBuilder", () => {

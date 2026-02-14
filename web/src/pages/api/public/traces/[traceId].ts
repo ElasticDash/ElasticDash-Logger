@@ -9,16 +9,16 @@ import {
 } from "@/src/features/public-api/types/traces";
 import {
   filterAndValidateDbTraceScoreList,
-  LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+  ElasticDashNotFoundError,
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   getObservationsForTrace,
   getScoresForTraces,
   getTraceById,
   traceException,
   traceDeletionProcessor,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import Decimal from "decimal.js";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 
@@ -37,7 +37,7 @@ export default withMiddlewares({
       });
 
       if (!trace) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           `Trace ${traceId} not found within authorized project`,
         );
       }

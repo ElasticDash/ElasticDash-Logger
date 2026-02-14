@@ -1,5 +1,5 @@
 import { api } from "@/src/utils/api";
-import { type FilterState } from "@langfuse/shared";
+import { type FilterState } from "@elasticdash/shared";
 import { DashboardCard } from "@/src/features/dashboard/components/cards/DashboardCard";
 import { BaseTimeSeriesChart } from "@/src/features/dashboard/components/BaseTimeSeriesChart";
 import { TotalMetric } from "@/src/features/dashboard/components/TotalMetric";
@@ -189,7 +189,7 @@ export const TracesAndObservationsTimeSeriesChart = ({
                   <NoDataOrLoading
                     isLoading={isLoading || traces.isPending}
                     description="Traces contain details about LLM applications and can be created using the SDK."
-                    href="https://langfuse.com/docs/observability/overview"
+                    href="https://www.elasticdash.com/docs/observability/overview"
                   />
                 )}
               </>

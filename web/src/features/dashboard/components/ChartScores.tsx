@@ -2,7 +2,7 @@ import { api } from "@/src/utils/api";
 
 import { BaseTimeSeriesChart } from "@/src/features/dashboard/components/BaseTimeSeriesChart";
 import { DashboardCard } from "@/src/features/dashboard/components/cards/DashboardCard";
-import { type ScoreDataTypeType, type FilterState } from "@langfuse/shared";
+import { type ScoreDataTypeType, type FilterState } from "@elasticdash/shared";
 import {
   extractTimeSeriesData,
   fillMissingValuesAndTransform,
@@ -101,7 +101,7 @@ export function ChartScores(props: {
         <NoDataOrLoading
           isLoading={props.isLoading || scores.isPending}
           description="Scores evaluate LLM quality and can be created manually or using the SDK."
-          href="https://langfuse.com/docs/evaluation/overview"
+          href="https://www.elasticdash.com/docs/evaluation/overview"
           className="h-full"
         />
       )}

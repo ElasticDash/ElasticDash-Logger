@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { api } from "@/src/utils/api";
 import { formatIntervalSeconds } from "@/src/utils/dates";
 import { useQueryParams, withDefault, NumberParam } from "use-query-params";
@@ -18,7 +18,7 @@ import {
   DatasetItemIOCell,
   TraceObservationIOCell,
 } from "@/src/features/datasets/components/DatasetIOCells";
-import { datasetRunItemsTableColsWithOptions } from "@langfuse/shared";
+import { datasetRunItemsTableColsWithOptions } from "@elasticdash/shared";
 import { convertRunItemToItemsByRunUiTableRow } from "@/src/features/datasets/lib/convertRunItemDataToUiTableRow";
 import { type DatasetRunItemByRunRowData } from "@/src/features/datasets/lib/types";
 import { LocalIsoDate } from "@/src/components/LocalIsoDate";
@@ -93,7 +93,7 @@ export function DatasetRunItemsByRunTable(props: {
       }),
     });
 
-  const columns: LangfuseColumnDef<DatasetRunItemByRunRowData>[] = [
+  const columns: ElasticDashColumnDef<DatasetRunItemByRunRowData>[] = [
     {
       accessorKey: "datasetItemId",
       header: "Dataset Item",

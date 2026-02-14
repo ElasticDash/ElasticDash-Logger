@@ -1,7 +1,7 @@
 import { prisma } from "../../../db";
 import {
-  LangfuseConflictError,
-  LangfuseNotFoundError,
+  ElasticDashConflictError,
+  ElasticDashNotFoundError,
   type OrderByState,
 } from "../../../";
 import {
@@ -297,7 +297,7 @@ export class DashboardService {
   }
 
   /**
-   * Gets a dashboard widget by ID. Look either in the current project or in the Langfuse managed widgets.
+   * Gets a dashboard widget by ID. Look either in the current project or in the ElasticDash managed widgets.
    */
   public static async getWidget(
     widgetId: string,
@@ -381,7 +381,7 @@ export class DashboardService {
         .map((d) => `"${d.name}"`)
         .join(", ");
 
-      throw new LangfuseConflictError(
+      throw new ElasticDashConflictError(
         `Cannot delete widget because it is still used in the following dashboards: ${dashboardNames}. Please remove the widget from these dashboards first.`,
       );
     }
@@ -396,7 +396,7 @@ export class DashboardService {
   }
 
   /**
-   * Copies a Langfuse-owned widget into the user project, rewires the specified dashboard placement to the new widget and returns the new widget id.
+   * Copies a ElasticDash-owned widget into the user project, rewires the specified dashboard placement to the new widget and returns the new widget id.
    */
   public static async copyWidgetToProject(props: {
     sourceWidgetId: string;
@@ -416,7 +416,7 @@ export class DashboardService {
     });
 
     if (!sourceWidget) {
-      throw new LangfuseNotFoundError(
+      throw new ElasticDashNotFoundError(
         `Source widget ${sourceWidgetId} not found`,
       );
     }
@@ -446,7 +446,7 @@ export class DashboardService {
       });
 
       if (!dashboard) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           `Dashboard ${dashboardId} not found in project ${projectId}`,
         );
       }

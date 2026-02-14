@@ -18,7 +18,7 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 import { tracing } from "@baselime/trpc-opentelemetry-middleware";
 import { getServerAuthSession } from "@/src/server/auth";
-import { prisma, Role } from "@langfuse/shared/src/db";
+import { prisma, Role } from "@elasticdash/shared/src/db";
 import * as z from "zod/v4";
 import * as opentelemetry from "@opentelemetry/api";
 import { type IncomingHttpHeaders } from "node:http";
@@ -88,17 +88,17 @@ import {
   getTraceById,
   logger,
   addUserToSpan,
-  contextWithLangfuseProps,
+  contextWithElasticDashProps,
   ClickHouseResourceError,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 import { AdminApiAuthService } from "@/src/ee/features/admin-api/server/adminApiAuth";
 import { env } from "@/src/env.mjs";
-import { BaseError, parseIO } from "@langfuse/shared";
+import { BaseError, parseIO } from "@elasticdash/shared";
 
 setUpSuperjson();
 
-const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+const isElasticDashCloud = Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION);
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -169,7 +169,7 @@ const withErrorHandling = t.middleware(async ({ ctx, next }) => {
       // - Either the original error message OR "Internal error" if it's a 5xx error
       const { code, httpStatus } = resolveError(res.error);
       const isSafeToExpose = httpStatus >= 400 && httpStatus < 500;
-      const errorMessage = isLangfuseCloud
+      const errorMessage = isElasticDashCloud
         ? "We have been notified and are working on it."
         : "Please check error logs in your self-hosted deployment.";
 
@@ -192,7 +192,7 @@ const withOtelInstrumentation = t.middleware(async (opts) => {
   // In tRPC v11, input is lazy-loaded and must be accessed via getRawInput()
   const actualInput = await opts.getRawInput();
 
-  const baggageCtx = contextWithLangfuseProps({
+  const baggageCtx = contextWithElasticDashProps({
     headers: opts.ctx.headers,
     userId: opts.ctx.session?.user?.id,
     projectId: (actualInput as Record<string, string>)?.projectId,

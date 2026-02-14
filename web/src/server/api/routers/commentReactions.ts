@@ -8,7 +8,7 @@ import {
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
 import { TRPCError } from "@trpc/server";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 
 export const commentReactionsRouter = createTRPCRouter({
   add: protectedProjectProcedure

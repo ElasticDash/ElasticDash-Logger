@@ -1,4 +1,4 @@
-import { type ObservationLevelType } from "@langfuse/shared";
+import { type ObservationLevelType } from "@elasticdash/shared";
 
 export const LevelColors = {
   DEFAULT: { text: "", bg: "" },

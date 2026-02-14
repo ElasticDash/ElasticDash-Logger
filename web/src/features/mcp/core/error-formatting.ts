@@ -12,10 +12,10 @@ import {
   BaseError,
   UnauthorizedError,
   ForbiddenError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   InvalidRequestError,
-} from "@langfuse/shared";
-import { logger } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { logger } from "@elasticdash/shared/src/server";
 
 /**
  * Format an error for MCP response.
@@ -53,7 +53,7 @@ export function formatErrorForUser(error: unknown): McpError {
     );
   }
 
-  // Langfuse standard errors
+  // ElasticDash standard errors
   if (error instanceof UnauthorizedError) {
     return new McpError(
       ErrorCode.InvalidRequest,
@@ -68,7 +68,7 @@ export function formatErrorForUser(error: unknown): McpError {
     );
   }
 
-  if (error instanceof LangfuseNotFoundError) {
+  if (error instanceof ElasticDashNotFoundError) {
     return new McpError(ErrorCode.InvalidRequest, error.message);
   }
 

@@ -1,6 +1,6 @@
 import { type NextApiRequest, type NextApiResponse } from "next";
-import { prisma } from "@langfuse/shared/src/db";
-import { Role } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import { Role } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
 // Schema for request body validation

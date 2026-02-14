@@ -4,16 +4,16 @@ import {
   createTrace,
   createSessionScore,
   createDatasetRunScore,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   createObservationsCh,
   createScoresCh,
   createTracesCh,
   createOrgProjectAndApiKey,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { makeZodVerifiedAPICall } from "@/src/__tests__/test-utils";
-import { GetScoreResponseV2, GetScoresResponseV2 } from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+import { GetScoreResponseV2, GetScoresResponseV2 } from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import { v4 } from "uuid";
 import { z } from "zod/v4";
 

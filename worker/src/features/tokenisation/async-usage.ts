@@ -1,6 +1,6 @@
 import { Worker } from "worker_threads";
-import { Model } from "@langfuse/shared";
-import { logger } from "@langfuse/shared/src/server";
+import { Model } from "@elasticdash/shared";
+import { logger } from "@elasticdash/shared/src/server";
 import path from "path";
 import { env } from "../../env";
 
@@ -163,7 +163,7 @@ export function getTokenCountWorkerManager(
 ): TokenCountWorkerManager {
   if (!workerManager) {
     workerManager = new TokenCountWorkerManager(
-      poolSize ?? env.LANGFUSE_TOKEN_COUNT_WORKER_POOL_SIZE,
+      poolSize ?? env.ELASTICDASH_TOKEN_COUNT_WORKER_POOL_SIZE,
     );
   }
   return workerManager;

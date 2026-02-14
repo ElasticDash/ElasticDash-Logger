@@ -7,12 +7,12 @@ import {
   QueueName,
   TQueueJobTypes,
   traceDeletionProcessor,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   BatchActionType,
   BatchTableNames,
   FilterCondition,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getDatabaseReadStreamPaginated,
   getTraceIdentifierStream,
@@ -24,12 +24,12 @@ import {
   processAddSessionsToQueue,
   processAddTracesToQueue,
 } from "./processAddToQueue";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { randomUUID } from "node:crypto";
 import { processClickhouseScoreDelete } from "../scores/processClickhouseScoreDelete";
 import { getObservationStream } from "../database-read-stream/observation-stream";
 import { processAddObservationsToDataset } from "./processAddObservationsToDataset";
-import { ObservationAddToDatasetConfigSchema } from "@langfuse/shared";
+import { ObservationAddToDatasetConfigSchema } from "@elasticdash/shared";
 
 const CHUNK_SIZE = 1000;
 const convertDatesInFiltersFromStrings = (filters: FilterCondition[]) => {
@@ -237,7 +237,7 @@ export const handleBatchActionJob = async (
             orderBy: query.orderBy,
             searchQuery: query.searchQuery ?? undefined,
             searchType: query.searchType,
-            rowLimit: env.LANGFUSE_MAX_HISTORIC_EVAL_CREATION_LIMIT,
+            rowLimit: env.ELASTICDASH_MAX_HISTORIC_EVAL_CREATION_LIMIT,
           }) // when reading from clickhouse, we only want to read the necessary identifiers.
         : await getDatabaseReadStreamPaginated({
             projectId: projectId,
@@ -245,7 +245,7 @@ export const handleBatchActionJob = async (
             filter: convertDatesInFiltersFromStrings(query.filter ?? []),
             orderBy: query.orderBy,
             tableName: BatchTableNames.DatasetRunItems,
-            rowLimit: env.LANGFUSE_MAX_HISTORIC_EVAL_CREATION_LIMIT,
+            rowLimit: env.ELASTICDASH_MAX_HISTORIC_EVAL_CREATION_LIMIT,
           });
 
     const evalCreatorQueue = CreateEvalQueue.getInstance();

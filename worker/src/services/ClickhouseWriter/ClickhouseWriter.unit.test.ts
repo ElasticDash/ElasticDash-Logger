@@ -1,13 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as serverExports from "@langfuse/shared/src/server";
+import * as serverExports from "@elasticdash/shared/src/server";
 
 import { env } from "../../env";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { ClickhouseWriter, TableName } from "../ClickhouseWriter";
 
 // Mock recordHistogram, recordCount, recordGauge
-vi.mock("@langfuse/shared/src/server", async (importOriginal) => {
+vi.mock("@elasticdash/shared/src/server", async (importOriginal) => {
   const original = (await importOriginal()) as {};
   return {
     ...original,
@@ -28,9 +28,9 @@ vi.mock("../../env", async (importOriginal) => {
   return {
     ...original,
     env: {
-      LANGFUSE_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE: 100,
-      LANGFUSE_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS: 5000,
-      LANGFUSE_INGESTION_CLICKHOUSE_MAX_ATTEMPTS: 3,
+      ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE: 100,
+      ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS: 5000,
+      ELASTICDASH_INGESTION_CLICKHOUSE_MAX_ATTEMPTS: 3,
     },
   };
 });
@@ -66,13 +66,13 @@ describe("ClickhouseWriter", () => {
 
   it("should initialize with correct values", () => {
     expect(writer.batchSize).toBe(
-      env.LANGFUSE_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE,
+      env.ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_BATCH_SIZE,
     );
     expect(writer.writeInterval).toBe(
-      env.LANGFUSE_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS,
+      env.ELASTICDASH_INGESTION_CLICKHOUSE_WRITE_INTERVAL_MS,
     );
     expect(writer.maxAttempts).toBe(
-      env.LANGFUSE_INGESTION_CLICKHOUSE_MAX_ATTEMPTS,
+      env.ELASTICDASH_INGESTION_CLICKHOUSE_MAX_ATTEMPTS,
     );
   });
 
@@ -296,13 +296,13 @@ describe("ClickhouseWriter", () => {
     await vi.advanceTimersByTimeAsync(writer.writeInterval);
 
     expect(metricsDistributionSpy).toHaveBeenCalledWith(
-      "langfuse.queue.clickhouse_writer.wait_time",
+      "elasticdash.queue.clickhouse_writer.wait_time",
       expect.any(Number),
       { unit: "milliseconds" },
     );
 
     expect(metricsDistributionSpy).toHaveBeenCalledWith(
-      "langfuse.queue.clickhouse_writer.processing_time",
+      "elasticdash.queue.clickhouse_writer.processing_time",
       expect.any(Number),
       { unit: "milliseconds" },
     );

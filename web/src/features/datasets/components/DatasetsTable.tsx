@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { Button } from "@/src/components/ui/button";
 import {
   DropdownMenu,
@@ -19,7 +19,7 @@ import { MoreVertical } from "lucide-react";
 import { useEffect, useMemo } from "react";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
-import { TableViewPresetTableName, type Prisma } from "@langfuse/shared";
+import { TableViewPresetTableName, type Prisma } from "@elasticdash/shared";
 import { IOTableCell } from "@/src/components/ui/IOTableCell";
 import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-height-switch";
 import useColumnOrder from "@/src/features/column-visibility/hooks/useColumnOrder";
@@ -122,7 +122,7 @@ export function DatasetsTable(props: { projectId: string }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [datasets.isSuccess, datasets.data]);
 
-  const columns: LangfuseColumnDef<DatasetTableRow>[] = [
+  const columns: ElasticDashColumnDef<DatasetTableRow>[] = [
     {
       accessorKey: "key",
       header: "Name",

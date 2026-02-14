@@ -16,8 +16,8 @@ import {
   getNumericScoresGroupedByName,
   getTracesGroupedByTags,
   getObservationsBatchIOFromEventsTable,
-} from "@langfuse/shared/src/server";
-import { type timeFilter } from "@langfuse/shared";
+} from "@elasticdash/shared/src/server";
+import { type timeFilter } from "@elasticdash/shared";
 import { type EventBatchIOOutput } from "@/src/features/events/server/eventsRouter";
 
 type TimeFilter = z.infer<typeof timeFilter>;

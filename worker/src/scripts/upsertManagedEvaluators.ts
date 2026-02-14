@@ -1,8 +1,8 @@
 import { z } from "zod/v4";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import managedEvaluators from "../constants/managed-evaluators.json";
-import { logger } from "@langfuse/shared/src/server";
-import { extractVariables } from "@langfuse/shared";
+import { logger } from "@elasticdash/shared/src/server";
+import { extractVariables } from "@elasticdash/shared";
 
 const ManagedEvaluatorSchema = z.object({
   id: z.string(),
@@ -99,7 +99,7 @@ export const upsertManagedEvaluators = async (force = false) => {
 
     await Promise.all(upsertPromises);
     logger.info(
-      `Finished upserting Langfuse dashboards and widgets in ${Date.now() - startTime}ms`,
+      `Finished upserting ElasticDash dashboards and widgets in ${Date.now() - startTime}ms`,
     );
   } catch (error) {
     logger.error(

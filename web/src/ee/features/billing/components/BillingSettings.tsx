@@ -1,4 +1,4 @@
-// Langfuse Cloud only
+// ElasticDash Cloud only
 
 import Header from "@/src/components/layouts/header";
 import { useHasEntitlement } from "@/src/features/entitlements/hooks";
@@ -21,7 +21,7 @@ export const BillingSettings = () => {
   const orgId = router.query.organizationId as string | undefined;
   const hasAccess = useHasOrganizationAccess({
     organizationId: orgId,
-    scope: "langfuseCloudBilling:CRUD",
+    scope: "elasticdashCloudBilling:CRUD",
   });
 
   const isCloudBillingAvailable = useIsCloudBillingAvailable();

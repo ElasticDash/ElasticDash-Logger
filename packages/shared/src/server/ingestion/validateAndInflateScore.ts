@@ -8,7 +8,7 @@ import {
   CORRECTION_NAME,
 } from "../../../src";
 import { prisma } from "../../db";
-import { InvalidRequestError, LangfuseNotFoundError } from "../../errors";
+import { InvalidRequestError, ElasticDashNotFoundError } from "../../errors";
 import { validateDbScoreConfigSafe } from "../../features/scoreConfigs/validation";
 import { ScoreEventType } from "./types";
 
@@ -32,7 +32,7 @@ export async function validateAndInflateScore(
     });
 
     if (!config || !validateDbScoreConfigSafe(config).success)
-      throw new LangfuseNotFoundError(
+      throw new ElasticDashNotFoundError(
         "The configId you provided does not match a valid config in this project",
       );
 

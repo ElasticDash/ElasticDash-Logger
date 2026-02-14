@@ -7,8 +7,8 @@ import {
   pollQueryStatus,
   getQueryError,
   sleep,
-} from "@langfuse/shared/src/server";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
 import { env } from "../env";
 import { parseArgs } from "node:util";
 import { randomUUID } from "crypto";
@@ -427,7 +427,7 @@ export default class BackfillEventsHistoric implements IBackgroundMigration {
 
     // Conditionally filter out 'attributes' key from metadata
     const metadataExpr =
-      env.LANGFUSE_EXPERIMENT_BACKFILL_EXCLUDE_ATTRIBUTES_KEY === "true"
+      env.ELASTICDASH_EXPERIMENT_BACKFILL_EXCLUDE_ATTRIBUTES_KEY === "true"
         ? `mapFilter((k, v) -> k != 'attributes', o.metadata)`
         : `o.metadata`;
 

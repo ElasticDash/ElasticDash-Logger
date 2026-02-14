@@ -1,4 +1,4 @@
-import { LangfuseNotFoundError } from "../../errors";
+import { ElasticDashNotFoundError } from "../../errors";
 import { eventTypes } from "../ingestion/types";
 import { ClickhouseTableName, ClickhouseTableNames } from "./schema";
 
@@ -45,6 +45,6 @@ export const getClickhouseEntityType = (
     case eventTypes.SDK_LOG:
       return "sdk_log";
     default:
-      throw new LangfuseNotFoundError(`Unknown event type: ${eventType}`);
+      throw new ElasticDashNotFoundError(`Unknown event type: ${eventType}`);
   }
 };

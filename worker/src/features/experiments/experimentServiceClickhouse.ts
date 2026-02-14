@@ -1,4 +1,4 @@
-import { DatasetItemDomain, Prisma } from "@langfuse/shared";
+import { DatasetItemDomain, Prisma } from "@elasticdash/shared";
 import {
   ChatMessage,
   createDatasetItemFilterState,
@@ -8,14 +8,14 @@ import {
   fetchLLMCompletion,
   getDatasetItems,
   IngestionEventType,
-  LangfuseInternalTraceEnvironment,
+  ElasticDashInternalTraceEnvironment,
   logger,
   processEventBatch,
   queryClickhouse,
   QueueJobs,
   redis,
   TraceSinkParams,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { v4 } from "uuid";
 import z from "zod/v4";
 import {
@@ -27,7 +27,7 @@ import {
 import {
   validateDatasetItem,
   normalizeDatasetItemInput,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { randomUUID } from "crypto";
 import { createW3CTraceId } from "../utils";
 
@@ -98,7 +98,7 @@ async function processItem(
       },
     },
     {
-      isLangfuseInternal: true,
+      isElasticDashInternal: true,
     },
   );
 
@@ -170,7 +170,7 @@ async function processLLMCall(
   }
 
   const traceSinkParams: TraceSinkParams = {
-    environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+    environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
     traceName: `dataset-run-item-${runItemId.slice(0, 5)}`,
     traceId,
     targetProjectId: config.projectId, // ingest to user project
@@ -408,7 +408,7 @@ async function createAllDatasetRunItemsWithConfigError(
         timestamp,
         body: {
           id: traceId,
-          environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+          environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
           name: `dataset-run-item-${runItemId.slice(0, 5)}`,
           input: stringInput,
         },
@@ -420,7 +420,7 @@ async function createAllDatasetRunItemsWithConfigError(
         timestamp,
         body: {
           id: generationId,
-          environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+          environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
           traceId,
           input: stringInput,
           level: "ERROR" as const,
@@ -444,7 +444,7 @@ async function createAllDatasetRunItemsWithConfigError(
           accessLevel: "project" as const,
         },
       },
-      { isLangfuseInternal: true },
+      { isElasticDashInternal: true },
     );
   }
 }

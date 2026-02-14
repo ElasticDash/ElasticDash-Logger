@@ -7,7 +7,7 @@ import {
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { IOTableCell } from "../../ui/IOTableCell";
 import { Avatar, AvatarImage } from "@/src/components/ui/avatar";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
@@ -32,7 +32,7 @@ import {
   BatchActionType,
   TableViewPresetTableName,
   type TimeFilter,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { useQueryParams, withDefault, NumberParam } from "use-query-params";
 import TagList from "@/src/features/tag/components/TagList";
 import { cn } from "@/src/utils/tailwind";
@@ -319,7 +319,7 @@ export default function ScoresTable({
     setSelectedRows,
   });
 
-  const rawColumns: LangfuseColumnDef<ScoresTableRow>[] = [
+  const rawColumns: ElasticDashColumnDef<ScoresTableRow>[] = [
     selectActionColumn,
     {
       accessorKey: "id",
@@ -454,7 +454,7 @@ export default function ScoresTable({
       id: "userId",
       headerTooltip: {
         description: "The user ID associated with the trace.",
-        href: "https://langfuse.com/docs/observability/features/users",
+        href: "https://www.elasticdash.com/docs/observability/features/users",
       },
       enableHiding: true,
       enableSorting: true,
@@ -523,7 +523,7 @@ export default function ScoresTable({
       headerTooltip: {
         description: "Add metadata to scores to track additional information.",
         // TODO: docs for metadata on scores
-        href: "https://langfuse.com/docs/observability/features/metadata",
+        href: "https://www.elasticdash.com/docs/observability/features/metadata",
       },
       cell: ({ row }) => {
         const scoreId: ScoresTableRow["id"] = row.getValue("id");
@@ -579,7 +579,7 @@ export default function ScoresTable({
       id: "jobConfigurationId",
       headerTooltip: {
         description: "The Job Configuration ID associated with the trace.",
-        href: "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
+        href: "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
       },
       enableHiding: true,
       enableSorting: false,

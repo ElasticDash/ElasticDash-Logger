@@ -13,11 +13,11 @@ import {
   PROMPT_LABEL_REGEX_ERROR,
   COMMIT_MESSAGE_MAX_LENGTH,
   LATEST_PROMPT_LABEL,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 /**
  * Prompt name parameter
- * Must match existing Langfuse prompt name validation
+ * Must match existing ElasticDash prompt name validation
  */
 export const ParamPromptName = z
   .string()

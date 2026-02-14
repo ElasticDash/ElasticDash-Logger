@@ -1,10 +1,10 @@
 import { z } from "zod/v4";
 import {
   singleFilter,
-  type langfuseObjects,
+  type elasticdashObjects,
   TimeScopeSchema,
-} from "@langfuse/shared";
-import { wipVariableMapping } from "@langfuse/shared";
+} from "@elasticdash/shared";
+import { wipVariableMapping } from "@elasticdash/shared";
 
 export const isTraceTarget = (target: string): boolean => target === "trace";
 export const isTraceOrDatasetObject = (object: string): boolean =>
@@ -22,6 +22,6 @@ export const evalConfigFormSchema = z.object({
 
 export type EvalFormType = z.infer<typeof evalConfigFormSchema>;
 
-export type LangfuseObject = (typeof langfuseObjects)[number];
+export type ElasticDashObject = (typeof elasticdashObjects)[number];
 
 export type VariableMapping = z.infer<typeof wipVariableMapping>;

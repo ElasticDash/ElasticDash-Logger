@@ -51,7 +51,7 @@ import {
   type FilterState,
   type TableViewPresetTableName,
   type TableViewPresetDomain,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { useMemo, useState } from "react";
 import {
   DropdownMenuItem,
@@ -87,7 +87,7 @@ interface SystemPreset {
 
 const SYSTEM_PRESETS: { DEFAULT: SystemPreset } = {
   DEFAULT: {
-    id: "__langfuse_default__",
+    id: "__elasticdash_default__",
     name: "My view (default)",
     isSystem: true,
   },
@@ -292,7 +292,7 @@ export function TableViewPresetsDrawer({
     } else {
       showErrorToast(
         "Failed to generate permalink",
-        "Please reach out to langfuse support and report this issue.",
+        "Please reach out to elasticdash support and report this issue.",
         "WARNING",
       );
     }
@@ -352,7 +352,7 @@ export function TableViewPresetsDrawer({
               <CommandList className="max-h-[calc(100vh-150px)]">
                 <CommandEmpty>No saved table views found</CommandEmpty>
                 <CommandGroup className="pb-0">
-                  {/* System Preset: Langfuse Default */}
+                  {/* System Preset: ElasticDash Default */}
                   <CommandItem
                     key={SYSTEM_PRESETS.DEFAULT.id}
                     onSelect={() => handleSelectView(SYSTEM_PRESETS.DEFAULT.id)}

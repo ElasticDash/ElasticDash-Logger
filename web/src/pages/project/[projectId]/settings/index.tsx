@@ -101,8 +101,8 @@ export const getProjectSettingsPages = ({
                 id: organization.id,
                 ...organization.metadata,
               },
-              ...(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION && {
-                cloudRegion: env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION,
+              ...(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION && {
+                cloudRegion: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
               }),
             }}
           />
@@ -280,7 +280,7 @@ const Integrations = (props: { projectId: string }) => {
           <PostHogLogo className="mb-4 w-40 text-foreground" />
           <p className="mb-4 text-sm text-primary">
             We have teamed up with PostHog (OSS product analytics) to make
-            Langfuse Events/Metrics available in your Posthog Dashboards.
+            ElasticDash Events/Metrics available in your Posthog Dashboards.
           </p>
           <div className="flex items-center gap-2">
             <ActionButton
@@ -292,7 +292,7 @@ const Integrations = (props: { projectId: string }) => {
             </ActionButton>
             <Button asChild variant="ghost">
               <Link
-                href="https://langfuse.com/integrations/analytics/posthog"
+                href="https://www.elasticdash.com/integrations/analytics/posthog"
                 target="_blank"
               >
                 Integration Docs ↗
@@ -304,8 +304,8 @@ const Integrations = (props: { projectId: string }) => {
         <Card className="p-3">
           <MixpanelLogo className="mb-4 w-20 text-foreground" />
           <p className="mb-4 text-sm text-primary">
-            Integrate with Mixpanel to sync your Langfuse traces, generations,
-            and scores for advanced product analytics and insights.
+            Integrate with Mixpanel to sync your ElasticDash traces,
+            generations, and scores for advanced product analytics and insights.
           </p>
           <div className="flex items-center gap-2">
             <ActionButton
@@ -317,7 +317,7 @@ const Integrations = (props: { projectId: string }) => {
             </ActionButton>
             <Button asChild variant="ghost">
               <Link
-                href="https://langfuse.com/integrations/analytics/mixpanel"
+                href="https://www.elasticdash.com/integrations/analytics/mixpanel"
                 target="_blank"
               >
                 Integration Docs ↗
@@ -344,7 +344,7 @@ const Integrations = (props: { projectId: string }) => {
             </ActionButton>
             <Button asChild variant="ghost">
               <Link
-                href="https://langfuse.com/docs/query-traces#blob-storage"
+                href="https://www.elasticdash.com/docs/query-traces#blob-storage"
                 target="_blank"
               >
                 Integration Docs ↗
@@ -360,7 +360,7 @@ const Integrations = (props: { projectId: string }) => {
           </div>
           <p className="mb-4 text-sm text-primary">
             Connect a Slack workspace and create channel automations to receive
-            Langfuse alerts natively in Slack.
+            ElasticDash alerts natively in Slack.
           </p>
           <div className="flex items-center gap-2">
             <ActionButton

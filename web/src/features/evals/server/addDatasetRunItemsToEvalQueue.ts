@@ -3,7 +3,7 @@ import {
   QueueJobs,
   DatasetRunItemUpsertQueue,
   redis,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 
 export const addDatasetRunItemsToEvalQueue = async ({
   projectId,

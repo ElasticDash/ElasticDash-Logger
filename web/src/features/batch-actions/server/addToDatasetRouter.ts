@@ -10,14 +10,14 @@ import {
   QueueJobs,
   getObservationsCountFromEventsTable,
   getObservationsTableCount,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import {
   BatchTableNames,
   BatchActionType,
   BatchActionStatus,
   ActionId,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { env } from "@/src/env.mjs";
 import { CreateObservationAddToDatasetActionSchema } from "../validation";
 
@@ -45,7 +45,7 @@ export const addToDatasetRouter = createTRPCRouter({
           offset: 0,
         };
         const observationCount =
-          env.LANGFUSE_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
+          env.ELASTICDASH_ENABLE_EVENTS_TABLE_OBSERVATIONS === "true"
             ? await getObservationsCountFromEventsTable(queryOpts)
             : await getObservationsTableCount(queryOpts);
 

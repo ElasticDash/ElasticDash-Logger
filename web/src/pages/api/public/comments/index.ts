@@ -6,10 +6,10 @@ import {
   PostCommentsV1Body,
   PostCommentsV1Response,
 } from "@/src/features/public-api/types/comments";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { v4 } from "uuid";
 import { validateCommentReferenceObject } from "@/src/features/comments/validateCommentReferenceObject";
-import { LangfuseNotFoundError } from "@langfuse/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 
 export default withMiddlewares({
@@ -27,7 +27,7 @@ export default withMiddlewares({
       });
 
       if (result.errorMessage) {
-        throw new LangfuseNotFoundError(result.errorMessage);
+        throw new ElasticDashNotFoundError(result.errorMessage);
       }
 
       // Create comment with content as-is (no mention processing, no inline positioning)

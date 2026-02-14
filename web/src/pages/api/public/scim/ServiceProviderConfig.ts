@@ -1,7 +1,7 @@
 import { ApiAuthService } from "@/src/features/public-api/server/apiAuth";
 import { cors, runMiddleware } from "@/src/features/public-api/server/cors";
-import { prisma } from "@langfuse/shared/src/db";
-import { logger, redis } from "@langfuse/shared/src/server";
+import { prisma } from "@elasticdash/shared/src/db";
+import { logger, redis } from "@elasticdash/shared/src/server";
 
 import { type NextApiRequest, type NextApiResponse } from "next";
 
@@ -52,7 +52,7 @@ export default async function handler(
   // Return the service provider configuration
   return res.status(200).json({
     schemas: ["urn:ietf:params:scim:schemas:core:2.0:ServiceProviderConfig"],
-    documentationUri: "https://docs.langfuse.com/scim",
+    documentationUri: "https://docs.elasticdash.com/scim",
     patch: {
       supported: false,
     },

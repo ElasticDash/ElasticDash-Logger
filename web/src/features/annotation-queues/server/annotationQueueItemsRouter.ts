@@ -14,15 +14,15 @@ import {
   BatchActionType,
   BatchExportTableName,
   type BatchTableNames,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   paginationZod,
   Prisma,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getObservationById,
   getTraceIdsForObservations,
   logger,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod/v4";
 
@@ -125,7 +125,7 @@ export const queueItemRouter = createTRPCRouter({
         });
 
         if (!clickhouseObservation) {
-          throw new LangfuseNotFoundError("Observation not found");
+          throw new ElasticDashNotFoundError("Observation not found");
         }
 
         return {

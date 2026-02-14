@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { useDetailPageLists } from "@/src/features/navigate-detail-pages/context";
 import { api } from "@/src/utils/api";
 import { formatIntervalSeconds } from "@/src/utils/dates";
@@ -10,12 +10,15 @@ import { useEffect, useMemo, useState } from "react";
 import { usdFormatter } from "../../../utils/numbers";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
-import { type Prisma, datasetRunsTableColsWithOptions } from "@langfuse/shared";
+import {
+  type Prisma,
+  datasetRunsTableColsWithOptions,
+} from "@elasticdash/shared";
 import { useQueryFilterState } from "@/src/features/filters/hooks/useFilterState";
 import { useDebounce } from "@/src/hooks/useDebounce";
 import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-height-switch";
 import { IOTableCell } from "@/src/components/ui/IOTableCell";
-import { type ScoreAggregate } from "@langfuse/shared";
+import { type ScoreAggregate } from "@elasticdash/shared";
 import { ChevronDown, Columns3, MoreVertical, Trash } from "lucide-react";
 import {
   DropdownMenu,
@@ -336,7 +339,7 @@ export function DatasetRunsTable(props: {
     setScoreOptions(scoreAnalyticsOptions);
   }, [scoreAnalyticsOptions, setScoreOptions]);
 
-  const columns: LangfuseColumnDef<DatasetRunRowData>[] = [
+  const columns: ElasticDashColumnDef<DatasetRunRowData>[] = [
     {
       id: "select",
       accessorKey: "select",

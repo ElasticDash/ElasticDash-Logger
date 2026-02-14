@@ -8,7 +8,7 @@ import {
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { IOTableCell } from "@/src/components/ui/IOTableCell";
 import useColumnOrder from "@/src/features/column-visibility/hooks/useColumnOrder";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
@@ -16,7 +16,7 @@ import { useSidebarFilterState } from "@/src/features/filters/hooks/useSidebarFi
 import { evalLogFilterConfig } from "@/src/features/filters/config/eval-logs-config";
 import { type RouterOutputs, api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
-import { type Prisma } from "@langfuse/shared";
+import { type Prisma } from "@elasticdash/shared";
 import { createColumnHelper } from "@tanstack/react-table";
 import { useQueryParams, withDefault, NumberParam } from "use-query-params";
 
@@ -182,7 +182,7 @@ export default function EvalLogTable({
         ) : undefined;
       },
     }),
-  ] as LangfuseColumnDef<JobExecutionRow>[];
+  ] as ElasticDashColumnDef<JobExecutionRow>[];
 
   if (!jobConfigurationId) {
     columns.push(
@@ -198,7 +198,7 @@ export default function EvalLogTable({
             />
           ) : undefined;
         },
-      }) as LangfuseColumnDef<JobExecutionRow>,
+      }) as ElasticDashColumnDef<JobExecutionRow>,
     );
   }
 

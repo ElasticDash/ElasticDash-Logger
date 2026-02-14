@@ -25,7 +25,7 @@ import { useSession } from "next-auth/react";
 import { organizationFormSchema } from "@/src/features/organizations/utils/organizationNameSchema";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { SurveyName } from "@prisma/client";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 export const NewOrganizationForm = ({
   onSuccess,
@@ -48,7 +48,7 @@ export const NewOrganizationForm = ({
   });
   const createSurveyMutation = api.surveys.create.useMutation();
   const watchedType = form.watch("type");
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
 
   function onSubmit(values: z.infer<typeof organizationFormSchema>) {
     capture("organizations:new_form_submit");
@@ -58,7 +58,7 @@ export const NewOrganizationForm = ({
       })
       .then(async (org) => {
         // Submit survey with organization data only on Cloud and if type is provided
-        if (isLangfuseCloud && values.type) {
+        if (isElasticDashCloud && values.type) {
           const surveyResponse: Record<string, string> = {
             type: values.type,
           };
@@ -124,7 +124,7 @@ export const NewOrganizationForm = ({
             </FormItem>
           )}
         />
-        {isLangfuseCloud && (
+        {isElasticDashCloud && (
           <>
             <FormField
               control={form.control}

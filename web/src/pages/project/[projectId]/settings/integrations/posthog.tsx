@@ -60,7 +60,7 @@ export default function PosthogIntegrationSettings() {
         actionButtonsLeft: <>{status && <StatusBadge type={status} />}</>,
         actionButtonsRight: (
           <Button asChild variant="secondary">
-            <Link href="https://langfuse.com/integrations/analytics/posthog">
+            <Link href="https://www.elasticdash.com/integrations/analytics/posthog">
               Integration Docs ↗
             </Link>
           </Button>
@@ -72,7 +72,7 @@ export default function PosthogIntegrationSettings() {
         <Link href="https://posthog.com" className="underline">
           PostHog
         </Link>{" "}
-        (OSS product analytics) to make Langfuse events/metrics available in
+        (OSS product analytics) to make ElasticDash events/metrics available in
         your PostHog dashboards. Upon activation, all historical data from your
         project will be synced. After the initial sync, new data is
         automatically synced every hour to keep your PostHog dashboards up to

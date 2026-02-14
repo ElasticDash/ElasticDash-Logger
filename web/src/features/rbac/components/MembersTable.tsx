@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   Avatar,
   AvatarFallback,
@@ -18,7 +18,7 @@ import { useHasOrganizationAccess } from "@/src/features/rbac/utils/checkOrganiz
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
 import type { RouterOutput } from "@/src/utils/types";
-import { Role } from "@langfuse/shared";
+import { Role } from "@elasticdash/shared";
 import { type Row } from "@tanstack/react-table";
 import { Trash } from "lucide-react";
 import { useSession } from "next-auth/react";
@@ -147,7 +147,7 @@ export function MembersTable({
 
   const projectRolesEntitlement = useHasEntitlement("rbac-project-roles");
 
-  const columns: LangfuseColumnDef<MembersTableRow>[] = [
+  const columns: ElasticDashColumnDef<MembersTableRow>[] = [
     {
       accessorKey: "user",
       id: "user",
@@ -200,7 +200,7 @@ export function MembersTable({
       headerTooltip: {
         description:
           "The org-role is the default role for this user in this organization and applies to the organization and all its projects.",
-        href: "https://langfuse.com/docs/administration/rbac",
+        href: "https://www.elasticdash.com/docs/administration/rbac",
       },
       cell: ({ row }) => {
         const orgRole = row.getValue("orgRole") as MembersTableRow["orgRole"];
@@ -262,7 +262,7 @@ export function MembersTable({
             headerTooltip: {
               description:
                 "The role for this user in this specific project. This role overrides the default project role.",
-              href: "https://langfuse.com/docs/administration/rbac",
+              href: "https://www.elasticdash.com/docs/administration/rbac",
             },
             cell: ({
               row,

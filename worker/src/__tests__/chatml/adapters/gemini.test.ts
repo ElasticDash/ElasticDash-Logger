@@ -4,7 +4,7 @@ import {
   selectAdapter,
   SimpleChatMlArraySchema,
   type NormalizerContext,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 // Test helper
 function normalizeInput(input: unknown, ctx: NormalizerContext = {}) {
@@ -230,7 +230,7 @@ describe("geminiAdapter", () => {
                 function_response: {
                   name: "say_hello",
                   response: {
-                    greeting: "Hello Langfuse 👋",
+                    greeting: "Hello ElasticDash 👋",
                   },
                 },
               },

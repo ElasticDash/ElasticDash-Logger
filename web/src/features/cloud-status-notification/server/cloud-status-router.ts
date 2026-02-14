@@ -1,6 +1,6 @@
 import { createTRPCRouter, publicProcedure } from "@/src/server/api/trpc";
 import { env } from "@/src/env.mjs";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 import { CloudStatus } from "@/src/features/cloud-status-notification/types";
 import { z } from "zod/v4";
 
@@ -32,8 +32,8 @@ export const cloudStatusRouter = createTRPCRouter({
       }),
     )
     .query(async () => {
-      // Skip status check if not running on Langfuse Cloud
-      if (!env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+      // Skip status check if not running on ElasticDash Cloud
+      if (!env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
         return { status: null };
       }
 
@@ -45,9 +45,9 @@ export const cloudStatusRouter = createTRPCRouter({
       }
 
       try {
-        // incident.io widget API for status.langfuse.com
+        // incident.io widget API for status.elasticdash.com
         const response = await fetch(
-          "https://status.langfuse.com/api/v1/summary",
+          "https://status.elasticdash.com/api/v1/summary",
         );
 
         if (!response.ok) {

@@ -42,7 +42,7 @@ export function SessionsOnboarding() {
           To start using sessions, you need to add a `sessionId` to your traces.
           See{" "}
           <Link
-            href="https://langfuse.com/docs/observability/features/sessions"
+            href="https://www.elasticdash.com/docs/observability/features/sessions"
             className="underline"
           >
             documentation
@@ -50,7 +50,7 @@ export function SessionsOnboarding() {
           for more details.
         </span>
       }
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/sessions-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/sessions-overview-v1.mp4"
     />
   );
 }

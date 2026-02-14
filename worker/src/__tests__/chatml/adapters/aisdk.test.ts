@@ -3,7 +3,7 @@ import {
   aisdkAdapter,
   normalizeInput,
   type NormalizerContext,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 describe("AI SDK Adapter", () => {
   describe("detection", () => {
@@ -56,7 +56,7 @@ describe("AI SDK Adapter", () => {
       expect(
         aisdkAdapter.detect({
           metadata: {
-            scope: { name: "langfuse-sdk" },
+            scope: { name: "elasticdash-sdk" },
           },
         }),
       ).toBe(false);

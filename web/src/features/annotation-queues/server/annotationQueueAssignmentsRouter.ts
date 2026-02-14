@@ -5,11 +5,11 @@ import {
   protectedProjectProcedure,
 } from "@/src/server/api/trpc";
 import {
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   optionalPaginationZod,
   Prisma,
-} from "@langfuse/shared";
-import { getUserProjectRoles } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared";
+import { getUserProjectRoles } from "@elasticdash/shared/src/server";
 import { partition } from "lodash";
 import z from "zod/v4";
 
@@ -38,7 +38,7 @@ export const queueAssignmentRouter = createTRPCRouter({
       });
 
       if (!queue) {
-        throw new LangfuseNotFoundError("Annotation queue not found");
+        throw new ElasticDashNotFoundError("Annotation queue not found");
       }
 
       // Verify the users exist and have access to the project
@@ -115,7 +115,7 @@ export const queueAssignmentRouter = createTRPCRouter({
       });
 
       if (!queue) {
-        throw new LangfuseNotFoundError("Annotation queue not found");
+        throw new ElasticDashNotFoundError("Annotation queue not found");
       }
 
       // Remove memberships
@@ -164,7 +164,7 @@ export const queueAssignmentRouter = createTRPCRouter({
       });
 
       if (!queue) {
-        throw new LangfuseNotFoundError("Annotation queue not found");
+        throw new ElasticDashNotFoundError("Annotation queue not found");
       }
 
       const assignments = await ctx.prisma.annotationQueueAssignment.findMany({

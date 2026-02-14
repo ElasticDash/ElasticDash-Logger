@@ -5,7 +5,7 @@ import { NumberParam, useQueryParams, withDefault } from "use-query-params";
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
 import { DataTable } from "@/src/components/table/data-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { createColumnHelper } from "@tanstack/react-table";
 import TableLink from "@/src/components/table/table-link";
 import { LocalIsoDate } from "@/src/components/LocalIsoDate";
@@ -198,10 +198,10 @@ export function DashboardTable() {
       cell: (row) => {
         return row.row.original.owner === "LANGFUSE" ? (
           <span className="flex gap-1 px-2 py-0.5 text-xs">
-            <span role="img" aria-label="Langfuse">
+            <span role="img" aria-label="ElasticDash">
               🪢
             </span>
-            Langfuse
+            ElasticDash
           </span>
         ) : (
           <span className="flex gap-1 px-2 py-0.5 text-xs">
@@ -279,7 +279,7 @@ export function DashboardTable() {
         );
       },
     }),
-  ] as LangfuseColumnDef<DashboardTableRow>[];
+  ] as ElasticDashColumnDef<DashboardTableRow>[];
 
   return (
     <DataTable

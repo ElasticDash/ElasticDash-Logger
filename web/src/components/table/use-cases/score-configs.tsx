@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-height-switch";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { api } from "@/src/utils/api";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
 import { DataTable } from "@/src/components/table/data-table";
 import {
   type ScoreConfigDataType,
   type Prisma,
   type ScoreConfigCategoryDomain,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { IOTableCell } from "../../ui/IOTableCell";
 import { NumberParam, useQueryParams, withDefault } from "use-query-params";
 import {
@@ -105,7 +105,7 @@ export function ScoreConfigsTable({ projectId }: { projectId: string }) {
 
   const totalCount = configs.data?.totalCount ?? null;
 
-  const columns: LangfuseColumnDef<ScoreConfigTableRow>[] = [
+  const columns: ElasticDashColumnDef<ScoreConfigTableRow>[] = [
     {
       accessorKey: "name",
       id: "name",

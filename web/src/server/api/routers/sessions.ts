@@ -18,8 +18,8 @@ import {
   type SessionOptions,
   type ScoreDomain,
   AGGREGATABLE_SCORE_TYPES,
-} from "@langfuse/shared";
-import { Prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared";
+import { Prisma } from "@elasticdash/shared/src/db";
 import { TRPCError } from "@trpc/server";
 import Decimal from "decimal.js";
 import {
@@ -39,7 +39,7 @@ import {
   getNumericScoresGroupedByName,
   getCategoricalScoresGroupedByName,
   tracesTableUiColumnDefinitions,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { chunk } from "lodash";
 import { aggregateScores } from "@/src/features/scores/lib/aggregateScores";
 import { toDomainArrayWithStringifiedMetadata } from "@/src/utils/clientSideDomainTypes";

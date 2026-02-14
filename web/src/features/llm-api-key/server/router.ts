@@ -20,15 +20,15 @@ import {
   VertexAIConfigSchema,
   BEDROCK_USE_DEFAULT_CREDENTIALS,
   VERTEXAI_USE_DEFAULT_CREDENTIALS,
-} from "@langfuse/shared";
-import { encrypt, decrypt } from "@langfuse/shared/encryption";
+} from "@elasticdash/shared";
+import { encrypt, decrypt } from "@elasticdash/shared/encryption";
 import {
   ChatMessageType,
   fetchLLMCompletion,
   LLMAdapter,
   logger,
   decryptAndParseExtraHeaders,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "@/src/env.mjs";
 import { TRPCError } from "@trpc/server";
 
@@ -137,10 +137,12 @@ export const llmApiKeyRouter = createTRPCRouter({
         });
 
         // Validate that default credentials sentinel is only allowed for Bedrock/VertexAI in self-hosted deployments
-        const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+        const isElasticDashCloud = Boolean(
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
+        );
 
         if (input.secretKey === BEDROCK_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.Bedrock) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.Bedrock) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
@@ -150,7 +152,7 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         if (input.secretKey === VERTEXAI_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.VertexAI) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.VertexAI) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
@@ -160,7 +162,7 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         if (!env.ENCRYPTION_KEY) {
-          if (env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION) {
+          if (env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION) {
             throw new TRPCError({
               code: "INTERNAL_SERVER_ERROR",
               message: "Internal server error",
@@ -169,7 +171,7 @@ export const llmApiKeyRouter = createTRPCRouter({
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
-                "Missing environment variable: `ENCRYPTION_KEY`. Please consult our docs: https://langfuse.com/self-hosting",
+                "Missing environment variable: `ENCRYPTION_KEY`. Please consult our docs: https://www.elasticdash.com/self-hosting",
             });
           }
         }
@@ -444,10 +446,12 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         // Validate that default credentials sentinel is only allowed for Bedrock/VertexAI in self-hosted deployments
-        const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION);
+        const isElasticDashCloud = Boolean(
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
+        );
 
         if (input.secretKey === BEDROCK_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.Bedrock) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.Bedrock) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
@@ -457,7 +461,7 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         if (input.secretKey === VERTEXAI_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.VertexAI) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.VertexAI) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:

@@ -1,5 +1,9 @@
 import { useMemo } from "react";
-import { type Prisma, type ScoreDomain, deepParseJson } from "@langfuse/shared";
+import {
+  type Prisma,
+  type ScoreDomain,
+  deepParseJson,
+} from "@elasticdash/shared";
 import { PrettyJsonView } from "@/src/components/ui/PrettyJsonView";
 import { MARKDOWN_RENDER_CHARACTER_LIMIT } from "@/src/utils/constants";
 import { type MediaReturnType } from "@/src/features/media/validation";

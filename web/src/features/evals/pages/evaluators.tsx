@@ -63,8 +63,8 @@ export default function EvaluatorsPage() {
           title: "LLM-as-a-Judge Evaluators",
           help: {
             description:
-              "Configure a langfuse managed or custom evaluator to evaluate incoming traces.",
-            href: "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
+              "Configure a elasticdash managed or custom evaluator to evaluate incoming traces.",
+            href: "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
           },
         }}
         scrollable
@@ -81,8 +81,8 @@ export default function EvaluatorsPage() {
           title: "LLM-as-a-Judge Evaluators",
           help: {
             description:
-              "Configure a langfuse managed or custom evaluator to evaluate incoming traces.",
-            href: "https://langfuse.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
+              "Configure a elasticdash managed or custom evaluator to evaluate incoming traces.",
+            href: "https://www.elasticdash.com/docs/evaluation/evaluation-methods/llm-as-a-judge",
           },
           tabsProps: {
             tabs: getEvalsTabs(projectId),

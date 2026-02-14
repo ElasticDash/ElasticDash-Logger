@@ -1,14 +1,14 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import type { Session } from "next-auth";
-import { encrypt } from "@langfuse/shared/encryption";
+import { encrypt } from "@elasticdash/shared/encryption";
 import { createInnerTRPCContext } from "@/src/server/api/trpc";
 import { appRouter } from "@/src/server/api/root";
-import { createOrgProjectAndApiKey } from "@langfuse/shared/src/server";
+import { createOrgProjectAndApiKey } from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 
 // Mock SlackService
-jest.mock("@langfuse/shared/src/server", () => {
-  const actual = jest.requireActual("@langfuse/shared/src/server");
+jest.mock("@elasticdash/shared/src/server", () => {
+  const actual = jest.requireActual("@elasticdash/shared/src/server");
   return {
     ...actual,
     SlackService: {
@@ -72,7 +72,7 @@ const prepare = async () => {
 describe("Slack Integration", () => {
   beforeAll(async () => {
     // Import mocked SlackService
-    const { SlackService } = await import("@langfuse/shared/src/server");
+    const { SlackService } = await import("@elasticdash/shared/src/server");
 
     // Create mock service instance
     mockSlackService = {
@@ -299,7 +299,7 @@ describe("Slack Integration", () => {
           client: expect.any(Object),
           channelId: "C123456",
           blocks: expect.any(Array),
-          text: "Test message from Langfuse",
+          text: "Test message from ElasticDash",
         });
 
         // 🔒 CRITICAL: Ensure no bot token is exposed in test results
@@ -494,7 +494,7 @@ describe("Slack Integration", () => {
       expect(rawIntegration?.botToken).not.toContain("xoxb-secret-bot-token");
 
       // Verify the encrypted token can be decrypted back to original
-      const { decrypt } = await import("@langfuse/shared/encryption");
+      const { decrypt } = await import("@elasticdash/shared/encryption");
       const decryptedToken = decrypt(rawIntegration!.botToken);
       expect(decryptedToken).toBe(originalToken);
     });

@@ -12,7 +12,7 @@
 
 import type { ToolDefinition, ToolHandler } from "../core/define-tool";
 import type { ServerContext } from "../types";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 
 /**
  * Registered MCP tool
@@ -38,7 +38,7 @@ export interface RegisteredTool {
  * ```typescript
  * export const promptsFeature: McpFeatureModule = {
  *   name: "prompts",
- *   description: "Manage Langfuse prompts",
+ *   description: "Manage ElasticDash prompts",
  *   tools: [
  *     { definition: getPromptTool, handler: handleGetPrompt },
  *     { definition: listPromptsTool, handler: handleListPrompts },

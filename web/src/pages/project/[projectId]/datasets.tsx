@@ -33,8 +33,8 @@ export default function Datasets() {
           title: "Datasets",
           help: {
             description:
-              "Datasets in Langfuse are a collection of inputs (and expected outputs) of an LLM application. They are used to benchmark new releases before deployment to production. See docs to learn more.",
-            href: "https://langfuse.com/docs/evaluation/dataset-runs/datasets",
+              "Datasets in ElasticDash are a collection of inputs (and expected outputs) of an LLM application. They are used to benchmark new releases before deployment to production. See docs to learn more.",
+            href: "https://www.elasticdash.com/docs/evaluation/dataset-runs/datasets",
           },
         }}
         scrollable
@@ -50,8 +50,8 @@ export default function Datasets() {
         title: "Datasets",
         help: {
           description:
-            "Datasets in Langfuse are a collection of inputs (and expected outputs) of an LLM application. They are used to benchmark new releases before deployment to production. See docs to learn more.",
-          href: "https://langfuse.com/docs/evaluation/dataset-runs/datasets",
+            "Datasets in ElasticDash are a collection of inputs (and expected outputs) of an LLM application. They are used to benchmark new releases before deployment to production. See docs to learn more.",
+          href: "https://www.elasticdash.com/docs/evaluation/dataset-runs/datasets",
         },
         actionButtonsRight: (
           <DatasetActionButton

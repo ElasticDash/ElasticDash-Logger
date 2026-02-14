@@ -4,10 +4,10 @@ import {
   type Project as PrismaProject,
   type Organization as PrismaOrganization,
   type Role,
-} from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/db";
 import { type Flags } from "@/src/features/feature-flags/types";
-import { type CloudConfigSchema } from "@langfuse/shared";
-import { type Plan } from "@langfuse/shared";
+import { type CloudConfigSchema } from "@elasticdash/shared";
+import { type Plan } from "@elasticdash/shared";
 
 /**
  * Module augmentation for `next-auth` types. Allows us to add custom properties to the `session`
@@ -21,7 +21,7 @@ declare module "next-auth" {
     environment: {
       // Run-time environment variables that need to be available client-side
       enableExperimentalFeatures: boolean;
-      // Enables features that are only available under an enterprise/commercial license when self-hosting Langfuse
+      // Enables features that are only available under an enterprise/commercial license when self-hosting ElasticDash
       selfHostedInstancePlan: Plan | null;
     };
   }
@@ -34,7 +34,7 @@ declare module "next-auth" {
     image?: PrismaUser["image"];
     admin?: PrismaUser["admin"];
     emailVerified?: string | null; // iso datetime string, need to stringify as JWT & useSession do not support Date objects
-    canCreateOrganizations: boolean; // default true, allowlist can be set via LANGFUSE_ALLOWED_ORGANIZATION_CREATORS
+    canCreateOrganizations: boolean; // default true, allowlist can be set via ELASTICDASH_ALLOWED_ORGANIZATION_CREATORS
     organizations: {
       id: PrismaOrganization["id"];
       name: PrismaOrganization["name"];

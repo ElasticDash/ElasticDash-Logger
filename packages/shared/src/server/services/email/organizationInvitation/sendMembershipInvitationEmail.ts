@@ -5,11 +5,11 @@ import { render } from "@react-email/render";
 import MembershipInvitationTemplate from "./MembershipInvitationEmailTemplate";
 import { logger } from "../../../logger";
 
-const langfuseUrls = {
-  US: "https://us.cloud.langfuse.com",
-  EU: "https://cloud.langfuse.com",
-  STAGING: "https://staging.langfuse.com",
-  HIPAA: "https://hipaa.cloud.langfuse.com",
+const elasticdashUrls = {
+  US: "https://us.cloud.elasticdash.com",
+  EU: "https://cloud.elasticdash.com",
+  STAGING: "https://staging.elasticdash.com",
+  HIPAA: "https://hipaa.cloud.elasticdash.com",
 };
 
 type SendMembershipInvitationParams = {
@@ -17,7 +17,7 @@ type SendMembershipInvitationParams = {
     Record<
       | "EMAIL_FROM_ADDRESS"
       | "SMTP_CONNECTION_URL"
-      | "NEXT_PUBLIC_LANGFUSE_CLOUD_REGION"
+      | "NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION"
       | "NEXTAUTH_URL",
       string | undefined
     >
@@ -47,17 +47,17 @@ export const sendMembershipInvitationEmail = async ({
   }
 
   const getAuthURL = () =>
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION === "US" ||
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION === "EU" ||
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION === "HIPAA" ||
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION === "STAGING"
-      ? langfuseUrls[env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION]
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "US" ||
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "EU" ||
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "HIPAA" ||
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION === "STAGING"
+      ? elasticdashUrls[env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION]
       : env.NEXTAUTH_URL;
 
   const authUrl = getAuthURL();
   if (!authUrl) {
     logger.error(
-      "Missing NEXTAUTH_URL or NEXT_PUBLIC_LANGFUSE_CLOUD_REGION environment variable.",
+      "Missing NEXTAUTH_URL or NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION environment variable.",
     );
     return;
   }
@@ -79,14 +79,14 @@ export const sendMembershipInvitationEmail = async ({
         inviteLink: inviteLink,
         userExists: userExists,
         emailFromAddress: env.EMAIL_FROM_ADDRESS,
-        langfuseCloudRegion: env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION,
+        elasticdashCloudRegion: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
       }),
     );
 
     await mailer.sendMail({
       to,
-      from: `Langfuse <${env.EMAIL_FROM_ADDRESS}>`,
-      subject: `${inviterName} invited you to join the "${orgName}" organization on Langfuse`,
+      from: `ElasticDash <${env.EMAIL_FROM_ADDRESS}>`,
+      subject: `${inviterName} invited you to join the "${orgName}" organization on ElasticDash`,
       html: htmlTemplate,
     });
   } catch (error) {

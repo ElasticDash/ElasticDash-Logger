@@ -4,7 +4,7 @@ import { ImageOff } from "lucide-react";
 import {
   MediaReferenceStringSchema,
   type ParsedMediaReferenceType,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { ResizableImage } from "@/src/components/ui/resizable-image";
 import useProjectIdFromURL from "@/src/hooks/useProjectIdFromURL";
 import {
@@ -13,7 +13,7 @@ import {
 } from "@/src/features/media/validation";
 import { File, Image as ImageIcon, Volume2 } from "lucide-react";
 
-export const LangfuseMediaView = ({
+export const ElasticDashMediaView = ({
   mediaReferenceString,
   mediaAPIReturnValue,
   asFileIcon = false,
@@ -49,10 +49,10 @@ export const LangfuseMediaView = ({
   if (!mediaData)
     return (
       <div className="flex items-center gap-2">
-        <span title="Invalid Langfuse Media Tag">
+        <span title="Invalid ElasticDash Media Tag">
           <ImageOff className="h-4 w-4" />
         </span>
-        <span className="truncate text-sm">Invalid Langfuse Media Tag</span>
+        <span className="truncate text-sm">Invalid ElasticDash Media Tag</span>
       </div>
     );
 

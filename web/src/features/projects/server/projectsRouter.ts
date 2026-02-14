@@ -15,9 +15,9 @@ import {
   redis,
   ProjectDeleteQueue,
   getEnvironmentsForProject,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { randomUUID } from "crypto";
-import { StringNoHTMLNonEmpty } from "@langfuse/shared";
+import { StringNoHTMLNonEmpty } from "@elasticdash/shared";
 
 export const projectsRouter = createTRPCRouter({
   create: protectedOrganizationProcedure

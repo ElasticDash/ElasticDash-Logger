@@ -5,9 +5,9 @@ import {
   BatchExportStatus,
   BatchExportTableName,
   exportOptions,
-  LangfuseNotFoundError,
-} from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+  ElasticDashNotFoundError,
+} from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   StorageServiceFactory,
   sendBatchExportSuccessEmail,
@@ -15,7 +15,7 @@ import {
   type BatchExportJobType,
   logger,
   getCurrentSpan,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "../../env";
 import { getDatabaseReadStreamPaginated } from "../database-read-stream/getDatabaseReadStream";
 import { getObservationStream } from "../database-read-stream/observation-stream";
@@ -24,9 +24,9 @@ import { getTraceStream } from "../database-read-stream/trace-stream";
 export const handleBatchExportJob = async (
   batchExportJob: BatchExportJobType,
 ) => {
-  if (env.LANGFUSE_S3_BATCH_EXPORT_ENABLED !== "true") {
+  if (env.ELASTICDASH_S3_BATCH_EXPORT_ENABLED !== "true") {
     throw new Error(
-      "Batch export is not enabled. Configure environment variables to use this feature. See https://langfuse.com/self-hosting/infrastructure/blobstorage#batch-exports for more details.",
+      "Batch export is not enabled. Configure environment variables to use this feature. See https://www.elasticdash.com/self-hosting/infrastructure/blobstorage#batch-exports for more details.",
     );
   }
 
@@ -52,7 +52,7 @@ export const handleBatchExportJob = async (
   });
 
   if (!jobDetails) {
-    throw new LangfuseNotFoundError(
+    throw new ElasticDashNotFoundError(
       `Job not found for project: ${projectId} and export ${batchExportId}`,
     );
   }
@@ -180,26 +180,26 @@ export const handleBatchExportJob = async (
   const fileDate = new Date().getTime();
   const fileExtension =
     exportOptions[jobDetails.format as BatchExportFileFormat].extension;
-  const fileName = `${env.LANGFUSE_S3_BATCH_EXPORT_PREFIX}${fileDate}-lf-${parsedQuery.data.tableName}-export-${projectId}.${fileExtension}`;
+  const fileName = `${env.ELASTICDASH_S3_BATCH_EXPORT_PREFIX}${fileDate}-lf-${parsedQuery.data.tableName}-export-${projectId}.${fileExtension}`;
   const expiresInSeconds =
     env.BATCH_EXPORT_DOWNLOAD_LINK_EXPIRATION_HOURS * 3600;
 
   // Stream upload results to S3
-  const bucketName = env.LANGFUSE_S3_BATCH_EXPORT_BUCKET;
+  const bucketName = env.ELASTICDASH_S3_BATCH_EXPORT_BUCKET;
   if (!bucketName) {
     throw new Error("No S3 bucket configured for exports.");
   }
 
   const { signedUrl } = await StorageServiceFactory.getInstance({
     bucketName,
-    accessKeyId: env.LANGFUSE_S3_BATCH_EXPORT_ACCESS_KEY_ID,
-    secretAccessKey: env.LANGFUSE_S3_BATCH_EXPORT_SECRET_ACCESS_KEY,
-    endpoint: env.LANGFUSE_S3_BATCH_EXPORT_ENDPOINT,
-    externalEndpoint: env.LANGFUSE_S3_BATCH_EXPORT_EXTERNAL_ENDPOINT,
-    region: env.LANGFUSE_S3_BATCH_EXPORT_REGION,
-    forcePathStyle: env.LANGFUSE_S3_BATCH_EXPORT_FORCE_PATH_STYLE === "true",
-    awsSse: env.LANGFUSE_S3_BATCH_EXPORT_SSE,
-    awsSseKmsKeyId: env.LANGFUSE_S3_BATCH_EXPORT_SSE_KMS_KEY_ID,
+    accessKeyId: env.ELASTICDASH_S3_BATCH_EXPORT_ACCESS_KEY_ID,
+    secretAccessKey: env.ELASTICDASH_S3_BATCH_EXPORT_SECRET_ACCESS_KEY,
+    endpoint: env.ELASTICDASH_S3_BATCH_EXPORT_ENDPOINT,
+    externalEndpoint: env.ELASTICDASH_S3_BATCH_EXPORT_EXTERNAL_ENDPOINT,
+    region: env.ELASTICDASH_S3_BATCH_EXPORT_REGION,
+    forcePathStyle: env.ELASTICDASH_S3_BATCH_EXPORT_FORCE_PATH_STYLE === "true",
+    awsSse: env.ELASTICDASH_S3_BATCH_EXPORT_SSE,
+    awsSseKmsKeyId: env.ELASTICDASH_S3_BATCH_EXPORT_SSE_KMS_KEY_ID,
   }).uploadWithSignedUrl({
     fileName,
     fileType:

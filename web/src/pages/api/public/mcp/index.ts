@@ -1,13 +1,13 @@
 /**
  * MCP (Model Context Protocol) Server API Endpoint
  *
- * This endpoint implements the MCP protocol for Langfuse, enabling AI assistants
- * like Claude Desktop and Cursor to directly query, create, and manage Langfuse prompts.
+ * This endpoint implements the MCP protocol for ElasticDash, enabling AI assistants
+ * like Claude Desktop and Cursor to directly query, create, and manage ElasticDash prompts.
  *
  * Architecture:
  * - Stateless per-request pattern (fresh server instance per request)
  * - Streamable HTTP transport (2025-03-26 spec)
- * - BasicAuth using Langfuse API keys
+ * - BasicAuth using ElasticDash API keys
  * - Context captured in closures (no session storage)
  *
  * Transport: Streamable HTTP (NOT the deprecated HTTP+SSE transport)
@@ -29,11 +29,15 @@ import { createMcpServer } from "@/src/features/mcp/server/mcpServer";
 import { handleMcpRequest } from "@/src/features/mcp/server/transport";
 import { formatErrorForUser } from "@/src/features/mcp/core/error-formatting";
 import { type ServerContext } from "@/src/features/mcp/types";
-import { logger, redis } from "@langfuse/shared/src/server";
+import { logger, redis } from "@elasticdash/shared/src/server";
 import { ApiAuthService } from "@/src/features/public-api/server/apiAuth";
 import { RateLimitService } from "@/src/features/public-api/server/RateLimitService";
-import { prisma } from "@langfuse/shared/src/db";
-import { BaseError, UnauthorizedError, ForbiddenError } from "@langfuse/shared";
+import { prisma } from "@elasticdash/shared/src/db";
+import {
+  BaseError,
+  UnauthorizedError,
+  ForbiddenError,
+} from "@elasticdash/shared";
 import { ZodError } from "zod/v4";
 import { isUserInputError } from "@/src/features/mcp/core/errors";
 

@@ -2,8 +2,8 @@ import {
   logger,
   QueueName,
   recordHistogram,
-} from "@langfuse/shared/src/server";
-import { getQueue } from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
+import { getQueue } from "@elasticdash/shared/src/server";
 
 export class DlqRetryService {
   private static retryQueues = [
@@ -42,7 +42,7 @@ export class DlqRetryService {
 
           const dlxDelay = Date.now() - ts;
 
-          recordHistogram("langfuse.dlq_retry_delay", dlxDelay, {
+          recordHistogram("elasticdash.dlq_retry_delay", dlxDelay, {
             unit: "milliseconds",
             projectId,
             queueName,

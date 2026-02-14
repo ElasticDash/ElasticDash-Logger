@@ -3,7 +3,7 @@ import {
   logger,
   traceException,
   deleteIngestionEventsFromS3AndClickhouseForScores,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { env } from "../../env";
 
 export const processClickhouseScoreDelete = async (
@@ -16,7 +16,7 @@ export const processClickhouseScoreDelete = async (
 
   try {
     await Promise.all([
-      env.LANGFUSE_ENABLE_BLOB_STORAGE_FILE_LOG === "true"
+      env.ELASTICDASH_ENABLE_BLOB_STORAGE_FILE_LOG === "true"
         ? deleteIngestionEventsFromS3AndClickhouseForScores({
             projectId,
             scoreIds,

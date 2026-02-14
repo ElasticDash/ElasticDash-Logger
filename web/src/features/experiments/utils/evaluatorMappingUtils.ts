@@ -1,9 +1,9 @@
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 
-// Define the type locally to match what's in @langfuse/shared
+// Define the type locally to match what's in @elasticdash/shared
 type VariableMapping = {
   templateVariable: string;
-  langfuseObject: "trace" | "generation" | "span" | "score" | "dataset_item";
+  elasticdashObject: "trace" | "generation" | "span" | "score" | "dataset_item";
   objectName?: string;
   selectedColumnId: string;
   jsonSelector?: string;
@@ -11,29 +11,29 @@ type VariableMapping = {
 
 const defaultMappings = new Map<string, Partial<VariableMapping>>([
   // Common input variables
-  ["input", { langfuseObject: "trace", selectedColumnId: "input" }],
-  ["query", { langfuseObject: "trace", selectedColumnId: "input" }],
-  ["question", { langfuseObject: "trace", selectedColumnId: "input" }],
-  ["prompt", { langfuseObject: "trace", selectedColumnId: "input" }],
+  ["input", { elasticdashObject: "trace", selectedColumnId: "input" }],
+  ["query", { elasticdashObject: "trace", selectedColumnId: "input" }],
+  ["question", { elasticdashObject: "trace", selectedColumnId: "input" }],
+  ["prompt", { elasticdashObject: "trace", selectedColumnId: "input" }],
 
   // Common output variables
-  ["output", { langfuseObject: "trace", selectedColumnId: "output" }],
-  ["response", { langfuseObject: "trace", selectedColumnId: "output" }],
-  ["answer", { langfuseObject: "trace", selectedColumnId: "output" }],
-  ["completion", { langfuseObject: "trace", selectedColumnId: "output" }],
+  ["output", { elasticdashObject: "trace", selectedColumnId: "output" }],
+  ["response", { elasticdashObject: "trace", selectedColumnId: "output" }],
+  ["answer", { elasticdashObject: "trace", selectedColumnId: "output" }],
+  ["completion", { elasticdashObject: "trace", selectedColumnId: "output" }],
 
   // Common ground truth variables
   [
     "expected_output",
-    { langfuseObject: "dataset_item", selectedColumnId: "expected_output" },
+    { elasticdashObject: "dataset_item", selectedColumnId: "expected_output" },
   ],
   [
     "ground_truth",
-    { langfuseObject: "dataset_item", selectedColumnId: "expected_output" },
+    { elasticdashObject: "dataset_item", selectedColumnId: "expected_output" },
   ],
   [
     "reference",
-    { langfuseObject: "dataset_item", selectedColumnId: "expected_output" },
+    { elasticdashObject: "dataset_item", selectedColumnId: "expected_output" },
   ],
 ]);
 
@@ -57,7 +57,7 @@ export function createDefaultVariableMappings(
     if (defaultMapping) {
       return {
         templateVariable: variable,
-        langfuseObject: defaultMapping.langfuseObject || "dataset_item",
+        elasticdashObject: defaultMapping.elasticdashObject || "dataset_item",
         selectedColumnId: defaultMapping.selectedColumnId || "expected_output",
         objectName: defaultMapping.objectName,
         jsonSelector: defaultMapping.jsonSelector,
@@ -65,7 +65,7 @@ export function createDefaultVariableMappings(
     }
 
     return {
-      langfuseObject: "dataset_item",
+      elasticdashObject: "dataset_item",
       templateVariable: variable,
       selectedColumnId: "expected_output",
     };

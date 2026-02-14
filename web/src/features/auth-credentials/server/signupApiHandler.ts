@@ -4,7 +4,7 @@ import { signupSchema } from "@/src/features/auth/lib/signupSchema";
 import { getSsoAuthProviderIdForDomain } from "@/src/ee/features/multi-tenant-sso/utils";
 import { ENTERPRISE_SSO_REQUIRED_MESSAGE } from "@/src/features/auth/constants";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { logger } from "@langfuse/shared/src/server";
+import { logger } from "@elasticdash/shared/src/server";
 
 export function getSSOBlockedDomains() {
   return (
@@ -89,18 +89,18 @@ export async function signupApiHandler(
 
   // Trigger new user signup event
   if (
-    env.LANGFUSE_NEW_USER_SIGNUP_WEBHOOK &&
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION &&
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== "STAGING" &&
-    env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== "DEV"
+    env.ELASTICDASH_NEW_USER_SIGNUP_WEBHOOK &&
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION &&
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION !== "STAGING" &&
+    env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION !== "DEV"
   ) {
-    await fetch(env.LANGFUSE_NEW_USER_SIGNUP_WEBHOOK, {
+    await fetch(env.ELASTICDASH_NEW_USER_SIGNUP_WEBHOOK, {
       method: "POST",
       body: JSON.stringify({
         name: body.name,
         email: body.email,
         referralSource: body.referralSource,
-        cloudRegion: env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION,
+        cloudRegion: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
         userId: userId,
       }),
       headers: {

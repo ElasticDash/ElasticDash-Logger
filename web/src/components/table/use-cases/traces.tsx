@@ -7,7 +7,7 @@ import {
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
 import { Badge } from "@/src/components/ui/badge";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { TokenUsageBadge } from "@/src/components/token-usage-badge";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { api } from "@/src/utils/api";
@@ -40,12 +40,12 @@ import {
   ActionId,
   TableViewPresetTableName,
   type TimeFilter,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-height-switch";
 import { MemoizedIOTableCell } from "../../ui/IOTableCell";
 import { useTableDateRange } from "@/src/hooks/useTableDateRange";
 import { toAbsoluteTimeRange } from "@/src/utils/date-range-utils";
-import { type ScoreAggregate } from "@langfuse/shared";
+import { type ScoreAggregate } from "@elasticdash/shared";
 import { joinTableCoreAndMetrics } from "@/src/components/table/utils/joinTableCoreAndMetrics";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import useColumnOrder from "@/src/features/column-visibility/hooks/useColumnOrder";
@@ -547,7 +547,7 @@ export default function TracesTable({
 
   const enableSorting = !hideControls;
 
-  const columns: LangfuseColumnDef<TracesTableRow>[] = [
+  const columns: ElasticDashColumnDef<TracesTableRow>[] = [
     ...(hideControls
       ? []
       : [
@@ -760,7 +760,7 @@ export default function TracesTable({
       size: 150,
       headerTooltip: {
         description: "Group traces with tags.",
-        href: "https://langfuse.com/docs/observability/features/tags",
+        href: "https://www.elasticdash.com/docs/observability/features/tags",
       },
       cell: ({ row }) => {
         const traceTags: string[] | undefined = row.getValue("tags");
@@ -785,7 +785,7 @@ export default function TracesTable({
       size: 400,
       headerTooltip: {
         description: "Add metadata to traces to track additional information.",
-        href: "https://langfuse.com/docs/observability/features/metadata",
+        href: "https://www.elasticdash.com/docs/observability/features/metadata",
       },
       cell: ({ row }) => {
         const traceId: TracesTableRow["id"] = row.getValue("id");
@@ -828,7 +828,7 @@ export default function TracesTable({
       size: 150,
       headerTooltip: {
         description: "Add `sessionId` to traces to track sessions.",
-        href: "https://langfuse.com/docs/observability/features/sessions",
+        href: "https://www.elasticdash.com/docs/observability/features/sessions",
       },
       cell: ({ row }) => {
         const value: TracesTableRow["sessionId"] = row.getValue("sessionId");
@@ -847,7 +847,7 @@ export default function TracesTable({
       size: 150,
       headerTooltip: {
         description: "Add `userId` to traces to track users.",
-        href: "https://langfuse.com/docs/observability/features/users",
+        href: "https://www.elasticdash.com/docs/observability/features/users",
       },
       cell: ({ row }) => {
         const value: TracesTableRow["userId"] = row.getValue("userId");
@@ -909,7 +909,7 @@ export default function TracesTable({
       size: 100,
       headerTooltip: {
         description: "Track changes via the version tag.",
-        href: "https://langfuse.com/docs/observability/features/releases-and-versioning",
+        href: "https://www.elasticdash.com/docs/observability/features/releases-and-versioning",
       },
       defaultHidden: true,
       enableHiding: true,
@@ -922,7 +922,7 @@ export default function TracesTable({
       size: 100,
       headerTooltip: {
         description: "Track changes to your application via the release tag.",
-        href: "https://langfuse.com/docs/observability/features/releases-and-versioning",
+        href: "https://www.elasticdash.com/docs/observability/features/releases-and-versioning",
       },
       defaultHidden: true,
       enableHiding: true,

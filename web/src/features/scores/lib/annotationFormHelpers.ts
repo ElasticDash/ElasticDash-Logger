@@ -3,7 +3,7 @@ import {
   isPresent,
   type ScoreConfigDataType,
   type ScoreConfigCategoryDomain,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const resolveConfigValue = ({
   name,

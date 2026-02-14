@@ -1,4 +1,4 @@
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import {
   GetDatasetRunV1Query,
   GetDatasetRunV1Response,
@@ -8,9 +8,9 @@ import {
 } from "@/src/features/public-api/types/datasets";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { ApiError, LangfuseNotFoundError } from "@langfuse/shared";
+import { ApiError, ElasticDashNotFoundError } from "@elasticdash/shared";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
-import { addToDeleteDatasetQueue } from "@langfuse/shared/src/server";
+import { addToDeleteDatasetQueue } from "@elasticdash/shared/src/server";
 import { generateDatasetRunItemsForPublicApi } from "@/src/features/public-api/server/dataset-run-items";
 
 export default withMiddlewares({
@@ -41,7 +41,7 @@ export default withMiddlewares({
       if (datasetRuns.length > 1)
         throw new ApiError("Found more than one dataset run with this name");
       if (!datasetRuns[0])
-        throw new LangfuseNotFoundError("Dataset run not found");
+        throw new ElasticDashNotFoundError("Dataset run not found");
 
       const { dataset, ...run } = datasetRuns[0];
 
@@ -81,7 +81,7 @@ export default withMiddlewares({
       });
 
       if (datasetRuns.length === 0) {
-        throw new LangfuseNotFoundError("Dataset run not found");
+        throw new ElasticDashNotFoundError("Dataset run not found");
       }
       if (datasetRuns.length > 1) {
         throw new ApiError(

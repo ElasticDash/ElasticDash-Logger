@@ -6,7 +6,7 @@ import {
   type Session,
 } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 import { verifyPassword } from "@/src/features/auth-credentials/lib/credentialsServerUtils";
 import { parseFlags } from "@/src/features/feature-flags/utils";
 import { env } from "@/src/env.mjs";
@@ -42,7 +42,7 @@ import {
 } from "@/src/ee/features/multi-tenant-sso/utils";
 import { ENTERPRISE_SSO_REQUIRED_MESSAGE } from "@/src/features/auth/constants";
 import { z } from "zod/v4";
-import { CloudConfigSchema } from "@langfuse/shared";
+import { CloudConfigSchema } from "@elasticdash/shared";
 import {
   CustomSSOProvider,
   GitHubEnterpriseProvider,
@@ -52,7 +52,7 @@ import {
   instrumentAsync,
   logger,
   resolveProjectRole,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
   getOrganizationPlanServerSide,
   getSelfHostedInstancePlanServerSide,
@@ -67,7 +67,7 @@ function canCreateOrganizations(userEmail: string | null): boolean {
 
   // if no allowlist is set or no entitlement for self-host-allowed-organization-creators, allow all users to create organizations
   if (
-    !env.LANGFUSE_ALLOWED_ORGANIZATION_CREATORS ||
+    !env.ELASTICDASH_ALLOWED_ORGANIZATION_CREATORS ||
     !hasEntitlementBasedOnPlan({
       plan: instancePlan,
       entitlement: "self-host-allowed-organization-creators",
@@ -78,7 +78,7 @@ function canCreateOrganizations(userEmail: string | null): boolean {
   if (!userEmail) return false;
 
   const allowedOrgCreators =
-    env.LANGFUSE_ALLOWED_ORGANIZATION_CREATORS.toLowerCase().split(",");
+    env.ELASTICDASH_ALLOWED_ORGANIZATION_CREATORS.toLowerCase().split(",");
   return allowedOrgCreators.includes(userEmail.toLowerCase());
 }
 
@@ -647,15 +647,15 @@ export async function getAuthOptions(): Promise<NextAuthOptions> {
             },
           });
 
-          span.setAttribute("langfuse.user.email", dbUser?.email ?? "");
-          span.setAttribute("langfuse.user.id", dbUser?.id ?? "");
+          span.setAttribute("elasticdash.user.email", dbUser?.email ?? "");
+          span.setAttribute("elasticdash.user.id", dbUser?.id ?? "");
 
           return {
             ...session,
             environment: {
               enableExperimentalFeatures:
-                env.LANGFUSE_ENABLE_EXPERIMENTAL_FEATURES === "true",
-              // Enables features that are only available under an enterprise license when self-hosting Langfuse
+                env.ELASTICDASH_ENABLE_EXPERIMENTAL_FEATURES === "true",
+              // Enables features that are only available under an enterprise license when self-hosting ElasticDash
               // If you edit this line, you risk executing code that is not MIT licensed (self-contained in /ee folders otherwise)
               selfHostedInstancePlan: getSelfHostedInstancePlanServerSide(),
             },
@@ -837,7 +837,7 @@ export async function getAuthOptions(): Promise<NextAuthOptions> {
     pages: {
       signIn: `${env.NEXT_PUBLIC_BASE_PATH ?? ""}/auth/sign-in`,
       error: `${env.NEXT_PUBLIC_BASE_PATH ?? ""}/auth/error`,
-      ...(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION
+      ...(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION
         ? {
             newUser: `${env.NEXT_PUBLIC_BASE_PATH ?? ""}/onboarding`,
           }
@@ -872,17 +872,17 @@ export async function getAuthOptions(): Promise<NextAuthOptions> {
     events: {
       createUser: async ({ user }) => {
         if (
-          env.LANGFUSE_NEW_USER_SIGNUP_WEBHOOK &&
-          env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION &&
-          env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== "STAGING" &&
-          env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION !== "DEV"
+          env.ELASTICDASH_NEW_USER_SIGNUP_WEBHOOK &&
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION &&
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION !== "STAGING" &&
+          env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION !== "DEV"
         ) {
-          await fetch(env.LANGFUSE_NEW_USER_SIGNUP_WEBHOOK, {
+          await fetch(env.ELASTICDASH_NEW_USER_SIGNUP_WEBHOOK, {
             method: "POST",
             body: JSON.stringify({
               name: user.name,
               email: user.email,
-              cloudRegion: env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION,
+              cloudRegion: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
               userId: user.id,
               // referralSource: ...
             }),

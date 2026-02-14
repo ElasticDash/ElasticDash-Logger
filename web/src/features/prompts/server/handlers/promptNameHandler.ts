@@ -6,12 +6,12 @@ import { withMiddlewares } from "@/src/features/public-api/server/withMiddleware
 import { authorizePromptRequestOrThrow } from "../utils/authorizePromptRequest";
 import {
   GetPromptByNameSchema,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   PRODUCTION_LABEL,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { RateLimitService } from "@/src/features/public-api/server/RateLimitService";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
-import { prisma } from "@langfuse/shared/src/db";
+import { prisma } from "@elasticdash/shared/src/db";
 
 const getPromptNameHandler = async (
   req: NextApiRequest,
@@ -49,7 +49,7 @@ const getPromptNameHandler = async (
       errorMessage += ` with label '${label ?? PRODUCTION_LABEL}'`;
     }
 
-    throw new LangfuseNotFoundError(errorMessage);
+    throw new ElasticDashNotFoundError(errorMessage);
   }
 
   res.status(200).json({

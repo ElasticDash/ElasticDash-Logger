@@ -2,7 +2,7 @@ import {
   getCurrentSpan,
   logger,
   type EntityChangeEventType,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { promptVersionProcessor } from "./promptVersionProcessor";
 
 /**

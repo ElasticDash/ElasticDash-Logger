@@ -9,16 +9,17 @@ import {
   createTrace,
   createTracesCh,
   createManyDatasetItems,
-} from "@langfuse/shared/src/server";
-import { BatchExportTableName, DatasetStatus } from "@langfuse/shared";
-import { prisma } from "@langfuse/shared/src/db";
+} from "@elasticdash/shared/src/server";
+import { BatchExportTableName, DatasetStatus } from "@elasticdash/shared";
+import { prisma } from "@elasticdash/shared/src/db";
 import { getDatabaseReadStreamPaginated } from "../features/database-read-stream/getDatabaseReadStream";
 import { getObservationStream } from "../features/database-read-stream/observation-stream";
 import { getTraceStream } from "../features/database-read-stream/trace-stream";
 // Set environment variable before any imports to ensure it's picked up by env module
-process.env.LANGFUSE_DATASET_SERVICE_READ_FROM_VERSIONED_IMPLEMENTATION =
+process.env.ELASTICDASH_DATASET_SERVICE_READ_FROM_VERSIONED_IMPLEMENTATION =
   "true";
-process.env.LANGFUSE_DATASET_SERVICE_WRITE_TO_VERSIONED_IMPLEMENTATION = "true";
+process.env.ELASTICDASH_DATASET_SERVICE_WRITE_TO_VERSIONED_IMPLEMENTATION =
+  "true";
 
 describe("batch export test suite", () => {
   it("should export observations", async () => {

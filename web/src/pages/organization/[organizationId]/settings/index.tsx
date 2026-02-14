@@ -12,7 +12,7 @@ import { BillingSettings } from "@/src/ee/features/billing/components/BillingSet
 import { useHasEntitlement, usePlan } from "@/src/features/entitlements/hooks";
 import ContainerPage from "@/src/components/layouts/container-page";
 import { SSOSettings } from "@/src/ee/features/sso-settings/components/SSOSettings";
-import { isCloudPlan } from "@langfuse/shared";
+import { isCloudPlan } from "@elasticdash/shared";
 import { useQueryProjectOrOrganization } from "@/src/features/projects/hooks";
 import { ApiKeyList } from "@/src/features/public-api/components/ApiKeyList";
 import AIFeatureSwitch from "@/src/features/organizations/components/AIFeatureSwitch";
@@ -31,7 +31,7 @@ export function useOrganizationSettingsPages(): OrganizationSettingsPage[] {
   const showBillingSettings = useHasEntitlement("cloud-billing");
   const showOrgApiKeySettings = useHasEntitlement("admin-api");
   const plan = usePlan();
-  const isLangfuseCloud = isCloudPlan(plan) ?? false;
+  const isElasticDashCloud = isCloudPlan(plan) ?? false;
   const isCloudBillingAvailable = useIsCloudBillingAvailable();
 
   if (!organization) return [];
@@ -40,7 +40,7 @@ export function useOrganizationSettingsPages(): OrganizationSettingsPage[] {
     organization,
     showBillingSettings: showBillingSettings && isCloudBillingAvailable,
     showOrgApiKeySettings,
-    isLangfuseCloud,
+    isElasticDashCloud,
   });
 }
 
@@ -48,12 +48,12 @@ export const getOrganizationSettingsPages = ({
   organization,
   showBillingSettings,
   showOrgApiKeySettings,
-  isLangfuseCloud,
+  isElasticDashCloud,
 }: {
   organization: { id: string; name: string; metadata: Record<string, unknown> };
   showBillingSettings: boolean;
   showOrgApiKeySettings: boolean;
-  isLangfuseCloud: boolean;
+  isElasticDashCloud: boolean;
 }): OrganizationSettingsPage[] => [
   {
     title: "General",
@@ -70,8 +70,8 @@ export const getOrganizationSettingsPages = ({
               name: organization.name,
               id: organization.id,
               ...organization.metadata,
-              ...(env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION && {
-                cloudRegion: env.NEXT_PUBLIC_LANGFUSE_CLOUD_REGION,
+              ...(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION && {
+                cloudRegion: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
               }),
             }}
           />
@@ -128,7 +128,7 @@ export const getOrganizationSettingsPages = ({
     slug: "sso",
     cmdKKeywords: ["sso", "login", "auth", "okta", "saml", "azure"],
     content: <SSOSettings />,
-    show: isLangfuseCloud,
+    show: isElasticDashCloud,
   },
   {
     title: "Projects",

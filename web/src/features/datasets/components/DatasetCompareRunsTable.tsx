@@ -2,7 +2,7 @@ import { DataTable } from "@/src/components/table/data-table";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
 import { FilteredRunPills } from "@/src/components/table/filtered-run-pills";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { IOTableCell } from "@/src/components/ui/IOTableCell";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { getDatasetRunAggregateColumnProps } from "@/src/features/datasets/components/DatasetRunAggregateColumnHelpers";
@@ -26,8 +26,8 @@ import {
   useDatasetCompareFields,
 } from "@/src/features/datasets/contexts/DatasetCompareFieldsContext";
 import { useColumnFilterState } from "@/src/features/filters/hooks/useColumnFilterState";
-import { type Prisma } from "@langfuse/shared";
-import { type EnrichedDatasetRunItem } from "@langfuse/shared/src/server";
+import { type Prisma } from "@elasticdash/shared";
+import { type EnrichedDatasetRunItem } from "@elasticdash/shared/src/server";
 import { usePeekNavigation } from "@/src/components/table/peek/hooks/usePeekNavigation";
 import { PeekViewTraceDetail } from "@/src/components/table/peek/peek-trace-detail";
 
@@ -122,7 +122,7 @@ function DatasetCompareRunsTableInternal(props: {
       getFiltersForRun,
     });
 
-  const columns: LangfuseColumnDef<DatasetCompareRunRowData>[] = [
+  const columns: ElasticDashColumnDef<DatasetCompareRunRowData>[] = [
     {
       accessorKey: "id",
       header: "Item id",

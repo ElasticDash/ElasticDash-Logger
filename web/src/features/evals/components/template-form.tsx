@@ -14,15 +14,15 @@ import {
 } from "@/src/components/ui/form";
 import { api } from "@/src/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { extractVariables, getIsCharOrUnderscore } from "@langfuse/shared";
+import { extractVariables, getIsCharOrUnderscore } from "@elasticdash/shared";
 import router from "next/router";
-import { type EvalTemplate } from "@langfuse/shared";
+import { type EvalTemplate } from "@elasticdash/shared";
 import { ModelParameters } from "@/src/components/ModelParameters";
 import {
   OutputSchema,
   type ModelParams,
   ZodModelConfig,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import { PromptVariableListPreview } from "@/src/features/prompts/components/PromptVariableListPreview";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { getFinalModelParams } from "@/src/utils/getFinalModelParams";
@@ -67,8 +67,8 @@ export const EvalTemplateForm = (props: {
         cloneSourceId={props.cloneSourceId}
         onBeforeSubmit={props.onBeforeSubmit}
         preFilledFormValues={
-          // if a langfuse template is selected, use that, else use the existing template
-          // no langfuse template is selected if there is already an existing template
+          // if a elasticdash template is selected, use that, else use the existing template
+          // no elasticdash template is selected if there is already an existing template
           props.existingEvalTemplate
             ? {
                 name: props.existingEvalTemplate.name,
@@ -151,7 +151,7 @@ export type EvalTemplateFormPreFill = {
 export const InnerEvalTemplateForm = (props: {
   projectId: string;
   useDialog: boolean;
-  // pre-filled values from langfuse-defined template or template from db
+  // pre-filled values from elasticdash-defined template or template from db
   preFilledFormValues?: EvalTemplateFormPreFill;
   // template to be updated
   existingEvalTemplateId?: string;
@@ -178,7 +178,7 @@ export const InnerEvalTemplateForm = (props: {
   );
 
   // updates the model params based on the pre-filled data
-  // either form update or from langfuse-generated template
+  // either form update or from elasticdash-generated template
   const {
     modelParams,
     setModelParams,
@@ -201,7 +201,7 @@ export const InnerEvalTemplateForm = (props: {
   );
 
   // updates the form based on the pre-filled data
-  // either form update or from langfuse-generated template
+  // either form update or from elasticdash-generated template
   const form = useForm({
     resolver: zodResolver(formSchema),
     disabled: !props.isEditing,

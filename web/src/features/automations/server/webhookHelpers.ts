@@ -2,21 +2,21 @@ import {
   decrypt,
   encrypt,
   generateWebhookSecret,
-} from "@langfuse/shared/encryption";
+} from "@elasticdash/shared/encryption";
 import {
   type ActionCreate,
   type ActionConfig,
   type WebhookActionConfigWithSecrets,
   type WebhookActionCreate,
   isWebhookActionConfig,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 import {
   getActionByIdWithSecrets,
   mergeHeaders,
   createDisplayHeaders,
   encryptSecretHeaders,
   validateWebhookURL,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { TRPCError } from "@trpc/server";
 
 interface WebhookConfigOptions {

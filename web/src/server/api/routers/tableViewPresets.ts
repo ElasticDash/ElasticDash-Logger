@@ -9,12 +9,12 @@ import {
   CreateTableViewPresetsInput,
   UpdateTableViewPresetsInput,
   UpdateTableViewPresetsNameInput,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import {
-  LangfuseConflictError,
+  ElasticDashConflictError,
   Prisma,
   TableViewPresetTableName,
-} from "@langfuse/shared";
+} from "@elasticdash/shared";
 
 export const TableViewPresetsRouter = createTRPCRouter({
   create: protectedProjectProcedure
@@ -41,7 +41,7 @@ export const TableViewPresetsRouter = createTRPCRouter({
           error instanceof Prisma.PrismaClientKnownRequestError &&
           error.code === "P2002"
         ) {
-          throw new LangfuseConflictError(
+          throw new ElasticDashConflictError(
             "Table view preset with this name already exists. Please choose a different name.",
           );
         }

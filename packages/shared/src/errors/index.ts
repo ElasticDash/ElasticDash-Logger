@@ -1,11 +1,11 @@
 export { BaseError } from "./BaseError";
-export { LangfuseNotFoundError } from "./NotFoundError";
+export { ElasticDashNotFoundError } from "./NotFoundError";
 export { InvalidRequestError } from "./InvalidRequestError";
 export { UnauthorizedError } from "./UnauthorizedError";
 export { ForbiddenError } from "./ForbiddenError";
 export { MethodNotAllowedError } from "./MethodNotAllowedError";
 export { ApiError } from "./ApiError";
 export { InternalServerError } from "./InternalServerError";
-export { LangfuseConflictError } from "./ConflictError";
+export { ElasticDashConflictError } from "./ConflictError";
 export { ServiceUnavailableError } from "./ServiceUnavailableError";
 export { NotImplementedError } from "./NotImplementedError";

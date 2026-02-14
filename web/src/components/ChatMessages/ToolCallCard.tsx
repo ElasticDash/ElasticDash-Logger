@@ -1,4 +1,4 @@
-import { type LLMToolCall } from "@langfuse/shared";
+import { type LLMToolCall } from "@elasticdash/shared";
 import { PrettyJsonView } from "@/src/components/ui/PrettyJsonView";
 
 export const ToolCallCard: React.FC<{ toolCall: LLMToolCall }> = ({

@@ -7,7 +7,7 @@ import {
   isLLMCompletionError,
   logger,
   traceException,
-} from "@langfuse/shared/src/server";
+} from "@elasticdash/shared/src/server";
 import { retryLLMRateLimitError } from "../features/utils";
 import { delayInMs } from "./utils/delays";
 import { createExperimentJobClickhouse } from "../features/experiments/experimentServiceClickhouse";
