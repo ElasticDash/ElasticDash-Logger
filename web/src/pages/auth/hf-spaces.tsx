@@ -4,13 +4,14 @@
  */
 
 import { Button } from "@/src/components/ui/button";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import Head from "next/head";
 import Link from "next/link";
 import { type GetServerSideProps } from "next";
 import { env } from "@/src/env.mjs";
 import { PlusIcon } from "lucide-react";
 import { CodeView } from "@/src/components/ui/CodeJsonViewer";
+import React from "react";
 
 type PageProps = {
   deploymentDomain: string;
@@ -35,7 +36,7 @@ export default function HfSpaces({ deploymentDomain }: PageProps) {
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <div className="flex items-center justify-center gap-2">
-            <LangfuseIcon />
+            <ElasticDashIcon />
             <PlusIcon size={12} className="ml-1" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/src/components/ui/tooltip";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import { UserCircle2Icon } from "lucide-react";
 import { StatusBadge } from "@/src/components/layouts/status-badge";
 import { DeactivateEvalConfig } from "@/src/features/evals/components/deactivate-config";
@@ -19,6 +19,7 @@ import { useState } from "react";
 import { cn } from "@/src/utils/tailwind";
 import { showSuccessToast } from "@/src/features/notifications/showSuccessToast";
 import { api } from "@/src/utils/api";
+import React from "react";
 
 export const PeekViewEvaluatorConfigDetail = ({
   projectId,
@@ -88,7 +89,7 @@ export const PeekViewEvaluatorConfigDetail = ({
           <Tooltip>
             <TooltipTrigger>
               {evalConfig.evalTemplate.projectId === null ? (
-                <LangfuseIcon size={16} />
+                <ElasticDashIcon size={16} />
               ) : (
                 <UserCircle2Icon className="h-4 w-4" />
               )}

@@ -26,7 +26,7 @@ import {
   TooltipTrigger,
 } from "@/src/components/ui/tooltip";
 import { Skeleton } from "@/src/components/ui/skeleton";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import { useRouter } from "next/router";
 import { PriceUnitSelector } from "@/src/features/models/components/PriceUnitSelector";
 import { usePriceUnitMultiplier } from "@/src/features/models/hooks/usePriceUnitMultiplier";
@@ -36,6 +36,7 @@ import { ActionButton } from "@/src/components/ActionButton";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { useHasProjectAccess } from "@/src/features/rbac/utils/checkProjectAccess";
 import { SettingsTableCard } from "@/src/components/layouts/settings-table-card";
+import React from "react";
 
 export type ModelTableRow = {
   modelId: string;
@@ -143,7 +144,7 @@ export default function ModelTable({ projectId }: { projectId: string }) {
             <Tooltip>
               <TooltipTrigger>
                 {isElasticDash ? (
-                  <LangfuseIcon size={16} />
+                  <ElasticDashIcon size={16} />
                 ) : (
                   <UserCircle2Icon className="h-4 w-4" />
                 )}

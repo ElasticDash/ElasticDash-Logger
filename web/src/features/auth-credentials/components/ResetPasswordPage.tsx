@@ -14,7 +14,7 @@ import {
 } from "@/src/components/ui/form";
 import { Input } from "@/src/components/ui/input";
 import { PasswordInput } from "@/src/components/ui/password-input";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import { useSession } from "next-auth/react";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
 import { api } from "@/src/utils/api";
@@ -26,6 +26,7 @@ import Link from "next/link";
 import { ErrorPage } from "@/src/components/error-page";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { passwordSchema } from "@/src/features/auth/lib/signupSchema";
+import React from "react";
 
 const resetPasswordSchema = z
   .object({
@@ -114,7 +115,7 @@ export function ResetPasswordPage({
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
           <Link href="/">
-            <LangfuseIcon className="mx-auto" />
+            <ElasticDashIcon className="mx-auto" />
           </Link>
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-primary">
             Reset your password

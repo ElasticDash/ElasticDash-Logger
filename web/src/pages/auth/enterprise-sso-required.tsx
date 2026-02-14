@@ -6,7 +6,7 @@ import { signIn } from "next-auth/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod/v4";
 import { useForm } from "react-hook-form";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import { Button } from "@/src/components/ui/button";
 import {
   Form,
@@ -19,6 +19,7 @@ import {
 import { Input } from "@/src/components/ui/input";
 import { env } from "@/src/env.mjs";
 import { captureException } from "@sentry/nextjs";
+import React from "react";
 
 const enterpriseSsoFormSchema = z.object({
   email: z.string().email(),
@@ -143,7 +144,7 @@ export default function EnterpriseSsoRequiredPage() {
       </Head>
       <div className="flex min-h-screen-with-banner flex-col justify-center bg-background px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <LangfuseIcon className="mx-auto" />
+          <ElasticDashIcon className="mx-auto" />
           <h1 className="mt-6 text-center text-2xl font-bold text-primary">
             Use your Enterprise SSO
           </h1>

@@ -17,7 +17,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod/v4";
 import { env } from "@/src/env.mjs";
 import { useState } from "react";
-import { LangfuseIcon } from "@/src/components/LangfuseLogo";
+import { ElasticDashIcon } from "@/src/components/ElasticDashLogo";
 import { CloudPrivacyNotice } from "@/src/features/auth/components/AuthCloudPrivacyNotice";
 import { CloudRegionSwitch } from "@/src/features/auth/components/AuthCloudRegionSwitch";
 import {
@@ -31,6 +31,7 @@ import { useRouter } from "next/router";
 import { getSafeRedirectPath } from "@/src/utils/redirect";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import useLocalStorage from "@/src/components/useLocalStorage";
+import React from "react";
 
 // Use the same getServerSideProps function as src/pages/auth/sign-in.tsx
 export { getServerSideProps } from "@/src/pages/auth/sign-in";
@@ -198,7 +199,7 @@ export default function SignIn({
       </Head>
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <LangfuseIcon className="mx-auto" />
+          <ElasticDashIcon className="mx-auto" />
           <h2 className="mt-4 text-center text-2xl font-bold leading-9 tracking-tight text-primary">
             Create new account
           </h2>
