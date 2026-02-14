@@ -1,4 +1,4 @@
-import { PrismaClient, LangfuseNotFoundError } from "@elasticdash/shared";
+import { PrismaClient, ElasticDashNotFoundError } from "@elasticdash/shared";
 import { logger } from "@elasticdash/shared/src/server";
 import { env } from "../env";
 
@@ -149,7 +149,7 @@ export class ClickhouseReadSkipCache {
       });
 
       if (!project) {
-        throw new LangfuseNotFoundError(`Project ${projectId} not found`);
+        throw new ElasticDashNotFoundError(`Project ${projectId} not found`);
       }
 
       const cutoffDate = new Date(

@@ -36,7 +36,7 @@ export function DatasetsOnboarding({ projectId }: { projectId: string }) {
   return (
     <SplashScreen
       title="Get Started with Datasets & Experiments"
-      description="Datasets in Langfuse are collections of inputs (and expected outputs) for your LLM application. You can run Experiments against these datasets to test new releases before deployment to production."
+      description="Datasets in ElasticDash are collections of inputs (and expected outputs) for your LLM application. You can run Experiments against these datasets to test new releases before deployment to production."
       valuePropositions={valuePropositions}
       primaryAction={{
         label: "Create Dataset",
@@ -53,7 +53,7 @@ export function DatasetsOnboarding({ projectId }: { projectId: string }) {
         label: "Learn More",
         href: "https://www.elasticdash.com/docs/datasets",
       }}
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/datasets-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/datasets-overview-v1.mp4"
     />
   );
 }

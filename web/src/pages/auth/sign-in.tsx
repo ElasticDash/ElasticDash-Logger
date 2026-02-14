@@ -41,7 +41,7 @@ import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePos
 import useLocalStorage from "@/src/components/useLocalStorage";
 import { AuthProviderButton } from "@/src/features/auth/components/AuthProviderButton";
 import { cn } from "@/src/utils/tailwind";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 import { getSafeRedirectPath } from "@/src/utils/redirect";
 
 const credentialAuthForm = z.object({
@@ -556,12 +556,12 @@ export default function SignIn({
   const [continueLoading, setContinueLoading] = useState<boolean>(false);
   const [lastUsedAuthMethod, setLastUsedAuthMethod] =
     useLocalStorage<NextAuthProvider | null>(
-      "langfuse_last_used_auth_method",
+      "elasticdash_last_used_auth_method",
       null,
     );
 
   const capture = usePostHogClientCapture();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
 
   // Count available auth methods to determine if we should show "Last used" badge
   const availableProviders = Object.entries(authProviders).filter(
@@ -700,7 +700,7 @@ export default function SignIn({
   return (
     <>
       <Head>
-        <title>Sign in | Langfuse</title>
+        <title>Sign in | ElasticDash</title>
       </Head>
       <div className="flex flex-1 flex-col py-6 sm:min-h-full sm:justify-center sm:px-6 sm:py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -710,12 +710,12 @@ export default function SignIn({
           </h2>
         </div>
 
-        {isLangfuseCloud && (
+        {isElasticDashCloud && (
           <div className="-mb-4 mt-4 rounded-lg bg-card p-3 text-center text-sm sm:mx-auto sm:w-full sm:max-w-[480px] sm:rounded-lg sm:px-6">
             If you are experiencing issues signing in, please force refresh this
             page (CMD + SHIFT + R) or clear your browser cache.{" "}
             <a
-              href="mailto:support@langfuse.com"
+              href="mailto:support@elasticdash.com"
               className="cursor-pointer whitespace-nowrap text-xs font-medium text-primary-accent hover:text-hover-primary-accent"
             >
               (contact us)
@@ -827,7 +827,7 @@ export default function SignIn({
                 {credentialsFormError}
                 <br />
                 Contact support if this error is unexpected.{" "}
-                {isLangfuseCloud &&
+                {isElasticDashCloud &&
                   "Make sure you are using the correct cloud data region."}
               </div>
             ) : null}

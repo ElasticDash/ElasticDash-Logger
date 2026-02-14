@@ -21,7 +21,7 @@ import {
 } from "@elasticdash/shared/src/server";
 import { views } from "@/src/features/query";
 import { TRPCError } from "@trpc/server";
-import { LangfuseConflictError } from "@elasticdash/shared";
+import { ElasticDashConflictError } from "@elasticdash/shared";
 
 const CreateDashboardWidgetInput = z.object({
   projectId: z.string(),
@@ -230,7 +230,7 @@ export const dashboardWidgetRouter = createTRPCRouter({
         };
       } catch (error) {
         // If the widget is still referenced in dashboards, throw a CONFLICT error
-        if (error instanceof LangfuseConflictError) {
+        if (error instanceof ElasticDashConflictError) {
           throw new TRPCError({
             code: "CONFLICT",
             message: error.message,

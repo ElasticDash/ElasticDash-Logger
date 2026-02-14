@@ -466,7 +466,7 @@ const getScoresForTracesInternal = async <
     );
 
     recordDistribution(
-      "langfuse.query_by_id_age",
+      "elasticdash.query_by_id_age",
       new Date().getTime() - score.timestamp.getTime(),
       {
         table: "scores",
@@ -1659,33 +1659,33 @@ export const getScoresForAnalyticsIntegrations = async function* (
 
     yield {
       timestamp: record.timestamp,
-      langfuse_score_name: record.name,
-      langfuse_score_value: record.value,
-      langfuse_score_comment: record.comment,
-      langfuse_score_metadata: record.metadata,
-      langfuse_score_string_value: record.string_value,
-      langfuse_score_data_type: record.data_type,
-      langfuse_trace_name: record.trace_name,
-      langfuse_trace_id: effectiveTraceId,
-      langfuse_user_url: record.trace_user_id
+      elasticdash_score_name: record.name,
+      elasticdash_score_value: record.value,
+      elasticdash_score_comment: record.comment,
+      elasticdash_score_metadata: record.metadata,
+      elasticdash_score_string_value: record.string_value,
+      elasticdash_score_data_type: record.data_type,
+      elasticdash_trace_name: record.trace_name,
+      elasticdash_trace_id: effectiveTraceId,
+      elasticdash_user_url: record.trace_user_id
         ? `${baseUrl}/project/${projectId}/users/${encodeURIComponent(record.trace_user_id as string)}`
         : undefined,
-      langfuse_id: record.id,
-      langfuse_session_id: effectiveSessionId,
-      langfuse_project_id: projectId,
-      langfuse_user_id: record.trace_user_id || null,
-      langfuse_release: record.trace_release,
-      langfuse_tags: record.trace_tags,
-      langfuse_environment: record.environment,
-      langfuse_event_version: "1.0.0",
-      langfuse_score_entity_type: record.score_trace_id
+      elasticdash_id: record.id,
+      elasticdash_session_id: effectiveSessionId,
+      elasticdash_project_id: projectId,
+      elasticdash_user_id: record.trace_user_id || null,
+      elasticdash_release: record.trace_release,
+      elasticdash_tags: record.trace_tags,
+      elasticdash_environment: record.environment,
+      elasticdash_event_version: "1.0.0",
+      elasticdash_score_entity_type: record.score_trace_id
         ? "trace"
         : record.score_session_id
           ? "session"
           : record.score_dataset_run_id
             ? "dataset_run"
             : "unknown",
-      langfuse_dataset_run_id: record.score_dataset_run_id,
+      elasticdash_dataset_run_id: record.score_dataset_run_id,
       posthog_session_id: record.posthog_session_id ?? null,
       mixpanel_session_id: record.mixpanel_session_id ?? null,
     } satisfies AnalyticsScoreEvent;

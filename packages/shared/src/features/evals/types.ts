@@ -1,6 +1,6 @@
 import z from "zod/v4";
 
-export const langfuseObjects = [
+export const elasticdashObjects = [
   "trace",
   "span",
   "generation",
@@ -15,8 +15,8 @@ export const langfuseObjects = [
   "dataset_item",
 ] as const;
 
-const langfuseObject = z.enum(langfuseObjects);
-export type LangfuseEvaluationObject = z.infer<typeof langfuseObject>;
+const elasticdashObject = z.enum(elasticdashObjects);
+export type ElasticDashEvaluationObject = z.infer<typeof elasticdashObject>;
 
 // variable mapping stored in the db for eval templates
 export const variableMapping = z
@@ -25,14 +25,14 @@ export const variableMapping = z
     // name of the observation to extract the variable from
     // not required for trace, as we only have one.
     objectName: z.string().nullish(),
-    langfuseObject: langfuseObject,
+    elasticdashObject: elasticdashObject,
     selectedColumnId: z.string(),
     jsonSelector: z.string().nullish(),
   })
   .refine(
-    (value) => value.langfuseObject === "trace" || value.objectName !== null,
+    (value) => value.elasticdashObject === "trace" || value.objectName !== null,
     {
-      message: "objectName is required for langfuseObjects other than trace",
+      message: "objectName is required for elasticdashObjects other than trace",
     },
   );
 
@@ -41,7 +41,7 @@ export const variableMappingList = z.array(variableMapping);
 export const wipVariableMapping = z.object({
   templateVariable: z.string(),
   objectName: z.string().nullish(),
-  langfuseObject: langfuseObject,
+  elasticdashObject: elasticdashObject,
   selectedColumnId: z.string().nullish(),
   jsonSelector: z.string().nullish(),
 });

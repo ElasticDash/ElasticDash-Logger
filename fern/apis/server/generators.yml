@@ -15,7 +15,7 @@ groups:
           location: local-file-system
           path: ../../../generated/python
         config:
-          client_class_name: FernLangfuse
+          client_class_name: FernElasticDash
           improved_imports: false
           inline_request_params: false
           pydantic_config:
@@ -36,7 +36,7 @@ groups:
           location: local-file-system
           path: ../../../generated/typescript
         config:
-          namespaceExport: LangfuseAPI
+          namespaceExport: ElasticDashAPI
           outputSourceFiles: true
           skipResponseValidation: true
           fetchSupport: native

@@ -10,7 +10,7 @@ export function UsersOnboarding() {
     {
       title: "Track user interactions",
       description:
-        "Attribute data in Langfuse to specific users by adding a userId to your traces",
+        "Attribute data in ElasticDash to specific users by adding a userId to your traces",
       icon: <Users className="h-4 w-4" />,
     },
     {
@@ -51,7 +51,7 @@ export function UsersOnboarding() {
           for more details.
         </span>
       }
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/users-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/users-overview-v1.mp4"
     />
   );
 }

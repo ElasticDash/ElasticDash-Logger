@@ -26,7 +26,7 @@ import { UserInputError, ApiServerError } from "@/src/features/mcp/core/errors";
 import {
   UnauthorizedError,
   ForbiddenError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   InvalidRequestError,
   BaseError,
 } from "@elasticdash/shared";
@@ -166,7 +166,7 @@ describe("MCP Error Formatting", () => {
       });
     });
 
-    describe("Langfuse standard errors", () => {
+    describe("ElasticDash standard errors", () => {
       it("should format UnauthorizedError with auth message", () => {
         const error = new UnauthorizedError("Invalid API key");
         const mcpError = formatErrorForUser(error);
@@ -185,8 +185,8 @@ describe("MCP Error Formatting", () => {
         expect(mcpError.message).toContain("permission");
       });
 
-      it("should format LangfuseNotFoundError with original message", () => {
-        const error = new LangfuseNotFoundError("Prompt not found: chatbot");
+      it("should format ElasticDashNotFoundError with original message", () => {
+        const error = new ElasticDashNotFoundError("Prompt not found: chatbot");
         const mcpError = formatErrorForUser(error);
 
         expect(mcpError.code).toBe(ErrorCode.InvalidRequest);
@@ -410,7 +410,7 @@ describe("MCP Error Formatting", () => {
     it("should categorize user-fixable errors as InvalidRequest", () => {
       const userErrors = [
         new UserInputError("Invalid input"),
-        new LangfuseNotFoundError("Not found"),
+        new ElasticDashNotFoundError("Not found"),
         new InvalidRequestError("Bad request"),
       ];
 

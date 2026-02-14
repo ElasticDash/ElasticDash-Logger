@@ -238,7 +238,7 @@ export const env = createEnv({
       )
       .optional(),
 
-    // langfuse caching
+    // elasticdash caching
     ELASTICDASH_CACHE_API_KEY_ENABLED: z
       .enum(["true", "false"])
       .default("true"),
@@ -318,13 +318,13 @@ export const env = createEnv({
     SLACK_CLIENT_SECRET: z.string().optional(),
     SLACK_STATE_SECRET: z.string().optional(),
 
-    // AWS Bedrock for langfuse native AI feature such as natural language filters
+    // AWS Bedrock for elasticdash native AI feature such as natural language filters
     ELASTICDASH_AWS_BEDROCK_MODEL: z.string().optional(),
 
-    // Tracing for Langfuse AI Features
+    // Tracing for ElasticDash AI Features
     ELASTICDASH_AI_FEATURES_HOST: z.string().optional(),
 
-    // Natural Langfuse Filters
+    // Natural ElasticDash Filters
     ELASTICDASH_AI_FEATURES_PUBLIC_KEY: z.string().optional(),
     ELASTICDASH_AI_FEATURES_SECRET_KEY: z.string().optional(),
     ELASTICDASH_AI_FEATURES_PROJECT_ID: z.string().optional(),
@@ -648,7 +648,7 @@ export const env = createEnv({
     ELASTICDASH_EE_LICENSE_KEY: process.env.ELASTICDASH_EE_LICENSE_KEY,
     ADMIN_API_KEY: process.env.ADMIN_API_KEY,
     ENCRYPTION_KEY: process.env.ENCRYPTION_KEY,
-    // langfuse caching
+    // elasticdash caching
     ELASTICDASH_CACHE_API_KEY_ENABLED:
       process.env.ELASTICDASH_CACHE_API_KEY_ENABLED,
     ELASTICDASH_CACHE_API_KEY_TTL_SECONDS:
@@ -684,10 +684,10 @@ export const env = createEnv({
     SLACK_CLIENT_SECRET: process.env.SLACK_CLIENT_SECRET,
     SLACK_STATE_SECRET: process.env.SLACK_STATE_SECRET,
 
-    // AWS Bedrock for langfuse native AI feature such as natural language filters
+    // AWS Bedrock for elasticdash native AI feature such as natural language filters
     ELASTICDASH_AWS_BEDROCK_MODEL: process.env.ELASTICDASH_AWS_BEDROCK_MODEL,
 
-    // Langfuse Tracing AI Features
+    // ElasticDash Tracing AI Features
     ELASTICDASH_AI_FEATURES_HOST: process.env.ELASTICDASH_AI_FEATURES_HOST,
 
     // Api Performance Flags

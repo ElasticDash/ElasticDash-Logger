@@ -29,7 +29,7 @@ import {
   getDatasetItemIdsByTraceIdCh,
   mapDatasetRunItemFilterColumn,
   fetchLLMCompletion,
-  LangfuseInternalTraceEnvironment,
+  ElasticDashInternalTraceEnvironment,
   tableColumnsToSqlFilterAndPrefix,
 } from "@elasticdash/shared/src/server";
 import {
@@ -221,27 +221,27 @@ export const createEvalJobs = async ({
     `Creating eval jobs for trace ${event.traceId} on project ${event.projectId}`,
   );
 
-  // Early exit: Skip eval job creation for internal Langfuse traces from trace-upsert queue
+  // Early exit: Skip eval job creation for internal ElasticDash traces from trace-upsert queue
   //
   // CONTEXT: Prevent infinite eval loops
   // Without this safeguard: user trace → eval → eval trace → another eval → infinite loop
   //
   // IMPLEMENTATION:
-  // - Block ALL traces with environment starting with "langfuse-" when coming from trace-upsert queue
+  // - Block ALL traces with environment starting with "elasticdash-" when coming from trace-upsert queue
   // - This excludes traces from prompt experiments that come via dataset-run-item-upsert queue
-  // - Internal traces (e.g., eval executions) use LangfuseInternalTraceEnvironment enum values
+  // - Internal traces (e.g., eval executions) use ElasticDashInternalTraceEnvironment enum values
   //
   // DUAL SAFEGUARD:
   // - This check prevents eval job CREATION for internal traces
-  // - fetchLLMCompletion.ts enforces that internal traces MUST use "langfuse-" prefix
+  // - fetchLLMCompletion.ts enforces that internal traces MUST use "elasticdash-" prefix
   //
   // See: packages/shared/src/server/llm/fetchLLMCompletion.ts (enforcement)
-  // See: packages/shared/src/server/llm/types.ts (LangfuseInternalTraceEnvironment enum)
+  // See: packages/shared/src/server/llm/types.ts (ElasticDashInternalTraceEnvironment enum)
   if (
     sourceEventType === "trace-upsert" &&
-    event.traceEnvironment?.startsWith("langfuse")
+    event.traceEnvironment?.startsWith("elasticdash")
   ) {
-    logger.debug("Skipping eval job creation for internal Langfuse trace", {
+    logger.debug("Skipping eval job creation for internal ElasticDash trace", {
       traceId: event.traceId,
       environment: event.traceEnvironment,
     });
@@ -251,7 +251,10 @@ export const createEvalJobs = async ({
 
   // Optimization: Fetch trace data once if we have multiple configs
   let cachedTrace: TraceDomain | undefined | null = null;
-  recordIncrement("langfuse.evaluation-execution.config_count", configs.length);
+  recordIncrement(
+    "elasticdash.evaluation-execution.config_count",
+    configs.length,
+  );
   if (configs.length > 1) {
     try {
       // Fetch trace data and store it. If observation data is required, we'll make a separate lookup.
@@ -269,7 +272,7 @@ export const createEvalJobs = async ({
         excludeInputOutput: true,
       });
 
-      recordIncrement("langfuse.evaluation-execution.trace_cache_fetch", 1, {
+      recordIncrement("elasticdash.evaluation-execution.trace_cache_fetch", 1, {
         found: Boolean(cachedTrace).toString(),
       });
       logger.debug("Fetched trace for evaluation optimization", {
@@ -301,7 +304,7 @@ export const createEvalJobs = async ({
         filter: [],
       });
       recordIncrement(
-        "langfuse.evaluation-execution.dataset_item_cache_fetch",
+        "elasticdash.evaluation-execution.dataset_item_cache_fetch",
         1,
         {
           found: Boolean(cachedDatasetItemIds.length > 0).toString(),
@@ -360,7 +363,7 @@ export const createEvalJobs = async ({
 
       traceExistsDecisionSource = "cache";
 
-      recordIncrement("langfuse.evaluation-execution.trace_cache_check", 1, {
+      recordIncrement("elasticdash.evaluation-execution.trace_cache_check", 1, {
         matches: traceExists ? "true" : "false",
       });
       logger.debug("Evaluated trace filter in memory", {
@@ -403,7 +406,7 @@ export const createEvalJobs = async ({
 
       traceExists = exists;
       traceTimestamp = timestamp;
-      recordIncrement("langfuse.evaluation-execution.trace_db_lookup", 1, {
+      recordIncrement("elasticdash.evaluation-execution.trace_db_lookup", 1, {
         hasCached: Boolean(cachedTrace).toString(),
         requiredDatabaseLookup: requiresDatabaseLookup(traceFilter)
           ? "true"
@@ -411,7 +414,7 @@ export const createEvalJobs = async ({
       });
     }
 
-    recordIncrement("langfuse.evaluation-execution.trace_exists_check", 1, {
+    recordIncrement("elasticdash.evaluation-execution.trace_exists_check", 1, {
       decisionSource: traceExistsDecisionSource,
       exists: String(traceExists),
     });
@@ -812,7 +815,7 @@ export const evaluate = async ({
       targetProjectId: event.projectId,
       traceId: executionTraceId,
       traceName: `Execute evaluator: ${template.name}`,
-      environment: LangfuseInternalTraceEnvironment.LLMJudge,
+      environment: ElasticDashInternalTraceEnvironment.LLMJudge,
       metadata: {
         ...executionMetadata,
         score_id: scoreId,
@@ -950,7 +953,7 @@ export async function extractVariablesFromTracingData({
       results.push({ var: variable, value: "" });
       continue;
     }
-    if (mapping.langfuseObject === "dataset_item") {
+    if (mapping.elasticdashObject === "dataset_item") {
       if (!datasetItemId) {
         logger.warn(
           `No dataset item id found for variable ${variable}. Eval will succeed without dataset item input.`,
@@ -1003,7 +1006,7 @@ export async function extractVariablesFromTracingData({
       continue;
     }
 
-    if (mapping.langfuseObject === "trace") {
+    if (mapping.elasticdashObject === "trace") {
       // find the internal definitions of the column
       const safeInternalColumn = availableTraceEvalVariables
         .find((o) => o.id === "trace")
@@ -1053,14 +1056,14 @@ export async function extractVariablesFromTracingData({
       .filter((obj) => obj.id !== "trace") // trace is handled separately above
       .map((obj) => obj.id);
 
-    if (observationTypes.includes(mapping.langfuseObject)) {
+    if (observationTypes.includes(mapping.elasticdashObject)) {
       const safeInternalColumn = availableTraceEvalVariables
-        .find((o) => o.id === mapping.langfuseObject)
+        .find((o) => o.id === mapping.elasticdashObject)
         ?.availableColumns.find((col) => col.id === mapping.selectedColumnId);
 
       if (!mapping.objectName) {
         logger.info(
-          `No object name found for variable ${variable} and object ${mapping.langfuseObject}`,
+          `No object name found for variable ${variable} and object ${mapping.elasticdashObject}`,
         );
         results.push({ var: variable, value: "" });
         continue;
@@ -1107,7 +1110,7 @@ export async function extractVariablesFromTracingData({
       continue;
     }
 
-    throw new Error(`Unknown object type ${mapping.langfuseObject}`);
+    throw new Error(`Unknown object type ${mapping.elasticdashObject}`);
   }
 
   return results;

@@ -11,9 +11,9 @@ info:
     keys in the project settings:
 
 
-    - username: Langfuse Public Key
+    - username: ElasticDash Public Key
 
-    - password: Langfuse Secret Key
+    - password: ElasticDash Secret Key
 
 
     ## Exports
@@ -1552,7 +1552,7 @@ paths:
   /api/public/ingestion:
     post:
       description: >-
-        **Legacy endpoint for batch ingestion for Langfuse Observability.**
+        **Legacy endpoint for batch ingestion for ElasticDash Observability.**
 
 
         -> Please use the OpenTelemetry endpoint (`/api/public/otel/v1/traces`).
@@ -1571,7 +1571,7 @@ paths:
         unique per request.
 
         The event.body.id is the ID of the actual trace and will be used for
-        updates and will be visible within the Langfuse App.
+        updates and will be visible within the ElasticDash App.
 
         I.e. if you want to update a trace, you'd use the same body id, but
         separate event IDs.
@@ -1662,7 +1662,7 @@ paths:
                 metadata:
                   nullable: true
                   description: >-
-                    Optional. Metadata field used by the Langfuse SDKs for
+                    Optional. Metadata field used by the ElasticDash SDKs for
                     debugging.
               required:
                 - batch
@@ -1960,7 +1960,7 @@ paths:
   /api/public/v2/metrics:
     get:
       description: >-
-        Get metrics from the Langfuse project using a query object. V2 endpoint
+        Get metrics from the ElasticDash project using a query object. V2 endpoint
         with optimized performance.
 
 
@@ -2259,7 +2259,7 @@ paths:
   /api/public/metrics:
     get:
       description: >-
-        Get metrics from the Langfuse project using a query object.
+        Get metrics from the ElasticDash project using a query object.
 
 
         Consider using the [v2 metrics
@@ -2507,7 +2507,7 @@ paths:
         - BasicAuth: []
     delete:
       description: >-
-        Delete a model. Cannot delete models managed by Langfuse. You can create
+        Delete a model. Cannot delete models managed by ElasticDash. You can create
         your own definition with the same modelName to override the definition
         though.
       operationId: models_delete
@@ -3273,7 +3273,7 @@ paths:
 
 
         This endpoint implements the OTLP/HTTP specification for trace
-        ingestion, providing native OpenTelemetry integration for Langfuse
+        ingestion, providing native OpenTelemetry integration for ElasticDash
         Observability.
 
 
@@ -4228,7 +4228,7 @@ paths:
                   description: >-
                     New labels for the prompt version. Labels are unique across
                     versions. The "latest" label is reserved and managed by
-                    Langfuse.
+                    ElasticDash.
               required:
                 - newLabels
   /api/public/v2/prompts/{promptName}:
@@ -6386,7 +6386,7 @@ components:
       properties:
         id:
           type: string
-          description: The id of the created object in Langfuse
+          description: The id of the created object in ElasticDash
       required:
         - id
     GetCommentsResponse:
@@ -6468,7 +6468,7 @@ components:
       properties:
         htmlPath:
           type: string
-          description: Path of trace in Langfuse UI
+          description: Path of trace in ElasticDash UI
         latency:
           type: number
           format: double
@@ -6501,7 +6501,7 @@ components:
       properties:
         htmlPath:
           type: string
-          description: Path of trace in Langfuse UI
+          description: Path of trace in ElasticDash UI
         latency:
           type: number
           format: double
@@ -7820,7 +7820,7 @@ components:
         - SECONDS
         - IMAGES
         - REQUESTS
-      description: Unit of usage in Langfuse
+      description: Unit of usage in ElasticDash
     ObservationLevel:
       title: ObservationLevel
       type: string
@@ -8034,7 +8034,7 @@ components:
       properties:
         version:
           type: string
-          description: Langfuse server version
+          description: ElasticDash server version
           example: 1.25.0
         status:
           type: string
@@ -8525,7 +8525,7 @@ components:
             milliseconds (required), microseconds (optimal).
         metadata:
           nullable: true
-          description: Optional. Metadata field used by the Langfuse SDKs for debugging.
+          description: Optional. Metadata field used by the ElasticDash SDKs for debugging.
       required:
         - id
         - timestamp
@@ -9335,7 +9335,7 @@ components:
             $ref: "#/components/schemas/OtelAttribute"
           nullable: true
           description: >-
-            Span attributes including Langfuse-specific attributes
+            Span attributes including ElasticDash-specific attributes
             (elasticdash.observation.*)
         status:
           nullable: true
@@ -10264,7 +10264,7 @@ components:
           type: string
           nullable: true
           description: >-
-            Description is shown across the Langfuse UI and can be used to e.g.
+            Description is shown across the ElasticDash UI and can be used to e.g.
             explain the config categories in detail, why a numeric range was
             set, or provide additional context on config name or usage
       required:
@@ -10309,7 +10309,7 @@ components:
           type: string
           nullable: true
           description: >-
-            Description is shown across the Langfuse UI and can be used to e.g.
+            Description is shown across the ElasticDash UI and can be used to e.g.
             explain the config categories in detail, why a numeric range was
             set, or provide additional context on config name or usage
     GetScoresResponseTraceData:
@@ -10477,7 +10477,7 @@ components:
       properties:
         id:
           type: string
-          description: The id of the created object in Langfuse
+          description: The id of the created object in ElasticDash
       required:
         - id
     PaginatedSessions:

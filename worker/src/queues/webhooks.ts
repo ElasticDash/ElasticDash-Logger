@@ -3,7 +3,7 @@ import {
   PromptWebhookOutboundSchema,
   WebhookDefaultHeaders,
   ActionExecutionStatus,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   JobConfigState,
   isSlackActionConfig,
   isWebhookAction,
@@ -228,7 +228,7 @@ async function executeHttpAction({
 
     // Handle action failure with retry logic and trigger disabling
     const shouldRetryJob =
-      error instanceof LangfuseNotFoundError ||
+      error instanceof ElasticDashNotFoundError ||
       error instanceof InternalServerError;
 
     if (shouldRetryJob) {
@@ -391,7 +391,7 @@ async function executeWebhookAction({
   try {
     const decryptedSecret = decrypt(webhookConfig.secretKey);
     const signature = createSignatureHeader(webhookPayload, decryptedSecret);
-    requestHeaders["x-langfuse-signature"] = signature;
+    requestHeaders["x-elasticdash-signature"] = signature;
   } catch (error) {
     logger.error(
       "Failed to decrypt webhook secret or generate signature",
@@ -448,7 +448,7 @@ async function executeGitHubDispatchAction({
 
   const githubConfig = actionConfig.config;
 
-  // Validate and prepare Langfuse payload
+  // Validate and prepare ElasticDash payload
   const validatedPayload = PromptWebhookOutboundSchema.safeParse({
     id: input.executionId,
     timestamp: new Date(),
@@ -493,7 +493,7 @@ async function executeGitHubDispatchAction({
 
     // Add signature for optional verification (using GitHub token as secret)
     const signature = createSignatureHeader(githubPayload, decryptedToken);
-    requestHeaders["x-langfuse-signature"] = signature;
+    requestHeaders["x-elasticdash-signature"] = signature;
   } catch (error) {
     logger.error("Failed to decrypt GitHub token or generate signature", error);
     throw new InternalServerError("Failed to generate GitHub authentication");
@@ -581,7 +581,7 @@ async function executeSlackAction({
       client,
       channelId: slackConfig.channelId,
       blocks,
-      text: "Langfuse Notification",
+      text: "ElasticDash Notification",
     });
 
     // Update execution status to completed

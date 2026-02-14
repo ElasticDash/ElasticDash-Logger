@@ -15,7 +15,7 @@ export async function markProjectAsOtelUser(projectId: string): Promise<void> {
   }
 
   try {
-    const key = `langfuse:project:${projectId}:otel:active`;
+    const key = `elasticdash:project:${projectId}:otel:active`;
     await redis?.set(key, "1", "EX", TTL_SECONDS);
     recordIncrement("redis.otel_tracking.marked", 1);
   } catch (error) {
@@ -36,7 +36,7 @@ export async function isProjectOtelUser(projectId: string): Promise<boolean> {
   }
 
   try {
-    const key = `langfuse:project:${projectId}:otel:active`;
+    const key = `elasticdash:project:${projectId}:otel:active`;
     const result = await redis?.get(key);
     return result === "1";
   } catch (error) {

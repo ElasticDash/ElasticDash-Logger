@@ -137,12 +137,12 @@ export const llmApiKeyRouter = createTRPCRouter({
         });
 
         // Validate that default credentials sentinel is only allowed for Bedrock/VertexAI in self-hosted deployments
-        const isLangfuseCloud = Boolean(
+        const isElasticDashCloud = Boolean(
           env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
         );
 
         if (input.secretKey === BEDROCK_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.Bedrock) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.Bedrock) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
@@ -152,7 +152,7 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         if (input.secretKey === VERTEXAI_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.VertexAI) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.VertexAI) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
@@ -446,12 +446,12 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         // Validate that default credentials sentinel is only allowed for Bedrock/VertexAI in self-hosted deployments
-        const isLangfuseCloud = Boolean(
+        const isElasticDashCloud = Boolean(
           env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
         );
 
         if (input.secretKey === BEDROCK_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.Bedrock) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.Bedrock) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:
@@ -461,7 +461,7 @@ export const llmApiKeyRouter = createTRPCRouter({
         }
 
         if (input.secretKey === VERTEXAI_USE_DEFAULT_CREDENTIALS) {
-          if (isLangfuseCloud || input.adapter !== LLMAdapter.VertexAI) {
+          if (isElasticDashCloud || input.adapter !== LLMAdapter.VertexAI) {
             throw new TRPCError({
               code: "BAD_REQUEST",
               message:

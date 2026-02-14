@@ -2,7 +2,7 @@ import { logger, PromptService } from "@elasticdash/shared/src/server";
 import { removeLabelsFromPreviousPromptVersions } from "@/src/features/prompts/server/utils/updatePromptLabels";
 import {
   InvalidRequestError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
 } from "@elasticdash/shared";
 import { prisma, Prisma } from "@elasticdash/shared/src/db";
 import { redis } from "@elasticdash/shared/src/server";
@@ -50,7 +50,7 @@ export const updatePrompt = async (params: UpdatePromptParams) => {
       )[0];
 
       if (!prompt) {
-        throw new LangfuseNotFoundError(`Prompt not found: ${promptName}`);
+        throw new ElasticDashNotFoundError(`Prompt not found: ${promptName}`);
       }
 
       touchedPromptIds.push(prompt.id);

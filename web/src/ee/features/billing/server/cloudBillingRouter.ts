@@ -29,7 +29,7 @@ export const cloudBillingRouter = createTRPCRouter({
       });
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
 
@@ -63,7 +63,7 @@ export const cloudBillingRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
       throwIfNoEntitlement({
@@ -107,7 +107,7 @@ export const cloudBillingRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
       throwIfNoEntitlement({
@@ -138,7 +138,7 @@ export const cloudBillingRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
       throwIfNoEntitlement({
@@ -171,7 +171,7 @@ export const cloudBillingRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
       throwIfNoEntitlement({
@@ -199,7 +199,7 @@ export const cloudBillingRouter = createTRPCRouter({
     .mutation(async ({ input, ctx }) => {
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
       throwIfNoEntitlement({
@@ -240,7 +240,7 @@ export const cloudBillingRouter = createTRPCRouter({
       });
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
 
@@ -288,7 +288,7 @@ export const cloudBillingRouter = createTRPCRouter({
       });
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
 
@@ -339,7 +339,7 @@ export const cloudBillingRouter = createTRPCRouter({
       });
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
 
@@ -372,7 +372,7 @@ export const cloudBillingRouter = createTRPCRouter({
       });
       throwIfNoOrganizationAccess({
         organizationId: input.orgId,
-        scope: "langfuseCloudBilling:CRUD",
+        scope: "elasticdashCloudBilling:CRUD",
         session: ctx.session,
       });
 

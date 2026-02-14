@@ -13,7 +13,7 @@ import { Job } from "bullmq";
 import { env } from "../../env";
 
 const LAST_PROCESSED_PARTITION_KEY =
-  "langfuse:event-propagation:last-processed-partition";
+  "elasticdash:event-propagation:last-processed-partition";
 
 /**
  * Get the last processed partition timestamp from Redis.
@@ -97,7 +97,7 @@ export const handleEventPropagationJob = async (
     });
 
     recordGauge(
-      "langfuse.event_propagation.partition_backlog",
+      "elasticdash.event_propagation.partition_backlog",
       partitions.length,
     );
 

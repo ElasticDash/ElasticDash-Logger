@@ -16,7 +16,7 @@ import {
   type ColumnOrderState,
   type VisibilityState,
 } from "@tanstack/react-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   DataTableRowHeightSwitch,
   type RowHeight,
@@ -96,7 +96,7 @@ interface RefreshConfig {
 }
 
 interface DataTableToolbarProps<TData, TValue> {
-  columns: LangfuseColumnDef<TData, TValue>[];
+  columns: ElasticDashColumnDef<TData, TValue>[];
   filterColumnDefinition?: ColumnDefinition[];
   searchConfig?: SearchConfig;
   actionButtons?: React.ReactNode;

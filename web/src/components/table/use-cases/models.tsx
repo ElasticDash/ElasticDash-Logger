@@ -1,5 +1,5 @@
 import { DataTable } from "@/src/components/table/data-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
@@ -61,7 +61,7 @@ const modelConfigDescriptions = {
   config:
     "Some tokenizers require additional configuration (e.g. openai tiktoken). See docs for details.",
   maintainer:
-    "Maintainer of the model. Langfuse managed models can be cloned, user managed models can be edited and deleted. To supersede a Langfuse managed model, set the custom model name to the Langfuse model name.",
+    "Maintainer of the model. ElasticDash managed models can be cloned, user managed models can be edited and deleted. To supersede a ElasticDash managed model, set the custom model name to the ElasticDash model name.",
   lastUsed: "Start time of the latest generation using this model",
 } as const;
 
@@ -111,7 +111,7 @@ export default function ModelTable({ projectId }: { projectId: string }) {
     scope: "models:CUD",
   });
 
-  const columns: LangfuseColumnDef<ModelTableRow>[] = [
+  const columns: ElasticDashColumnDef<ModelTableRow>[] = [
     {
       accessorKey: "modelName",
       id: "modelName",
@@ -137,19 +137,19 @@ export default function ModelTable({ projectId }: { projectId: string }) {
       },
       size: 60,
       cell: ({ row }) => {
-        const isLangfuse = row.original.maintainer === "Langfuse";
+        const isElasticDash = row.original.maintainer === "ElasticDash";
         return (
           <div className="flex justify-center">
             <Tooltip>
               <TooltipTrigger>
-                {isLangfuse ? (
+                {isElasticDash ? (
                   <LangfuseIcon size={16} />
                 ) : (
                   <UserCircle2Icon className="h-4 w-4" />
                 )}
               </TooltipTrigger>
               <TooltipContent>
-                {isLangfuse ? "Langfuse maintained" : "User maintained"}
+                {isElasticDash ? "ElasticDash maintained" : "User maintained"}
               </TooltipContent>
             </Tooltip>
           </div>
@@ -246,7 +246,7 @@ export default function ModelTable({ projectId }: { projectId: string }) {
       header: "Actions",
       size: 120,
       cell: ({ row }) => {
-        return row.original.maintainer !== "Langfuse" ? (
+        return row.original.maintainer !== "ElasticDash" ? (
           <div
             className="flex items-center gap-2"
             onClick={(e) => e.stopPropagation()}
@@ -287,7 +287,7 @@ export default function ModelTable({ projectId }: { projectId: string }) {
 
     return {
       modelId: model.id,
-      maintainer: model.projectId ? "User" : "Langfuse",
+      maintainer: model.projectId ? "User" : "ElasticDash",
       modelName: model.modelName,
       matchPattern: model.matchPattern,
       prices,

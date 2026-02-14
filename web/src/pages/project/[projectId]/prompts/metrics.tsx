@@ -1,7 +1,7 @@
 import { DataTable } from "@/src/components/table/data-table";
 import { useRowHeightLocalStorage } from "@/src/components/table/data-table-row-height-switch";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { useOrderByState } from "@/src/features/orderBy/hooks/useOrderByState";
 import { useRouter } from "next/router";
 import { api } from "@/src/utils/api";
@@ -150,7 +150,7 @@ export default function PromptVersionTable({
     prefix: "Generation",
   });
 
-  const columns: LangfuseColumnDef<PromptVersionTableRow>[] = [
+  const columns: ElasticDashColumnDef<PromptVersionTableRow>[] = [
     {
       accessorKey: "version",
       id: "version",
@@ -386,7 +386,7 @@ export default function PromptVersionTable({
         itemType: "PROMPT",
         help: {
           description:
-            "You can use this prompt within your application through the Langfuse SDKs and integrations. Refer to the documentation for more information.",
+            "You can use this prompt within your application through the ElasticDash SDKs and integrations. Refer to the documentation for more information.",
           href: "https://www.elasticdash.com/docs/prompt-management/get-started",
         },
         breadcrumb: [

@@ -29,14 +29,14 @@ import { TrashIcon } from "lucide-react";
 import { useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/src/components/ui/alert";
 import { startCase } from "lodash";
-import { useLangfuseEnvCode } from "@/src/features/public-api/hooks/useLangfuseEnvCode";
+import { useElasticDashEnvCode } from "@/src/features/public-api/hooks/useElasticDashEnvCode";
 
 type ApiKeyScope = "project" | "organization";
 type ApiKeyEntity = { id: string; note: string | null };
 
 export function ApiKeyList(props: { entityId: string; scope: ApiKeyScope }) {
   const { entityId, scope } = props;
-  const envCode = useLangfuseEnvCode();
+  const envCode = useElasticDashEnvCode();
 
   if (!entityId) {
     throw new Error(

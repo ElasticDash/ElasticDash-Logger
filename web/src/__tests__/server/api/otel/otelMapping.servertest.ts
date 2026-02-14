@@ -24,7 +24,7 @@ async function convertOtelSpanToIngestionEvent(
 }
 
 describe("OTel Resource Span Mapping", () => {
-  describe("Langfuse OTEL SDK spans", () => {
+  describe("ElasticDash OTEL SDK spans", () => {
     const publicKey = "pk-lf-1234567890";
 
     it("should convert LF-OTEL spans to LF-events", async () => {
@@ -495,7 +495,7 @@ describe("OTel Resource Span Mapping", () => {
   });
 
   describe("Vendor Spans", () => {
-    it("should convert an OpenLit OTel Span to Langfuse Events", async () => {
+    it("should convert an OpenLit OTel Span to ElasticDash Events", async () => {
       // Setup
       const resourceSpan = {
         resource: {
@@ -685,7 +685,7 @@ describe("OTel Resource Span Mapping", () => {
       expect(parsedEvents).toHaveLength(2);
     });
 
-    it("should convert a TraceLoop OTel Span to Langfuse Events", async () => {
+    it("should convert a TraceLoop OTel Span to ElasticDash Events", async () => {
       // Setup
       const resourceSpan = {
         resource: {
@@ -805,7 +805,7 @@ describe("OTel Resource Span Mapping", () => {
       expect(parsedEvents).toHaveLength(2);
     });
 
-    it("LFE-5171: should convert a Semantic Kernel 1.55+ OTel Span with new event-based semantic conventions to Langfuse Events", async () => {
+    it("LFE-5171: should convert a Semantic Kernel 1.55+ OTel Span with new event-based semantic conventions to ElasticDash Events", async () => {
       // Setup - Semantic Kernel 1.55+ uses new event names instead of deprecated gen_ai.content.prompt/completion
       const resourceSpan = {
         scopeSpans: [
@@ -952,7 +952,7 @@ describe("OTel Resource Span Mapping", () => {
       });
     });
 
-    it("should convert a Vercel AI SDK embedding span to Langfuse embedding-create event", async () => {
+    it("should convert a Vercel AI SDK embedding span to ElasticDash embedding-create event", async () => {
       const resourceSpan = {
         scopeSpans: [
           {
@@ -1472,7 +1472,7 @@ describe("OTel Resource Span Mapping", () => {
       ).toBe(false);
     });
 
-    it("should trust Langfuse type over OpenInference or model detection", async () => {
+    it("should trust ElasticDash type over OpenInference or model detection", async () => {
       const resourceSpan = {
         scopeSpans: [
           {
@@ -1480,7 +1480,7 @@ describe("OTel Resource Span Mapping", () => {
               {
                 ...defaultSpanProps,
                 attributes: [
-                  // Explicit Langfuse type (should always win)
+                  // Explicit ElasticDash type (should always win)
                   {
                     key: "elasticdash.observation.type",
                     value: { stringValue: "span" },
@@ -1510,7 +1510,7 @@ describe("OTel Resource Span Mapping", () => {
 
       // Then
       expect(elasticdashEvents).toHaveLength(2);
-      // Explicit Langfuse type should always win over inferred types
+      // Explicit ElasticDash type should always win over inferred types
       expect(
         elasticdashEvents.some((event) => event.type === "span-create"),
       ).toBe(true);
@@ -5329,7 +5329,7 @@ describe("OTel Resource Span Mapping", () => {
   });
 
   describe("Input/Output attribute filtering from metadata", () => {
-    it("should filter Langfuse SDK trace input/output attributes from trace metadata", async () => {
+    it("should filter ElasticDash SDK trace input/output attributes from trace metadata", async () => {
       const traceId = "abcdef1234567890abcdef1234567890";
       const rootSpanId = "1234567890abcdef";
 

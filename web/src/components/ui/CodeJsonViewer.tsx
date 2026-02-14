@@ -17,7 +17,7 @@ import { useTheme } from "next-themes";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { useMarkdownContext } from "@/src/features/theming/useMarkdownContext";
 import { type MediaReturnType } from "@/src/features/media/validation";
-import { LangfuseMediaView } from "@/src/components/ui/LangfuseMediaView";
+import { ElasticDashMediaView } from "@/src/components/ui/ElasticDashMediaView";
 import { MarkdownJsonViewHeader } from "@/src/components/ui/MarkdownJsonView";
 import { renderRichPromptContent } from "@/src/features/prompts/components/prompt-content-utils";
 import { copyTextToClipboard } from "@/src/utils/clipboard";
@@ -151,7 +151,7 @@ export function JSONView(props: {
           </div>
           <div className="flex flex-wrap gap-2 p-4 pt-1">
             {props.media.map((m) => (
-              <LangfuseMediaView
+              <ElasticDashMediaView
                 mediaAPIReturnValue={m}
                 asFileIcon={true}
                 key={m.mediaId}

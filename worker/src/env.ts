@@ -43,7 +43,7 @@ const EnvSchema = z.object({
   ELASTICDASH_S3_BATCH_EXPORT_SSE_KMS_KEY_ID: z.string().optional(),
 
   ELASTICDASH_S3_EVENT_UPLOAD_BUCKET: z.string({
-    error: "Langfuse requires a bucket name for S3 Event Uploads.",
+    error: "ElasticDash requires a bucket name for S3 Event Uploads.",
   }),
   ELASTICDASH_S3_EVENT_UPLOAD_PREFIX: z.string().default(""),
   ELASTICDASH_S3_EVENT_UPLOAD_REGION: z.string().optional(),
@@ -266,7 +266,7 @@ const EnvSchema = z.object({
     .positive()
     .default(5 * 60 * 1000), // 5 minutes
 
-  // Core data S3 upload - Langfuse Cloud
+  // Core data S3 upload - ElasticDash Cloud
   ELASTICDASH_S3_CORE_DATA_EXPORT_IS_ENABLED: z
     .enum(["true", "false"])
     .default("false"),
@@ -295,7 +295,7 @@ const EnvSchema = z.object({
   ELASTICDASH_S3_MEDIA_UPLOAD_SSE: z.enum(["AES256", "aws:kms"]).optional(),
   ELASTICDASH_S3_MEDIA_UPLOAD_SSE_KMS_KEY_ID: z.string().optional(),
 
-  // Metering data Postgres export - Langfuse Cloud
+  // Metering data Postgres export - ElasticDash Cloud
   ELASTICDASH_POSTGRES_METERING_DATA_EXPORT_IS_ENABLED: z
     .enum(["true", "false"])
     .default("false"),

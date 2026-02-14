@@ -5,7 +5,7 @@ import {
   BatchExportStatus,
   BatchExportTableName,
   exportOptions,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
 } from "@elasticdash/shared";
 import { prisma } from "@elasticdash/shared/src/db";
 import {
@@ -52,7 +52,7 @@ export const handleBatchExportJob = async (
   });
 
   if (!jobDetails) {
-    throw new LangfuseNotFoundError(
+    throw new ElasticDashNotFoundError(
       `Job not found for project: ${projectId} and export ${batchExportId}`,
     );
   }

@@ -6,7 +6,7 @@ import {
   redis,
   logger,
   getCurrentSpan,
-  contextWithLangfuseProps,
+  contextWithElasticDashProps,
 } from "@elasticdash/shared/src/server";
 import { telemetry } from "@/src/features/telemetry";
 import { jsonSchema } from "@elasticdash/shared";
@@ -57,14 +57,14 @@ export default async function handler(
     // add context of api call to the span
     const currentSpan = getCurrentSpan();
 
-    // get x-langfuse-xxx headers and add them to the span
+    // get x-elasticdash-xxx headers and add them to the span
     Object.keys(req.headers).forEach((header) => {
       if (
-        header.toLowerCase().startsWith("x-langfuse") ||
-        header.toLowerCase().startsWith("x_langfuse")
+        header.toLowerCase().startsWith("x-elasticdash") ||
+        header.toLowerCase().startsWith("x_elasticdash")
       ) {
         currentSpan?.setAttributes({
-          [`langfuse.header.${header.slice(11).toLowerCase().replaceAll("_", "-")}`]:
+          [`elasticdash.header.${header.slice(11).toLowerCase().replaceAll("_", "-")}`]:
             req.headers[header],
         });
       }
@@ -93,7 +93,7 @@ export default async function handler(
       );
     }
 
-    const ctx = contextWithLangfuseProps({
+    const ctx = contextWithElasticDashProps({
       headers: req.headers,
       projectId: authCheck.scope.projectId,
     });

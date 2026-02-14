@@ -378,10 +378,10 @@ export class PromptService {
               level + 1,
             );
 
-            const versionPattern = `@@@langfusePrompt:name=${escapeRegex(depPrompt.name)}\\|version=${escapeRegex(depPrompt.version)}@@@`;
+            const versionPattern = `@@@elasticdashPrompt:name=${escapeRegex(depPrompt.name)}\\|version=${escapeRegex(depPrompt.version)}@@@`;
             const labelPatterns = depPrompt.labels.map(
               (label) =>
-                `@@@langfusePrompt:name=${escapeRegex(depPrompt.name)}\\|label=${escapeRegex(label)}@@@`,
+                `@@@elasticdashPrompt:name=${escapeRegex(depPrompt.name)}\\|label=${escapeRegex(label)}@@@`,
             );
             const combinedPattern = [versionPattern, ...labelPatterns].join(
               "|",

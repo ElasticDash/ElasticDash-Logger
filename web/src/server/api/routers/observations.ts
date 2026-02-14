@@ -3,7 +3,7 @@ import {
   createTRPCRouter,
   protectedGetTraceProcedure,
 } from "@/src/server/api/trpc";
-import { LangfuseNotFoundError, parseIO } from "@elasticdash/shared";
+import { ElasticDashNotFoundError, parseIO } from "@elasticdash/shared";
 import {
   getObservationById,
   getObservationByIdFromEventsTable,
@@ -39,7 +39,7 @@ export const observationsRouter = createTRPCRouter({
           ? await getObservationByIdFromEventsTable(queryOpts)
           : await getObservationById(queryOpts);
       if (!obs) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Observation not found within authorized project",
         );
       }

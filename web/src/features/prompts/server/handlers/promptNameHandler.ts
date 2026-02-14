@@ -6,7 +6,7 @@ import { withMiddlewares } from "@/src/features/public-api/server/withMiddleware
 import { authorizePromptRequestOrThrow } from "../utils/authorizePromptRequest";
 import {
   GetPromptByNameSchema,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   PRODUCTION_LABEL,
 } from "@elasticdash/shared";
 import { RateLimitService } from "@/src/features/public-api/server/RateLimitService";
@@ -49,7 +49,7 @@ const getPromptNameHandler = async (
       errorMessage += ` with label '${label ?? PRODUCTION_LABEL}'`;
     }
 
-    throw new LangfuseNotFoundError(errorMessage);
+    throw new ElasticDashNotFoundError(errorMessage);
   }
 
   res.status(200).json({

@@ -18,7 +18,7 @@ import {
 import { transformFiltersForBackend } from "@/src/features/filters/lib/filter-transform";
 import { formatIntervalSeconds } from "@/src/utils/dates";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   type ObservationLevelType,
   type FilterState,
@@ -561,7 +561,7 @@ export default function ObservationsTable({
     },
   ];
 
-  const columns: LangfuseColumnDef<ObservationsTableRow>[] = [
+  const columns: ElasticDashColumnDef<ObservationsTableRow>[] = [
     selectActionColumn,
     {
       accessorKey: "startTime",
@@ -847,7 +847,7 @@ export default function ObservationsTable({
       id: "promptName",
       header: "Prompt",
       headerTooltip: {
-        description: "Link to prompt version in Langfuse prompt management.",
+        description: "Link to prompt version in ElasticDash prompt management.",
         href: "https://www.elasticdash.com/docs/prompt-management/get-started",
       },
       size: 200,

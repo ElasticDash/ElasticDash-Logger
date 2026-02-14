@@ -9,7 +9,7 @@ import {
   AnnotationQueueStatus,
   CreateQueueData,
   filterAndValidateDbScoreConfigList,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   optionalPaginationZod,
   Prisma,
 } from "@elasticdash/shared";
@@ -392,7 +392,7 @@ export const queueRouter = createTRPCRouter({
         });
 
         if (!queue) {
-          throw new LangfuseNotFoundError("Queue not found in project");
+          throw new ElasticDashNotFoundError("Queue not found in project");
         }
 
         const updatedQueue = await ctx.prisma.annotationQueue.update({

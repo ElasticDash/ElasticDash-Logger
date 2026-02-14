@@ -9,7 +9,7 @@ import {
   type BlobStorageIntegrationResponseType,
 } from "@/src/features/public-api/types/blob-storage-integrations";
 import {
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   UnauthorizedError,
   ForbiddenError,
 } from "@elasticdash/shared";
@@ -141,7 +141,7 @@ async function handleUpsertBlobStorageIntegration(
     select: { id: true, orgId: true },
   });
   if (!project || project.orgId !== authCheck.scope.orgId) {
-    throw new LangfuseNotFoundError("Project not found");
+    throw new ElasticDashNotFoundError("Project not found");
   }
 
   // Prepare data for database

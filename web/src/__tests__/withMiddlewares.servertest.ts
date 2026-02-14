@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import {
   BaseError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   UnauthorizedError,
   ServiceUnavailableError,
 } from "@elasticdash/shared";
@@ -93,9 +93,9 @@ describe("withMiddlewares error handling", () => {
     });
   });
 
-  describe("LangfuseNotFoundError handling", () => {
-    it("should handle LangfuseNotFoundError and log as info", async () => {
-      const error = new LangfuseNotFoundError("Resource not found");
+  describe("ElasticDashNotFoundError handling", () => {
+    it("should handle ElasticDashNotFoundError and log as info", async () => {
+      const error = new ElasticDashNotFoundError("Resource not found");
 
       const handler = withMiddlewares({
         GET: async () => {
@@ -116,7 +116,7 @@ describe("withMiddlewares error handling", () => {
       const jsonData = JSON.parse(res._getData());
       expect(jsonData).toMatchObject({
         message: "Resource not found",
-        error: "LangfuseNotFoundError",
+        error: "ElasticDashNotFoundError",
       });
       // Should log as info, not error
       expect(logger.info).toHaveBeenCalledWith(error);

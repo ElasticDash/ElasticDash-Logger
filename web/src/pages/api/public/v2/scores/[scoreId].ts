@@ -5,7 +5,7 @@ import {
   GetScoreQueryV2,
   GetScoreResponseV2,
   InternalServerError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
 } from "@elasticdash/shared";
 import { logger, traceException } from "@elasticdash/shared/src/server";
 
@@ -22,7 +22,7 @@ export default withMiddlewares({
       });
 
       if (!score) {
-        throw new LangfuseNotFoundError("Score not found");
+        throw new ElasticDashNotFoundError("Score not found");
       }
 
       const parsedScore = GetScoreResponseV2.safeParse(score);

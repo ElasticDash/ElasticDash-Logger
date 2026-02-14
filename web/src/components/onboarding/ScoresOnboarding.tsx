@@ -28,7 +28,7 @@ export function ScoresOnboarding() {
     {
       title: "Use custom metrics",
       description:
-        "Langfuse's scores are flexible and can be used to track any metric that's associated with an LLM application",
+        "ElasticDash's scores are flexible and can be used to track any metric that's associated with an LLM application",
       icon: <Code className="h-4 w-4" />,
     },
   ];
@@ -42,7 +42,7 @@ export function ScoresOnboarding() {
         label: "Learn More",
         href: "https://www.elasticdash.com/docs/evaluation/evaluation-methods/custom-scores",
       }}
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/scores-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/scores-overview-v1.mp4"
     />
   );
 }

@@ -44,7 +44,7 @@ export const UsageThresholdWarningEmailTemplate = ({
     <Html>
       <Head />
       <Preview>
-        Your Langfuse organization &quot;{organizationName}&quot; has reached{" "}
+        Your ElasticDash organization &quot;{organizationName}&quot; has reached{" "}
         {currentUsage.toLocaleString()} events
       </Preview>
       <Tailwind>
@@ -52,10 +52,10 @@ export const UsageThresholdWarningEmailTemplate = ({
           <Container className="mx-auto my-10 w-[465px] rounded border border-solid border-[#eaeaea] p-5">
             <Section className="mt-8">
               <Img
-                src="https://static.langfuse.com/langfuse_logo_transactional_email.png"
+                src="https://static.elasticdash.com/elasticdash_logo_transactional_email.png"
                 width="40"
                 height="40"
-                alt="Langfuse"
+                alt="ElasticDash"
                 className="mx-auto my-0"
               />
             </Section>

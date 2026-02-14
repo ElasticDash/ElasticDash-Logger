@@ -4,14 +4,14 @@ import { type NextApiRequest, type NextApiResponse } from "next";
 import { type ZodError } from "zod/v4";
 import {
   BaseError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   MethodNotAllowedError,
   UnauthorizedError,
 } from "@elasticdash/shared";
 import {
   logger,
   traceException,
-  contextWithLangfuseProps,
+  contextWithElasticDashProps,
   ClickHouseResourceError,
 } from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
@@ -38,7 +38,7 @@ const CH_ERROR_ADVICE_FULL = [
 
 export function withMiddlewares(handlers: Handlers) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
-    const ctx = contextWithLangfuseProps({
+    const ctx = contextWithElasticDashProps({
       headers: req.headers,
     });
 
@@ -63,7 +63,7 @@ export function withMiddlewares(handlers: Handlers) {
         return await finalHandlers[method](req, res);
       } catch (error) {
         if (
-          error instanceof LangfuseNotFoundError ||
+          error instanceof ElasticDashNotFoundError ||
           error instanceof UnauthorizedError
         ) {
           logger.info(error);

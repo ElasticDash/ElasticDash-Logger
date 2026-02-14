@@ -13,8 +13,8 @@ import { prisma } from "@elasticdash/shared/src/db";
 import { chunk } from "lodash";
 
 const EXPERIMENT_BACKFILL_TIMESTAMP_KEY =
-  "langfuse:event-propagation:experiment-backfill:last-run";
-const EXPERIMENT_BACKFILL_LOCK_KEY = "langfuse:experiment-backfill:lock";
+  "elasticdash:event-propagation:experiment-backfill:last-run";
+const EXPERIMENT_BACKFILL_LOCK_KEY = "elasticdash:experiment-backfill:lock";
 const LOCK_TTL_SECONDS = 300; // 5 minutes
 
 export interface DatasetRunItem {

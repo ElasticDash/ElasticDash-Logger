@@ -188,7 +188,7 @@ function assignGlobalTimingSteps(
   return result;
 }
 
-function addLangfuseSystemNodes(
+function addElasticDashSystemNodes(
   data: AgentGraphDataResponse[],
 ): AgentGraphDataResponse[] {
   const systemNodes: AgentGraphDataResponse[] = [];
@@ -243,8 +243,8 @@ export function buildStepData(
   // Assign step numbers based on global timing analysis
   const dataWithSteps = assignGlobalTimingSteps(filteredData);
 
-  // Add Langfuse system nodes to make it consistent with LangGraph path
-  const dataWithSystemNodes = addLangfuseSystemNodes(dataWithSteps);
+  // Add ElasticDash system nodes to make it consistent with LangGraph path
+  const dataWithSystemNodes = addElasticDashSystemNodes(dataWithSteps);
 
   return dataWithSystemNodes;
 }

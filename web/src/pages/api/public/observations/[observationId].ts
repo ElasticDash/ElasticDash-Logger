@@ -6,7 +6,7 @@ import {
 } from "@/src/features/public-api/types/observations";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { LangfuseNotFoundError } from "@elasticdash/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import {
   enrichObservationWithModelData,
   getObservationById,
@@ -41,7 +41,7 @@ export default withMiddlewares({
           });
 
       if (!clickhouseObservation) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Observation not found within authorized project",
         );
       }
@@ -83,7 +83,7 @@ export default withMiddlewares({
       };
 
       if (!observation) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Observation not found within authorized project",
         );
       }

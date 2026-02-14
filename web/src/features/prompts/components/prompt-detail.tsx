@@ -69,17 +69,17 @@ const getPythonCode = (
 ) => `from elasticdash import ElasticDashClient
 
 # Initialize ElasticDash client
-elasticDash = ElasticDashClient()
+elasticdash = ElasticDashClient()
 
 # Get production prompt
-prompt = elasticDash.prompt.get("${name}")
+prompt = elasticdash.prompt.get("${name}")
 
 # Get by label
 # You can use as many labels as you'd like to identify different deployment targets
-${labels.length > 0 ? labels.map((label) => `prompt = elasticDash.prompt.get("${name}", label="${label}")`).join("\n") : ""}
+${labels.length > 0 ? labels.map((label) => `prompt = elasticdash.prompt.get("${name}", label="${label}")`).join("\n") : ""}
 
 # Get by version number, usually not recommended as it requires code changes to deploy new prompt versions
-elasticDash.prompt.get("${name}", version=${version})
+elasticdash.prompt.get("${name}", version=${version})
 `;
 
 const getJsCode = (
@@ -89,17 +89,17 @@ const getJsCode = (
 ) => `import { ElasticDashClient } from "@elasticdash/client";
 
 // Initialize the ElasticDash client
-const elasticDash = new ElasticDashClient();
+const elasticdash = new ElasticDashClient();
 
 // Get production prompt
-const prompt = await elasticDash.prompt.get("${name}");
+const prompt = await elasticdash.prompt.get("${name}");
 
 // Get by label
 // You can use as many labels as you'd like to identify different deployment targets
-${labels.length > 0 ? labels.map((label) => `const prompt = await elasticDash.prompt.get("${name}", { label: "${label}" })`).join("\n") : ""}
+${labels.length > 0 ? labels.map((label) => `const prompt = await elasticdash.prompt.get("${name}", { label: "${label}" })`).join("\n") : ""}
 
 // Get by version number, usually not recommended as it requires code changes to deploy new prompt versions
-await elasticDash.prompt.get("${name}", { version: ${version} })
+await elasticdash.prompt.get("${name}", { version: ${version} })
 `;
 
 export const PromptDetail = ({
@@ -284,7 +284,7 @@ export const PromptDetail = ({
         itemType: "PROMPT",
         help: {
           description:
-            "You can use this prompt within your application through the Langfuse SDKs and integrations. Refer to the documentation for more information.",
+            "You can use this prompt within your application through the ElasticDash SDKs and integrations. Refer to the documentation for more information.",
           href: "https://www.elasticdash.com/docs/prompts",
         },
         breadcrumb: [

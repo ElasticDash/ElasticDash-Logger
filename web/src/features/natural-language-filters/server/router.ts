@@ -56,7 +56,7 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           throw new TRPCError({
             code: "PRECONDITION_FAILED",
             message:
-              "Langfuse AI filters environment variables not configured. Please set ELASTICDASH_AI_FEATURES_PUBLIC_KEY and ELASTICDASH_AI_FEATURES_SECRET_KEY variables.",
+              "ElasticDash AI filters environment variables not configured. Please set ELASTICDASH_AI_FEATURES_PUBLIC_KEY and ELASTICDASH_AI_FEATURES_SECRET_KEY variables.",
           });
         }
 
@@ -87,7 +87,7 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
         if (!env.ELASTICDASH_AI_FEATURES_PROJECT_ID) {
           throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
-            message: "Langfuse AI Features not configured.",
+            message: "ElasticDash AI Features not configured.",
           });
         }
 
@@ -98,8 +98,8 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           targetProjectId: env.ELASTICDASH_AI_FEATURES_PROJECT_ID,
           userId: ctx.session.user.id,
           metadata: {
-            langfuse_user_id: ctx.session.user.id,
-            langfuse_project_id: ctx.session.projectId,
+            elasticdash_user_id: ctx.session.user.id,
+            elasticdash_project_id: ctx.session.projectId,
           },
           prompt: promptResponse,
         };
@@ -126,7 +126,7 @@ export const naturalLanguageFilterRouter = createTRPCRouter({
           },
           streaming: false,
           traceSinkParams,
-          shouldUseLangfuseAPIKey: true,
+          shouldUseElasticDashAPIKey: true,
         });
 
         logger.info(

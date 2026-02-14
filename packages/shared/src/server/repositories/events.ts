@@ -1,7 +1,7 @@
 import { prisma } from "../../db";
 import { Observation, EventsObservation, ObservationType } from "../../domain";
 import { env } from "../../env";
-import { InternalServerError, LangfuseNotFoundError } from "../../errors";
+import { InternalServerError, ElasticDashNotFoundError } from "../../errors";
 import {
   convertDateToClickhouseDateTime,
   PreferredClickhouseService,
@@ -464,7 +464,7 @@ export const getObservationByIdFromEventsTable = async ({
 
   mapped.forEach((observation) => {
     recordDistribution(
-      "langfuse.query_by_id_age",
+      "elasticdash.query_by_id_age",
       new Date().getTime() - observation.startTime.getTime(),
       {
         table: "events",
@@ -472,7 +472,7 @@ export const getObservationByIdFromEventsTable = async ({
     );
   });
   if (mapped.length === 0) {
-    throw new LangfuseNotFoundError(`Observation with id ${id} not found`);
+    throw new ElasticDashNotFoundError(`Observation with id ${id} not found`);
   }
 
   if (mapped.length > 1) {
@@ -649,7 +649,7 @@ export const getTraceByIdFromEventsTable = async ({
 
   res.forEach((trace) => {
     recordDistribution(
-      "langfuse.query_by_id_age",
+      "elasticdash.query_by_id_age",
       new Date().getTime() - trace.timestamp.getTime(),
       {
         table: "events",

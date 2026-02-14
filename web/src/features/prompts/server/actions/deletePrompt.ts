@@ -1,6 +1,6 @@
 import {
   InvalidRequestError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
 } from "@elasticdash/shared";
 import { prisma, type Prompt } from "@elasticdash/shared/src/db";
 import { PromptService, redis, logger } from "@elasticdash/shared/src/server";
@@ -21,7 +21,7 @@ export const deletePrompt = async (params: DeletePromptParams) => {
   }
 
   if (promptVersions.length === 0) {
-    throw new LangfuseNotFoundError("Prompt not found");
+    throw new ElasticDashNotFoundError("Prompt not found");
   }
 
   // Check if other prompts depend on the specific prompt versions being deleted

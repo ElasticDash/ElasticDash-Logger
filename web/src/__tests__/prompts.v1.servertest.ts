@@ -615,7 +615,7 @@ describe("/api/public/prompts API Endpoint", () => {
     );
     expect(status).toBe(404);
     expect(body).toEqual({
-      error: "LangfuseNotFoundError",
+      error: "ElasticDashNotFoundError",
       message: "Prompt not found",
     });
   });
@@ -643,7 +643,7 @@ describe("/api/public/prompts API Endpoint", () => {
     );
     expect(status).toBe(404);
     expect(body).toEqual({
-      error: "LangfuseNotFoundError",
+      error: "ElasticDashNotFoundError",
       message: "Prompt not found",
     });
   });
@@ -666,7 +666,7 @@ describe("/api/public/prompts API Endpoint", () => {
     );
     expect(status).toBe(404);
     expect(body).toEqual({
-      error: "LangfuseNotFoundError",
+      error: "ElasticDashNotFoundError",
       message: "Prompt not found",
     });
   });
@@ -732,7 +732,7 @@ describe("/api/public/prompts API Endpoint", () => {
     );
     expect(getResponse2.status).toBe(404);
     expect(getResponse2.body).toEqual({
-      error: "LangfuseNotFoundError",
+      error: "ElasticDashNotFoundError",
       message: "Prompt not found",
     });
   });

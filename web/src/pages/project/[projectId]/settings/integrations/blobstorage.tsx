@@ -42,7 +42,7 @@ import {
   BlobStorageExportMode,
   type BlobStorageIntegration,
 } from "@elasticdash/shared";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 export default function BlobStorageIntegrationSettings() {
   const router = useRouter();
@@ -162,12 +162,12 @@ const BlobStorageIntegrationSettingsForm = ({
   isLoading: boolean;
 }) => {
   const capture = usePostHogClientCapture();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
   const [integrationType, setIntegrationType] =
     useState<BlobStorageIntegrationType>(BlobStorageIntegrationType.S3);
 
   // Check if this is a self-hosted instance (no cloud region set)
-  const isSelfHosted = !isLangfuseCloud;
+  const isSelfHosted = !isElasticDashCloud;
 
   const blobStorageForm = useForm({
     resolver: zodResolver(blobStorageIntegrationFormSchema),
@@ -471,10 +471,10 @@ const BlobStorageIntegrationSettingsForm = ({
               </FormControl>
               <FormDescription>
                 {integrationType === "AZURE_BLOB_STORAGE"
-                  ? 'Optional prefix path for exported files in your Azure container (e.g., "langfuse-exports/")'
+                  ? 'Optional prefix path for exported files in your Azure container (e.g., "elasticdash-exports/")'
                   : integrationType === "S3"
-                    ? 'Optional prefix path for exported files in your S3 bucket (e.g., "langfuse-exports/")'
-                    : 'Optional prefix path for exported files (e.g., "langfuse-exports/")'}
+                    ? 'Optional prefix path for exported files in your S3 bucket (e.g., "elasticdash-exports/")'
+                    : 'Optional prefix path for exported files (e.g., "elasticdash-exports/")'}
               </FormDescription>
               <FormMessage />
             </FormItem>

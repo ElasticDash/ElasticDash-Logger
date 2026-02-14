@@ -18,7 +18,7 @@ import {
   LLMApiKeySchema,
   logger,
   fetchLLMCompletion,
-  contextWithLangfuseProps,
+  contextWithElasticDashProps,
 } from "@elasticdash/shared/src/server";
 import * as opentelemetry from "@opentelemetry/api";
 
@@ -34,7 +34,7 @@ export default async function chatCompletionHandler(req: NextRequest) {
       throw new ForbiddenError("Access denied");
     }
 
-    const baggageCtx = contextWithLangfuseProps({
+    const baggageCtx = contextWithElasticDashProps({
       userId: userId,
       projectId: body.projectId,
     });

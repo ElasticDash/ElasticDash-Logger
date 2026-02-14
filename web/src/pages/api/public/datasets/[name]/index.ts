@@ -7,7 +7,7 @@ import {
   transformDbDatasetItemDomainToAPIDatasetItem,
   transformDbDatasetToAPIDataset,
 } from "@/src/features/public-api/types/datasets";
-import { LangfuseNotFoundError } from "@elasticdash/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import {
   createDatasetItemFilterState,
   getDatasetItems,
@@ -37,7 +37,7 @@ export default withMiddlewares({
       });
 
       if (!dataset) {
-        throw new LangfuseNotFoundError("Dataset not found");
+        throw new ElasticDashNotFoundError("Dataset not found");
       }
 
       const datasetItems = await getDatasetItems({

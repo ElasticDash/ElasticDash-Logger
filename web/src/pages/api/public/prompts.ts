@@ -8,7 +8,7 @@ import { type NextApiRequest, type NextApiResponse } from "next";
 import { z } from "zod/v4";
 import {
   UnauthorizedError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   BaseError,
   MethodNotAllowedError,
   ForbiddenError,
@@ -70,7 +70,7 @@ export default async function handler(
         resolve: shouldResolve,
       });
 
-      if (!prompt) throw new LangfuseNotFoundError("Prompt not found");
+      if (!prompt) throw new ElasticDashNotFoundError("Prompt not found");
 
       return res.status(200).json({
         ...prompt,

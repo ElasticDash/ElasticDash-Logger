@@ -139,7 +139,7 @@ export default function EnterpriseSsoRequiredPage() {
   return (
     <>
       <Head>
-        <title>Enterprise SSO Required | Langfuse</title>
+        <title>Enterprise SSO Required | ElasticDash</title>
       </Head>
       <div className="flex min-h-screen-with-banner flex-col justify-center bg-background px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -191,10 +191,10 @@ export default function EnterpriseSsoRequiredPage() {
               <br />
               Contact{" "}
               <a
-                href="mailto:support@langfuse.com"
+                href="mailto:support@elasticdash.com"
                 className="text-primary-accent hover:text-hover-primary-accent"
               >
-                support@langfuse.com
+                support@elasticdash.com
               </a>{" "}
               if this keeps happening.
             </div>
@@ -212,10 +212,10 @@ export default function EnterpriseSsoRequiredPage() {
         <div className="mt-4 text-center text-xs text-muted-foreground">
           Need help? Contact{" "}
           <a
-            href="mailto:support@langfuse.com"
+            href="mailto:support@elasticdash.com"
             className="text-primary-accent hover:text-hover-primary-accent"
           >
-            support@langfuse.com
+            support@elasticdash.com
           </a>
           .
         </div>

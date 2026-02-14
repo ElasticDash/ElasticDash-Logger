@@ -1,7 +1,7 @@
 import { z } from "zod/v4";
 import {
   singleFilter,
-  type langfuseObjects,
+  type elasticdashObjects,
   TimeScopeSchema,
 } from "@elasticdash/shared";
 import { wipVariableMapping } from "@elasticdash/shared";
@@ -22,6 +22,6 @@ export const evalConfigFormSchema = z.object({
 
 export type EvalFormType = z.infer<typeof evalConfigFormSchema>;
 
-export type LangfuseObject = (typeof langfuseObjects)[number];
+export type ElasticDashObject = (typeof elasticdashObjects)[number];
 
 export type VariableMapping = z.infer<typeof wipVariableMapping>;

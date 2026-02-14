@@ -26,7 +26,7 @@ import { LangfuseLogo } from "@/src/components/LangfuseLogo";
 import { SidebarNotifications } from "@/src/components/nav/sidebar-notifications";
 import { type RouteGroup } from "@/src/components/layouts/routes";
 import { ExternalLink, Grid2X2 } from "lucide-react";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 type AppSidebarProps = {
   navItems: {
@@ -73,7 +73,7 @@ export function AppSidebar({
 
 const DemoBadge = () => {
   const router = useRouter();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
   const routerProjectId = router.query.projectId as string | undefined;
 
   if (
@@ -81,7 +81,7 @@ const DemoBadge = () => {
       env.NEXT_PUBLIC_DEMO_ORG_ID &&
       env.NEXT_PUBLIC_DEMO_PROJECT_ID &&
       routerProjectId === env.NEXT_PUBLIC_DEMO_PROJECT_ID &&
-      isLangfuseCloud
+      isElasticDashCloud
     )
   )
     return null;
@@ -108,10 +108,10 @@ const DemoBadge = () => {
             </SidebarMenuButton>
           </SidebarMenuItem>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild tooltip="Your Langfuse Organizations">
+            <SidebarMenuButton asChild tooltip="Your ElasticDash Organizations">
               <Link href="/">
                 <Grid2X2 className="h-4 w-4" />
-                <span>Your Langfuse Orgs</span>
+                <span>Your ElasticDash Orgs</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

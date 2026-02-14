@@ -14,7 +14,7 @@ import {
   observationEventsFilterConfig,
 } from "../config/filter-config";
 import { formatIntervalSeconds } from "@/src/utils/dates";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import {
   type ObservationLevelType,
   type FilterState,
@@ -304,7 +304,7 @@ export default function ObservationsEventsTable({
     },
   ];
 
-  const columns: LangfuseColumnDef<EventsTableRow>[] = [
+  const columns: ElasticDashColumnDef<EventsTableRow>[] = [
     selectActionColumn,
     {
       accessorKey: "startTime",
@@ -720,7 +720,7 @@ export default function ObservationsEventsTable({
       id: "promptName",
       header: getEventsColumnName("promptName"),
       headerTooltip: {
-        description: "Link to prompt version in Langfuse prompt management.",
+        description: "Link to prompt version in ElasticDash prompt management.",
         href: "https://www.elasticdash.com/docs/prompt-management/get-started",
       },
       size: 200,

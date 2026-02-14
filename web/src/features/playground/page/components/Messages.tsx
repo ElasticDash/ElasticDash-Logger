@@ -46,7 +46,7 @@ const SubmitButton = () => {
   const defaultStreamingEnabled =
     env.NEXT_PUBLIC_ELASTICDASH_PLAYGROUND_STREAMING_ENABLED_DEFAULT === "true";
   const [streamingEnabled, setStreamingEnabled] = useLocalStorage(
-    "langfuse-playground-streaming",
+    "elasticdash-playground-streaming",
     defaultStreamingEnabled,
   );
 

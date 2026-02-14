@@ -3,7 +3,7 @@ import { Job } from "bullmq";
 import {
   BaseError,
   BatchExportStatus,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
 } from "@elasticdash/shared";
 import { kyselyPrisma } from "@elasticdash/shared/src/db";
 
@@ -22,7 +22,7 @@ export const batchExportQueueProcessor = async (
 
     return true;
   } catch (e) {
-    if (e instanceof LangfuseNotFoundError) {
+    if (e instanceof ElasticDashNotFoundError) {
       logger.warn(
         `Batch export ${job.data.payload.batchExportId} not found. Job will be skipped.`,
       );

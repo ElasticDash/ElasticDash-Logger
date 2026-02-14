@@ -1,5 +1,5 @@
 import { env } from "@/src/env.mjs";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 /**
  * Server-side check to determine if cloud billing is enabled.
@@ -23,6 +23,6 @@ export function isCloudBillingEnabled(): boolean {
  * @returns true if cloud billing features should be shown/enabled
  */
 export function useIsCloudBillingAvailable(): boolean {
-  const { region } = useLangfuseCloudRegion();
+  const { region } = useElasticDashCloudRegion();
   return Boolean(region);
 }

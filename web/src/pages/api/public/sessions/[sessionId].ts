@@ -5,7 +5,7 @@ import {
 } from "@/src/features/public-api/types/sessions";
 import { withMiddlewares } from "@/src/features/public-api/server/withMiddlewares";
 import { createAuthedProjectAPIRoute } from "@/src/features/public-api/server/createAuthedProjectAPIRoute";
-import { LangfuseNotFoundError } from "@elasticdash/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import { getTracesBySessionId } from "@elasticdash/shared/src/server";
 
 export default withMiddlewares({
@@ -31,7 +31,7 @@ export default withMiddlewares({
       });
 
       if (!session) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Session not found within authorized project",
         );
       }

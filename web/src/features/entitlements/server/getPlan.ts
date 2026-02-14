@@ -57,10 +57,10 @@ export function getOrganizationPlanServerSide(
 export function getSelfHostedInstancePlanServerSide(): Plan | null {
   const licenseKey = env.ELASTICDASH_EE_LICENSE_KEY;
   if (!licenseKey) return null;
-  if (licenseKey.startsWith("langfuse_ee_")) {
+  if (licenseKey.startsWith("elasticdash_ee_")) {
     return "self-hosted:enterprise";
   }
-  if (licenseKey.startsWith("langfuse_pro_")) {
+  if (licenseKey.startsWith("elasticdash_pro_")) {
     return "self-hosted:pro";
   }
   return null;

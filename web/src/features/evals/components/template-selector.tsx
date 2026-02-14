@@ -84,10 +84,10 @@ export const TemplateSelector = ({
     selectedTemplateIds: activeTemplates,
   });
 
-  // Group templates by name and whether they are managed by Langfuse
+  // Group templates by name and whether they are managed by ElasticDash
   const groupedTemplates = evalTemplates.reduce(
     (acc, template) => {
-      const group = template.projectId ? "custom" : "langfuse";
+      const group = template.projectId ? "custom" : "elasticdash";
       if (!acc[group][template.name]) {
         acc[group][template.name] = [];
       }
@@ -95,14 +95,14 @@ export const TemplateSelector = ({
       return acc;
     },
     {
-      langfuse: {} as Record<string, EvalTemplate[]>,
+      elasticdash: {} as Record<string, EvalTemplate[]>,
       custom: {} as Record<string, EvalTemplate[]>,
     },
   );
 
   // Filter templates based on search
   const filteredTemplates = {
-    langfuse: Object.entries(groupedTemplates.langfuse)
+    elasticdash: Object.entries(groupedTemplates.elasticdash)
       .filter(([name]) => name.toLowerCase().includes(search.toLowerCase()))
       .sort(([nameA, templatesA], [nameB, templatesB]) => {
         // Get partners
@@ -122,7 +122,7 @@ export const TemplateSelector = ({
   };
 
   const hasResults =
-    filteredTemplates.langfuse.length > 0 ||
+    filteredTemplates.elasticdash.length > 0 ||
     filteredTemplates.custom.length > 0;
 
   // Handle cog button click - configure template
@@ -271,83 +271,87 @@ export const TemplateSelector = ({
                   </>
                 )}
 
-                {filteredTemplates.langfuse.length > 0 && (
+                {filteredTemplates.elasticdash.length > 0 && (
                   <InputCommandGroup
-                    heading="Langfuse managed evaluators"
+                    heading="ElasticDash managed evaluators"
                     className="max-h-full min-h-0"
                   >
-                    {filteredTemplates.langfuse.map(([name, templateData]) => {
-                      const latestTemplate =
-                        templateData[templateData.length - 1];
-                      const isActive = isTemplateActive(latestTemplate.id);
-                      const isInactive = isTemplateInactive(latestTemplate.id);
-                      const isInvalid = isTemplateInvalid(latestTemplate);
+                    {filteredTemplates.elasticdash.map(
+                      ([name, templateData]) => {
+                        const latestTemplate =
+                          templateData[templateData.length - 1];
+                        const isActive = isTemplateActive(latestTemplate.id);
+                        const isInactive = isTemplateInactive(
+                          latestTemplate.id,
+                        );
+                        const isInvalid = isTemplateInvalid(latestTemplate);
 
-                      return (
-                        <InputCommandItem
-                          key={`langfuse-${name}`}
-                          onSelect={() => {
-                            handleRowClick(latestTemplate.id);
-                          }}
-                          disabled={isInvalid || disabled}
-                        >
-                          {isActive ? (
-                            <CheckIcon className="mr-2 h-4 w-4" />
-                          ) : (
-                            <div className="mr-2 h-4 w-4" />
-                          )}
-                          <div className="mr-1">{name}</div>
-                          <MaintainerTooltip
-                            maintainer={getMaintainer(latestTemplate)}
-                          />
-                          {isInvalid && (
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <AlertCircle className="ml-1 h-4 w-4 text-yellow-500" />
-                              </TooltipTrigger>
-                              <TooltipContent className="max-h-[50dvh] overflow-y-auto whitespace-normal break-normal text-xs">
-                                <p>Requires project-level evaluation model</p>
-                                <Link
-                                  href={`/project/${projectId}/evals/default-model`}
-                                  className="mt-2 flex items-center gap-1 text-blue-600 hover:underline"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <ExternalLinkIcon className="h-3 w-3" />
-                                  Configure default model
-                                </Link>
-                              </TooltipContent>
-                            </Tooltip>
-                          )}
-                          {isInactive && (
-                            <div
-                              title="The evaluator has been used in the past but is currently paused. It will not run against outputs created in this dataset run. You can reactivate it if you wish"
-                              className="ml-2 text-xs text-muted-foreground"
-                            >
-                              Paused
-                            </div>
-                          )}
-                          {isActive && (
-                            <Button
-                              variant="ghost"
-                              size="icon-xs"
-                              className="ml-auto"
-                              onClick={(e) =>
-                                handleConfigureTemplate(e, latestTemplate.id)
-                              }
-                              title={
-                                isInvalid
-                                  ? "Configure default model first"
-                                  : "Configure evaluator"
-                              }
-                              disabled={isInvalid || disabled}
-                            >
-                              <Cog className="h-4 w-4" />
-                            </Button>
-                          )}
-                        </InputCommandItem>
-                      );
-                    })}
+                        return (
+                          <InputCommandItem
+                            key={`elasticdash-${name}`}
+                            onSelect={() => {
+                              handleRowClick(latestTemplate.id);
+                            }}
+                            disabled={isInvalid || disabled}
+                          >
+                            {isActive ? (
+                              <CheckIcon className="mr-2 h-4 w-4" />
+                            ) : (
+                              <div className="mr-2 h-4 w-4" />
+                            )}
+                            <div className="mr-1">{name}</div>
+                            <MaintainerTooltip
+                              maintainer={getMaintainer(latestTemplate)}
+                            />
+                            {isInvalid && (
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <AlertCircle className="ml-1 h-4 w-4 text-yellow-500" />
+                                </TooltipTrigger>
+                                <TooltipContent className="max-h-[50dvh] overflow-y-auto whitespace-normal break-normal text-xs">
+                                  <p>Requires project-level evaluation model</p>
+                                  <Link
+                                    href={`/project/${projectId}/evals/default-model`}
+                                    className="mt-2 flex items-center gap-1 text-blue-600 hover:underline"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    <ExternalLinkIcon className="h-3 w-3" />
+                                    Configure default model
+                                  </Link>
+                                </TooltipContent>
+                              </Tooltip>
+                            )}
+                            {isInactive && (
+                              <div
+                                title="The evaluator has been used in the past but is currently paused. It will not run against outputs created in this dataset run. You can reactivate it if you wish"
+                                className="ml-2 text-xs text-muted-foreground"
+                              >
+                                Paused
+                              </div>
+                            )}
+                            {isActive && (
+                              <Button
+                                variant="ghost"
+                                size="icon-xs"
+                                className="ml-auto"
+                                onClick={(e) =>
+                                  handleConfigureTemplate(e, latestTemplate.id)
+                                }
+                                title={
+                                  isInvalid
+                                    ? "Configure default model first"
+                                    : "Configure evaluator"
+                                }
+                                disabled={isInvalid || disabled}
+                              >
+                                <Cog className="h-4 w-4" />
+                              </Button>
+                            )}
+                          </InputCommandItem>
+                        );
+                      },
+                    )}
                   </InputCommandGroup>
                 )}
 

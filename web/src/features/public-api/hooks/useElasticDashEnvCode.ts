@@ -1,7 +1,7 @@
 import { useUiCustomization } from "@/src/ee/features/ui-customization/useUiCustomization";
 import { env } from "@/src/env.mjs";
 
-export function useLangfuseEnvCode(keys?: {
+export function useElasticDashEnvCode(keys?: {
   secretKey: string;
   publicKey: string;
 }): string {

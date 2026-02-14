@@ -20,7 +20,7 @@ import type { ServerContext } from "../types";
 import { toolRegistry } from "./registry";
 import { logger } from "@elasticdash/shared/src/server";
 
-const MCP_SERVER_NAME = "langfuse";
+const MCP_SERVER_NAME = "elasticdash";
 const MCP_SERVER_VERSION = "0.2.0";
 
 /**

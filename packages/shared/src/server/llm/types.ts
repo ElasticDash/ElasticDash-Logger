@@ -503,9 +503,9 @@ export type LLMApiKey =
     ? z.infer<typeof LLMApiKeySchema>
     : never;
 
-export enum LangfuseInternalTraceEnvironment {
-  PromptExperiments = "langfuse-prompt-experiment",
-  LLMJudge = "langfuse-llm-as-a-judge",
+export enum ElasticDashInternalTraceEnvironment {
+  PromptExperiments = "elasticdash-prompt-experiment",
+  LLMJudge = "elasticdash-llm-as-a-judge",
 }
 
 export type TraceSinkParams = {
@@ -515,7 +515,7 @@ export type TraceSinkParams = {
   targetProjectId: string;
   traceId: string;
   traceName: string;
-  // NOTE: These strings must be whitelisted in the TS SDK to allow ingestion of traces by Langfuse. Please mirror edits to this string in https://github.com/langfuse/langfuse-js/blob/main/langfuse-core/src/index.ts.
+  // NOTE: These strings must be whitelisted in the TS SDK to allow ingestion of traces by ElasticDash. Please mirror edits to this string in https://github.com/elasticdash/elasticdash-js/blob/main/elasticdash-core/src/index.ts.
   environment: string;
   userId?: string;
   metadata?: Record<string, unknown>;

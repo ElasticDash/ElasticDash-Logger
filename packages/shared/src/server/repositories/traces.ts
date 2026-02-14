@@ -301,7 +301,7 @@ export const getTracesBySessionId = async (
 
   traces.forEach((trace) => {
     recordDistribution(
-      "langfuse.traces_by_session_id_age",
+      "elasticdash.traces_by_session_id_age",
       new Date().getTime() - trace.timestamp.getTime(),
     );
   });
@@ -542,7 +542,7 @@ export const getTraceById = async ({
 
   res.forEach((trace) => {
     recordDistribution(
-      "langfuse.query_by_id_age",
+      "elasticdash.query_by_id_age",
       new Date().getTime() - trace.timestamp.getTime(),
       {
         table: "traces",
@@ -1369,23 +1369,23 @@ export const getTracesForAnalyticsIntegrations = async function* (
   for await (const record of records) {
     yield {
       timestamp: record.timestamp,
-      langfuse_id: record.id,
-      langfuse_trace_name: record.name,
-      langfuse_url: `${baseUrl}/project/${projectId}/traces/${encodeURIComponent(record.id as string)}`,
-      langfuse_user_url: record.user_id
+      elasticdash_id: record.id,
+      elasticdash_trace_name: record.name,
+      elasticdash_url: `${baseUrl}/project/${projectId}/traces/${encodeURIComponent(record.id as string)}`,
+      elasticdash_user_url: record.user_id
         ? `${baseUrl}/project/${projectId}/users/${encodeURIComponent(record.user_id as string)}`
         : undefined,
-      langfuse_cost_usd: record.total_cost,
-      langfuse_count_observations: record.observation_count,
-      langfuse_session_id: record.session_id,
-      langfuse_project_id: projectId,
-      langfuse_user_id: record.user_id || null,
-      langfuse_latency: record.latency,
-      langfuse_release: record.release,
-      langfuse_version: record.version,
-      langfuse_tags: record.tags,
-      langfuse_environment: record.environment,
-      langfuse_event_version: "1.0.0",
+      elasticdash_cost_usd: record.total_cost,
+      elasticdash_count_observations: record.observation_count,
+      elasticdash_session_id: record.session_id,
+      elasticdash_project_id: projectId,
+      elasticdash_user_id: record.user_id || null,
+      elasticdash_latency: record.latency,
+      elasticdash_release: record.release,
+      elasticdash_version: record.version,
+      elasticdash_tags: record.tags,
+      elasticdash_environment: record.environment,
+      elasticdash_event_version: "1.0.0",
       posthog_session_id: record.posthog_session_id ?? null,
       mixpanel_session_id: record.mixpanel_session_id ?? null,
     } satisfies AnalyticsTraceEvent;

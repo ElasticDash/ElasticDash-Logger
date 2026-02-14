@@ -5,7 +5,7 @@ import { env } from "@/src/env.mjs";
 import { useUiCustomization } from "@/src/ee/features/ui-customization/useUiCustomization";
 import { PlusIcon } from "lucide-react";
 
-export const LangfuseIcon = ({
+export const ElasticDashIcon = ({
   size = 32,
   className,
 }: {
@@ -22,7 +22,7 @@ export const LangfuseIcon = ({
   />
 );
 
-const LangfuseLogotypeOrCustomized = ({ size }: { size: "sm" | "xl" }) => {
+const ElasticDashLogotypeOrCustomized = ({ size }: { size: "sm" | "xl" }) => {
   const uiCustomization = useUiCustomization();
 
   if (uiCustomization?.logoLightModeHref && uiCustomization?.logoDarkModeHref) {
@@ -51,14 +51,14 @@ const LangfuseLogotypeOrCustomized = ({ size }: { size: "sm" | "xl" }) => {
           size={size === "sm" ? 8 : 12}
           className="group-data-[collapsible=icon]:hidden"
         />
-        <LangfuseIcon size={size === "sm" ? 16 : 20} />
+        <ElasticDashIcon size={size === "sm" ? 16 : 20} />
       </div>
     );
   }
 
   return (
     <div className="flex items-center">
-      <LangfuseIcon size={size === "sm" ? 16 : 20} />
+      <ElasticDashIcon size={size === "sm" ? 16 : 20} />
       <span
         className={cn(
           "ml-2 font-mono font-semibold leading-none group-data-[collapsible=icon]:hidden",
@@ -71,7 +71,7 @@ const LangfuseLogotypeOrCustomized = ({ size }: { size: "sm" | "xl" }) => {
   );
 };
 
-export const LangfuseLogo = ({
+export const ElasticDashLogo = ({
   className,
   size = "sm",
   version = false,
@@ -90,7 +90,7 @@ export const LangfuseLogo = ({
       {/* ElasticDash Logo */}
       <div className="flex items-center">
         <Link href="/" className="flex items-center">
-          <LangfuseLogotypeOrCustomized size={size} />
+          <ElasticDashLogotypeOrCustomized size={size} />
         </Link>
         {version && (
           <VersionLabel className="ml-2 group-data-[collapsible=icon]:hidden" />

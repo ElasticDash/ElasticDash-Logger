@@ -1,6 +1,6 @@
 import { DataTable } from "@/src/components/table/data-table";
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { api } from "@/src/utils/api";
 import { type BackgroundMigration } from "@elasticdash/shared";
 import { RetryBackgroundMigration } from "@/src/features/background-migrations/components/retry-background-migration";
@@ -80,7 +80,7 @@ export default function BackgroundMigrationsTable() {
         );
       },
     },
-  ] as LangfuseColumnDef<BackgroundMigration>[];
+  ] as ElasticDashColumnDef<BackgroundMigration>[];
 
   return (
     <Page

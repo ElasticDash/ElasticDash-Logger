@@ -4,7 +4,7 @@ import { env } from "@/src/env.mjs";
 import { type FilterCondition, singleFilter } from "@elasticdash/shared";
 import { z } from "zod/v4";
 
-let elasticDashClient: ElasticDashClient | null = null;
+let elasticdashClient: ElasticDashClient | null = null;
 
 export function getDefaultModelParams() {
   return {
@@ -51,12 +51,12 @@ export function getElasticDashClient(
   secretKey: string,
   baseUrl?: string,
 ): ElasticDashClient {
-  if (!elasticDashClient) {
-    elasticDashClient = new ElasticDashClient({
+  if (!elasticdashClient) {
+    elasticdashClient = new ElasticDashClient({
       publicKey,
       secretKey,
       baseUrl,
     });
   }
-  return elasticDashClient;
+  return elasticdashClient;
 }

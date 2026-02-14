@@ -16,7 +16,7 @@ import { Separator } from "@/src/components/ui/separator";
 import { usePlan } from "@/src/features/entitlements/hooks";
 import { isCloudPlan } from "@elasticdash/shared";
 import { useUiCustomization } from "@/src/ee/features/ui-customization/useUiCustomization";
-import { useLangfuseCloudRegion } from "@/src/features/organizations/hooks";
+import { useElasticDashCloudRegion } from "@/src/features/organizations/hooks";
 
 type SupportType = "in-app-support" | "custom" | "community";
 
@@ -27,7 +27,7 @@ export function IntroSection({
   displayDensity?: "default" | "compact";
 }) {
   const uiCustomization = useUiCustomization();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
 
   // Note: We previously added an entitlement for in-app support, but removed it for now.
   //       The issue was that on global routes e.g., https://www.elasticdash.com/setup, the entitlement
@@ -35,7 +35,7 @@ export function IntroSection({
   //       false if asked. However on these pages, the in-app-chat should be available.
   //       Therefore we now check for whether wer are in a cloud deployment instead.
   // const hasInAppSupportEntitlement = useHasEntitlement("in-app-support");
-  const hasInAppSupportEntitlement = !!isLangfuseCloud;
+  const hasInAppSupportEntitlement = !!isElasticDashCloud;
   const plan = usePlan();
 
   const supportType: SupportType = useMemo(() => {
@@ -227,7 +227,7 @@ export function IntroSection({
             <Github className="h-4 w-4" /> Community & Resources
           </div>
           <p className="mt-1 text-sm text-muted-foreground">
-            Join the conversation and connect with the Langfuse community.
+            Join the conversation and connect with the ElasticDash community.
           </p>
           <div className="mt-3 grid grid-cols-1 gap-2">
             <Button asChild variant="ghost" className="justify-start px-1.5">
@@ -253,7 +253,7 @@ export function IntroSection({
             {showStatusPageLink && (
               <Button asChild variant="ghost" className="justify-start px-1.5">
                 <a
-                  href="https://status.langfuse.com"
+                  href="https://status.elasticdash.com"
                   target="_blank"
                   rel="noopener"
                   className="flex items-center"

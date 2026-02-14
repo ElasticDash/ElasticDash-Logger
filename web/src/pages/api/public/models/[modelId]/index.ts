@@ -8,7 +8,7 @@ import {
   GetModelV1Response,
   prismaToApiModelDefinition,
 } from "@/src/features/public-api/types/models";
-import { LangfuseNotFoundError } from "@elasticdash/shared";
+import { ElasticDashNotFoundError } from "@elasticdash/shared";
 import { auditLog } from "@/src/features/audit-logs/auditLog";
 import { clearModelCacheForProject } from "@elasticdash/shared/src/server";
 
@@ -57,7 +57,7 @@ export default withMiddlewares({
       });
 
       if (!model) {
-        throw new LangfuseNotFoundError("No model with this id found.");
+        throw new ElasticDashNotFoundError("No model with this id found.");
       }
 
       return prismaToApiModelDefinition(model);
@@ -76,7 +76,7 @@ export default withMiddlewares({
         },
       });
       if (!model) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "No model with this id found. Note: You cannot delete built-in models, override them with a model with the same name.",
         );
       }

@@ -8,7 +8,7 @@ import {
   fetchLLMCompletion,
   getDatasetItems,
   IngestionEventType,
-  LangfuseInternalTraceEnvironment,
+  ElasticDashInternalTraceEnvironment,
   logger,
   processEventBatch,
   queryClickhouse,
@@ -98,7 +98,7 @@ async function processItem(
       },
     },
     {
-      isLangfuseInternal: true,
+      isElasticDashInternal: true,
     },
   );
 
@@ -170,7 +170,7 @@ async function processLLMCall(
   }
 
   const traceSinkParams: TraceSinkParams = {
-    environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+    environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
     traceName: `dataset-run-item-${runItemId.slice(0, 5)}`,
     traceId,
     targetProjectId: config.projectId, // ingest to user project
@@ -408,7 +408,7 @@ async function createAllDatasetRunItemsWithConfigError(
         timestamp,
         body: {
           id: traceId,
-          environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+          environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
           name: `dataset-run-item-${runItemId.slice(0, 5)}`,
           input: stringInput,
         },
@@ -420,7 +420,7 @@ async function createAllDatasetRunItemsWithConfigError(
         timestamp,
         body: {
           id: generationId,
-          environment: LangfuseInternalTraceEnvironment.PromptExperiments,
+          environment: ElasticDashInternalTraceEnvironment.PromptExperiments,
           traceId,
           input: stringInput,
           level: "ERROR" as const,
@@ -444,7 +444,7 @@ async function createAllDatasetRunItemsWithConfigError(
           accessLevel: "project" as const,
         },
       },
-      { isLangfuseInternal: true },
+      { isElasticDashInternal: true },
     );
   }
 }

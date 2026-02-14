@@ -14,7 +14,7 @@ import Header from "@/src/components/layouts/header";
 import { usePostHogClientCapture } from "@/src/features/posthog-analytics/usePostHogClientCapture";
 import { useHasOrganizationAccess } from "@/src/features/rbac/utils/checkOrganizationAccess";
 import {
-  useLangfuseCloudRegion,
+  useElasticDashCloudRegion,
   useQueryOrganization,
 } from "@/src/features/organizations/hooks";
 import { Card } from "@/src/components/ui/card";
@@ -30,7 +30,7 @@ const aiFeaturesSchema = z.object({
 
 export default function AIFeatureSwitch() {
   const { update: updateSession } = useSession();
-  const { isLangfuseCloud } = useLangfuseCloudRegion();
+  const { isElasticDashCloud } = useElasticDashCloudRegion();
   const capture = usePostHogClientCapture();
   const organization = useQueryOrganization();
   const [isAIFeatureSwitchEnabled, setIsAIFeatureSwitchEnabled] = useState(
@@ -80,7 +80,7 @@ export default function AIFeatureSwitch() {
     });
   }
 
-  if (!isLangfuseCloud) return null;
+  if (!isElasticDashCloud) return null;
 
   return (
     <div>
@@ -93,10 +93,10 @@ export default function AIFeatureSwitch() {
             </h4>
             <p className="text-sm">
               This setting applies to all users and projects. Any data{" "}
-              <i>can</i> be sent to AWS Bedrock within the Langfuse data region.
-              Traces are sent to Langfuse Cloud in your data region. Your data
-              will not be used for training models. Applicable HIPAA, SOC2,
-              GDPR, and ISO 27001 compliance remains intact.{" "}
+              <i>can</i> be sent to AWS Bedrock within the ElasticDash data
+              region. Traces are sent to ElasticDash Cloud in your data region.
+              Your data will not be used for training models. Applicable HIPAA,
+              SOC2, GDPR, and ISO 27001 compliance remains intact.{" "}
               <a
                 href="https://www.elasticdash.com/security/ai-features"
                 target="_blank"

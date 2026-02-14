@@ -177,7 +177,7 @@ export const handleCloudSpendAlertJob = async (job: Job<{ orgId: string }>) => {
               } as any);
 
               recordIncrement(
-                "langfuse.queue.cloud_spend_alert_queue.emails_sent",
+                "elasticdash.queue.cloud_spend_alert_queue.emails_sent",
                 1,
                 { unit: "emails" },
               );
@@ -187,7 +187,7 @@ export const handleCloudSpendAlertJob = async (job: Job<{ orgId: string }>) => {
               );
             } catch (e) {
               recordIncrement(
-                "langfuse.queue.cloud_spend_alert_queue.email_failures",
+                "elasticdash.queue.cloud_spend_alert_queue.email_failures",
                 1,
                 { unit: "emails" },
               );
@@ -202,7 +202,7 @@ export const handleCloudSpendAlertJob = async (job: Job<{ orgId: string }>) => {
           });
 
           recordIncrement(
-            "langfuse.queue.cloud_spend_alert_queue.triggered_alerts",
+            "elasticdash.queue.cloud_spend_alert_queue.triggered_alerts",
             1,
             {
               unit: "alerts",
@@ -232,7 +232,7 @@ export const handleCloudSpendAlertJob = async (job: Job<{ orgId: string }>) => {
     }
 
     recordIncrement(
-      "langfuse.queue.cloud_spend_alert_queue.processed_orgs",
+      "elasticdash.queue.cloud_spend_alert_queue.processed_orgs",
       1,
       {
         unit: "organizations",
@@ -249,7 +249,7 @@ export const handleCloudSpendAlertJob = async (job: Job<{ orgId: string }>) => {
       `[CLOUD SPEND ALERTS] Error processing org ${orgId}: ${error}`,
     );
     recordIncrement(
-      "langfuse.queue.cloud_spend_alert_queue.skipped_orgs_with_errors",
+      "elasticdash.queue.cloud_spend_alert_queue.skipped_orgs_with_errors",
       1,
       {
         unit: "organizations",

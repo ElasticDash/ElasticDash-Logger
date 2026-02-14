@@ -1,7 +1,7 @@
 import { BaseError } from "./BaseError";
 
-export class LangfuseConflictError extends BaseError {
+export class ElasticDashConflictError extends BaseError {
   constructor(description = "Conflict") {
-    super("LangfuseConflictError", 409, description, true);
+    super("ElasticDashConflictError", 409, description, true);
   }
 }

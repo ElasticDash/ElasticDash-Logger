@@ -7,7 +7,7 @@ import {
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
 import { Badge } from "@/src/components/ui/badge";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { TokenUsageBadge } from "@/src/components/token-usage-badge";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
 import { api } from "@/src/utils/api";
@@ -547,7 +547,7 @@ export default function TracesTable({
 
   const enableSorting = !hideControls;
 
-  const columns: LangfuseColumnDef<TracesTableRow>[] = [
+  const columns: ElasticDashColumnDef<TracesTableRow>[] = [
     ...(hideControls
       ? []
       : [

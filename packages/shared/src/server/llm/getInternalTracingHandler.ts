@@ -72,7 +72,7 @@ export function getInternalTracingHandler(traceSinkParams: TraceSinkParams): {
           } as any,
         },
         {
-          isLangfuseInternal: true,
+          isElasticDashInternal: true,
         },
       );
     } catch (e) {

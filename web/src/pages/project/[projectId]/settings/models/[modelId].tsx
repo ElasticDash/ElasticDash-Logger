@@ -109,7 +109,7 @@ export default function ModelDetailPage() {
     );
   }
 
-  const isLangfuseModel = !Boolean(model?.projectId);
+  const isElasticDashModel = !Boolean(model?.projectId);
 
   if (isLoading || !model) {
     return <div className="p-3">Loading...</div>;
@@ -140,7 +140,7 @@ export default function ModelDetailPage() {
             {hasWriteAccess && (
               <>
                 <TestModelMatchButton projectId={projectId} variant="outline" />
-                {!isLangfuseModel ? (
+                {!isElasticDashModel ? (
                   <>
                     <EditModelButton projectId={projectId} modelData={model} />
                     <DeleteModelButton
@@ -180,7 +180,7 @@ export default function ModelDetailPage() {
                 Maintained by
               </div>
               <div className="mt-1 text-sm">
-                {isLangfuseModel ? "Langfuse" : "User"}
+                {isElasticDashModel ? "ElasticDash" : "User"}
               </div>
             </div>
 

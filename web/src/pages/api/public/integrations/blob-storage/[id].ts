@@ -5,7 +5,7 @@ import { redis } from "@elasticdash/shared/src/server";
 import { type NextApiRequest, type NextApiResponse } from "next";
 import { hasEntitlementBasedOnPlan } from "@/src/features/entitlements/server/hasEntitlement";
 import {
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   UnauthorizedError,
   ForbiddenError,
 } from "@elasticdash/shared";
@@ -65,7 +65,7 @@ async function handleDeleteBlobStorageIntegration(
   });
 
   if (!integration || integration.project.orgId !== authCheck.scope.orgId) {
-    throw new LangfuseNotFoundError("Blob storage integration not found");
+    throw new ElasticDashNotFoundError("Blob storage integration not found");
   }
 
   // Delete the integration

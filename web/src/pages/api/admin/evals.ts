@@ -31,7 +31,7 @@ export default async function handler(
 
     if (
       !AdminApiAuthService.handleAdminAuth(req, res, {
-        isAllowedOnLangfuseCloud: true,
+        isAllowedOnElasticDashCloud: true,
       })
     ) {
       return;

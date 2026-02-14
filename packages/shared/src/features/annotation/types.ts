@@ -42,7 +42,7 @@ const UpdateAnnotationScoreBase = CreateAnnotationScoreBase.extend({
 
 /**
  * CreateAnnotationScoreData is only used for annotation scores created via the UI.
- * For langfuse score types please refer to `web/src/features/public-api/types/scores.ts`
+ * For elasticdash score types please refer to `web/src/features/public-api/types/scores.ts`
  */
 export const CreateAnnotationScoreData = CreateAnnotationScoreBase.and(
   z.discriminatedUnion("dataType", [NumericData, CategoricalData, BooleanData]),
@@ -54,7 +54,7 @@ export type CreateAnnotationScoreData = z.infer<
 
 /**
  * UpdateAnnotationScoreData is only used for annotation scores updated via the UI
- * For langfuse score types please refer to `web/src/features/public-api/types/scores.ts`
+ * For elasticdash score types please refer to `web/src/features/public-api/types/scores.ts`
  */
 export const UpdateAnnotationScoreData = UpdateAnnotationScoreBase.and(
   z.discriminatedUnion("dataType", [NumericData, CategoricalData, BooleanData]),

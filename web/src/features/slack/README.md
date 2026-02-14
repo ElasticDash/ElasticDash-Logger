@@ -21,7 +21,7 @@ This guide walks you through setting up and testing the ElasticDash Slack integr
 ### 2. (Optional) Add App Icon
 
 1. In your Slack app settings, go to "Basic Information"
-2. Upload the ElasticDash icon from `web/public/icon1024.png` as your app's avatar
+2. Upload the ElasticDash icon from `web/public/icon1024.svg` as your app's avatar
 3. This will make your app more recognizable in Slack
 
 ### 3. Configure Environment Variables

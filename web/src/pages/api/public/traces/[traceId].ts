@@ -9,7 +9,7 @@ import {
 } from "@/src/features/public-api/types/traces";
 import {
   filterAndValidateDbTraceScoreList,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
 } from "@elasticdash/shared";
 import { prisma } from "@elasticdash/shared/src/db";
 import {
@@ -37,7 +37,7 @@ export default withMiddlewares({
       });
 
       if (!trace) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           `Trace ${traceId} not found within authorized project`,
         );
       }

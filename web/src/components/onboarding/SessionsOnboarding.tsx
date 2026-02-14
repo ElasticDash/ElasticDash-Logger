@@ -50,7 +50,7 @@ export function SessionsOnboarding() {
           for more details.
         </span>
       }
-      videoSrc="https://static.langfuse.com/prod-assets/onboarding/sessions-overview-v1.mp4"
+      videoSrc="https://static.elasticdash.com/prod-assets/onboarding/sessions-overview-v1.mp4"
     />
   );
 }

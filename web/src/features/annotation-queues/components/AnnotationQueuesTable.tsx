@@ -1,5 +1,5 @@
 import { DataTable } from "@/src/components/table/data-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
 import { useQueryParams, withDefault, NumberParam } from "use-query-params";
@@ -60,7 +60,7 @@ export function AnnotationQueuesTable({ projectId }: { projectId: string }) {
     scope: "annotationQueues:CUD",
   });
 
-  const columns: LangfuseColumnDef<RowData>[] = [
+  const columns: ElasticDashColumnDef<RowData>[] = [
     {
       accessorKey: "key",
       header: "Name",

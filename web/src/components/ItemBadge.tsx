@@ -24,7 +24,7 @@ import { cva } from "class-variance-authority";
 import { type ObservationType } from "@elasticdash/shared";
 import { cn } from "@/src/utils/tailwind";
 
-export type LangfuseItemType =
+export type ElasticDashItemType =
   | ObservationType
   | "TRACE"
   | "SESSION"
@@ -94,7 +94,7 @@ export function ItemBadge({
   isSmall = false,
   className,
 }: {
-  type: LangfuseItemType;
+  type: ElasticDashItemType;
   showLabel?: boolean;
   isSmall?: boolean;
   className?: string;

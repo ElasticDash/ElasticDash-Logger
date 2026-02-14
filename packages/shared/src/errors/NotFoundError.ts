@@ -1,7 +1,7 @@
 import { BaseError } from "./BaseError";
 
-export class LangfuseNotFoundError extends BaseError {
+export class ElasticDashNotFoundError extends BaseError {
   constructor(description = "Not Found") {
-    super("LangfuseNotFoundError", 404, description, true);
+    super("ElasticDashNotFoundError", 404, description, true);
   }
 }

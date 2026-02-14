@@ -24,12 +24,12 @@ export const useOrganization = (organizationId: string | null) => {
   return organization ?? null;
 };
 
-export const useLangfuseCloudRegion = (): {
-  isLangfuseCloud: boolean;
+export const useElasticDashCloudRegion = (): {
+  isElasticDashCloud: boolean;
   region: string | undefined;
 } => {
   return {
-    isLangfuseCloud: Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION),
+    isElasticDashCloud: Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION),
     region: env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION,
   };
 };

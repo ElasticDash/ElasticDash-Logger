@@ -7,7 +7,7 @@ import {
 } from "@/src/components/table/data-table-controls";
 import { ResizableFilterLayout } from "@/src/components/table/resizable-filter-layout";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { IOTableCell } from "../../ui/IOTableCell";
 import { Avatar, AvatarImage } from "@/src/components/ui/avatar";
 import useColumnVisibility from "@/src/features/column-visibility/hooks/useColumnVisibility";
@@ -319,7 +319,7 @@ export default function ScoresTable({
     setSelectedRows,
   });
 
-  const rawColumns: LangfuseColumnDef<ScoresTableRow>[] = [
+  const rawColumns: ElasticDashColumnDef<ScoresTableRow>[] = [
     selectActionColumn,
     {
       accessorKey: "id",

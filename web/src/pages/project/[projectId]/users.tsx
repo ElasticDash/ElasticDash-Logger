@@ -10,7 +10,7 @@ import {
 import { DataTableToolbar } from "@/src/components/table/data-table-toolbar";
 import { DataTable } from "@/src/components/table/data-table";
 import TableLink from "@/src/components/table/table-link";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { Skeleton } from "@/src/components/ui/skeleton";
 import { useQueryFilterState } from "@/src/features/filters/hooks/useFilterState";
 import { useDetailPageLists } from "@/src/features/navigate-detail-pages/context";
@@ -66,7 +66,7 @@ export default function UsersPage() {
         title: "Users",
         help: {
           description:
-            "Attribute data in Langfuse to a user by adding a userId to your traces. See docs to learn more.",
+            "Attribute data in ElasticDash to a user by adding a userId to your traces. See docs to learn more.",
           href: "https://www.elasticdash.com/docs/user-explorer",
         },
       }}
@@ -212,14 +212,14 @@ const UsersTable = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [users.isSuccess, users.data]);
 
-  const columns: LangfuseColumnDef<RowData>[] = [
+  const columns: ElasticDashColumnDef<RowData>[] = [
     {
       accessorKey: "userId",
       enableColumnFilter: true,
       header: "User ID",
       headerTooltip: {
         description:
-          "The unique identifier for the user that was logged in Langfuse. See docs for more details on how to set this up.",
+          "The unique identifier for the user that was logged in ElasticDash. See docs for more details on how to set this up.",
         href: "https://www.elasticdash.com/docs/observability/features/users",
       },
       size: 150,

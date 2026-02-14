@@ -1,5 +1,5 @@
 import { DataTable } from "@/src/components/table/data-table";
-import { type LangfuseColumnDef } from "@/src/components/table/types";
+import { type ElasticDashColumnDef } from "@/src/components/table/types";
 import { api } from "@/src/utils/api";
 import { safeExtract } from "@/src/utils/map-utils";
 import { useQueryParams, withDefault, NumberParam } from "use-query-params";
@@ -33,7 +33,7 @@ export function AuditLogsTable(props: { projectId: string }) {
 
   const [rowHeight, setRowHeight] = useRowHeightLocalStorage("auditLogs", "s");
 
-  const columns: LangfuseColumnDef<AuditLogRow>[] = [
+  const columns: ElasticDashColumnDef<AuditLogRow>[] = [
     {
       accessorKey: "createdAt",
       header: "Time",
@@ -46,7 +46,7 @@ export function AuditLogsTable(props: { projectId: string }) {
       accessorKey: "actor",
       header: "Actor",
       headerTooltip: {
-        description: "The actor within Langfuse who performed the action.",
+        description: "The actor within ElasticDash who performed the action.",
       },
       cell: (row) => {
         const actor = row.getValue() as AuditLogRow["actor"];

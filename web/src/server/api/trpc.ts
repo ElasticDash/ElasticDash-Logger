@@ -88,7 +88,7 @@ import {
   getTraceById,
   logger,
   addUserToSpan,
-  contextWithLangfuseProps,
+  contextWithElasticDashProps,
   ClickHouseResourceError,
 } from "@elasticdash/shared/src/server";
 
@@ -98,7 +98,7 @@ import { BaseError, parseIO } from "@elasticdash/shared";
 
 setUpSuperjson();
 
-const isLangfuseCloud = Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION);
+const isElasticDashCloud = Boolean(env.NEXT_PUBLIC_ELASTICDASH_CLOUD_REGION);
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -169,7 +169,7 @@ const withErrorHandling = t.middleware(async ({ ctx, next }) => {
       // - Either the original error message OR "Internal error" if it's a 5xx error
       const { code, httpStatus } = resolveError(res.error);
       const isSafeToExpose = httpStatus >= 400 && httpStatus < 500;
-      const errorMessage = isLangfuseCloud
+      const errorMessage = isElasticDashCloud
         ? "We have been notified and are working on it."
         : "Please check error logs in your self-hosted deployment.";
 
@@ -192,7 +192,7 @@ const withOtelInstrumentation = t.middleware(async (opts) => {
   // In tRPC v11, input is lazy-loaded and must be accessed via getRawInput()
   const actualInput = await opts.getRawInput();
 
-  const baggageCtx = contextWithLangfuseProps({
+  const baggageCtx = contextWithElasticDashProps({
     headers: opts.ctx.headers,
     userId: opts.ctx.session?.user?.id,
     projectId: (actualInput as Record<string, string>)?.projectId,

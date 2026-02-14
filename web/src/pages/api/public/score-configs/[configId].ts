@@ -10,7 +10,7 @@ import {
 import {
   InternalServerError,
   InvalidRequestError,
-  LangfuseNotFoundError,
+  ElasticDashNotFoundError,
   validateDbScoreConfigSafe,
 } from "@elasticdash/shared";
 import { prisma } from "@elasticdash/shared/src/db";
@@ -30,7 +30,7 @@ export default withMiddlewares({
       });
 
       if (!config) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Score config not found within authorized project",
         );
       }
@@ -58,7 +58,7 @@ export default withMiddlewares({
       });
 
       if (!existingConfig) {
-        throw new LangfuseNotFoundError(
+        throw new ElasticDashNotFoundError(
           "Score config not found within authorized project",
         );
       }
