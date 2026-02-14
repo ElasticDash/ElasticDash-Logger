@@ -11,8 +11,8 @@ VOLUMES=(
   minio_data
 )
 
-SRC_PREFIX="langfuse"
-DEST_PREFIX="elasticdash"
+SRC_PREFIX="elasticdash-logger_langfuse"
+DEST_PREFIX="elasticdash-logger_elasticdash"
 
 echo "=== Starting Volume Replacement Migration ==="
 
