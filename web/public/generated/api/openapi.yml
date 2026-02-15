@@ -1580,7 +1580,7 @@ paths:
         Notes:
 
         - Introduction to data model:
-        https://elasticdash.com/docs/observability/data-model
+        https://github.com/ElasticDash/ElasticDash-Doc
 
         - Batch sizes are limited to 3.5 MB in total. You need to adjust the
         number of events per batch accordingly.
@@ -1979,7 +1979,7 @@ paths:
 
 
         For more details, see the [Metrics API
-        documentation](https://elasticdash.com/docs/metrics/features/metrics-api).
+        documentation](https://github.com/ElasticDash/ElasticDash-Doc).
 
 
         ## Available Views
@@ -2268,7 +2268,7 @@ paths:
 
 
         For more details, see the [Metrics API
-        documentation](https://elasticdash.com/docs/metrics/features/metrics-api).
+        documentation](https://github.com/ElasticDash/ElasticDash-Doc).
       operationId: metrics_metrics
       tags:
         - Metrics
@@ -3299,7 +3299,7 @@ paths:
         - Integration guide:
         https://elasticdash.com/integrations/native/opentelemetry
 
-        - Data model: https://elasticdash.com/docs/observability/data-model
+        - Data model: https://github.com/ElasticDash/ElasticDash-Doc
       operationId: opentelemetry_exportTraces
       tags:
         - Opentelemetry

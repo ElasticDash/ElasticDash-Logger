@@ -20,7 +20,7 @@ service:
 
         **Documentation:**
         - Integration guide: https://elasticdash.com/integrations/native/opentelemetry
-        - Data model: https://elasticdash.com/docs/observability/data-model
+        - Data model: https://github.com/ElasticDash/ElasticDash-Doc
       method: POST
       path: /otel/v1/traces
       request:
