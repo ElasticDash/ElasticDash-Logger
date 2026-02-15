@@ -419,6 +419,6 @@ npx fern-api generate --api organizations  # for the organizations API
 
 ## License
 
-ElasticDash is MIT licensed, except for `ee/` folder. See [LICENSE](LICENSE) and [docs](https://elasticdash.com/docs/open-source) for more details.
+ElasticDash is MIT licensed, except for `ee/` folder. See [LICENSE](LICENSE) and [docs](https://github.com/ElasticDash/ElasticDash-Doc) for more details.
 
 When contributing to the ElasticDash codebase, you need to agree to the [Contributor License Agreement](https://cla-assistant.io/elasticdash/elasticdash). You only need to do this once and the CLA bot will remind you if you haven't signed it yet.
