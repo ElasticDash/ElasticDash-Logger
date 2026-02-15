@@ -1,393 +1,375 @@
-<img width="4856" height="1000" alt="github-banner" src="https://github.com/user-attachments/assets/6f435ef3-1194-4e26-87af-aa13826bbb5f" />
+# ElasticDash Logger
 
 <div align="center">
-   <div>
-      <h3>
-        <a href="https://elasticdash.com/blog/2025-06-04-open-sourcing-elasticdash-product">
-            <strong>ElasticDash Is Doubling Down On Open Source</strong>
-         </a> <br> <br>
-         <a href="https://cloud.elasticdash.com">
-            <strong>ElasticDash Cloud</strong>
-         </a> · 
-         <a href="https://elasticdash.com/docs/deployment/self-host">
-            <strong>Self Host</strong>
-         </a> · 
-         <a href="https://elasticdash.com/demo">
-            <strong>Demo</strong>
-         </a>
-      </h3>
-   </div>
 
-   <div>
-      <a href="https://elasticdash.com/docs"><strong>Docs</strong></a> ·
-      <a href="https://elasticdash.com/issues"><strong>Report Bug</strong></a> ·
-      <a href="https://elasticdash.com/ideas"><strong>Feature Request</strong></a> ·
-      <a href="https://elasticdash.com/changelog"><strong>Changelog</strong></a> ·
-      <a href="https://elasticdash.com/roadmap"><strong>Roadmap</strong></a> ·
-   </div>
-   <br/>
-   <span>ElasticDash uses <a href="https://github.com/orgs/elasticdash/discussions"><strong>GitHub Discussions</strong></a>  for Support and Feature Requests.</span>
-   <br/>
-   <span><b>We're hiring.</b> <a href="https://elasticdash.com/careers"><strong>Join us</strong></a> in product engineering and technical go-to-market roles.</span>
-   <br/>
-   <br/>
-   <div>
-   </div>
+**Open Source LLM Observability Platform**
+
 </div>
 
-<p align="center">
-   <a href="https://github.com/elasticdash/elasticdash/blob/main/LICENSE">
-   <img src="https://img.shields.io/badge/License-MIT-E11311.svg" alt="MIT License">
-   </a>
-   <a href="https://www.ycombinator.com/companies/elasticdash"><img src="https://img.shields.io/badge/Y%20Combinator-W23-orange" alt="Y Combinator W23"></a>
-   <a href="https://hub.docker.com/u/elasticdash" target="_blank">
-   <img alt="Docker Pulls" src="https://img.shields.io/docker/pulls/elasticdash/elasticdash?labelColor=%20%23FDB062&logo=Docker&labelColor=%20%23528bff"></a>
-   <a href="https://pypi.python.org/pypi/elasticdash"><img src="https://img.shields.io/pypi/dm/elasticdash?logo=python&logoColor=white&label=pypi%20elasticdash&color=blue" alt="elasticdash Python package on PyPi"></a>
-   <a href="https://www.npmjs.com/package/elasticdash"><img src="https://img.shields.io/npm/dm/elasticdash?logo=npm&logoColor=white&label=npm%20elasticdash&color=blue" alt="elasticdash npm package"></a>
-   <br/>
-   <a href="https://discord.com/invite/7NXusRtqYU" target="_blank">
-   <img src="https://img.shields.io/discord/1111061815649124414?logo=discord&labelColor=%20%235462eb&logoColor=%20%23f5f5f5&color=%20%235462eb"
-      alt="chat on Discord"></a>
-   <a href="https://twitter.com/intent/follow?screen_name=elasticdash" target="_blank">
-   <img src="https://img.shields.io/twitter/follow/elasticdash?logo=X&color=%20%23f5f5f5"
-      alt="follow on X(Twitter)"></a>
-   <a href="https://www.linkedin.com/company/elasticdash/" target="_blank">
-   <img src="https://custom-icon-badges.demolab.com/badge/LinkedIn-0A66C2?logo=linkedin-white&logoColor=fff"
-      alt="follow on LinkedIn"></a>
-   <a href="https://github.com/elasticdash/elasticdash/graphs/commit-activity" target="_blank">
-   <img alt="Commits last month" src="https://img.shields.io/github/commit-activity/m/elasticdash/elasticdash?labelColor=%20%2332b583&color=%20%2312b76a"></a>
-   <a href="https://github.com/elasticdash/elasticdash/" target="_blank">
-   <img alt="Issues closed" src="https://img.shields.io/github/issues-search?query=repo%3Aelasticdash%2Felasticdash%20is%3Aclosed&label=issues%20closed&labelColor=%20%237d89b0&color=%20%235d6b98"></a>
-   <a href="https://github.com/elasticdash/elasticdash/discussions/" target="_blank">
-   <img alt="Discussion posts" src="https://img.shields.io/github/discussions/elasticdash/elasticdash?labelColor=%20%239b8afb&color=%20%237a5af8"></a>
-   <a href="https://deepwiki.com/elasticdash/elasticdash" target="_blank">
-   <img alt="Ask DeepWiki" src="https://deepwiki.com/badge.svg"></a>
-</p>
+ElasticDash Logger is an **open source LLM observability** platform for capturing and storing execution traces from LLM applications. It is a fork of Langfuse tailored for the ElasticDash evaluation system.
 
-<p align="center">
-  <a href="./README.md"><img alt="README in English" src="https://img.shields.io/badge/English-d9d9d9"></a>
-  <a href="./README.cn.md"><img alt="简体中文版自述文件" src="https://img.shields.io/badge/简体中文-d9d9d9"></a>
-  <a href="./README.ja.md"><img alt="日本語のREADME" src="https://img.shields.io/badge/日本語-d9d9d9"></a>
-  <a href="./README.kr.md"><img alt="README in Korean" src="https://img.shields.io/badge/한국어-d9d9d9"></a>
-</p>
+> **About This Repository**: This repository contains the **ElasticDash Logger** component only. It is part of the larger ElasticDash ecosystem but can be deployed and used independently for LLM observability.
 
-ElasticDash is an **open source LLM engineering** platform. It helps teams collaboratively
-**develop, monitor, evaluate,** and **debug** AI applications. ElasticDash can be **self-hosted in minutes** and is **battle-tested**.
-
-[![ElasticDash Overview Video](https://github.com/user-attachments/assets/925d71db-6331-445e-8f3e-727ee95d1c9f)](https://elasticdash.com/watch-demo)
+---
 
 ## ✨ Core Features
 
-<img width="4856" height="1944" alt="ElasticDash Overview" src="https://github.com/user-attachments/assets/5dac68ef-d546-49fb-b06f-cfafc19282e3" />
+- **LLM Application Observability**: Instrument your app and start ingesting traces to ElasticDash Logger, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions. Inspect and debug complex logs and user sessions.
 
-- [LLM Application Observability](https://elasticdash.com/docs/tracing): Instrument your app and start ingesting traces to ElasticDash, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions. Inspect and debug complex logs and user sessions. Try the interactive [demo](https://elasticdash.com/docs/demo) to see this in action.
+- **Dual Database Architecture**: PostgreSQL for metadata, ClickHouse for high-volume trace data with fast analytical queries.
 
-- [Prompt Management](https://elasticdash.com/docs/prompt-management/get-started) helps you centrally manage, version control, and collaboratively iterate on your prompts. Thanks to strong caching on server and client side, you can iterate on prompts without adding latency to your application.
+- **Langfuse-Compatible API**: Works with standard Langfuse SDK ecosystem and integrations.
 
-- [Evaluations](https://elasticdash.com/docs/evaluation/overview) are key to the LLM application development workflow, and ElasticDash adapts to your needs. It supports LLM-as-a-judge, user feedback collection, manual labeling, and custom evaluation pipelines via APIs/SDKs.
+- **OpenTelemetry Foundation**: Standards-based observability built on OpenTelemetry.
 
-- [Datasets](https://elasticdash.com/docs/evaluation/dataset-runs/datasets) enable test sets and benchmarks for evaluating your LLM application. They support continuous improvement, pre-deployment testing, structured experiments, flexible evaluation, and seamless integration with frameworks like LangChain and LlamaIndex.
+- **Async Processing**: Queue-based architecture for non-blocking trace ingestion.
 
-- [LLM Playground](https://elasticdash.com/docs/playground) is a tool for testing and iterating on your prompts and model configurations, shortening the feedback loop and accelerating development. When you see a bad result in tracing, you can directly jump to the playground to iterate on it.
+- **Comprehensive API**: RESTful endpoints with OpenAPI spec for custom integrations.
 
-- [Comprehensive API](https://elasticdash.com/docs/api): ElasticDash is frequently used to power bespoke LLMOps workflows while using the building blocks provided by ElasticDash via the API. OpenAPI spec, Postman collection, and typed SDKs for Python, JS/TS are available.
+---
 
-## 📦 Deploy ElasticDash
+## 📦 What This Repository Contains
 
-<img width="4856" height="1322" alt="ElasticDash Deployment Options" src="https://github.com/user-attachments/assets/98f020c7-7a20-4264-a201-65c41a52a5d5" />
+This repository includes:
 
-### ElasticDash Cloud
+- **Web Application** (`/web/`) - Next.js 14 application providing:
+  - REST API for trace ingestion
+  - Web UI for trace visualization
+  - tRPC API for internal operations
 
-Managed deployment by the ElasticDash team, generous free-tier, no credit card required.
+- **Worker** (`/worker/`) - Express.js background job processor for:
+  - Async trace processing
+  - Data aggregation
+  - Queue management
 
-<div align="center">
-    <a href="https://cloud.elasticdash.com" target="_blank">
-        <img alt="Static Badge" src="https://img.shields.io/badge/»%20Sign%20up%20for%20ElasticDash%20Cloud-8A2BE2?&color=orange">
-    </a>
-</div>
+- **Shared Packages** (`/packages/shared/`) - Common code including:
+  - Prisma database schema (PostgreSQL)
+  - ClickHouse schema and migrations
+  - Shared TypeScript types and utilities
 
-### Self-Host ElasticDash
+### What This Repo Is NOT
 
-Run ElasticDash on your own infrastructure:
+- ❌ ElasticDash Backend (evaluation engine) - separate repo
+- ❌ ElasticDash Frontend (test management UI) - separate repo
+- ❌ Python/JS SDKs - maintained in separate repositories
 
-- [Local (docker compose)](https://elasticdash.com/self-hosting/local): Run ElasticDash on your own machine in 5 minutes using Docker Compose.
+---
 
-  ```bash
-  # Get a copy of the latest ElasticDash repository
-  git clone https://github.com/elasticdash/elasticdash.git
-  cd elasticdash
+## 🚀 Deploy ElasticDash Logger
 
-  # Run the elasticdash docker compose
-  docker compose up
-  ```
+### Self-Host ElasticDash Logger
 
-- [VM](https://elasticdash.com/self-hosting/docker-compose): Run ElasticDash on a single Virtual Machine using Docker Compose.
-- [Kubernetes (Helm)](https://elasticdash.com/self-hosting/kubernetes-helm): Run ElasticDash on a Kubernetes cluster using Helm. This is the preferred production deployment.
-- Terraform Templates: [AWS](https://elasticdash.com/self-hosting/aws), [Azure](https://elasticdash.com/self-hosting/azure), [GCP](https://elasticdash.com/self-hosting/gcp)
+Run ElasticDash Logger on your own infrastructure:
 
-See [self-hosting documentation](https://elasticdash.com/self-hosting) to learn more about architecture and configuration options.
+#### Local (Docker Compose)
+
+Run ElasticDash Logger on your own machine in 5 minutes using Docker Compose.
+
+```bash
+# Get a copy of the latest ElasticDash Logger repository
+git clone https://github.com/your-org/ElasticDash-Logger.git
+cd ElasticDash-Logger
+
+# Run the elasticdash-logger docker compose
+docker compose up
+```
+
+#### VM
+
+Run ElasticDash Logger on a single Virtual Machine using Docker Compose.
+
+#### Kubernetes (Helm)
+
+Run ElasticDash Logger on a Kubernetes cluster using Helm. This is the preferred production deployment.
+
+### Prerequisites for Local Development
+
+- Node.js 24 (see `.nvmrc`)
+- Docker and Docker Compose
+- pnpm v9.5.0
+
+### Local Development Setup
+
+1. **Clone and install dependencies:**
+   ```bash
+   git clone https://github.com/your-org/ElasticDash-Logger.git
+   cd ElasticDash-Logger
+   pnpm install
+   ```
+
+2. **Start infrastructure:**
+   ```bash
+   pnpm run infra:dev:up
+   ```
+   This starts PostgreSQL, ClickHouse, Redis, and MinIO.
+
+3. **Configure environment:**
+   ```bash
+   cp .env.dev.example .env
+   # Edit .env with your configuration
+   ```
+
+4. **Run database migrations:**
+   ```bash
+   cd packages/shared
+   pnpm run db:migrate
+   ```
+
+5. **Start the application:**
+   ```bash
+   # Development mode with hot reload
+   pnpm run dev:web
+
+   # Or run both web + worker
+   pnpm run dev
+   ```
+
+6. **Access the Logger:**
+   - Web UI: http://localhost:3000
+   - API: http://localhost:3000/api/public
+
+See **CLAUDE.md** in the repository root for detailed development instructions.
+
+---
 
 ## 🔌 Integrations
 
-<img width="4856" height="1322" alt="github-integrations" src="https://github.com/user-attachments/assets/e41ea0fb-742d-41ce-bf94-1d4fb95750cd" />
-
 ### Main Integrations:
 
-| Integration                                                                     | Supports                   | Description                                                                                                                                      |
-|---------------------------------------------------------------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
-| [SDK](https://elasticdash.com/docs/sdk)                                         | Python, JS/TS              | Manual instrumentation using the SDKs for full flexibility.                                                                                      |
-| [OpenAI](https://elasticdash.com/integrations/model-providers/openai-py)        | Python, JS/TS              | Automated instrumentation using drop-in replacement of OpenAI SDK.                                                                               |
-| [Langchain](https://elasticdash.com/docs/integrations/langchain)                | Python, JS/TS              | Automated instrumentation by passing callback handler to Langchain application.                                                                  |
-| [LlamaIndex](https://elasticdash.com/docs/integrations/llama-index/get-started) | Python                     | Automated instrumentation via LlamaIndex callback system.                                                                                        |
-| [Haystack](https://elasticdash.com/docs/integrations/haystack)                  | Python                     | Automated instrumentation via Haystack content tracing system.                                                                                   |
-| [LiteLLM](https://elasticdash.com/docs/integrations/litellm)                    | Python, JS/TS (proxy only) | Use any LLM as a drop in replacement for GPT. Use Azure, OpenAI, Cohere, Anthropic, Ollama, VLLM, Sagemaker, HuggingFace, Replicate (100+ LLMs). |
-| [Vercel AI SDK](https://elasticdash.com/docs/integrations/vercel-ai-sdk)        | JS/TS                      | TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js.                          |
-| [Mastra](https://elasticdash.com/docs/integrations/mastra)                      | JS/TS                      | Open source framework for building AI agents and multi-agent systems.                                                                            |
-| [API](https://elasticdash.com/docs/api)                                         |                            | Directly call the public API. OpenAPI spec available.                                                                                            |
+| Integration   | Supports                   | Description                                                                                                                                      |
+|---------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| SDK           | Python, JS/TS              | Manual instrumentation using the SDKs for full flexibility.                                                                                      |
+| OpenAI        | Python, JS/TS              | Automated instrumentation using drop-in replacement of OpenAI SDK.                                                                               |
+| Langchain     | Python, JS/TS              | Automated instrumentation by passing callback handler to Langchain application.                                                                  |
+| LlamaIndex    | Python                     | Automated instrumentation via LlamaIndex callback system.                                                                                        |
+| Haystack      | Python                     | Automated instrumentation via Haystack content tracing system.                                                                                   |
+| LiteLLM       | Python, JS/TS (proxy only) | Use any LLM as a drop in replacement for GPT. Use Azure, OpenAI, Cohere, Anthropic, Ollama, VLLM, Sagemaker, HuggingFace, Replicate (100+ LLMs). |
+| Vercel AI SDK | JS/TS                      | TypeScript toolkit designed to help developers build AI-powered applications with React, Next.js, Vue, Svelte, Node.js.                          |
+| API           | -                          | Directly call the public API. OpenAPI spec available.                                                                                            |
 
-### Packages integrated with ElasticDash:
+### Packages integrated with ElasticDash Logger:
 
-| Name                                                                       | Type               | Description                                                                                                             |
-|----------------------------------------------------------------------------|--------------------|-------------------------------------------------------------------------------------------------------------------------|
-| [Instructor](https://elasticdash.com/docs/integrations/instructor)         | Library            | Library to get structured LLM outputs (JSON, Pydantic)                                                                  |
-| [DSPy](https://elasticdash.com/docs/integrations/dspy)                     | Library            | Framework that systematically optimizes language model prompts and weights                                              |
-| [Mirascope](https://elasticdash.com/docs/integrations/mirascope)           | Library            | Python toolkit for building LLM applications.                                                                           |
-| [Ollama](https://elasticdash.com/docs/integrations/ollama)                 | Model (local)      | Easily run open source LLMs on your own machine.                                                                        |
-| [Amazon Bedrock](https://elasticdash.com/docs/integrations/amazon-bedrock) | Model              | Run foundation and fine-tuned models on AWS.                                                                            |
-| [AutoGen](https://elasticdash.com/docs/integrations/autogen)               | Agent Framework    | Open source LLM platform for building distributed agents.                                                               |
-| [Flowise](https://elasticdash.com/docs/integrations/flowise)               | Chat/Agent&nbsp;UI | JS/TS no-code builder for customized LLM flows.                                                                         |
-| [Langflow](https://elasticdash.com/docs/integrations/langflow)             | Chat/Agent&nbsp;UI | Python-based UI for LangChain, designed with react-flow to provide an effortless way to experiment and prototype flows. |
-| [Dify](https://elasticdash.com/docs/integrations/dify)                     | Chat/Agent&nbsp;UI | Open source LLM app development platform with no-code builder.                                                          |
-| [OpenWebUI](https://elasticdash.com/docs/integrations/openwebui)           | Chat/Agent&nbsp;UI | Self-hosted LLM Chat web ui supporting various LLM runners including self-hosted and local models.                      |
-| [Promptfoo](https://elasticdash.com/docs/integrations/promptfoo)           | Tool               | Open source LLM testing platform.                                                                                       |
-| [LobeChat](https://elasticdash.com/docs/integrations/lobechat)             | Chat/Agent&nbsp;UI | Open source chatbot platform.                                                                                           |
-| [Vapi](https://elasticdash.com/docs/integrations/vapi)                     | Platform           | Open source voice AI platform.                                                                                          |
-| [Inferable](https://elasticdash.com/docs/integrations/other/inferable)     | Agents             | Open source LLM platform for building distributed agents.                                                               |
-| [Gradio](https://elasticdash.com/docs/integrations/other/gradio)           | Chat/Agent&nbsp;UI | Open source Python library to build web interfaces like Chat UI.                                                        |
-| [Goose](https://elasticdash.com/docs/integrations/goose)                   | Agents             | Open source LLM platform for building distributed agents.                                                               |
-| [smolagents](https://elasticdash.com/docs/integrations/smolagents)         | Agents             | Open source AI agents framework.                                                                                        |
-| [CrewAI](https://elasticdash.com/docs/integrations/crewai)                 | Agents             | Multi agent framework for agent collaboration and tool use.                                                             |
+Compatible with Instructor, DSPy, Mirascope, Ollama, Amazon Bedrock, AutoGen, Flowise, Langflow, Dify, OpenWebUI, Promptfoo, LobeChat, Vapi, and many more.
+
+---
 
 ## 🚀 Quickstart
 
-Instrument your app and start ingesting traces to ElasticDash, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions. Inspect and debug complex logs and user sessions.
+Instrument your app and start ingesting traces to ElasticDash Logger, thereby tracking LLM calls and other relevant logic in your app such as retrieval, embedding, or agent actions.
 
 ### 1️⃣ Create new project
 
-1.  [Create ElasticDash account](https://cloud.elasticdash.com/auth/sign-up) or [self-host](https://elasticdash.com/self-hosting)
-2.  Create a new project
-3.  Create new API credentials in the project settings
+1. Start ElasticDash Logger (locally or self-hosted)
+2. Create a new project
+3. Create new API credentials in the project settings
 
-### 2️⃣ Log your first LLM call
+### 2️⃣ Install SDK
 
-The [`@observe()` decorator](https://elasticdash.com/docs/sdk/python/decorators) makes it easy to trace any Python LLM application. In this quickstart we also use the ElasticDash [OpenAI integration](https://elasticdash.com/integrations/model-providers/openai-py) to automatically capture all model parameters.
-
-> [!TIP]
-> Not using OpenAI? Visit [our documentation](https://elasticdash.com/docs/get-started#log-your-first-llm-call-to-elasticdash) to learn how to log other models and frameworks.
+#### Python
 
 ```bash
-pip install elasticdash openai
+pip install elasticdash
 ```
 
-```bash filename=".env"
-LANGFUSE_SECRET_KEY="sk-lf-..."
-LANGFUSE_PUBLIC_KEY="pk-lf-..."
-LANGFUSE_BASE_URL="https://cloud.elasticdash.com" # 🇪🇺 EU region
-# LANGFUSE_BASE_URL="https://us.cloud.elasticdash.com" # 🇺🇸 US region
+#### JavaScript/TypeScript
+
+```bash
+npm install @elasticdash/tracing @elasticdash/otel
 ```
 
-```python /@observe()/ /from elasticdash.openai import openai/ filename="main.py"
-from elasticdash import observe
-from elasticdash.openai import openai # OpenAI integration
+### 3️⃣ Configure SDK
 
-@observe()
-def story():
-    return openai.chat.completions.create(
-        model="gpt-4o",
-        messages=[{"role": "user", "content": "What is ElasticDash?"}],
-    ).choices[0].message.content
+Set environment variables to point to your Logger instance:
 
-@observe()
-def main():
-    return story()
-
-main()
+```bash
+ELASTICDASH_PUBLIC_KEY="pk-lf-..."
+ELASTICDASH_SECRET_KEY="sk-lf-..."
+ELASTICDASH_BASE_URL="http://localhost:3000"  # Your Logger URL
 ```
 
-### 3️⃣ See traces in ElasticDash
+### 4️⃣ Log your first LLM call
 
-See your language model calls and other application logic in ElasticDash.
+#### Python Example
 
-<img width="1787" height="674" alt="Example trace in ElasticDash" src="https://github.com/user-attachments/assets/f796eb78-dfb5-4570-b236-bdb4b67d4d55" />
+```python
+from elasticdash import get_client
 
-_[Public example trace in ElasticDash](https://cloud.elasticdash.com/project/cloramnkj0002jz088vzn1ja4/traces/2cec01e3-3dc2-472f-afcf-3b968cf0c1f4?timestamp=2025-02-10T14%3A27%3A30.275Z&observation=cb5ff844-07ef-41e6-b8e2-6c64344bc13b)_
+elasticdash = get_client()
 
-> [!TIP]
->
-> [Learn more](https://elasticdash.com/docs/tracing) about tracing in ElasticDash or play with the [interactive demo](https://elasticdash.com/docs/demo).
+# Create a trace with an observation
+with elasticdash.start_as_current_observation(
+    as_type="generation",
+    name="gpt-4-call",
+    model="gpt-4"
+) as generation:
+    generation.update(
+        input={"prompt": "Hello"},
+        output={"response": "Hi there!"}
+    )
 
-## ⭐️ Star Us
+elasticdash.flush()  # For short-lived apps
+```
 
-![star-elasticdash-on-github](https://github.com/user-attachments/assets/79a1d816-d229-4526-aecc-097d4a19f1ad)
+#### TypeScript Example
 
-## 💭 Support
+```typescript
+import { startActiveObservation } from "@elasticdash/tracing";
 
-Finding an answer to your question:
+await startActiveObservation("gpt-4-call", async (generation) => {
+  generation.update({
+    model: "gpt-4",
+    input: { prompt: "Hello" },
+    output: { response: "Hi there!" }
+  });
+});
+```
 
-- Our [documentation](https://elasticdash.com/docs) is the best place to start looking for answers. It is comprehensive, and we invest significant time into maintaining it. You can also suggest edits to the docs via GitHub.
-- [ElasticDash FAQs](https://elasticdash.com/faq) where the most common questions are answered.
-- Use "[Ask AI](https://elasticdash.com/docs/ask-ai)" to get instant answers to your questions.
+### 5️⃣ See traces in ElasticDash Logger
 
-Support Channels:
+Access your Logger at http://localhost:3000 to see your language model calls and other application logic.
 
-- **Ask any question in our [public Q&A](https://github.com/orgs/elasticdash/discussions/categories/support) on GitHub Discussions.** Please include as much detail as possible (e.g. code snippets, screenshots, background information) to help us understand your question.
-- [Request a feature](https://github.com/orgs/elasticdash/discussions/categories/ideas) on GitHub Discussions.
-- [Report a Bug](https://github.com/elasticdash/elasticdash/issues) on GitHub Issues.
-- For time-sensitive queries, ping us via the in-app chat widget.
+---
+
+## 📚 Documentation Index
+
+### Getting Started
+
+1. **Architecture Overview** (`./docs/architecture.md`)
+   - Logger component architecture
+   - Web application and worker design
+   - Database architecture (PostgreSQL + ClickHouse)
+   - Data flow and processing
+   - Deployment architecture
+
+2. **SDK Overview** (`./docs/sdk-overview.md`) ⭐ Start here for instrumentation
+   - Python SDK
+   - JavaScript/TypeScript SDK
+   - Quick start guides
+   - Installation and configuration
+   - Framework integrations (OpenAI, LangChain)
+
+### Core Concepts
+
+3. **Data Model Reference** (`./docs/data-model.md`)
+   - Traces, Sessions, and Observations explained
+   - Attribute tables and examples
+   - Nested observation hierarchies
+   - Best practices for metadata and tags
+
+### Advanced Usage
+
+4. **Fetching Data from Logger** (`./docs/fetching-data.md`)
+   - REST API authentication and endpoints
+   - Python SDK query methods
+   - JavaScript/TypeScript SDK query methods
+   - Common use cases and pagination
+   - Performance tips
+
+---
+
+## 🎯 Common Use Cases
+
+### 1. Trace a Conversation
+
+```python
+# Python example
+from elasticdash import get_client
+
+elasticdash = get_client()
+
+with elasticdash.start_as_current_observation(
+    as_type="span",
+    name="chat-turn",
+    session_id="session-123",
+    user_id="user-alice"
+) as span:
+    span.update(
+        input="User message",
+        output="Response sent"
+    )
+```
+
+### 2. Fetch Traces via API
+
+```python
+# Query via REST API
+traces = elasticdash.api.trace.list(
+    user_id="user-alice",
+    limit=100
+)
+```
+
+### 3. Analyze LLM Usage
+
+```python
+# Get generations (LLM calls)
+observations = elasticdash.api.observations_v_2.get_many(
+    type="GENERATION",
+    from_timestamp="2026-02-01T00:00:00Z"
+)
+```
+
+See **SDK Overview** (`./docs/sdk-overview.md`) for more examples.
+
+---
+
+## 🏗️ Architecture
+
+### High-Level Architecture
+
+```
+User Application (instrumented with SDK)
+    │
+    └─► ElasticDash Logger (this repo)
+            │
+            ├─► Web UI (trace visualization)
+            ├─► Worker (background processing)
+            └─► ClickHouse Database (trace storage)
+```
+
+### Data Flow
+
+1. **User Application** sends traces via ElasticDash SDK → HTTP POST to `/api/public/ingestion`
+2. **Web Application** validates and queues the trace
+3. **Worker** processes the trace asynchronously
+4. **Trace** is written to both PostgreSQL (metadata) and ClickHouse (full trace data)
+
+See **Architecture Overview** (`./docs/architecture.md`) for full details.
+
+---
 
 ## 🤝 Contributing
 
 Your contributions are welcome!
 
-- Vote on [Ideas](https://github.com/orgs/elasticdash/discussions/categories/ideas) in GitHub Discussions.
-- Raise and comment on [Issues](https://github.com/elasticdash/elasticdash/issues).
-- Open a PR - see [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to setup a development environment.
+- Raise and comment on Issues.
+- Open a PR - see CONTRIBUTING.md for details on how to setup a development environment.
+
+---
 
 ## 🥇 License
 
-This repository is MIT licensed, except for the `ee` folders. See [LICENSE](LICENSE) and [docs](https://elasticdash.com/docs/open-source) for more details.
+This repository is MIT licensed, except for the `ee` folders. See LICENSE for more details.
 
-## Dependencies
+---
 
-We deploy this code base in Docker containers based on the Linux Alpine Image ([source](https://github.com/nodejs/docker-node)). You may find the Dockerfiles in [web/Dockerfile](web/Dockerfile) and [worker/Dockerfile](worker/Dockerfile).
+## 📋 Documentation Status
 
-## ⭐️ Star History
+This documentation covers:
 
-<a href="https://star-history.com/#elasticdash/elasticdash&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=elasticdash/elasticdash&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=elasticdash/elasticdash&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=elasticdash/elasticdash&type=Date" style="border-radius: 15px;" />
- </picture>
-</a>
+✅ **ElasticDash Logger** (this repository)
+✅ **SDK instrumentation** (using ElasticDash SDKs)
+✅ **Data model** (Traces, Sessions, Observations)
+✅ **Architecture** (Logger component design)
+✅ **Querying data** (REST API and SDK methods)
+✅ **Local development** (running the Logger)
 
-## ❤️ Open Source Projects Using ElasticDash
+⏳ **Coming soon:**
+- Production deployment guide
+- Kubernetes manifests
+- Performance tuning guide
+- Monitoring and observability
 
-Top open-source Python projects that use ElasticDash, ranked by stars ([Source](https://github.com/elasticdash/elasticdash-docs/blob/main/components-mdx/dependents)):
+---
 
-| Repository                                                                                                                                                                                                                                                                                                     |  Stars |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------:|
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/85702467?s=40&v=4" width="20" height="20" alt=""> &nbsp; [langflow-ai](https://github.com/langflow-ai) / [langflow](https://github.com/langflow-ai/langflow)                                                                             | 116251 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/158137808?s=40&v=4" width="20" height="20" alt=""> &nbsp; [open-webui](https://github.com/open-webui) / [open-webui](https://github.com/open-webui/open-webui)                                                                           | 109642 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/23818?s=40&v=4" width="20" height="20" alt=""> &nbsp; [abi](https://github.com/abi) / [screenshot-to-code](https://github.com/abi/screenshot-to-code)                                                                                    |  70877 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/131470832?s=40&v=4" width="20" height="20" alt=""> &nbsp; [lobehub](https://github.com/lobehub) / [lobe-chat](https://github.com/lobehub/lobe-chat)                                                                                      |  65454 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/69962740?s=40&v=4" width="20" height="20" alt=""> &nbsp; [infiniflow](https://github.com/infiniflow) / [ragflow](https://github.com/infiniflow/ragflow)                                                                                  |  64118 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/135057108?s=40&v=4" width="20" height="20" alt=""> &nbsp; [firecrawl](https://github.com/firecrawl) / [firecrawl](https://github.com/firecrawl/firecrawl)                                                                                |  56713 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/130722866?s=40&v=4" width="20" height="20" alt=""> &nbsp; [run-llama](https://github.com/run-llama) / [llama_index](https://github.com/run-llama/llama_index)                                                                            |  44203 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/128289781?s=40&v=4" width="20" height="20" alt=""> &nbsp; [FlowiseAI](https://github.com/FlowiseAI) / [Flowise](https://github.com/FlowiseAI/Flowise)                                                                                    |  43547 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/159330290?s=40&v=4" width="20" height="20" alt=""> &nbsp; [QuivrHQ](https://github.com/QuivrHQ) / [quivr](https://github.com/QuivrHQ/quivr)                                                                                              |  38415 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/6154722?s=40&v=4" width="20" height="20" alt=""> &nbsp; [microsoft](https://github.com/microsoft) / [ai-agents-for-beginners](https://github.com/microsoft/ai-agents-for-beginners)                                                      |  38012 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/139558948?s=40&v=4" width="20" height="20" alt=""> &nbsp; [chatchat-space](https://github.com/chatchat-space) / [Langchain-Chatchat](https://github.com/chatchat-space/Langchain-Chatchat)                                               |  36071 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/31035808?s=40&v=4" width="20" height="20" alt=""> &nbsp; [mindsdb](https://github.com/mindsdb) / [mindsdb](https://github.com/mindsdb/mindsdb)                                                                                           |  35669 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/121462774?s=40&v=4" width="20" height="20" alt=""> &nbsp; [BerriAI](https://github.com/BerriAI) / [litellm](https://github.com/BerriAI/litellm)                                                                                          |  28726 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/157326433?s=40&v=4" width="20" height="20" alt=""> &nbsp; [onlook-dev](https://github.com/onlook-dev) / [onlook](https://github.com/onlook-dev/onlook)                                                                                   |  22447 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/487568?s=40&v=4" width="20" height="20" alt=""> &nbsp; [NixOS](https://github.com/NixOS) / [nixpkgs](https://github.com/NixOS/nixpkgs)                                                                                                   |  21748 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/170767358?s=40&v=4" width="20" height="20" alt=""> &nbsp; [kortix-ai](https://github.com/kortix-ai) / [suna](https://github.com/kortix-ai/suna)                                                                                          |  17976 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/76263028?s=40&v=4" width="20" height="20" alt=""> &nbsp; [anthropics](https://github.com/anthropics) / [courses](https://github.com/anthropics/courses)                                                                                  |  17057 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/149120496?s=40&v=4" width="20" height="20" alt=""> &nbsp; [mastra-ai](https://github.com/mastra-ai) / [mastra](https://github.com/mastra-ai/mastra)                                                                                      |  16484 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/134601687?s=40&v=4" width="20" height="20" alt=""> &nbsp; [elasticdash](https://github.com/elasticdash) / [elasticdash](https://github.com/elasticdash/elasticdash)                                                                      |  16054 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/7250217?s=40&v=4" width="20" height="20" alt=""> &nbsp; [Canner](https://github.com/Canner) / [WrenAI](https://github.com/Canner/WrenAI)                                                                                                 |  11868 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/137907881?s=40&v=4" width="20" height="20" alt=""> &nbsp; [promptfoo](https://github.com/promptfoo) / [promptfoo](https://github.com/promptfoo/promptfoo)                                                                                |   8350 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/193350244?s=40&v=4" width="20" height="20" alt=""> &nbsp; [The-Pocket](https://github.com/The-Pocket) / [PocketFlow](https://github.com/The-Pocket/PocketFlow)                                                                           |   8313 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/139012218?s=40&v=4" width="20" height="20" alt=""> &nbsp; [OpenPipe](https://github.com/OpenPipe) / [ART](https://github.com/OpenPipe/ART)                                                                                               |   7093 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/125468716?s=40&v=4" width="20" height="20" alt=""> &nbsp; [topoteretes](https://github.com/topoteretes) / [cognee](https://github.com/topoteretes/cognee)                                                                                |   7011 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/3299148?s=40&v=4" width="20" height="20" alt=""> &nbsp; [awslabs](https://github.com/awslabs) / [agent-squad](https://github.com/awslabs/agent-squad)                                                                                    |   6785 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/162546372?s=40&v=4" width="20" height="20" alt=""> &nbsp; [BasedHardware](https://github.com/BasedHardware) / [omi](https://github.com/BasedHardware/omi)                                                                                |   6231 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/118301880?s=40&v=4" width="20" height="20" alt=""> &nbsp; [hatchet-dev](https://github.com/hatchet-dev) / [hatchet](https://github.com/hatchet-dev/hatchet)                                                                              |   6019 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/88676955?s=40&v=4" width="20" height="20" alt=""> &nbsp; [zenml-io](https://github.com/zenml-io) / [zenml](https://github.com/zenml-io/zenml)                                                                                            |   4873 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/132635806?s=40&v=4" width="20" height="20" alt=""> &nbsp; [refly-ai](https://github.com/refly-ai) / [refly](https://github.com/refly-ai/refly)                                                                                           |   4654 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/47287758?s=40&v=4" width="20" height="20" alt=""> &nbsp; [coleam00](https://github.com/coleam00) / [ottomator-agents](https://github.com/coleam00/ottomator-agents)                                                                      |   4165 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/8251002?s=40&v=4" width="20" height="20" alt=""> &nbsp; [JoshuaC215](https://github.com/JoshuaC215) / [agent-service-toolkit](https://github.com/JoshuaC215/agent-service-toolkit)                                                       |   3557 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/185852128?s=40&v=4" width="20" height="20" alt=""> &nbsp; [colanode](https://github.com/colanode) / [colanode](https://github.com/colanode/colanode)                                                                                     |   3517 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/201282378?s=40&v=4" width="20" height="20" alt=""> &nbsp; [VoltAgent](https://github.com/VoltAgent) / [voltagent](https://github.com/VoltAgent/voltagent)                                                                                |   3210 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/188657705?s=40&v=4" width="20" height="20" alt=""> &nbsp; [bragai](https://github.com/bragai) / [bRAG-langchain](https://github.com/bragai/bRAG-langchain)                                                                               |   3010 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/11855343?s=40&v=4" width="20" height="20" alt=""> &nbsp; [pingcap](https://github.com/pingcap) / [autoflow](https://github.com/pingcap/autoflow)                                                                                         |   2651 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/135396723?s=40&v=4" width="20" height="20" alt=""> &nbsp; [sourcebot-dev](https://github.com/sourcebot-dev) / [sourcebot](https://github.com/sourcebot-dev/sourcebot)                                                                    |   2570 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/158137808?s=40&v=4" width="20" height="20" alt=""> &nbsp; [open-webui](https://github.com/open-webui) / [pipelines](https://github.com/open-webui/pipelines)                                                                             |   2055 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/179994263?s=40&v=4" width="20" height="20" alt=""> &nbsp; [YFGaia](https://github.com/YFGaia) / [dify-plus](https://github.com/YFGaia/dify-plus)                                                                                         |   1734 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/46323662?s=40&v=4" width="20" height="20" alt=""> &nbsp; [TheSpaghettiDetective](https://github.com/TheSpaghettiDetective) / [obico-server](https://github.com/TheSpaghettiDetective/obico-server)                                       |   1687 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/85268109?s=40&v=4" width="20" height="20" alt=""> &nbsp; [MLSysOps](https://github.com/MLSysOps) / [MLE-agent](https://github.com/MLSysOps/MLE-agent)                                                                                    |   1387 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/144196744?s=40&v=4" width="20" height="20" alt=""> &nbsp; [TIGER-AI-Lab](https://github.com/TIGER-AI-Lab) / [TheoremExplainAgent](https://github.com/TIGER-AI-Lab/TheoremExplainAgent)                                                   |   1385 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/2314423?s=40&v=4" width="20" height="20" alt=""> &nbsp; [trailofbits](https://github.com/trailofbits) / [buttercup](https://github.com/trailofbits/buttercup)                                                                            |   1223 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/62564480?s=40&v=4" width="20" height="20" alt=""> &nbsp; [wassim249](https://github.com/wassim249) / [fastapi-langgraph-agent-production-ready-template](https://github.com/wassim249/fastapi-langgraph-agent-production-ready-template) |   1200 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/18422723?s=40&v=4" width="20" height="20" alt=""> &nbsp; [alishobeiri](https://github.com/alishobeiri) / [thread](https://github.com/alishobeiri/thread)                                                                                 |   1098 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/2357342?s=40&v=4" width="20" height="20" alt=""> &nbsp; [dmayboroda](https://github.com/dmayboroda) / [minima](https://github.com/dmayboroda/minima)                                                                                     |   1010 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/65890619?s=40&v=4" width="20" height="20" alt=""> &nbsp; [zstar1003](https://github.com/zstar1003) / [ragflow-plus](https://github.com/zstar1003/ragflow-plus)                                                                           |    993 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/121352441?s=40&v=4" width="20" height="20" alt=""> &nbsp; [openops-cloud](https://github.com/openops-cloud) / [openops](https://github.com/openops-cloud/openops)                                                                        |    939 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/151867818?s=40&v=4" width="20" height="20" alt=""> &nbsp; [dynamiq-ai](https://github.com/dynamiq-ai) / [dynamiq](https://github.com/dynamiq-ai/dynamiq)                                                                                 |    927 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/74420131?s=40&v=4" width="20" height="20" alt=""> &nbsp; [xataio](https://github.com/xataio) / [agent](https://github.com/xataio/agent)                                                                                                  |    857 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/123981229?s=40&v=4" width="20" height="20" alt=""> &nbsp; [plastic-labs](https://github.com/plastic-labs) / [tutor-gpt](https://github.com/plastic-labs/tutor-gpt)                                                                       |    845 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/176438967?s=40&v=4" width="20" height="20" alt=""> &nbsp; [trendy-design](https://github.com/trendy-design) / [llmchat](https://github.com/trendy-design/llmchat)                                                                        |    829 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/2045570?s=40&v=4" width="20" height="20" alt=""> &nbsp; [hotovo](https://github.com/hotovo) / [aider-desk](https://github.com/hotovo/aider-desk)                                                                                         |    781 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/169500408?s=40&v=4" width="20" height="20" alt=""> &nbsp; [opslane](https://github.com/opslane) / [opslane](https://github.com/opslane/opslane)                                                                                          |    719 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/142796018?s=40&v=4" width="20" height="20" alt=""> &nbsp; [wrtnlabs](https://github.com/wrtnlabs) / [autoview](https://github.com/wrtnlabs/autoview)                                                                                     |    688 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/20493493?s=40&v=4" width="20" height="20" alt=""> &nbsp; [andysingal](https://github.com/andysingal) / [llm-course](https://github.com/andysingal/llm-course)                                                                            |    643 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/48585267?s=40&v=4" width="20" height="20" alt=""> &nbsp; [theopenconversationkit](https://github.com/theopenconversationkit) / [tock](https://github.com/theopenconversationkit/tock)                                                    |    587 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/178644984?s=40&v=4" width="20" height="20" alt=""> &nbsp; [sentient-engineering](https://github.com/sentient-engineering) / [agent-q](https://github.com/sentient-engineering/agent-q)                                                   |    487 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/58037050?s=40&v=4" width="20" height="20" alt=""> &nbsp; [NicholasGoh](https://github.com/NicholasGoh) / [fastapi-mcp-langgraph-template](https://github.com/NicholasGoh/fastapi-mcp-langgraph-template)                                 |    481 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/148684274?s=40&v=4" width="20" height="20" alt=""> &nbsp; [i-am-alice](https://github.com/i-am-alice) / [3rd-devs](https://github.com/i-am-alice/3rd-devs)                                                                               |    472 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/163431636?s=40&v=4" width="20" height="20" alt=""> &nbsp; [AIDotNet](https://github.com/AIDotNet) / [koala-ai](https://github.com/AIDotNet/koala-ai)                                                                                     |    470 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/132396805?s=40&v=4" width="20" height="20" alt=""> &nbsp; [phospho-app](https://github.com/phospho-app) / [text-analytics-legacy](https://github.com/phospho-app/text-analytics-legacy)                                                  |    439 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/170831637?s=40&v=4" width="20" height="20" alt=""> &nbsp; [inferablehq](https://github.com/inferablehq) / [inferable](https://github.com/inferablehq/inferable)                                                                          |    403 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/171800766?s=40&v=4" width="20" height="20" alt=""> &nbsp; [duoyang666](https://github.com/duoyang666) / [ai_novel](https://github.com/duoyang666/ai_novel)                                                                               |    397 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/209155962?s=40&v=4" width="20" height="20" alt=""> &nbsp; [strands-agents](https://github.com/strands-agents) / [samples](https://github.com/strands-agents/samples)                                                                     |    385 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/16997807?s=40&v=4" width="20" height="20" alt=""> &nbsp; [FranciscoMoretti](https://github.com/FranciscoMoretti) / [sparka](https://github.com/FranciscoMoretti/sparka)                                                                  |    380 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/66303003?s=40&v=4" width="20" height="20" alt=""> &nbsp; [RobotecAI](https://github.com/RobotecAI) / [rai](https://github.com/RobotecAI/rai)                                                                                             |    373 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/137044109?s=40&v=4" width="20" height="20" alt=""> &nbsp; [ElectricCodeGuy](https://github.com/ElectricCodeGuy) / [SupabaseAuthWithSSR](https://github.com/ElectricCodeGuy/SupabaseAuthWithSSR)                                          |    370 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/169401942?s=40&v=4" width="20" height="20" alt=""> &nbsp; [LibreChat-AI](https://github.com/LibreChat-AI) / [librechat.ai](https://github.com/LibreChat-AI/librechat.ai)                                                                 |    339 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/15125613?s=40&v=4" width="20" height="20" alt=""> &nbsp; [souzatharsis](https://github.com/souzatharsis) / [tamingLLMs](https://github.com/souzatharsis/tamingLLMs)                                                                      |    323 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/8931462?s=40&v=4" width="20" height="20" alt=""> &nbsp; [aws-samples](https://github.com/aws-samples) / [aws-ai-ml-workshop-kr](https://github.com/aws-samples/aws-ai-ml-workshop-kr)                                                    |    295 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/25676773?s=40&v=4" width="20" height="20" alt=""> &nbsp; [weizxfree](https://github.com/weizxfree) / [KnowFlow](https://github.com/weizxfree/KnowFlow)                                                                                   |    285 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/88676955?s=40&v=4" width="20" height="20" alt=""> &nbsp; [zenml-io](https://github.com/zenml-io) / [zenml-projects](https://github.com/zenml-io/zenml-projects)                                                                          |    276 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/136071305?s=40&v=4" width="20" height="20" alt=""> &nbsp; [wxai-space](https://github.com/wxai-space) / [LightAgent](https://github.com/wxai-space/LightAgent)                                                                           |    275 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/90278288?s=40&v=4" width="20" height="20" alt=""> &nbsp; [Ozamatash](https://github.com/Ozamatash) / [deep-research-mcp](https://github.com/Ozamatash/deep-research-mcp)                                                                 |    269 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/168552753?s=40&v=4" width="20" height="20" alt=""> &nbsp; [sql-agi](https://github.com/sql-agi) / [DB-GPT](https://github.com/sql-agi/DB-GPT)                                                                                            |    241 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/828269?s=40&v=4" width="20" height="20" alt=""> &nbsp; [guyernest](https://github.com/guyernest) / [advanced-rag](https://github.com/guyernest/advanced-rag)                                                                             |    238 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/175069511?s=40&v=4" width="20" height="20" alt=""> &nbsp; [bklieger-groq](https://github.com/bklieger-groq) / [mathtutor-on-groq](https://github.com/bklieger-groq/mathtutor-on-groq)                                                    |    233 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/123981229?s=40&v=4" width="20" height="20" alt=""> &nbsp; [plastic-labs](https://github.com/plastic-labs) / [honcho](https://github.com/plastic-labs/honcho)                                                                             |    224 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/118967077?s=40&v=4" width="20" height="20" alt=""> &nbsp; [OVINC-CN](https://github.com/OVINC-CN) / [OpenWebUI](https://github.com/OVINC-CN/OpenWebUI)                                                                                   |    202 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/31960995?s=40&v=4" width="20" height="20" alt=""> &nbsp; [zhutoutoutousan](https://github.com/zhutoutoutousan) / [worldquant-miner](https://github.com/zhutoutoutousan/worldquant-miner)                                                 |    202 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/29215115?s=40&v=4" width="20" height="20" alt=""> &nbsp; [iceener](https://github.com/iceener) / [ai](https://github.com/iceener/ai)                                                                                                     |    186 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/187584218?s=40&v=4" width="20" height="20" alt=""> &nbsp; [giselles-ai](https://github.com/giselles-ai) / [giselle](https://github.com/giselles-ai/giselle)                                                                              |    181 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/174666116?s=40&v=4" width="20" height="20" alt=""> &nbsp; [ai-shifu](https://github.com/ai-shifu) / [ai-shifu](https://github.com/ai-shifu/ai-shifu)                                                                                     |    181 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/8931462?s=40&v=4" width="20" height="20" alt=""> &nbsp; [aws-samples](https://github.com/aws-samples) / [sample-serverless-mcp-servers](https://github.com/aws-samples/sample-serverless-mcp-servers)                                    |    175 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/202488052?s=40&v=4" width="20" height="20" alt=""> &nbsp; [celerforge](https://github.com/celerforge) / [freenote](https://github.com/celerforge/freenote)                                                                               |    171 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/104478511?s=40&v=4" width="20" height="20" alt=""> &nbsp; [babelcloud](https://github.com/babelcloud) / [LLM-RGB](https://github.com/babelcloud/LLM-RGB)                                                                                 |    164 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/171735272?s=40&v=4" width="20" height="20" alt=""> &nbsp; [8090-inc](https://github.com/8090-inc) / [xrx-sample-apps](https://github.com/8090-inc/xrx-sample-apps)                                                                       |    163 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/51827949?s=40&v=4" width="20" height="20" alt=""> &nbsp; [deepset-ai](https://github.com/deepset-ai) / [haystack-core-integrations](https://github.com/deepset-ai/haystack-core-integrations)                                            |    163 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/1009716?s=40&v=4" width="20" height="20" alt=""> &nbsp; [codecentric](https://github.com/codecentric) / [c4-genai-suite](https://github.com/codecentric/c4-genai-suite)                                                                  |    152 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/196509932?s=40&v=4" width="20" height="20" alt=""> &nbsp; [XSpoonAi](https://github.com/XSpoonAi) / [spoon-core](https://github.com/XSpoonAi/spoon-core)                                                                                 |    150 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/139558948?s=40&v=4" width="20" height="20" alt=""> &nbsp; [chatchat-space](https://github.com/chatchat-space) / [LangGraph-Chatchat](https://github.com/chatchat-space/LangGraph-Chatchat)                                               |    144 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/134601687?s=40&v=4" width="20" height="20" alt=""> &nbsp; [elasticdash](https://github.com/elasticdash) / [elasticdash-docs](https://github.com/elasticdash/elasticdash-docs)                                                            |    139 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/44976328?s=40&v=4" width="20" height="20" alt=""> &nbsp; [piyushgarg-dev](https://github.com/piyushgarg-dev) / [genai-cohort](https://github.com/piyushgarg-dev/genai-cohort)                                                            |    135 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/105285801?s=40&v=4" width="20" height="20" alt=""> &nbsp; [i-dot-ai](https://github.com/i-dot-ai) / [redbox](https://github.com/i-dot-ai/redbox)                                                                                         |    132 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/90423581?s=40&v=4" width="20" height="20" alt=""> &nbsp; [bmd1905](https://github.com/bmd1905) / [ChatOpsLLM](https://github.com/bmd1905/ChatOpsLLM)                                                                                     |    127 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/202074444?s=40&v=4" width="20" height="20" alt=""> &nbsp; [Fintech-Dreamer](https://github.com/Fintech-Dreamer) / [FinSynth](https://github.com/Fintech-Dreamer/FinSynth)                                                                |    121 |
-| <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/1566555?s=40&v=4" width="20" height="20" alt=""> &nbsp; [kenshiro-o](https://github.com/kenshiro-o) / [nagato-ai](https://github.com/kenshiro-o/nagato-ai)                                                                               |    119 |
-
-## 🔒 Security & Privacy
-
-We take data security and privacy seriously. Please refer to our [Security and Privacy](https://elasticdash.com/security) page for more information.
-
-### Telemetry
-
-By default, ElasticDash automatically reports basic usage statistics of self-hosted instances to a centralized server (PostHog).
-
-This helps us to:
-
-1. Understand how ElasticDash is used and improve the most relevant features.
-2. Track overall usage for internal and external (e.g. fundraising) reporting.
-
-None of the data is shared with third parties and does not include any sensitive information. We want to be super transparent about this and you can find the exact data we collect [here](/web/src/features/telemetry/index.ts).
-
-You can opt-out by setting `TELEMETRY_ENABLED=false`.
+**Last Updated:** February 2026
